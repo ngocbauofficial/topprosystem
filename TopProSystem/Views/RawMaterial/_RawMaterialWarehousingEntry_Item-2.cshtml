@@ -1,0 +1,148 @@
+﻿@using StaticResources
+@{
+    Layout = null;
+
+}
+@{
+
+    var selectSpec = new SelectList(ViewBag.Spec, "ID", "MFPRDSP");
+    var selectCoating = new SelectList(ViewBag.Coating, "ID", "MECOAT");
+    var selectGrade = new SelectList(ViewBag.Grade, "MNSRCD", "MNSRNM");
+
+}
+<div class="w-100 py-2 px-2" style="border-top: 1px solid #000; border-left: 1px solid #000; border-right: 1px solid #000; background: #e5e4e4">
+    <span class="title-float-left">Item No.</span>
+    <input type="text" name="name" tabindex="21" value="" />
+    <button class="cancel" type="button" style=" border-color:none; float:right">Delete item</button>
+</div>
+<div class="divTable" style="border: 1px solid">
+    <div class="divTableBody">
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">Spec</span></div>
+            <div class="divTableCell">
+
+                @Html.DropDownList("Spec", selectSpec, RLayout.SelectAction, new { @tabindex = "22" })
+
+            </div>
+            <div class="divTableCell"><span class="title">Grade</span></div>
+            <div class="divTableCell">
+                @Html.DropDownList("Grade", selectGrade, RLayout.SelectAction, new { @tabindex = "26" })
+            </div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">Coating</span></div>
+            <div class="divTableCell">
+                @Html.DropDownList("Coating", selectCoating, RLayout.SelectAction, new { @tabindex = "23" })
+            </div>
+            <div class="divTableCell"><span class="title">Size</span></div>
+            <div class="divTableCell">
+                <input type="text" name="name" tabindex="27" value="" /> X
+                <input type="text" name="name" tabindex="28" value="" /> X
+                <input type="text" name="name" tabindex="29" value="" />
+            </div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">Product Name</span></div>
+            <div class="divTableCell"><input tabindex="24" type="text" name="name" value="" /></div>
+            <div class="divTableCell"><span class="title">Product Diameter</span></div>
+            <div class="divTableCell"><input type="text" tabindex="30" name="name" value="" /></div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">Order No.</span></div>
+            <div class="divTableCell"><input tabindex="25" type="text" name="name" value="" /></div>
+        </div>
+    </div>
+</div>
+
+<div class="divTable" style="border-right: 1px solid; border-left: 1px solid;border-bottom: 1px solid; ">
+    <div class="divTableBody" id="dataFill">
+        <div class="divTableRow">
+            <div class="divTableCell text-center"><span class="title-center">Inspection No</span></div>
+            <div class="divTableCell text-center"><span class="title-center">Raw Material No</span></div>
+            <div class="divTableCell text-center"><span class="title-center">Quantity</span></div>
+            <div class="divTableCell text-center"><span class="title-center">Weight</span></div>
+            <div class="divTableCell text-center"><span class="title-center">Status Code</span></div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell text-center"><input type="text" name="name" tabindex="31" value="" style="width:230px;" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="32" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="33" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="34" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="35" /></div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell text-center"><input type="text" name="name" tabindex="36" value="" style="width:230px;" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="37" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="38" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="39" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="40" /></div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="41" style="width:230px;" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="42" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="43" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="44" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="45" /></div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="46" style="width:230px;" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="47" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="48" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="49" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="50" /></div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="51" style="width:230px;" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="52" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="53" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="54" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="55" /></div>
+        </div>
+        <div class="divTableRow" id="totalRow">
+            <div class="divTableCell"></div>
+            <div class="divTableCell text-center"><span class="title-center">Total</span></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" readonly style="background: #e5e4e4" /></div>
+            <div class="divTableCell text-center"><input type="text" name="name" value="" readonly style="background: #e5e4e4" /></div>
+            <div class="divTableCell text-center"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $('#dataFill').on('keyup', function () {
+        var tabindexs = new Array();
+        for (var i = 1; i <= 5; i++) {
+            var input = $('#dataFill .divTableRow:nth-last-child(2) .divTableCell:nth-child(' + i + ') input');  // lấy ra thẻ input của phần tử cuối thứ 2 duoi dem len
+            if (input.val() != '') {
+                var obj = { "value": input.val(), "tabindex": input.attr('tabindex') };
+                tabindexs.push(obj);
+            }
+        }
+
+        if (tabindexs.length < 5) return false;
+        var html = '<div class="divTableRow">';
+
+        for (var i = 1; i <= 5; i++) {
+
+            if (i == 1) html += ' <div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="' + (Number(tabindexs[i - 1].tabindex) + 5) + '" style="width:230px;"  /></div>';
+
+            else html += '<div class="divTableCell text-center"><input type="text" name="name" value="" tabindex="' + (Number(tabindexs[i - 1].tabindex) + 5) + '"/></div>';
+        }
+
+        html += '</div">';
+
+        $('#dataFill .divTableRow:nth-last-child(2)').after(html);
+
+        $('html,body').animate({ scrollTop: document.body.scrollHeight }, 200);
+    })
+
+    $('#dataFill').bind('keypress', function (e) {
+        if (e.keyCode == 13) {
+            var input_tabindex = $(this).find('input:focus').attr('tabindex');
+            input_tabindex++;
+            $('[tabindex=' + input_tabindex + ']').focus();
+            return false;
+        }
+    })
+
+</script>

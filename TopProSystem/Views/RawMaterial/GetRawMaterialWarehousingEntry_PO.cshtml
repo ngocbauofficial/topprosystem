@@ -1,0 +1,323 @@
+﻿@using StaticResources
+@model TopProSystem.Areas.MasterSetting.Models.RawMaterial
+@{
+    ViewBag.Title = "Raw Material Warehousing Entry (PO)";
+    Layout = "~/Views/Shared/_LayoutPageRawMaterial.cshtml";
+    ViewBag.content = "Raw Material Warehousing Entry (PO)";
+}
+<div class="content-top row mx-0">
+    <form action="#" method="get">
+        <div class="w-100 py-2 px-2" style="border-top: 1px solid #000; border-left: 1px solid #000; border-right: 1px solid #000; background: #e5e4e4">
+            <span class="title-float-left">Purchase Contract No.</span>
+            <input tabindex="1" type="text" id="SAAPURNO" name="SAAPURNO" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="txtsearch" />
+            <span class="title-float-left ml-2">Item No.</span>
+            <input tabindex="2" type="text" id="SABCTITM" name="SABCTITM" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="txtsearch" />
+            <button tabindex="3" id="Search" type="button" class="search">Search</button>
+        </div>
+    </form>
+
+    @using (Html.BeginForm("GetRawMaterialWarehousingEntry_PO", "RawMaterial", FormMethod.Post, new { enctype = "multipart/form-data", id = "form-id" }))
+    {
+
+        <div class="divTable" style="border:1px solid #000">
+            <div class="divTableBody">
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.AAPURNO)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.PurchaseContract.AAPURNO, new { @readonly = "", tabindex = "4" })
+                    </div>
+                    <div class="divTableCell"><span class="title">Vessel Name</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.VesselName, new { @tabindex = "12" })
+
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.AASPPNO)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.PurchaseContract.AASPPNO, new { @tabindex = "5" })
+                    </div>
+
+
+                    <div class="divTableCell " style="width: 180px"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.AAMKCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAMKCD, new SelectList(new List<string>()), new { @tabindex = "5" })*@
+                        <div class="input-icons" id="div-AAMKCD">
+                            @Html.HiddenFor(x => x.PurchaseContract.AAMKCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AAMKCD-js" id="AAMKCD-js" class="input-as-select" readonly placeholder="@RLayout.SelectAction" tabindex="5" />
+                            <input type="text" name="AAMKCD_dl" id="AAMKCD_dl" value="" readonly style="width:200px" />
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.AASPLCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AASPLCD, Model.SupplierCodes, RLayout.SelectAction, new { @tabindex = "7" })*@
+                        <div id="div-AASPLCD" class="input-icons">
+                            @Html.HiddenFor(x => x.PurchaseContract.AASPLCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AASPLCD-js" class="input-as-select" id="AASPLCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="7" />
+                            <input type="text" name="AASPLCD_dl" id="AASPLCD_dl" value="" readonly style="width: 200px" />
+                        </div>
+                    </div>
+
+
+                    <div class="divTableCell"><span class="title">PO Date</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.PODate, new { @tabindex = "14", @data_provide = "datepicker" })
+
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Shippers Invoice No</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.ShippersInvoiceNo, new { @tabindex = "7" })
+                        @Html.ValidationMessageFor(x => x.ShippersInvoiceNo)
+                    </div>
+                    <div class="divTableCell">
+                        <span class="title">Shippers Invoice Date</span>
+                    </div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.ShippersInvoiceDate, new { @tabindex = "15", @data_provide = "datepicker" })
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Stock Entry Date</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.StockEntryDate, new { @tabindex = "8", @data_provide = "datepicker" })
+                    </div>
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.PurchaseContract.AAIDCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAIDCD, Model.PersonIncharges, RLayout.SelectAction, new { @tabindex = "18" })*@
+                        <div id="div-AAIDCD" class="input-icons">
+                            @Html.HiddenFor(x => x.PurchaseContract.AAIDCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AAIDCD-js" id="AAIDCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" class="input-as-select" readonly tabindex="18" />
+                            <input type="text" name="AAIDCD_dl" id="AAIDCD_dl" value="" readonly style="width:200px" />
+                        </div>
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.AAUSRCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAUSRCD, Model.UserCodes, RLayout.SelectAction, new { @tabindex = "8" })*@
+                        <div id="div-AAUSRCD" class="input-icons">
+                            @Html.HiddenFor(x => x.PurchaseContract.AAUSRCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AAUSRCD-js" id="AAUSRCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" class="input-as-select" readonly tabindex="8" />
+                            <input type="text" name="AAUSRCD_dl" id="AAUSRCD_dl" value="" readonly style="width: 200px" />
+                        </div>
+                    </div>
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.PurchaseContract.AACTRTP)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AACTRTP, Model.ContractTypes, RLayout.SelectAction, new { @tabindex = "17" })*@
+                        <div id="div-AACTRTP" class="input-icons">
+                            @Html.HiddenFor(x => x.PurchaseContract.AACTRTP)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AACTRTP-js" class="input-as-select" id="AACTRTP-js" value="" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="17" />
+                            <input type="text" name="AACTRTP_dl" id="AACTRTP_dl" value="" readonly style="width: 200px" />
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Deposit/Asset</span></div>
+                    <div class="divTableCell">
+
+                        @Html.DropDownList(RLayout.SelectAction, new SelectList(new List<String>() { }), RLayout.SelectAction, new { @tabindex = "10" })
+                        <input type="text" name="" id="" value="" readonly />
+                    </div>
+                    <div class="divTableCell"><span class="title">Shipping Date</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.ShippingDate, new { @tabindex = "18", @data_provide = "datepicker" })
+                    </div>
+                </div>
+                <div class="divTableRow">
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.PurchaseContract.AACMDCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AACMDCD, Model.CommodityCodes, RLayout.SelectAction, new { @tabindex = "16" })*@
+                        <div id="div-AACMDCD" class="input-icons">
+                            @Html.HiddenFor(x => x.PurchaseContract.AACMDCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AACMDCD-js" id="AACMDCD-js" class="input-as-select" readonly value="" placeholder="@Html.Raw(RLayout.SelectAction)" tabindex="16" />
+                            <input type="text" name="AACMDCD_dl" id="AACMDCD_dl" value="" readonly style="width: 200px" />
+                        </div>
+                    </div>
+
+                    <div class="divTableCell"><span class="title">Raw Material Type</span> </div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AARMTP, Model.RawMaterialTypes, RLayout.SelectAction, new { @tabindex = "24" })*@
+                        <div id="div-AARMTP" class="input-icons">
+                            @Html.HiddenFor(x => x.PurchaseContract.AARMTP)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AARMTP-js" id="AARMTP-js" class="input-as-select" placeholder="@Html.Raw(RLayout.SelectAction)" value="" readonly tabindex="24" />
+                            <input type="text" name="AARMTP_dl" id="AARMTP_dl" value="" readonly="" style="width: 200px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="float-right mt-2 mb-4">
+            <button type="button" tabindex="19" id="confirm" class="confirm">Confirm</button>
+            <button type="button" tabindex="20" id="cancle" class="cancel">Cancel</button>
+        </div>
+        <div class="content-bottom w-100 row mx-0" id="itemno">
+            @Html.Partial("_RawMaterialWarehousingEntry_Item", Model)
+        </div>
+        @*getname select Show*@
+        <script>
+            $('#PurchaseContract_AASPLCD').change(function () {
+                if ($(this).val() !== '') {
+                    $.getJSON('/MasterSetting/Master/GetJsonSalePurchase', { spcode: $(this).val() }).done(function (rs) {
+                        $('#AASPLCD_dl').val(rs.MASPNM);
+                    });
+                }
+                else {
+                    $('#AASPLCD_dl').val('');
+                }
+
+            })
+
+            $('#PurchaseContract_AAMKCD').change(function () {
+                if ($(this).val() === '') {
+                    $('#AAMKCD_dl').val('');
+                } else {
+                    $.getJSON('/MasterSetting/Master/GetJsonBySRCode',
+                    {
+                        codes: '005' + '|' + $(this).val()
+                    }).done(function (rs) {
+                        $('#AAMKCD_dl').val(rs.MNSRNM);
+                    }).fail(function (rs) {
+                        console.error(rs.responseText);
+                    })
+                }
+            })
+            $('#PurchaseContract_AAUSRCD').change(function () {
+                if ($(this).val() === '') {
+                    $('#AAUSRCD_dl').val('');
+                } else {
+                    $.getJSON('/MasterSetting/Master/GetUserName', {
+                        userid: $(this).val()
+                    }).done(function (rs) {
+                        $('#AAUSRCD_dl').val(rs.username);
+                    }).fail(function (rs) {
+                        console.error(rs.responseText);
+                    })
+                }
+            })
+
+            $('#PurchaseContract_AACMDCD').change(function () {
+                if ($(this).val() === '') {
+                    $('#AACMDCD_dl').val('');
+                } else {
+                    $.getJSON('/MasterSetting/Master/GetJsonBySRCode',
+                    {
+                        codes: '006' + '|' + $(this).val().trim()
+                    }).done(function (rs) {
+                        $('#AACMDCD_dl').val(rs.MNSRNM);
+                    }).fail(function (rs) {
+                        console.error(rs.responseText);
+                    })
+                }
+            })
+
+            $('#PurchaseContract_AACTRTP').change(function () {
+                if ($(this).val() === '') {
+                    $('#AACTRTP_dl').val('');
+                } else {
+                    $.getJSON('/MasterSetting/Master/GetJsonBySRCode',
+                    {
+                        codes: '025' + '|' + $(this).val().trim()
+                    }).done(function (rs) {
+                        $('#AACTRTP_dl').val(rs.MNSRNM);
+                    }).fail(function (rs) {
+                        console.error(rs.responseText);
+                    })
+                }
+            })
+            $('#PurchaseContract_AAIDCD').change(function () {
+                if ($(this).val() !== '') {
+                    $.getJSON('/MasterSetting/Master/GetJsonMa003', { userid: $(this).val() }).done(function (rs) {
+                        $('#AAIDCD_dl').val(rs.MCIDNM);
+                    })
+                } else {
+                    $('#AAIDCD_dl').val('');
+                }
+            })
+
+        </script>
+    }
+</div>
+<div id="loader"></div>
+@*SEARCH Item*@
+<script>
+      $(".txtsearch").keyup(function () {
+          var input = $(this);
+          if (input.val()) {
+              input.css("border", "1px solid #999999");
+          }
+      });
+      $('#Search').click(function () {
+          var AAPURNO = $('#SAAPURNO').val();
+          var ABCTITM = $('#SABCTITM').val();
+          debugger;
+          if ((!AAPURNO) || !ABCTITM ) {
+              alert("Please enter Purchase Contract No & Item No");
+              if (!ABCTITM) {
+                  $('#SABCTITM').css("border", "1px solid red")
+                  $('#SABCTITM').focus();
+              }
+              if (!AAPURNO) {
+                  $('#SAAPURNO').css("border", "1px solid red")
+                  $('#SAAPURNO').focus();
+              }
+              return false;
+          }
+
+          else {
+              $('#loader').addClass('loader');
+              $.ajax({
+                  type: "POST",
+                  async: true,
+                  url: "/RawMaterial/AjaxRawMaterialWarehousingEntry_PO",
+                  typedata: 'html',
+                  data: { 'SAAPURNO': AAPURNO, 'SABCTITM': ABCTITM },
+                  success: function (data) {
+                      if (data.error == true) {
+                          $('#form-id').html(data.message);
+                          $('#loader').removeClass('loader');
+                          ErrorAlert("Does not exist Purchase Contract No or Item No ");
+                      }
+                      else {
+                          $('#form-id').html(data);
+                          $('#loader').removeClass('loader');
+                      }
+                  },
+                  error: {},
+              });
+          }
+
+      })
+
+</script>
+@if (TempData["Error"] != null)
+{
+    <script>
+        ErrorAlert("@Html.Raw(TempData["Error"])");
+    </script>
+}
+@*validate  form*@
+
+<script>
+    //Autocomplete select
+
+
+</script>

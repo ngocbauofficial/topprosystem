@@ -1,0 +1,221 @@
+﻿@using StaticResources
+@using StaticResources.View.TaxMaster
+@model IEnumerable<TopProSystem.Areas.MasterSetting.Models.MA010>
+@{
+    ViewBag.Title = Resource.MasterTitle;
+    ViewBag.headerName = ViewBag.Title;
+    Layout = "~/Areas/MasterSetting/Views/Shared/_LayoutMasterSeting.cshtml";
+}
+@using TopProSystem.Extension.AccountRole
+@{
+
+    var permission = new PermissionService();
+    var checkbuton = permission.AuthorizeAction(StandardPermissionProvider.TaxMaster);
+}
+
+
+<script type="text/javascript">
+    $(function () {
+        @Html.Raw(TempData[TopProSystem.Models.ConstantData.Notification_key])
+    })
+
+</script>
+<style>
+    .data-display table tr td:nth-child(4) {
+        text-align: center;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="pos-top">
+        <div class="row mx-0">
+            <div class="col-lg-12">
+                <form action="#" method="get" class="form-inline">
+                    <div class="form-group">
+                        <input type="text" name="taxcode" id="taxcode" class="search" value="" placeholder="@Resource.PlaceholderTextSearch" />
+                        <button type="button" id="btnSearch" class="btn-primary search ml-2">@Button.BtnSeach</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="row mx-0 mt-5">
+            <div class="col-lg-12">
+                @if (checkbuton.ShowDelete)
+                {
+                    <button class="btn-danger float-right ml-2" id="deleteBtn">@Button.BtnDelete</button>
+                }
+                @if (checkbuton.ShowAdd)
+                {
+                    <a href="@Url.Action("GetInsertTax","Master")" class="button float-right btn-addnew">@Button.BtnAdd</a>
+                }
+            </div>
+
+        </div>
+    </div>
+
+    <div class="data-display">
+        <table class="w-100 table-sm" id="dataTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>@Resource.MKTXCD</th>
+                    <th>@Resource.MKTXDL</th>
+                    <th>@Resource.MKTXRT</th>
+                    <th>@Resource.MKFRDT</th>
+                    <th>@Resource.MKRGSDT</th>
+                    <th>@Resource.MKGSTM</th>
+                    <th>@Resource.MKUPDT</th>
+                    <th>@Resource.MKUPDTM</th>
+                    @if (checkbuton.ShowEdit)
+                    {
+                        <th>@Button.LbEdit</th>
+                    }
+                    @if (checkbuton.ShowDelete)
+                    {
+                        <th>@Button.LbSelect</th>
+                    }
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const URL_DELETE_TAX = '/Master/DeleteTax';
+    const URL_CHECK_TAXCODE_IN_USED = '/Master/CheckTaxCodeInused';
+    const URL_AJAXHANDLER = '/Master/AjaxHandlerTaxMaster';
+
+
+    $('#deleteBtn').click(function () {
+        var length = $('input[type="checkbox"]:checked').length;
+        if (length == 0) {
+            alert("@Html.Raw(RLayout.ErrorNoRowSelect)");
+            return false;
+        }
+        var val = '';
+        $('input[type="checkbox"]:checked').each(function () {
+            val += $(this).val() + '|';
+
+        })
+        val = val.substring(0, val.length - 1);
+
+        $.confirm({
+            title: "<span class='text-secondary'>@Button.BtnConfirm</span>",
+            icon: 'fa fa-warning',
+            content: '@Html.Raw(RLayout.ContentDelete)',
+            type: 'blue',
+            buttons: {
+                confirm: {
+                    text: '@Button.BtnConfirm',
+                    btnClass: 'btn-confirm text-capitalize',
+                    action: function () {
+                        $.ajax({
+                            url: URL_DELETE_TAX,
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                arraytaxCode: function () { return val; }
+                            },
+                            success: function (rs) {
+                                if (!rs)
+                                    window.location.href = rs;
+                                else {
+                                    SuccessAlert('@RLayout.DeleteMsg');
+                                    $('#dataTable').DataTable().ajax.reload();
+                                }
+                            },
+                            error: function (rs) {
+                                console.log(rs.responseText);
+                            }
+                        });
+                    }
+                },
+                cancel: {
+                    text: '@Button.BtnCancel',
+                    btnClass: 'btn-cancel text-capitalize',
+
+                }
+            }
+        })
+    })
+
+    $(document).ready(function () {
+        var t = $('#dataTable').DataTable({
+            "ordering": false,
+            "info": false,
+            "lengthChange": false,
+            "pageLength": DataTableDisplayLength,
+            "bServerSide": true,
+            "sAjaxSource": URL_AJAXHANDLER,
+            "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                oSettings.jqXHR = $.ajax({
+                    "dataType": 'json',
+                    "url": sSource,
+                    "data": aoData,
+                    "success": fnCallback,
+                    "error": function () {
+                        alert("@RLayout.SessiontimeoutRespone");
+                        window.location.href = "@Url.Action("GetLogin","Account", new {area = "" })"
+                    }
+                });
+            },
+            "bProcessing": true,
+            "sServerMethod": "POST",
+            "sPaginationType": "full_numbers",
+            "language": {
+                "paginate": {
+                    "first": '<i class="fa fa-fast-backward"></i>',
+                    "last": '<i class="fa fa-fast-forward"></i>',
+                    "next": '<i class="fa fa-forward"></i>',
+                    "previous": '<i class="fa fa-backward"></i>'
+                },
+                "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+            },
+            "columns": [
+                { "data": null },
+                { "data": "MKTXCD" },
+                { "data": "MKTXDL" },
+                { "data": "MKTXRT" },
+                { "data": "MKFRDT" },
+                { "data": "MKRGSDT" },
+                { "data": "MKRGSTM" },
+                { "data": "MKUPDT" },
+                { "data": "MKUPDTM" },
+                      @if (checkbuton.ShowEdit)
+                      {
+                          <text>
+                { "render": function (data, type, row) { return '<a href="/MasterSetting/Master/GetUpdatetax?taxcode=' + row["MKTXCD"] + '" class="edit"><img src="/Images/Icon/edit-icon.png" /></a>' } },
+                          </text>
+                      }
+
+
+   @if (checkbuton.ShowEdit) {
+          <text>
+   { "render": function (data, type, row) { return '<input type="checkbox" name="name" value="' + row["MKTXCD"] + '"   />' } }
+          </text>
+}
+            ],
+
+        });
+
+        t.on('draw.dt', function () {
+            var PageInfo = $('#dataTable').DataTable().page.info();
+            t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1 + PageInfo.start;
+            });
+        });
+
+
+        $('#btnSearch').on('click', function () {
+            var searchKey = $('.search').val();
+            if (searchKey == "") window.location.hash = "";
+            else
+                window.location.hash = "search-key=" + searchKey;
+            t.search(searchKey).draw();
+        })
+
+
+    });
+
+</script>

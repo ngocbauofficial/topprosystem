@@ -1,0 +1,207 @@
+﻿<style>
+    /*menu*/
+    nav {
+        position: relative;
+        background: #0e79cc;
+    }
+
+        nav .dropdown > a {
+            color: #fff !important;
+        }
+
+    .navbar-light .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+
+    nav > .navbar-toggler {
+        width: auto;
+        height: auto;
+        padding: 0.1rem .50rem;
+        border: none;
+    }
+
+    nav > a, nav ul > li > a {
+        position: relative;
+        color: #FFF !important;
+    }
+
+    nav a.dropdown-toggle:hover {
+        text-decoration: none;
+    }
+
+    nav ul > li > a:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        left: 0;
+        /*background-color: #ffeaa7;*/
+        border: 1px solid #fff;
+        visibility: hidden;
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        /*-webkit-transition: all 0.3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s;*/
+    }
+
+    nav > a, nav ul > li > a:hover {
+        color: #fff !important;
+    }
+
+        nav ul > li > a:hover:before {
+            visibility: visible;
+            -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+        }
+
+    .active-menu:before {
+        visibility: visible;
+        transform: scaleX(1);
+    }
+
+    #language-flag {
+        padding-left: 3px;
+    }
+
+        #language-flag button {
+            width: auto !important;
+            background: none;
+            padding: 0;
+        }
+
+            #language-flag button:hover {
+                background: none;
+                outline: none;
+                box-shadow: none;
+            }
+
+            #language-flag button img {
+                height: 20px;
+                width: 30px;
+            }
+
+    #spacing-vertical {
+        height: 100%;
+        font-size: 26px;
+        color: #fff;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    /*end menu*/
+
+</style>
+
+<script type="text/javascript">
+    $().ready(function () {
+        $('#open-menu-toggle').click(function () {
+            var menu = $('.menu-hide'), open_button = $('#open-menu-toggle'), background_shadow = $('.overlay'), left_size = '-350px';
+            openHiddenMenu(menu, open_button, left_size, background_shadow);
+        })
+    })
+
+    function closeHiddenMenu() {
+        var menu = $('.menu-hide'), open_button = $('#open-menu-toggle'), background_shadow = $('.overlay'), left_size = '-350px';
+        _closeHiddenMenu(menu, background_shadow, left_size, open_button);
+    }
+
+</script>
+<nav class="navbar navbar-expand-lg navbar-light" id="nav-menu">
+    <a href="~/Home/GetMainMenu" class="navbar-brand" title="Main Menu"><i class="fa fa-home"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="height: auto">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            @{
+                var siteMap = new TopProSystem.Extension.SiteMapRole.XmlSiteMap();
+                siteMap.LoadFrom("~/Extension/SiteMap/MainMenu.config");
+            }
+            @{
+                var rootNode = siteMap.RootNode;
+            }
+            @helper RenderMenuItem(TopProSystem.Extension.SiteMapRole.SiteMapNode item)
+            {
+                string url = null;
+                if (!string.IsNullOrEmpty(item.ControllerName) && !string.IsNullOrEmpty(item.ActionName))
+                {
+                    if (!string.IsNullOrEmpty(item.Area))
+                    {
+                        url = Url.Action(item.ActionName, item.ControllerName, new { Area = item.Area }, null);
+
+                    }
+                    else
+                    {
+                        url = Url.Action(item.ActionName, item.ControllerName, new { Area = "" }, null);
+                    }
+                }
+                else if (!string.IsNullOrEmpty(item.Url))
+                {
+                    url = item.Url.StartsWith("~/", StringComparison.Ordinal) ? Url.Content(item.Url) : item.Url;
+                }
+                <li class="nav-item">
+                    <a class="nav-link" id="@item.SystemName" href="@url">@item.SystemName</a>
+                </li>
+
+            }
+            @foreach (var item in rootNode.ChildNodes.Where(x => x.Visible))
+            {
+                @RenderMenuItem(item)
+            }
+            <li class="nav-item">
+                <a class="nav-link" href="#">Exit</a>
+            </li>
+        </ul>
+        <div class=" my-2 my-lg-0 dropdown show">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-target="#navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="https://image.flaticon.com/icons/svg/236/236822.svg" alt="Alternate Text" width="30" />
+                <span class="ml-2">User: @Session[TopProSystem.Models.ConstantData.SessionUserName]</span>
+            </a>
+            <div class="dropdown-menu" id="navbarDropdown" aria-labelledby="dropdownMenuLink">
+                @using (Html.BeginForm("SignOut", "Account", new { area = "" }, FormMethod.Post, new { id = "form-logout" }))
+                {
+                    <a href="@Url.Action("GetProfile","Account", new {area = "" })" class="dropdown-item" title="Profile"><i class="fa fa-user-circle-o"></i> Profile</a>
+                    <a href="javascript:document.getElementById('form-logout').submit()" class="dropdown-item"><i class="fa fa-sign-out"></i> Logout</a>
+                }
+            </div>
+        </div>
+        <div id="spacing-vertical">|</div>
+        <div class="my-2 my-lg-0" id="language-flag">
+            @{
+                string src = String.Empty;
+                string value = String.Empty;
+                var cookie = Request.Cookies.Get("Language");
+                if (cookie == null)
+                {
+                    src = "/Images/Icon/flag.png";
+                    value = "vi";
+                }
+                else
+                {
+                    switch (cookie.Value)
+                    {
+                        case "":
+                            src = "/Images/Icon/flag.png";
+                            value = "vi";
+                            break;
+                        case "vi":
+                            src = "/Images/Icon/flag.vi.png";
+                            value = "en-GB";
+                            break;
+                        case "en-GB":
+                            src = "/Images/Icon/flag.png";
+                            value = "vi";
+                            break;
+                    }
+                }
+            }
+            <form action="@Url.Action("ChangeLanguage","Home", new {area = "" })" method="post">
+                @Html.Hidden("url", Request.RawUrl, new { @readonly = "" })
+                @Html.Hidden("ddlCulture", value, new { @readonly = "" })
+                <button type="submit" id="changeLanguage" title="Change language">
+                    <img src="@src" alt="" />
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Print Raw Material Receving List";
+    Layout = "~/Views/Shared/_LayoutPageRawMaterial.cshtml";
+    ViewBag.content = "Print Raw Material Receving List";
+}
+
+
+<div class="row w-100 container-fluid m-0 p-0">
+    <form action="/" method="post">
+        <div class="col-md-12 mt-4 py-2 row w-100 m-0 p-0">
+            <div class="centerdiv" style="width: 280px">
+                <div class="row">
+                    <div class="col-md-6 col-6 p-0">
+                        <div class="float-right"><span class="title">Stock Entry Date</span></div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <input type="text" name="name" value="" data-provide="datepicker"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-6 p-0">
+                        <div class="float-right"><span class="title">Vessel Name</span></div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <input type="text" name="name" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-3 w-100 p-0">
+                <div class="text-center">
+                    <small class="text-danger" id="message"></small>
+                    <button type="button" class="search">Search</button>
+                    <button type="button" class="confirm">Confirm</button>
+                    <button type="button" class="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="row w-100 container-fluid mt-2 mx-0 p-0 border-top border-dark data-display">
+    <table class="w-100 mt-2">
+        <thead>
+            <tr class="text-center thead">
+                <th>Stock Entry Date</th>
+                <th>Commodity Code</th>
+                <th>Spec</th>
+                <th>Thickness</th>
+                <th>Width</th>
+                <th>Length</th>
+                <th>Product Name</th>
+                <th>Prod Diameter</th>
+                <th>Vessel</th>
+                <th>Inventory No</th>
+                <th>PO No</th>
+                <th>Inspection No</th>
+                <th>Qty</th>
+                <th>Wt</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="tsheader">
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="tsheader">
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr class="tsheader">
+                <td colspan="11" class="border-0"></td>
+                <td class="text-center" style=" background-image: url('/Images/bgTB.png'); border-left: 1px solid #cfcbcb">Total</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+

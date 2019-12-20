@@ -1,0 +1,76 @@
+﻿@using StaticResources
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+<script>
+  
+    var countItem = 1, LIMIT_ITEM = 20;
+    $(function () {
+        var btn_additem = $('.content-top').find('button.add-item');
+        btn_additem.click(function () {
+            if (countItem >= LIMIT_ITEM) {
+                alert("Limit count item is " + LIMIT_ITEM);
+                return;
+            }
+            $.get('/Sales/AddItem', function (rs) {
+                $('.content-bottom').append(rs);
+                countItem += 1;
+                var item_last = $('#item-n:last-child');
+                item_last.addClass("item-" + countItem);
+                var $target = $('html,body');
+                $target.animate({ scrollTop: $(document).height() }, 500);
+            })
+        })
+    })
+
+
+
+</script>
+
+
+@*<button id="open-menu-toggle" title=""><i class="fa fa-arrow-right"></i></button>*@
+<div style=" min-height: 768px; background-color: #fff; padding-bottom: 10px">
+    <div class="px-2" style="font-size: 40px; ">
+        <span class="header-text-color">@ViewBag.content</span>
+    </div>
+    <div class="px-2">
+        @RenderBody()
+    </div>
+
+</div>
+
+<div class="menu-hide">
+    <div class="header-menu">
+        <strong> <i class="fa fa-bars"></i> Sales Menu</strong>
+        <button id="close-menu-toggle" title="@RLayout.Togglemenu" onclick="closeHiddenMenu()"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="menu-hide-content">
+        <ul class="list-unstyled">
+            <li class="nav-item">
+                <a class="nav-link " href="@Url.Action("SaleOrderEntry","Sales")">Sale Order Entry</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("SaleOrderStockAllocation","Sales")">Sales OrderStock Allocation</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("SaleOrderStockCancellation","Sales")">Sales OrderStock Cancellation</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("SaleOrderComPletion","Sales")">Sales Order Completion</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Sales Order Balance Enquiry</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Sales History Enquiry</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"> Print Sales Order</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>

@@ -1,0 +1,622 @@
+﻿@using StaticResources
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@RenderSection("scripts", false)
+<script>
+    $().ready(function () {
+
+
+        $(function () { // trang di dong
+            if (screen.width <= 414) {
+                $('#menu-mobile').removeClass('d-none');
+                $('#menu-desktop').addClass('d-none');
+                $('#open-menu-toggle').css('visibility', 'hidden');
+
+                let html = '<button class="navbar-toggler" onclick="openMenuMobile()"><span class="navbar-toggler-icon"></span></button>';
+                html += '<a href="@Url.Action("SignOut","Account", new {area = ""})">Sign Out</a>'
+                $('#nav-menu').html(html);
+
+            } else {
+                $('#menu-mobile').addClass('d-none');
+                $('#menu-desktop').removeClass('d-none');
+            }
+        })
+
+    })
+
+    function openMenuMobile() {
+        $('#open-menu-toggle').click();
+    }
+</script>
+@*<button id="open-menu-toggle" title=""><i class="fa fa-arrow-right"></i></button>*@
+<div style=" min-height: 768px; background-color: #fff; padding-bottom: 10px">
+    <div class="px-2" style="font-size: 40px; ">
+        <span class="header-text-color">@ViewBag.content</span>
+    </div>
+    <div class="px-2">
+        @RenderBody()
+    </div>
+
+</div>
+@Html.Partial("_mobileMenu")
+<div class="menu-hide" id="menu-desktop">
+    <div class="header-menu">
+        <strong><i class="fa fa-bars"></i> RawMaterial Menu</strong>
+        <button id="close-menu-toggle" title="@RLayout.Togglemenu" onclick="closeHiddenMenu()"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="menu-hide-content">
+        <ul class="list-unstyled">
+            <li class="nav-item">
+                <a class="nav-link " href="/RawMaterial/GetRawMaterialWarehousingEntry_PO">Raw Material Warehousing Entry (PO)</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/GetRegisterPurchaseAmount">Register Raw Material Purchase Amount</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/GetRegisterTariffAmount">Register Raw Material Traiff Amount</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/RegisterCustomHandlingAmount">Register Custom Handling Amount</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/GetRegisterFreightAmount">Register Freight Amount</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/GetRawMaterialWarehousingResult">Raw Material Warehousing Result</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/GetRawMaterialRequestEntry">Raw Material Request Entry</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/GetRawMaterialRequestResult">Raw Material Request Result</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/GetPrintRawMaterialRecevingList">Print Raw Material Receiving List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/GetPrintRawMaterialLabel">Print Raw Material Label</a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+
+@if (TempData["Success"] != null)
+{
+    <script>
+        $(document).ready(function () {
+            SuccessAlert("@Html.Raw(TempData["Success"])");
+     })
+    </script>
+}
+
+
+<script>
+
+    $(function () {
+        $('#AAMKCD-js').autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 0 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+
+                }
+                if (ui.item.value !== ' ') {
+                    $('#AAMKCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                    $('#AAMKCD').val(ui.item.value); // value for save
+                }
+                else {
+                    $('#AAMKCD_dl').val('');
+                    $('#AAMKCD').val(''); // value for save
+                }
+
+            },
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+
+        $('#div-AAMKCD .icon').click(function () {
+            $('#AAMKCD-js').autocomplete("search", "");
+        });
+
+    })
+
+    $(function () {
+        $('#AASPLCD-js').autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 15 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+
+                }
+                if (ui.item.value !== ' ') {
+                    $('#AASPLCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                    $('#AASPLCD').val(ui.item.value); // value for save
+                }
+                else {
+                    $('#AASPLCD_dl').val('');
+                    $('#AASPLCD').val(''); // value for save
+                }
+            },
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .attr("data-value", item.value)
+                .append(item.label)
+                .appendTo(ul);
+        };
+
+        $('#div-AASPLCD .icon').click(function () {
+            $('#AASPLCD-js').autocomplete("search", "");
+        });
+    })
+
+    $(function () {
+        $('#AAIDCD-js').autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 14 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+                }
+                if (ui.item.value !== ' ') {
+                    $('#AAIDCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                    $('#AAIDCD').val(ui.item.value); // value for save
+                }
+                else {
+                    $('#AAIDCD_dl').val('');
+                    $('#AAIDCD').val(''); // value for save
+                }
+
+            },
+
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+
+        $('#div-AAIDCD .icon').click(function () {
+            $('#AAIDCD-js').autocomplete("search", "");
+        });
+    })
+
+    $(function () {
+        $('#AAUSRCD-js').autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 11 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+                }
+                if (ui.item.value !== ' ') {
+                    $('#AAUSRCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                    $('#AAUSRCD').val(ui.item.value); // value for save
+                }
+                else {
+                    $('#AAUSRCD_dl').val('');
+                    $('#AAUSRCD').val(''); // value for save
+                }
+
+            },
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+
+        $('#div-AAUSRCD .icon').click(function () {
+            $('#AAUSRCD-js').autocomplete("search", "");
+        });
+    })
+
+    $(function () {
+        $('#AACTRTP-js').autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 5 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+                }
+                if (ui.item.value !== ' ') {
+                    $('#AACTRTP_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                    $('#AACTRTP').val(ui.item.value); // value for save
+                }
+                else {
+                    $('#AACTRTP').val(''); // value for save
+                    $('#AACTRTP_dl').val('');
+                }
+
+            },
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+
+        $('#div-AACTRTP .icon').click(function () {
+            $('#AACTRTP-js').autocomplete("search", "");
+        });
+    })
+
+
+
+
+    $(function () {
+        $('#AACMDCD-js').autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 4 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+                }
+                if (ui.item.value !== ' ') {
+                    $('#AACMDCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                    $('#AACMDCD').val(ui.item.value); // value for save
+                }
+                else {
+                    $('#AACMDCD_dl').val('');
+                    $('#AACMDCD').val(''); // value for save
+                }
+
+            },
+
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+
+        $('#div-AACMDCD .icon').click(function () {
+            $('#AACMDCD-js').autocomplete("search", "");
+        });
+    })
+
+    $(function () {
+        $('#AARMTP-js').autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 12 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+                    $('#AARMTP').val(''); // value for save
+                }
+                if (ui.item.value !== ' ') {
+                    $('#AARMTP_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                    $('#AARMTP').val(ui.item.value); // value for save
+                }
+                else {
+                    $('#AARMTP_dl').val('');
+                    $('#AARMTP').val(''); // value for save
+                }
+                DisableRawMaterialType(ui.item.value); // PNB EDIT
+            },
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+
+        $('#div-AARMTP .icon').click(function () {
+            $('#AARMTP-js').autocomplete("search", "");
+        });
+
+    })
+
+
+    //grade
+    function Grade_autocomplete(obj) {
+        var itemcount = GetItemCount(obj);
+        $('#ABGRADE-js' + itemcount).autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 17 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+                }
+                if (ui.item.value !== ' ') {
+                    $('#ABGRADE_dl' + itemcount).val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                    $('#ABGRADE' + itemcount).val(ui.item.value); // value for save
+                }
+                else {
+                    $('#ABGRADE_dl' + itemcount).val('');
+                    $('#ABGRADE' + itemcount).val(''); // value for save
+                }
+
+            },
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+        $('#ABGRADE-js' + itemcount).autocomplete("search", "");
+    }
+
+
+
+    $('#RAPSTLGR-js').autocomplete({
+        source: function (request, response) {
+            $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 13 }).done(function (rs) {
+                var keys = Object.keys(rs);
+                var data = Object.values(rs);
+                var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                for (var i = 0; i < keys.length; i++) {
+                    array.push({ label: data[i], value: keys[i] });
+                }
+                response(array);
+            });
+        },
+        minLength: 0,
+        select: function (even, ui) {
+            if (ui.item.value === ' ') {
+                even.preventDefault(); AASPLCD
+                $(this).val('');
+            }
+            if (ui.item.value !== ' ') {
+                $('#RAPSTLGR_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                $('#RAPSTLGR').val(ui.item.value); // value for save
+            }
+            else {
+                $('#RAPSTLGR_dl').val('');
+                $('#RAPSTLGR').val(''); // value for save
+            }
+
+        },
+
+    }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+        return $("<li>")
+            .append(item.label)
+            .appendTo(ul);
+    };
+
+    $('#div-RAPSTLGR .icon').click(function () {
+        $('#RAPSTLGR-js').autocomplete("search", "");
+    });
+
+
+    //steel grade
+    function steelGrade_autocomplete(obj) {
+
+        var itemcount = GetItemCount(obj);
+        $('#RAPSTLGR-js' + itemcount).autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 13 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+                }
+                if (ui.item.value !== ' ') {
+                    $('#RAPSTLGR' + itemcount).val(ui.item.value); // value for save
+                }
+                else {
+                    $('#RAPSTLGR' + itemcount).val(''); // value for save
+                }
+            },
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+        $('#RAPSTLGR-js' + itemcount).autocomplete("search", "");
+    }
+    //SPEC
+    function Spec_autocomplete(obj) {
+        var itemcount = GetItemCount(obj);
+        $('#ABMCSPC-js' + itemcount).autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 9 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+                }
+                if (ui.item.value !== ' ') {
+                    $('#ABMCSPC' + itemcount).val(ui.item.value); // value for save
+                } else {
+                    $('#ABMCSPC' + itemcount).val(''); // value for save
+                }
+
+            },
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+        $('#ABMCSPC-js' + itemcount).autocomplete("search", "");
+    }
+
+
+    // coating
+    function coating_autocomplete(obj) {
+        var itemcount = GetItemCount(obj);
+        $('#ABCOAT-js' + itemcount).autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 10 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+                }
+
+                $('#ABCOAT' + itemcount).val(ui.item.value); // value for save
+            },
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+        $('#ABCOAT-js' + itemcount).autocomplete("search", "");
+    }
+
+
+    function GetItemCount(obj) { // get vi tri item cua chinh no
+        var id = $(obj).attr('id');
+        var indexOf_ = id.indexOf('_');
+        var itemCount;
+        if (indexOf_ !== -1) {
+            itemCount = id.substr(indexOf_, id.length);
+        }
+        else itemCount = '';
+
+        return itemCount;                                    
+    }
+    function DisableRawMaterialType(string) {
+        if (string.trim().toUpperCase() === 'WR') {
+            $(".ABPRDNM").attr("disabled", true);
+            $(".ABPRDDIA").attr("disabled", true);       @*19/12*@
+            $(".ABCOAT").attr("disabled", true);
+            $(".ABBSZT").attr("disabled", true);
+            $(".ABBSZW").attr("disabled", true);
+            $(".ABBSZL").attr("disabled", true);
+  
+        }
+        else {
+            $(".ABPRDNM").removeAttr("disabled");
+            $(".ABCOAT").removeAttr("disabled");
+            $(".ABBSZT").removeAttr("disabled");
+            $(".ABBSZW").removeAttr("disabled");
+            $(".ABBSZL").removeAttr("disabled");
+            $(".ABPRDDIA").removeAttr("disabled");   @*19/12*@
+
+            
+            }
+    }
+
+</script>

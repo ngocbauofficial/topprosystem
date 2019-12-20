@@ -1,0 +1,160 @@
+﻿@using StaticResources
+@model TopProSystem.Areas.MasterSetting.Models.PUR001
+<div id="item-1" class="w-100 item-child">
+    <div class="w-100 py-2 px-2" style="border-top: 1px solid #000; border-left: 1px solid #000; border-right: 1px solid #000; background: #e5e4e4; margin-top: 10px; ">
+        <button id="btndel" type="button" class="cancel float-right" onclick="DeleteItem(this)">Delete item</button>
+        <span class="title-center">@Html.DisplayNameFor(x => x.ABCTITM)</span>
+        @Html.TextBoxFor(x => x.ABCTITM, new { @readonly = "", @style = "width: 60px;" })
+    </div>
+
+    <div class="divTable" style="border: 1px solid #000;">
+        <div class="divTableBody">
+            <div class="divTableRow">
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABMCSPC)</span></div>
+                @*PNB EDIT*@
+                <div class="divTableCell">
+                    <div class="input-icons" id="div-ABMCSPC">
+                        @Html.HiddenFor(x => x.ABMCSPC)
+                        <i class="fa fa-caret-down icon"></i>
+                        <input type="text" name="ABMCSPC-js" id="ABMCSPC-js" class="ABMCSPC input-as-select" onclick="Spec_autocomplete(this)" readonly placeholder="@RLayout.SelectAction" tabindex="25" />
+
+                    </div>
+                </div>
+
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABGRADE)</span></div>
+                @*PNB EDIT*@
+
+                <div class="divTableCell">
+                    <div class="input-icons" id="div-ABGRADE">
+                        @Html.HiddenFor(x => x.ABGRADE, new { @onchange = "ABGRADE_Change(this)" })
+                        <i class="fa fa-caret-down icon"></i>
+                        <input type="text" name="ABGRADE-js" id="ABGRADE-js" class="ABGRADE input-as-select" readonly placeholder="@RLayout.SelectAction" onclick="Grade_autocomplete(this)" tabindex="34" />
+                        <input type="text" name="ABGRADE_dl" id="ABGRADE_dl" value="" readonly style="width:200px" />
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="divTableRow">
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABCOAT)</span></div>
+                @*PNB EDIT*@
+
+                <div class="divTableCell">
+                    <div class="input-icons " id=" div-ABCOAT">
+                        @Html.HiddenFor(x => x.ABCOAT, new { @class = "ABCOAT" })
+                        <i class="fa fa-caret-down icon"></i>
+                        <input type="text" name="ABCOAT-js" id="ABCOAT-js" class="ABCOAT input-as-select" onclick="coating_autocomplete(this)" readonly placeholder="@RLayout.SelectAction" tabindex="26" />
+                    </div>
+                </div>
+
+                <div class="divTableCell"><span class="title">Size</span></div>
+                <div class="divTableCell">
+                    @Html.TextBoxFor(x => x.ABBSZT, new { @type = "number", @class = "ABBSZT", @tabindex = "35" }) X
+                    @Html.TextBoxFor(x => x.ABBSZW, new { @type = "number", @class = "ABBSZW", @tabindex = "36" }) X
+                    @Html.TextBoxFor(x => x.ABBSZL, new { @type = "number", @class = "ABBSZL", @tabindex = "37" })
+
+                </div>
+            </div>
+
+
+            @*PNB EDIT*@
+            <div class="divTableRow">
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABPRDNM)</span></div>
+                <div class="divTableCell">@Html.TextBoxFor(x => x.ABPRDNM, new { @class = "ABPRDNM", @tabindex = "27" }) </div>
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABORDNO)</span></div>
+                <div class="divTableCell">
+                    @Html.TextBoxFor(x => x.ABORDNO, new { @class = "ABORDNO", @tabindex = "38" })
+                </div>
+            </div>
+
+
+
+
+            @*PNB EDIT*@
+            <div class="divTableRow">
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABPRDDIA)</span></div>
+                <div class="divTableCell">
+                    @Html.TextBoxFor(x => x.ABPRDDIA, new { @class = "ABPRDDIA", @tabindex = "28" })
+                    <span class="title-float-left"> mm</span>@*19/12*@
+                </div>
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABQTY)</span></div>
+                <div class="divTableCell">@Html.TextBoxFor(x => x.ABQTY, new { @class = "ABQTY", @tabindex = 39 })</div>
+            </div>
+
+            <div class="divTableRow">
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABDLVDT)</span></div>
+                <div class="divTableCell">
+                    @{
+                        if (Model.AADLVCD != null)
+                        {
+                            @Html.TextBoxFor(x => x.ABDLVDT, "{0:dd/MM/yyyy}", new { @class = "ABDLVDT", @tabindex = "29", @readonly = "" })
+                        }
+                        else
+                        {
+                            @Html.TextBoxFor(x => x.ABDLVDT, new { Value = string.Format("{0:dd/MM/yyyy}", DateTime.Now), @class = "ABDLVDT", @tabindex = "29", @readonly = "" })
+                        }
+                    }
+                </div>
+                <div class="divTableCell"><span class="title">@*@Html.DisplayNameFor(x=>x.RAPSTLGR)*@ Steel Grade</span></div>
+                @*PNB EDIT*@
+                <div class="divTableCell">
+                    <div class="input-icons" id="div-RAPSTLGR">
+                        @Html.HiddenFor(x => x.RAPSTLGR)
+                        <i class="fa fa-caret-down icon"></i>
+                        <input type="text" name="RAPSTLGR-js" id="RAPSTLGR-js" class="RAPSTLGR input-as-select" onclick="steelGrade_autocomplete(this)" readonly placeholder="@RLayout.SelectAction" tabindex="40" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="divTableRow">
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABWT)</span></div>
+                <div class="divTableCell">@Html.TextBoxFor(x => x.ABWT, new { @tabindex = "30", @type = "number", @class = "ABWT", @onkeyup = "Counting_ABPRAT_ABPRATD(this)" }) 
+                    <span class="title-float-left"> MT</span>  @*19/12*@
+                </div>
+                <div class="divTableCell"></div>
+                <div class="divTableCell"></div>
+            </div>
+
+            <div class="divTableRow">
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABPRUP)</span></div>
+                <div class="divTableCell">
+                    @Html.TextBoxFor(x => x.ABPRUP, new { @tabindex = "31", @type = "number", @class = "ABPRUP", @onkeyup = "Counting_ABPRUPD_ABPRAT(this)" })
+                    <span class="title-float-left">PerMT</span>
+                </div>
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABPRUPD)</span></div>
+                <div class="divTableCell">
+                    @Html.TextBoxFor(x => x.ABPRUPD, new { @class = "text-danger", @tabindex = "41", @readonly = "" })
+                    <span class="title-float-left">PerMT</span>
+                </div> <!--ABPRUP * EXRT-->
+            </div>
+
+            <div class="divTableRow">
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABPRAT)</span></div>
+                <div class="divTableCell">
+                    @Html.TextBoxFor(x => x.ABPRAT, new { @tabindex = "32", @class = "text-danger", @readonly = "" })
+                    <span class="title-float-left unitcurrency"></span>
+                </div> <!--ABPRUP * ABWT/1000-->
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABPRATD)</span></div>
+                <div class="divTableCell">
+                    @Html.TextBoxFor(x => x.ABPRATD, new { @tabindex = "42", @class = "text-danger", @readonly = "" })
+                    <span class="title-float-left">VND</span>
+                </div> <!--ABPRUPD * ABWT/1000-->
+            </div>
+
+
+            <div class="divTableRow">
+                <div class="divTableCell"><span class="title"> @Html.DisplayNameFor(x => x.ABPTXAT)</span></div>
+                <div class="divTableCell">
+                    @Html.TextBoxFor(x => x.ABPTXAT, new { @tabindex = "33", @class = "text-danger", @readonly = "" })
+                <span class="title-float-left unitcurrency"></span>
+            </div> <!--AATXRT/100 * ABPRAT-->
+            <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABPTXAD)</span></div>
+            <div class="divTableCell">
+                @Html.TextBoxFor(x => x.ABPTXAD, new { @tabindex = "43", @class = "text-danger", @readonly = "" })
+            <span class="title-float-left">VND</span>
+        </div> <!--AATXRT/100 * ABPRATD-->
+        </div>
+        </div>
+    </div>
+</div>
+

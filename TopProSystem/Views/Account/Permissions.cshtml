@@ -1,0 +1,219 @@
+﻿
+@{
+    ViewBag.Title = "Permissions";
+    Layout = "~/Views/Shared/_LayoutPageAccount.cshtml";
+}
+
+@model TopProSystem.Extension.AccountRole.PermissionMappingModel
+
+
+<style>
+    [type=checkbox]:checked, [type=checkbox]:not(:checked) {
+        position: unset;
+        left: 0px;
+        opacity: 1;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .table td, .table th {
+        padding: .5rem;
+        line-height: 17px;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .box-title {
+        text-align: center;
+        text-transform: uppercase;
+        display: block;
+        font-size: 25px;
+    }
+
+    .icon-up:before {
+        content: '\f0d8';
+        font-family: FontAwesome;
+        padding-right: 5px;
+    }
+
+    .icon-down:before {
+        content: '\f0d7' !important;
+        font-family: FontAwesome;
+        padding-right: 5px;
+    }
+
+    .area-tr {
+        border: 1px solid #000;
+    }
+
+    .btn-permissions {
+        margin-bottom: 5px;
+        margin-top: 10px;
+    }
+
+    .table {
+        font-size: 15px;
+    }
+
+    .hide tr {
+        background: #e5e4e4;
+        border: 1px solid black;
+    }
+
+    .in {
+        display: none;
+    }
+</style>
+<div class="box box-default">
+    <div class="box-header with-border">
+        <span class="box-title">Access control list</span>
+        <div class="form-search-style">
+        </div>
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="content-header clearfix">
+            <div class="pull-right">
+                <button type="submit" class="btn-permissions btn-primary">Save</button>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="form-horizontal">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            @if (Model.AvailablePermissions.Count == 0)
+                            {
+                                <text>No permissions defined</text>
+                            }
+                            else if (Model.AvailableCustomerRoles.Count == 0)
+                            {
+                                <text>No customer roles available</text>
+                            }
+                            else
+                            {
+                                <script>
+                                    $(document).ready(function () {
+                                        $('[data-toggle="toggle"]').click(function () {
+                                            $(this).parents('tbody').next('.hide').toggle();
+                                            $(this).toggleClass('icon-down');
+                                        });
+                                    });
+                                </script>
+
+                                <script type="text/javascript">
+                                        $(document).ready(function () {
+                                    @foreach (var pr in Model.AvailablePermissions) {
+                                        foreach (var cr in Model.AvailableCustomerRoles)
+                                        {   @*$('#selectall-@(cr.Id)').click(function () {
+                                                $('.allow_@(cr.Id)').attr('checked', $(this).is(':checked')).change();
+                                            });*@
+                                        if (pr.Category != "Area")
+                                        {
+                                              <text>
+                                            $('#selectall-@(cr.Id)-@(pr.Id)').click(function () {
+                                                $('.allow_@(cr.Id)_@(pr.Id)').attr('checked', $(this).is(':checked')).change;
+                                            });
+                                            </text>
+                                        }
+
+                                    }        }
+                                        });
+                                </script>
+
+                                <table class="table table-hover table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="col">
+                                                <span>Permission name</span>
+                                            </th>
+                                            @foreach (var cr in Model.AvailableCustomerRoles)
+                                            {
+                                                <th scope="col">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <span>@cr.Name</span>
+                                                        </label>
+                                                    </div>
+                                                </th>
+                                            }
+                                        </tr>
+                                    </tbody>
+                                    @foreach (var pr in Model.AvailablePermissions.Where(x => x.Category == "Area"))
+                                    {
+
+                                        <tr class="parent-per area-tr">
+                                            <td>
+                                                <span>@pr.Name</span>
+                                            </td>
+                                            @foreach (var cr in Model.AvailableCustomerRoles)
+                                            {
+                                                var allowed = Model.Allowed.ContainsKey(pr.SystemName) && Model.Allowed[pr.SystemName][cr.Id];
+                                                <td>
+                                                    <input id="selectall-@(cr.Id)-@(pr.Id)" class="allow_@(cr.Id)" type="checkbox" value="@(pr.SystemName)" name="allow_@(cr.Id)" @(allowed ? " checked=checked" : null) />
+                                                </td>
+                                            }
+                                        </tr>
+
+                                        foreach (var prs in Model.AvailablePermissions.Where(x => x.Category == pr.SystemName))
+                                        {
+
+
+                                            <tr class="@pr.Category ">
+                                                <td data-toggle="toggle" style="cursor:pointer" class=" parent-per icon-down icon-up">
+                                                    <span>@prs.Name</span>
+                                                </td>
+                                                @foreach (var cr in Model.AvailableCustomerRoles)
+                                                {
+                                                    var allowed = Model.Allowed.ContainsKey(prs.SystemName) && Model.Allowed[prs.SystemName][cr.Id];
+                                                    <td>
+                                                        <input id="selectall-@(cr.Id)-@(prs.Id)" class="allow_@(cr.Id)" type="checkbox" value="@(prs.SystemName)" name="allow_@(cr.Id)" @(allowed ? " checked='checked'" : null) />
+                                                    </td>
+                                                }
+                                            </tr>
+
+                                            <tbody class="hide" style="background: rgba(83, 125, 134, 0.26);">
+                                                @foreach (var ar in Model.AvailableActionRoles)
+                                                {
+
+                                                    <tr>
+                                                        <td>
+                                                            <span>@ar.Name</span>
+                                                        </td>
+                                                        @foreach (var cr in Model.AvailableCustomerRoles)
+                                                        {
+                                                            var allowed = Model.AllowedAction.ContainsKey(prs.SystemName + ar.Name) && Model.AllowedAction[prs.SystemName + ar.Name][cr.Id];
+                                                            <td>
+                                                                <input class="allow_@(cr.Id)_@(prs.Id)" type="checkbox" value="@(prs.SystemName)_@(ar.Name)" name="allow_@(cr.Id)" @(allowed ? " checked=checked" : null) />
+                                                            </td>
+                                                        }
+                                                    </tr>
+                                                }
+                                            </tbody>
+
+
+                                        }
+
+
+
+                                    }
+
+                                </table>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+<script>
+    $("#AccessMaster").click(function () {
+        ($(".Master").toggleClass("in"));
+    })
+</script>

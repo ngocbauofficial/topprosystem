@@ -1,0 +1,87 @@
+﻿@model TopProSystem.Areas.MasterSetting.Models.MA004
+@using StaticResources
+@using StaticResources.View.Location
+
+@{
+    ViewBag.Title = Resource.ChangeTitle;
+    Layout = "~/Areas/MasterSetting/Views/Shared/_LayoutMasterSeting.cshtml";
+    ViewBag.headerName = ViewBag.Title;
+}
+
+<style>
+    input[type = text], input[type = "password"], select {
+        width: 300px;
+    }
+
+    .divTableRow .divTableCell:first-child {
+        width: 10%;
+    }
+
+    .divTableRow .divTableCell:last-child {
+        width: 80%;
+    }
+</style>
+<div class="container-fluid">
+    <div class="data-content">
+        <form action="@Url.Action("UpdateLocationMaster","Master")" method="post" id="Location-Master-Form">
+            <div class="divTable" style="border:1px solid #000">
+                <div class="divTableBody">
+                    <div class="divTableRow ">
+                        <div class="divTableCell "><span class="title-normal">@Resource.MDLCTCD</span></div>
+                        <div class="divTableCell "><input type="text" name="MDLCTCD" id="MDLCTCD" value="@Model.MDLCTCD.Trim()" readonly tabindex="1"/></div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell "><span class="title-normal">@Resource.MDWRCTG</span></div>
+                        <div class="divTableCell ">
+                            <select name="MDWRCTG" id="MDWRCTG" tabindex="2">
+                                <option value="" selected disabled>@RLayout.SelectAction</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell "><span class="title-normal">@Resource.MDLCTNM</span></div>
+                        <div class="divTableCell "><input type="text" name="MDLCTNM" id="MDLCTNM" value="@Model.MDLCTNM.Trim()" tabindex="3"/></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3 float-right">
+                <button type="submit" class="btn-primary">@Button.BtnConfirm</button>
+                <button type="button" class="cancel" onclick="javascript:window.location.href='/MasterSetting/Master/LocationMaster'">@Button.BtnCancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $('#Location-Master-Form').validate({
+        rules: {
+            MDWRCTG: 'required',
+            MDLCTNM: {
+                required: true,
+                maxlength: 20
+            }
+        },
+        messages: {
+           MDWRCTG: '@Html.Raw(RLayout.Required)',
+            MDLCTNM: {
+                required: '@Html.Raw(RLayout.Required)',
+                 maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"20"))',
+            }
+        },
+        errorElement: 'label',
+        errorPlacement: function (error, element) {
+            error.insertAfter(element);
+        },
+    })
+
+    $('#MDWRCTG').val('@Model.MDWRCTG.Trim()')
+</script>
+
+

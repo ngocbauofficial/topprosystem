@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AACLLNO" xml:space="preserve">
+    <value>Collation No</value>
+  </data>
+  <data name="AACMDCD" xml:space="preserve">
+    <value>Commodity </value>
+  </data>
+  <data name="AACMPCD" xml:space="preserve">
+    <value>Completion Status</value>
+  </data>
+  <data name="AACMPDT" xml:space="preserve">
+    <value>Completion Date</value>
+  </data>
+  <data name="AACRRCD" xml:space="preserve">
+    <value>Currency Code</value>
+  </data>
+  <data name="AACTITM" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="AACTRTP" xml:space="preserve">
+    <value>Contract Type</value>
+  </data>
+  <data name="AADLPOT" xml:space="preserve">
+    <value>Discharge &amp; Loading Port</value>
+  </data>
+  <data name="AADLVCD" xml:space="preserve">
+    <value>Delivery Condition</value>
+  </data>
+  <data name="AADPSCD" xml:space="preserve">
+    <value>Deposit/Asset</value>
+  </data>
+  <data name="AADSTNC" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AADTCD" xml:space="preserve">
+    <value>Data Code</value>
+  </data>
+  <data name="AAEXRT" xml:space="preserve">
+    <value>Exchange Rate</value>
+  </data>
+  <data name="AAEXRTT" xml:space="preserve">
+    <value>Exchange Rate Type</value>
+  </data>
+  <data name="AAIDCD" xml:space="preserve">
+    <value>Person Incharge</value>
+  </data>
+  <data name="AAMKCD" xml:space="preserve">
+    <value>Maker Code</value>
+  </data>
+  <data name="AAPRICE" xml:space="preserve">
+    <value>Price Term</value>
+  </data>
+  <data name="AAPTTRM" xml:space="preserve">
+    <value>Type Of Terms</value>
+  </data>
+  <data name="AAPURNO" xml:space="preserve">
+    <value>Purchase Contract No</value>
+  </data>
+  <data name="AARGSDT" xml:space="preserve">
+    <value>Register Date</value>
+  </data>
+  <data name="AARMK1" xml:space="preserve">
+    <value>Remark1</value>
+  </data>
+  <data name="AARMK2" xml:space="preserve">
+    <value>Remark2 </value>
+  </data>
+  <data name="AARMK3" xml:space="preserve">
+    <value>Remark3</value>
+  </data>
+  <data name="AARMK4" xml:space="preserve">
+    <value>Remark4</value>
+  </data>
+  <data name="AARMK5" xml:space="preserve">
+    <value>Remark5</value>
+  </data>
+  <data name="AARMTP" xml:space="preserve">
+    <value>RawMaterial Type</value>
+  </data>
+  <data name="AASCTNC" xml:space="preserve">
+    <value>Section Incharge</value>
+  </data>
+  <data name="AASETRM" xml:space="preserve">
+    <value>Settlement Term</value>
+  </data>
+  <data name="AASHPDT" xml:space="preserve">
+    <value>Shipping Month</value>
+  </data>
+  <data name="AASPLCD" xml:space="preserve">
+    <value>Supplier Code</value>
+  </data>
+  <data name="AASPPNO" xml:space="preserve">
+    <value>Sales Contract No</value>
+  </data>
+  <data name="AASPTCD" xml:space="preserve">
+    <value>Support/Long Term</value>
+  </data>
+  <data name="AATCNO" xml:space="preserve">
+    <value>Trading Company No</value>
+  </data>
+  <data name="AATEXRT" xml:space="preserve">
+    <value>Exchange Rate Type(Tax)</value>
+  </data>
+  <data name="AATRDCD" xml:space="preserve">
+    <value>Trade Category</value>
+  </data>
+  <data name="AATXCD" xml:space="preserve">
+    <value>Tax Code</value>
+  </data>
+  <data name="AATXEXR" xml:space="preserve">
+    <value>Exchange Rate(Tax)</value>
+  </data>
+  <data name="AATXRT" xml:space="preserve">
+    <value>Tax Rate</value>
+  </data>
+  <data name="AAUPDT" xml:space="preserve">
+    <value>Update Date</value>
+  </data>
+  <data name="AAUSMSG" xml:space="preserve">
+    <value>User Management No</value>
+  </data>
+  <data name="AAUSRCD" xml:space="preserve">
+    <value>User Code</value>
+  </data>
+  <data name="ABBSZL" xml:space="preserve">
+    <value>Page Size(Length)</value>
+  </data>
+  <data name="ABBSZT" xml:space="preserve">
+    <value>Page Size(Thk)</value>
+  </data>
+  <data name="ABBSZW" xml:space="preserve">
+    <value>Page Size(Width)</value>
+  </data>
+  <data name="ABCMBL" xml:space="preserve">
+    <value>Compination (Length)</value>
+  </data>
+  <data name="ABCMBT" xml:space="preserve">
+    <value>Compination (Thk)</value>
+  </data>
+  <data name="ABCMBW" xml:space="preserve">
+    <value>Compination (Width)</value>
+  </data>
+  <data name="ABCOAT" xml:space="preserve">
+    <value>Coating</value>
+  </data>
+  <data name="ABCTITM" xml:space="preserve">
+    <value>Item No</value>
+  </data>
+  <data name="ABDLVDT" xml:space="preserve">
+    <value>Delivery Date</value>
+  </data>
+  <data name="ABDSTNC" xml:space="preserve">
+    <value>Distinction</value>
+  </data>
+  <data name="ABDTCD" xml:space="preserve">
+    <value>Data Code</value>
+  </data>
+  <data name="ABGRADE" xml:space="preserve">
+    <value>Grade</value>
+  </data>
+  <data name="ABMCSPC" xml:space="preserve">
+    <value>Mother Coil Spec</value>
+  </data>
+  <data name="ABORDNO" xml:space="preserve">
+    <value>Order No</value>
+  </data>
+  <data name="ABPRAT" xml:space="preserve">
+    <value>Purchase Amt</value>
+  </data>
+  <data name="ABPRATD" xml:space="preserve">
+    <value>Pruchase Amt(Dcurr)</value>
+  </data>
+  <data name="ABPRUP" xml:space="preserve">
+    <value>Purchase U/P</value>
+  </data>
+  <data name="ABPRUPD" xml:space="preserve">
+    <value>Purchase U/P(Dcurr)</value>
+  </data>
+  <data name="ABPRUPU" xml:space="preserve">
+    <value>Purchase U.P/U</value>
+  </data>
+  <data name="ABPTXAD" xml:space="preserve">
+    <value>Prchs Tax Amt(Dcurr)</value>
+  </data>
+  <data name="ABPTXAT" xml:space="preserve">
+    <value>Purchase Tax Amt</value>
+  </data>
+  <data name="ABPURNO" xml:space="preserve">
+    <value>Purchase Contract No</value>
+  </data>
+  <data name="ABQTY" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="ABRGSDT" xml:space="preserve">
+    <value>Register Date</value>
+  </data>
+  <data name="ABSEDT" xml:space="preserve">
+    <value>Stockentry Date</value>
+  </data>
+  <data name="ABSESWT" xml:space="preserve">
+    <value>Stck Entry Sch Wt</value>
+  </data>
+  <data name="ABSIZEL" xml:space="preserve">
+    <value>Size(Length)</value>
+  </data>
+  <data name="ABSIZET" xml:space="preserve">
+    <value>Size(Thk)</value>
+  </data>
+  <data name="ABSIZEW" xml:space="preserve">
+    <value>Size(Width)</value>
+  </data>
+  <data name="ABTTLWT" xml:space="preserve">
+    <value>Ttl-Wt Of Stck Entry</value>
+  </data>
+  <data name="ABUPDT" xml:space="preserve">
+    <value>Date Of Update</value>
+  </data>
+  <data name="ABWT" xml:space="preserve">
+    <value>Weight</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Complete sucessfull.</value>
+  </data>
+  <data name="CompleteFail" xml:space="preserve">
+    <value>Complete fail, please try later.</value>
+  </data>
+  <data name="DataEmpty" xml:space="preserve">
+    <value>Data is empty.</value>
+  </data>
+  <data name="ExportFileFail" xml:space="preserve">
+    <value>Export fail.</value>
+  </data>
+  <data name="ExportFileSuccess" xml:space="preserve">
+    <value>Export successfull.</value>
+  </data>
+  <data name="PlaceholderTextSearch" xml:space="preserve">
+    <value>Enter Sp Contract No</value>
+  </data>
+  <data name="RAPSTLGR" xml:space="preserve">
+    <value>Steal Grade</value>
+  </data>
+  <data name="WarningCompleteAllSelect" xml:space="preserve">
+    <value>Are you sure ? Contract cannot edit or restore after completed.</value>
+  </data>
+  <data name="WarningSelectCurrencyCode" xml:space="preserve">
+    <value>Please select currency code.</value>
+  </data>
+  <data name="ABPRDDIA" xml:space="preserve">
+    <value>Product Diameter</value>
+  </data>
+  <data name="ABPRDNM" xml:space="preserve">
+    <value>Product Name</value>
+  </data>
+  <data name="DateFormatMMflagyyyy" xml:space="preserve">
+    <value>This field must have format MM/yyyy</value>
+  </data>
+</root>

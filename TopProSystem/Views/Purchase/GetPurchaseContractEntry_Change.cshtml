@@ -1,0 +1,443 @@
+﻿@using StaticResources
+@model TopProSystem.Areas.MasterSetting.Models.PUR001
+@{
+    ViewBag.Title = "Change Purchase Contract Entry";
+    Layout = "~/Views/Shared/_LayoutPagePurchase.cshtml";
+    ViewBag.content = ViewBag.Title;
+}
+
+
+<form action="@Url.Action("UpdatePurchaseContract", "Purchase", new { area = "" })" id="form-data" method="post">
+    @Html.HiddenFor(x => x.AADSTNC)
+    <div class="content-top row mx-0">
+        <div class="divTable" style="border: 1px solid #000;">
+            <div class="divTableBody">
+                <div class="divTableRow">
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AARGSDT)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AARGSDT, new { Value = string.Format("{0:dd/MM/yyyy}", DateTime.Now), @tabindex = "1", @readonly="" })
+                    </div>
+                    <div class="divTableCell"><span class="title">Raw Material Type</span> </div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AARMTP, Model.RawMaterialTypes, RLayout.SelectAction, new { @tabindex = "24" })*@
+                        <div id="div-AARMTP" class="input-icons">
+                            @Html.HiddenFor(x => x.AARMTP)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AARMTP-js" id="AARMTP-js" class="input-as-select" placeholder="@Html.Raw(RLayout.SelectAction)" value="" readonly tabindex="24" />
+                            <input type="text" name="AARMTP_dl" id="AARMTP_dl" value="" readonly="" style="width: 200px">
+                        </div>
+                    </div>
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AAPURNO)</span></div>
+                    <div class="divTableCell">
+                      @Html.TextBoxFor(x=>x.AAPURNO, new {@readonly="" })
+                    </div>
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AAUPDT)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.AAUPDT, new {Value=string.Format("{0:dd/MM/yyyy}",DateTime.Now), @tabindex = "2", @readonly = "" }) </div>
+
+                    <div class="divTableCell " style="width: 180px"><span class="title">@Html.DisplayNameFor(x => x.AAMKCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAMKCD, new SelectList(new List<string>()), new { @tabindex = "5" })*@
+                        <div class="input-icons" id="div-AAMKCD">
+                            @Html.HiddenFor(x => x.AAMKCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AAMKCD-js" id="AAMKCD-js" class="input-as-select" readonly placeholder="@RLayout.SelectAction" tabindex="5" />
+                            <input type="text" name="AAMKCD_dl" id="AAMKCD_dl" value="" readonly style="width:200px" />
+                        </div>
+
+                    </div>
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AACMDCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AACMDCD, Model.CommodityCodes, RLayout.SelectAction, new { @tabindex = "16" })*@
+                        <div id="div-AACMDCD" class="input-icons">
+                            @Html.HiddenFor(x => x.AACMDCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AACMDCD-js" id="AACMDCD-js" class="input-as-select" readonly value="" placeholder="@Html.Raw(RLayout.SelectAction)" tabindex="16" />
+                            <input type="text" name="AACMDCD_dl" id="AACMDCD_dl" value="" readonly style="width: 200px" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AACMPCD)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.AACMPCD, new { @tabindex = "3" })</div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AASPPNO)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.AASPPNO, new { @tabindex = "6" }) </div>
+
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AACTRTP)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AACTRTP, Model.ContractTypes, RLayout.SelectAction, new { @tabindex = "17" })*@
+                        <div id="div-AACTRTP" class="input-icons">
+                            @Html.HiddenFor(x => x.AACTRTP)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AACTRTP-js" class="input-as-select" id="AACTRTP-js" value="" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="17" />
+                            <input type="text" name="AACTRTP_dl" id="AACTRTP_dl" value="" readonly style="width: 200px" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AACMPDT)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.AACMPDT, "{0:dd/MM/yyyy}", new { @tabindex = "4", @readonly = "" })</div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AASPLCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AASPLCD, Model.SupplierCodes, RLayout.SelectAction, new { @tabindex = "7" })*@
+                        <div id="div-AASPLCD" class="input-icons">
+                            @Html.HiddenFor(x => x.AASPLCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AASPLCD-js" class="input-as-select" id="AASPLCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="7" />
+                            <input type="text" name="AASPLCD_dl" id="AASPLCD_dl" value="" readonly style="width: 200px" />
+                        </div>
+
+                    </div>
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AAIDCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAIDCD, Model.PersonIncharges, RLayout.SelectAction, new { @tabindex = "18" })*@
+                        <div id="div-AAIDCD" class="input-icons">
+                            @Html.HiddenFor(x => x.AAIDCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AAIDCD-js" id="AAIDCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" class="input-as-select" readonly tabindex="18" />
+                            <input type="text" name="AAIDCD_dl" id="AAIDCD_dl" value="" readonly style="width:200px" />
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AAUSRCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAUSRCD, Model.UserCodes, RLayout.SelectAction, new { @tabindex = "8" })*@
+                        <div id="div-AAUSRCD" class="input-icons">
+                            @Html.HiddenFor(x => x.AAUSRCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AAUSRCD-js" id="AAUSRCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" class="input-as-select" readonly tabindex="8" />
+                            <input type="text" name="AAUSRCD_dl" id="AAUSRCD_dl" value="" readonly style="width: 200px" />
+                        </div>
+                    </div>
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AASETRM)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AASETRM, Model.SettelementTerms, RLayout.SelectAction, new { @tabindex = "22" })*@
+                        <div id="div-AASETRM" class="input-icons">
+                            @Html.HiddenFor(x => x.AASETRM)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" class="input-as-select" name="AASETRM-js" id="AASETRM-js" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="22" />
+                            <input type="text" name="AASETRM_dl" id="AASETRM_dl" value="" readonly="" style="width: 200px">
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AACRRCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AACRRCD, Model.CurrencyCodes, RLayout.SelectAction, new { @tabindex = "11" })*@
+                        <div id="div-AACRRCD" class="input-icons">
+                            @Html.HiddenFor(x => x.AACRRCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" class="input-as-select" name="AACRRCD-js" id="AACRRCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="11" />
+                            <input type="text" id="AACRRCD_dl" value="" readonly style="width: 200px" />
+                        </div>
+                    </div>
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AAEXRT)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAEXRT, Model.ExchangeRateType, RLayout.SelectAction, new { Name = "AAEXRT_sl", @tabindex = "19" })*@
+                        <div id="div-AAEXRT" class="input-icons">
+                            @Html.HiddenFor(x => x.AAEXRT, new {Name = "AAEXRT_sl" })
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AAEXRT-js" id="AAEXRT-js" placeholder="@Html.Raw(RLayout.SelectAction)" class="input-as-select" readonly tabindex="19" />
+                            <input type="text" name="AAEXRT" id="AAEXRT_dl" value="@Model.AAEXRT" readonly style="width: 200px" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell"><span class="title">Domestic Currency</span></div>
+                    @*PNB Edit*@
+                    <div class="divTableCell"><input type="text" name="name" value="VND" tabindex="12" readonly class="text-left" /></div>
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AATXEXR)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AATXEXR, new { @tabindex = "20", @readonly = "" })
+                    </div>
+
+
+
+
+
+                </div>
+
+
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AATXCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AATXCD, Model.TaxCodes, RLayout.SelectAction, new { @tabindex = "13" })*@
+                        <div id="div-AATXCD" class="input-icons">
+                            @Html.HiddenFor(x => x.AATXCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" class="input-as-select" name="AATXCD-js" id="AATXCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="13" />
+                        </div>
+                    </div>
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AATXRT)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AATXRT, new { @tabindex = "21", @readonly = "" })
+
+                    </div>
+
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AASHPDT)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.AASHPDT, new { @tabindex = "9" }) 
+                        <span class="title-float-left">&nbsp;MM/YYYY</span> @*19/12*@
+                    </div>
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AADLPOT)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AADLPOT, new { @tabindex = "23" })
+                    </div>
+
+                </div>
+
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AADLVCD)</span></div>
+                    <div style="position:relative" class="divTableCell">
+                        <div class="input-icons" id="div-AADLVCD">
+                            @Html.HiddenFor(x => x.AADLVCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" class="input-as-select" name="AADLVCD-js" id="AADLVCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="10" />
+                            <input type="text" name="AADLVCD_dl" id="AADLVCD_dl" value="" readonly style="width: 200px" />
+                        </div>
+                    </div>
+                    <div class="divTableCell border-bottom-0"><span class="title">Remarks</span></div>
+                    <div class="divTableCell"> @Html.TextBoxFor(x => x.AARMK1, new { @class = "w-100" })</div>
+
+                </div>
+
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AAPRICE)</span></div>
+                    @*PNB EDIT*@
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAPRICE, Model.Priceterms, RLayout.SelectAction, new { @tabindex = "14" })*@
+                        <div id="div-AAPRICE" class="input-icons">
+                            @Html.HiddenFor(x => x.AAPRICE)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AAPRICE-js" id="AAPRICE-js" class="input-as-select" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="14" />
+                            <input type="text" name="AAPRICE_dl" id="AAPRICE_dl" value="" readonly="" style="width: 200px">
+                        </div>
+                    </div>
+                    <div class="divTableCell border-bottom-0"></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AARMK2, new { @class = "w-100" })
+                    </div>
+
+
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AAPTTRM)</span></div>
+                    @*PNB EDIT*@
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAPTTRM, Model.TypeOfTerms, RLayout.SelectAction, new { @tabindex = "15" })*@
+                        <div id="div-AAPTTRM" class="input-icons">
+                            @Html.HiddenFor(x => x.AAPTTRM)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AAPTTRM-js" id="AAPTTRM-js" class="input-as-select" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="15" />
+                            <input type="text" name="AAPRICE_dl" id="AAPTTRM_dl" value="" readonly="" style="width: 200px">
+                        </div>
+                    </div>
+                    <div class="divTableCell border-bottom-0"></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AARMK3, new { @class = "w-100" })
+                    </div>
+
+                </div>
+
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-bottom-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-bottom-0"></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AARMK4, new { @class = "w-100" })
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-bottom-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-bottom-0"></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AARMK5, new { @class = "w-100" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-12 p-0  my-2">
+            <div class="float-right">
+                <small id="message" style="font-size:11px; color:#ff0000; font-weight:bold"></small>
+                <button type="button" class="add-item" onclick="CreatePurchaseContractEntry_Item()">@Button.BtnAddItem</button>
+                <button type="submit" class="confirm">@Button.BtnConfirm</button>
+                <button type="button" class="cancel" onclick="javascript:window.location.href='@Url.Action("GetPurchaseContractEntry")'">@Button.BtnCancel</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="content-bottom row mx-0">
+        @{
+            foreach (var item in ViewBag.Items as List<TopProSystem.Areas.MasterSetting.Models.PUR001>)
+            {
+                Html.RenderPartial("_PurchaseContractEntry", item);
+            }
+        }
+    </div>
+</form>
+@section scripts{
+    <script>
+
+
+            //autoFill();
+        $(function () {
+            var i = 2;
+            var elements = $('.content-bottom').find('.item-child').not(':first');
+            if (elements.length >=1) {
+                elements.each(function () {
+                    var selectors = $(this).find('input,select');
+                    selectors.each(function () {
+                        ChangeID_Name_TabIndex($(this), i, 0);
+                    })
+                    i++;
+                })
+            }
+
+        })
+
+
+        $(document).ready(function () {
+
+            $('#AASPLCD').change();
+            $('#AAMKCD').change();
+            $('#AAUSRCD').change();
+            $('#AACTRTP').change();
+            $('#AAIDCD').change();
+            $('#AAEXRT').change();
+            $('#AATXCD').change();
+            $('#AACMDCD').change();
+            $('#AASPLCD').change();
+            $('#AADLVCD').change();
+            $('#AACRRCD').change();
+            //PNBEDIT
+            $('#AAPRICE').change();
+            $('#AAPTTRM').change();
+            $('#AASETRM').change();
+            $('#AARMTP').change();
+
+            for (var i = 1; i <= LIMIT_ITEM; i++) { // set selected cho ABGRADE
+                if (i === 1) {
+                    if ($('#ABGRADE').val() !== '') {
+                        $('#ABGRADE-js').autocomplete().val($('#ABGRADE').val());
+                        $('#ABGRADE').change();
+                        $('#ABMCSPC-js').autocomplete().val($('#ABMCSPC').val());
+                        $('#ABCOAT-js').autocomplete().val($('#ABCOAT').val());
+                        $('#RAPSTLGR-js').autocomplete().val($('#RAPSTLGR').val());
+                    }
+                  
+                } else {
+                    var elem = '#ABGRADE-js' + '_' + i;
+                    if ($(elem) !== undefined && $('#ABGRADE' + '_' + i).val() !== '') {
+                        $(elem).autocomplete().val($('#ABGRADE' + '_' + i).val());
+                        $('#ABGRADE' + '_' + i).change();
+                        $('#ABMCSPC-js' + '_' + i).autocomplete().val($('#ABMCSPC' + '_' + i).val());
+                        $('#ABCOAT-js' + '_' + i).autocomplete().val($('#ABCOAT' + '_' + i).val());
+                        $('#RAPSTLGR-js' + '_' + i).autocomplete().val($('#RAPSTLGR' + '_' + i).val());
+                    }
+                }
+            }
+            if ($('#AAIDCD').val() !== '') {
+                $('#AAIDCD-js').autocomplete().val($('#AAIDCD').val());
+            }
+            if ($('#AASPLCD').val() !== '') {
+                $('#AADLVCD-js').autocomplete().val($('#AADLVCD').val());
+            }
+            if ($('#AASPLCD').val() !== '') {
+                $('#AASPLCD-js').autocomplete().val($('#AASPLCD').val());
+            }
+            if ($('#AAMKCD').val()) {
+                $('#AAMKCD-js').autocomplete().val($('#AAMKCD').val());
+            }
+            if ($('#AAUSRCD').val() !== '') {
+                $('#AAUSRCD-js').autocomplete().val($('#AAUSRCD').val());
+            }
+            if ($('#AACTRTP').val() !== '') {
+                $('#AACTRTP-js').autocomplete().val($('#AACTRTP').val());
+            }
+            if ($('#AAEXRT').val() !== '') {
+                $('#AAEXRT-js').autocomplete().val('@ViewBag.Currency');
+            }
+            if ($('#AATXCD').val() !== '') {
+                $('#AATXCD-js').autocomplete().val($('#AATXCD').val());
+            }
+            if ($('#AACMDCD').val() !== '') {
+                $('#AACMDCD-js').autocomplete().val($('#AACMDCD').val());
+            }
+            if ($('#AARMTP').val() !== '') {
+                $('#AARMTP-js').autocomplete().val($('#AARMTP').val());
+            } 
+            if ($('#AACRRCD').val() !== '') {
+                $('#AACRRCD-js').autocomplete().val($('#AACRRCD').val());
+            }
+
+            if ($('#AAPRICE').val() !== '') {
+                $('#AAPRICE-js').autocomplete().val($('#AAPRICE').val());
+            }
+            if ($('#AAPTTRM').val() !=='') {
+                $('#AAPTTRM-js').autocomplete().val($('#AAPTTRM').val());
+            }
+            if ($('#AASETRM').val() !== '') {
+                $('#AASETRM-js').autocomplete().val($('#AASETRM').val());
+            }
+           
+          
+
+        })
+
+    </script>
+}

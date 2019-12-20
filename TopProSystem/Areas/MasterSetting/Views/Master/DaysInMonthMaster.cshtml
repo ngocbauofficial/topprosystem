@@ -1,0 +1,271 @@
+﻿@model IEnumerable<TopProSystem.Areas.MasterSetting.Models.MA012>
+@using StaticResources
+@using StaticResources.View.MA012
+@{
+    ViewBag.Title = Resource.MasterDaysInMonthTitle;
+    Layout = "~/Areas/MasterSetting/Views/Shared/_LayoutMA012.cshtml";
+    ViewBag.headerName = ViewBag.Title;
+}
+@using TopProSystem.Extension.AccountRole
+@{
+    var permission = new PermissionService();
+    var checkbuton = permission.AuthorizeAction(StandardPermissionProvider.DaysInMonthMaster);
+}
+<script type="text/javascript">
+    $(function () {
+        @Html.Raw(TempData[TopProSystem.Models.ConstantData.Notification_key])
+    })
+</script>
+
+<div class="container-fluid">
+    <div class="pos-top">
+        <div class="row mx-0">
+            <div class="col-lg-12">
+                <form action="#" method="get" class="form-inline">
+                    <div class="form-group">
+                        <input type="hidden" name="classicode" value="002" />
+                        <input type="text" name="srcode" class="search" value="" placeholder="@Resource.PlaceholderTextSearch" />
+                        <button type="button" id="btnSearch" class="btn-primary search ml-2">@Button.BtnSeach</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row mx-0 mt-5">
+            <div class="col-lg-12">
+                @if(checkbuton.ShowDelete)
+                {
+                    <button class="btn-danger float-right ml-2" id="deleteBtn">@Button.BtnDelete</button>
+                }
+                @if (checkbuton.ShowAdd)
+                {
+                    <a href="@Url.Action("GetInsertDaysInMonth", "Master")" class="button float-right btn-addnew">@Button.BtnAdd</a>
+                }
+
+            </div>
+
+        </div>
+    </div>
+    <div class="data-display">
+        <table class="table-sm w-100" id="dataTable">
+            <thead>
+                <tr>
+                    <th>@Resource.ID</th>
+                    <th>@Resource.MNCLSCD</th>
+                    <th>@Resource.MNSRCD</th>
+                    <th>@Resource.MNSRSNM </th>
+                    <th>@Resource.MNSRNM </th>
+                    <th>@Resource.MNRGSDT </th>
+                    <th>@Resource.MNRGSTM </th>
+                    <th>@Resource.MNUPDT </th>
+                    <th>@Resource.MNUPDTM </th>
+                    @if (checkbuton.ShowEdit)
+                    {
+                        <th>@Button.LbEdit</th>
+                    }
+
+                    @if (checkbuton.ShowDelete)
+                    {
+                        <th>@Button.LbSelect</th>
+                    }
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var t = $('#dataTable').DataTable({
+                "ordering": false,
+                "info": false,
+                "lengthChange": false,
+                "pageLength": DataTableDisplayLength,
+                "bServerSide": true,
+                "sAjaxSource": "/Master/AjaxhanlderMA012",
+                "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                oSettings.jqXHR = $.ajax({
+                    "dataType": 'json',
+                    "url": sSource,
+                    "type": 'POST',
+                    "data": aoData,
+                    "success": fnCallback,
+                    "error": function () {
+                        alert("@RLayout.SessiontimeoutRespone");
+                        window.location.href = "@Url.Action("GetLogin","Account", new {area = "" })"
+                    }
+                });
+            },
+                "fnServerParams": function (aoData) {
+                    aoData.push({ "name": "MNCLSD", "value": $('input[name*="classicode"]').val() });
+                },
+                "bProcessing": true,
+                "sServerMethod": "POST",
+                "sPaginationType": "full_numbers",
+                "language": {
+                    "paginate": {
+                        "first": '<i class="fa fa-fast-backward"></i>',
+                        "last": '<i class="fa fa-fast-forward"></i>',
+                        "next": '<i class="fa fa-forward"></i>',
+                        "previous": '<i class="fa fa-backward"></i>'
+                    },
+                    "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+                },
+                "columns": [
+                    { "data": null },
+                    { "data": "MNCLSD" },
+                    { "data": "MNSRCD" },
+                    { "data": "MNSRSNM" },
+                    { "data": "MNSRNM" },
+                    { "data": "MNRGSDT" },
+                    { "data": "MNRGSTM" },
+                    { "data": "MNUPDT" },
+                    { "data": "MNUPTM" },
+                    @if (checkbuton.ShowEdit)
+                    {
+                        <text>
+                        { "render": function(data, type, row) { return '<a href="/MasterSetting/Master/' + CrawUpdateUrl($('input[name*="classicode"]').val()) + '?srcode=' + row["MNSRCD"] + '" class="edit"><img src="/Images/Icon/edit-icon.png" /></a>' } },
+                    </text>
+                        }
+                     @if (checkbuton.ShowDelete)
+                     {  <text>
+                         { "render": function(data, type, row) { return '<input type="checkbox" name="name" id="' + row["MNCLSD"] + '" value="' + row["MNSRCD"] + '"  />' } }
+                     </text>
+                         }
+
+                ],
+
+            });
+
+            t.on('draw.dt', function () {
+                var PageInfo = $('#dataTable').DataTable().page.info();
+                t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1 + PageInfo.start;
+                });
+            });
+
+            //t.on('xhr', function (e, settings, json) {
+            //    console.log(JSON.stringify(json));
+            //});
+
+
+            $('#btnSearch').on('click', function () {
+                var searchKey = $('.search').val();
+                if (searchKey == "") window.location.hash = "";
+                else
+                    window.location.hash = "search-key=" + searchKey;
+                t.search(searchKey).draw();
+
+            })
+
+
+        });
+
+
+        function CrawUpdateUrl(classificationCode) {
+            var url = '';
+            switch (classificationCode) {
+                case '001':
+                    url = "GetUpdateDueDateType";
+                    break;
+                case '002':
+                    url = "GetUpdateDaysInMonth";
+                    break;
+                case '003':
+                    url = "GetUpdateCalculationTypeMaster";
+                    break;
+                case '004':
+                    url = "GetUpdateWeightDisplayCode";
+                    break;
+                case '005':
+                    url = "GetUpdateMakerCode";
+                    break;
+                case '006':
+                    url = "GetUpdateCommodityCode";
+                    break;
+                case '007':
+                    url = "GetUpdateStatusCode";
+                    break;
+                case '008':
+                    url = "GetUpdateSectionCode";
+                    break;
+                case '009':
+                    url = "GetUpdateDamageCode";
+                    break;
+                case '010':
+                    url = "GetUpdateCountryCode";
+                    break;
+                case '011':
+                    url = "GetUpdateBusinessTypeCode";
+                    break;
+                case '012':
+                    url = "GetUpdateCurrencyCode";
+                    break;
+                case '013':
+                    url = "GetUpdateShiftCode";
+                    break;
+                case '014':
+                    url = "GetUpdateMachineNo";
+                    break;
+                case '015':
+                    url = "GetUpdateGrade";
+                    break;
+                case '016':
+                    url = "GetUpdateReasonForChangingCode";
+                    break;
+                case '017':
+                    url = "GetUpdateBankCode";
+                    break;
+                case '018':
+                    url = "GetUpdateExchangeRateType";
+                    break;
+                case '019':
+                    url = "GetUpdatePriceTerm";
+                    break;
+                case '020':
+                    url = "GetUpdateSettlementTerm";
+                    break;
+                case '021':
+                    url = "GetUpdateTypeofTerms";
+                    break;
+                case '022':
+                    url = "GetUpdatePackingType";
+                    break;
+                case '023':
+                    url = "GetUpdateInterruptedReasonCode";
+                    break;
+                case '024':
+                    url = "GetUpdateDeliveryCondition";
+                    break;
+                case '025':
+                    url = "GetUpdateContractType";
+                    break;
+                case '026':
+                    url = "GetUpdateTradeCategory";
+                    break;
+                case '027':
+                    url = "GetUpdateInventoryStatus";
+                    break;
+                case '028':
+                    url = "GetUpdateInventoryType";
+                    break;
+                case '029':
+                    url = "GetUpdateMoneyType";
+                    break;
+                case '030':
+                    url = "GetUpdateUnitPriceUnit";
+                    break;
+                case '031':
+                    url = "GetUpdateLogType";
+                    break;
+                case '032':
+                    url = "GetUpdateDataType";
+                    break;
+            }
+
+            return url;
+        }
+    </script>
+}
+

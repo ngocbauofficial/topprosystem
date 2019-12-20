@@ -1,0 +1,84 @@
+﻿@using StaticResources
+@{
+    ViewBag.Title = "Sale Order Entry";
+    Layout = "~/Views/Shared/_LayoutPageSale.cshtml";
+    ViewBag.content = ViewBag.Title;
+}
+
+<div class="pos-top">
+    <div class="row mx-0">
+        <div class="col-lg-12">
+            <form action="#" method="get" class="form-inline">
+                <div class="form-group">
+                    <input type="text" name="coatCode" class="search" value="" placeholder="" />
+                    <button type="button" id="btnSearch" class="btn-primary search ml-2">@Button.BtnSeach</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="row mx-0 mt-5">
+        <div class="col-lg-12">
+            <button class="btn-danger float-right ml-2" id="deleteBtn">@Button.BtnDelete</button>
+            <a href="@Url.Action("SaleOrderEntry_Add")" class="button float-right btn-addnew">@Button.BtnAdd</a>
+        </div>
+
+    </div>
+</div>
+<div class="data-display">
+    <table class="table-sm w-100">
+        <thead>
+            <tr>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
+                <th>12</th>
+                <th>Edit</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td><a href="@Url.Action("SaleOrderEntry_Change")" class="edit"><img src="~/Images/Icon/edit-icon.png" /></a></td>
+                <td><input type="checkbox" name="name" value="" /></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td><a href="@Url.Action("SaleOrderEntry_Change")" class="edit"><img src="~/Images/Icon/edit-icon.png" /></a></td>
+                <td><input type="checkbox" name="name" value="" /></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

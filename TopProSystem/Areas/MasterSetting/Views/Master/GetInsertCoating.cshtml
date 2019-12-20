@@ -1,0 +1,91 @@
+﻿@using StaticResources.View.Coating
+@using StaticResources
+@model TopProSystem.Areas.MasterSetting.Models.MA005
+
+@{
+    ViewBag.Title = Resource.InsertTitle;
+    Layout = "~/Areas/MasterSetting/Views/Shared/_LayoutMasterSeting.cshtml";
+    ViewBag.headerName = ViewBag.Title;
+}
+
+<style>
+    input[type = text], input[type = "password"], select {
+        width: 300px;
+    }
+
+    .divTableRow .divTableCell:first-child {
+        width: 10%;
+    }
+
+    .divTableRow .divTableCell:last-child {
+        width: 90%;
+    }
+</style>
+<div class="container-fluid">
+    <div class="data-content">
+        <form action="@Url.Action("InsertCoatingMaster","Master")" method="post" id="Coating-Master-Form">
+            <div class="divTable" style="border:1px solid #000">
+                <div class="divTableBody">
+                    <div class="divTableRow ">
+                        <div class="divTableCell "><span class="title-normal">@Resource.MECOAT</span></div>
+                        <div class="divTableCell "><input type="text" name="MECOAT" id="MECOAT" value="" tabindex="1" /></div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell "><span class="title-normal">@Resource.MECOATW</span></div>
+                        <div class="divTableCell "><input type="text" name="MECOATW" id="MECOATW" value="" tabindex="2" /></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3 float-right">
+                <button type="submit" class="btn-primary">@Button.BtnConfirm</button>
+                <button type="button" class="cancel" onclick="window.location.href='/MasterSetting/Master/CoatingMaster'">@Button.BtnCancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const URL_CHECK_COATING_EXISTS = '/Master/CheckCoatingExists';
+
+    $('#Coating-Master-Form').validate({
+        rules: {
+            MECOAT: {
+                required: true,
+                maxlength: 5,
+                alphatext: true,
+                remote: {
+                    url: URL_CHECK_COATING_EXISTS,
+                    type: 'GET',
+                    data: {
+                        coatingCode: function () { return $('#MECOAT').val() }
+                    }
+                }
+            },
+            MECOATW: {
+                required: true,
+                maxlength: 6,
+                number: true,
+            },
+        },
+        messages: {
+            MECOAT: {
+                required: '@Html.Raw(RLayout.Required)',
+                remote: '@Html.Raw(RLayout.Exists)',
+                maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"5"))',
+            },
+            MECOATW: {
+                required: '@Html.Raw(RLayout.Required)',
+                maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"6"))',
+                number: '@Html.Raw(RLayout.IsNumber)',
+            }
+        },
+        errorElement: 'label',
+        errorPlacement: function (error, element) {
+            error.insertAfter(element);
+        },
+    });
+
+     $.validator.addMethod("alphatext", function (value, element) {
+       return alphatext(value);
+    }, "@RLayout.InValidValue");
+</script>

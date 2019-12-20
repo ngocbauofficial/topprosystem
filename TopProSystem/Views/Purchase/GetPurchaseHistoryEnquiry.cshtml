@@ -1,0 +1,154 @@
+﻿@using StaticResources
+@{
+    ViewBag.Title = "Purchase History Enquiry";
+    Layout = "~/Views/Shared/_LayoutPagePurchase.cshtml";
+    ViewBag.content = "Purchase History Enquiry";
+}
+
+
+<div class="row container-fluid m-0 p-0 w-100">
+    <form action="/" method="post">
+        <div class="col-12 m-0 p-0 row w-100 py-5">
+            <div class="centerdiv" style="width: 512px">
+                <div class="row">
+                    <div class="col-lg-3 col-md-5 col-sm-5 col-4 p-0">
+                        <span class="title float-right">Select Report</span>
+                    </div>
+                    <div class="col-lg-9 col-md-7 col-sm-7 col-8">
+                        <select id="reportFilename" style="width: 376px" tabindex="1">
+                            <option value="0">Purchase History By Maker</option>
+                            <option value="1">Purchase History By Maker By Commodity</option>
+                            <option value="2">Purchase History By Maker By Commodity By Spec By Size</option>
+                            <option value="3">Purchase History By Supplier</option>
+                            <option value="4">Purchase History By Supplier By Commodity</option>
+                            <option value="5">Purchase History By Supplier By Commodity By Spec By Size</option>
+                        </select>
+                        @*<input type="text" name="displaytype" id="displaytype" value="" style="min-width: 242px;" readonly/>*@
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-5 col-sm-5 col-4 p-0">
+                        <span class="title float-right">Select Supplier</span>
+                    </div>
+                    <div class="col-lg-9 col-md-7 col-sm-7 col-8">
+                        @Html.DropDownList("Select2", new SelectList(new List<string>() { "1", "2" }), RLayout.SelectAction, new { @tabindex = "2" })
+                        <input type="text" name="name" value="" style="min-width: 242px;" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-5 col-sm-5 col-4 p-0">
+                        <span class="title float-right">Select Year</span>
+                    </div>
+                    <div class="col-lg-9 col-md-7 col-sm-7 col-8">
+                        @Html.DropDownList("Select3", new SelectList(new List<string>() { "1", "2" }), RLayout.SelectAction, new { @tabindex = "3" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-3">
+                <div class="text-center">
+                    <small class="" id="message1"></small>
+                </div>
+            </div>
+            <div class="col-md-12 mt-3 w-100 m-0 p-0">
+                <div class="text-center">
+                    @*<button type="button" style="background-color: #8a710f; border-color: #b58d2a; color: white; ">Search</button>
+                        <button type="button" style="background-color: #b24b15; color: white; " onclick="CreateExcelFile()">Excel</button>
+                        <button type="button" style="background-color: #913a3a; color: white;" onclick="CreatePDFFile()">PDF</button>
+                        <button type="button" style="background-color: #ff0000; border-color: #ff0000; color: white; ">Cancel</button>*@
+                    <button type="button" class="search">Search</button>
+                    <button type="button" class="excel" onclick="CreateExcelFile()">Excel</button>
+                    <button type="button" class="pdf" onclick="CreatePDFFile()">PDF</button>
+                    <button type="button" class="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+    var $message = $('#message1');
+    var succesMessage = '@TopProSystem.Models.ConstantData.SuccessMessage';
+    $().ready(function () {
+        $('#reportFilename').click(function () {
+            $message.html("");
+        })
+    })
+
+
+    function CreatePDFFile() {
+        var data = $('#reportFilename').val();
+        if (data == '') {
+            $message.removeClass('text-success').addClass('text-danger');
+            $message.html("Please select Report Type !");
+            return;
+        }
+        $message.removeClass('text-danger').addClass("text-info").html("Progressing...");
+        $.ajax({
+            url: '/Purchase/CreatePDFFileForHisToryEnQuiRy',
+            type: 'GET',
+            data: {
+                name: data
+            },
+            success: function (rs) {
+                var array = rs.split('|');
+                var success = array[0];
+                var link = array[1];
+                if (success.toLowerCase() == succesMessage.toLocaleLowerCase()) {
+                    try {
+                        $message.removeClass('text-danger text-info').addClass('text-success');
+                        $message.html("Create Success Full !");
+                        window.location.href = "@Url.RouteUrl(new { Controller = "Purchase", Action = "DownloadPdfFile"})/?path=" + link;
+                    } catch (e) {
+                        console.log(e);
+                    }
+                } else {
+                    $message.removeClass('text-success').addClass('text-danger');
+                    $message.html("Create Fail, Please try again !");
+                }
+            },
+            error: function (rs) {
+                $message.removeClass('text-success').addClass('text-danger');
+                $('#message1').html("Create Fail, Please try again !");
+                //$message.html(rs.responeText);
+            }
+        })
+    }
+
+    function CreateExcelFile() {
+
+        var data = $('#reportFilename').val();
+        if (data == '') {
+            $message.removeClass('text-success').addClass('text-danger');
+            $message.html("Please select Report Type !");
+            return;
+        }
+        $message.removeClass('text-danger').addClass("text-info").html("Progressing...");
+        $.ajax({
+            url: '/Purchase/ExportExcelFileForHisToryEnQuiRy',
+            type: 'GET',
+            data: {
+                name: data
+            },
+            success: function (rs) {
+                var array = rs.split('|');
+                var success = array[0];
+                var link = array[1];
+                if (success.toLowerCase() == succesMessage.toLocaleLowerCase()) {
+                    $message.removeClass('text-danger text-info').addClass('text-success');
+                    $message.html("Create Success Full !");
+                    window.location.href = "@Url.RouteUrl(new { Controller = "Purchase", Action = "DownloadExcelFile"})/?path=" + link;
+                } else {
+                    $message.removeClass('text-success').addClass('text-danger');
+                    $message.html("Create Fail, Please try again !");
+                }
+            },
+            error: function (rs) {
+                $message.removeClass('text-success').addClass('text-danger');
+                $message.html("Create Fail, Please try again !");
+                //$message.html(rs.responeText);
+            }
+        })
+    }
+
+</script>

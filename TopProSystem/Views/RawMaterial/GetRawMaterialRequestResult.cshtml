@@ -1,0 +1,188 @@
+﻿
+@{
+    ViewBag.Title = "Raw Material Request Result";
+    Layout = "~/Views/Shared/_LayoutPageRawMaterial.cshtml";
+    ViewBag.content = "Raw Material Request Result";
+}
+
+<script>
+    $(document).ready(function () {
+        $('body').css('min-width', '0');
+    })
+
+</script>
+
+<style>
+    @@media only screen and (max-width:800px ) {
+        #getrawmaterial form input[type=text], #getrawmaterial form span {
+            font-size: 16px !important;
+        }
+       
+        .header-text-color {
+            font-size: 1.3rem !important;
+        }
+
+        #getrawmaterial button {
+            width: 80px !important;
+        }
+
+        .navbar-nav .nav-link {
+            padding-left: 20px !important;
+        }
+
+        .table-responsive .tsheader td {
+            white-space: nowrap !important;
+        }
+
+        #getrawmaterial .centerdiv {
+            margin-top: 0px !important;
+        }
+
+        .fa-home {
+            font-size: 30px;
+        }
+
+        table {
+            margin-bottom: 5px;
+        }
+    }
+</style>
+<div id="getrawmaterial" class="row w-100  container-fluid m-0 p-0">
+    @using (Html.BeginForm())
+    {
+        <div class="col-md-12 mt-4 py-2 row w-100 m-0 p-0">
+            <div class="centerdiv" style="width: 300px;">
+                @if (ViewBag.Page == null)
+                {<div class="row">
+                        <div class="col-md-5 col-sm-6 col-6 p-0">
+                            <div class="float-right"><span class="title">Date</span></div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-6">
+                            <input type="text" name="Date" id="Date" data-provide="datepicker" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 col-sm-6 col-6 p-0">
+                            <div class="float-right"><span class="title">Material Request No</span></div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-6">
+                            <input type="text" name="MaterialRequestNo" id="MaterialRequestNo" required />
+                        </div>
+                    </div>
+                }
+                else
+                {
+
+                    <div class="row">
+                        <div class="col-md-5 col-5 p-0">
+                            <div class="float-right"><span class="title">Inventory No</span></div>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <input type="text" name="Inventory" id="Inventory" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 col-5 p-0">
+                            <div class="float-right"><span class="title">Inspection No</span></div>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <input type="text" name="InspectionNo" id="InspectionNo" required />
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="col-md-12 mt-3 w-100 p-0">
+                <div class="text-center">
+                    <small class="text-danger" id="message"></small>
+                    @*<button type="button" style="background-color: #0094ff; border: none; color: white; ">Search</button>
+                        <button type="button" style="background-color: #179d08; border-color: #34b05a; color: white; ">Confirm</button>
+                        <button type="button" style="background-color: #ff0000; border-color: #ff0000; color: white; ">Cancel</button>*@
+
+                    @if (ViewBag.Page != null)
+                    {
+                        <button type="button" class="add-item" id="btn-addvalue">Add</button>
+                        <button type="button" class="confirm">Confirm</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="confirm" id="btn-addvalue">Confirm</button>
+                    }
+                    <button type="button" class="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+       
+
+    }
+
+</div>
+<button class="mb-1 mt-2 cancel float-right w-auto">Delete from all select</button>
+<div class="row w-100 container-fluid mt-2 mx-0 p-0 border-top border-dark data-display">
+    <div class="table-responsive">
+        <table class="w-100 mt-2">
+            <thead>
+                <tr class="text-center thead">
+                    <th>Date</th>
+                    <th>Material Request No</th>
+                    <th>Inventory No.</th>
+                    <th>Inspection No</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tsheader">
+                    <td>20-10-2019   </td>
+                    <td>0123456789 </td>
+                    <td>0123456789 </td>
+                    <td>0123456789 </td>
+                    <td><input type="checkbox" name="name" value="" /></td>
+                </tr>
+                <tr class="tsheader">
+                    <td>20-10-2019   </td>
+                    <td>0123456789 </td>
+                    <td>0123456789 </td>
+                    <td>0123456789 </td>
+                    <td><input type="checkbox" name="name" value="" /></td>
+                </tr>
+                <tr class="tsheader">
+                    <td>20-10-2019   </td>
+                    <td>0123456789 </td>
+                    <td>0123456789 </td>
+                    <td>0123456789 </td>
+                    <td><input type="checkbox" name="name" value="" /></td>
+                </tr>
+                <tr class="tsheader">
+                    <td>20-10-2019   </td>
+                    <td>0123456789 </td>
+                    <td>0123456789 </td>
+                    <td>0123456789 </td>
+                    <td><input type="checkbox" name="name" value="" /></td>
+                </tr>
+                <tr class="tsheader">
+                    <td>20-10-2019   </td>
+                    <td>0123456789 </td>
+                    <td>0123456789 </td>
+                    <td>0123456789 </td>
+                    <td><input type="checkbox" name="name" value="" /></td>
+                </tr>
+
+                <tr class="tsheader">
+                    <td class="border-left-0 border-bottom-0"></td>
+                    <td class="text-center" style=" background-image: url('/Images/bgTB.png');">Total</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

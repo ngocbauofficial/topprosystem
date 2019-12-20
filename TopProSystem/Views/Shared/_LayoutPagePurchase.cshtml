@@ -1,0 +1,1705 @@
+﻿@using StaticResources
+@using StaticResources.View.PUR001
+@model TopProSystem.Areas.MasterSetting.Models.PUR001
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<style>
+    .ui-autocomplete {
+        max-height: 200px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background: #fff;
+        font-size: 12px;
+        list-style: none;
+        width: 200px;
+        padding: 0;
+        border: 1px solid #999999;
+        font-family: sans-serif;
+    }
+
+        .ui-autocomplete li {
+            cursor: pointer;
+            padding-left: 3px;
+            white-space: nowrap;
+        }
+
+            .ui-autocomplete li:hover {
+                background: #a9d7f6;
+            }
+
+    .ui-helper-hidden-accessible {
+        display: none;
+        height: 0;
+        position: absolute;
+    }
+</style>
+
+<div style=" min-height: 768px; background-color: #fff; padding-bottom: 10px">
+    <div class="px-2" style="font-size: 40px; ">
+        <span class="header-text-color">@ViewBag.content</span>
+    </div>
+    <div class="px-2">
+        @RenderBody()
+    </div>
+
+</div>
+
+<div class="menu-hide">
+    <div class="header-menu">
+        <strong><i class="fa fa-bars"></i> Purchase Menu</strong>
+        <button id="close-menu-toggle" title="@RLayout.Togglemenu" onclick="closeHiddenMenu()"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="menu-hide-content">
+        <ul class="list-unstyled">
+            <li class="nav-item">
+                <a class="nav-link " href="/Purchase/GetPurchaseContractEntry">Purchase Order Entry</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Purchase/GetPurchaseOrderBalanceEnquiry">Purchase Order Balance Enquiry</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Purchase/GetPurchaseOrderCompletion">Purchase Order Completion</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Purchase/GetPurchaseHistoryEnquiry">Purchase History Enquiry</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Purchase/GetPrintPurchaseOrder">Print Purchase Order</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+
+    var GLOBAL_INCREMENT = 1, LIMIT_ITEM = 20; // global increment k giam.
+    function x() { // dem so luong item
+        var itemCount = $('.content-bottom').find('.item-child').length;
+        return parseInt(itemCount);
+    };
+
+
+    $(function () { // set item 1 = 1
+        var elem = $('.content-bottom').find('.item-child').first();
+        var input = elem.find('input[type=text]').first();
+        if (input.val() === '') {
+            input.attr('value', 1);
+        }
+
+        if (GLOBAL_INCREMENT ===1 && GLOBAL_INCREMENT < x()) {
+            GLOBAL_INCREMENT = x();
+        }
+    })
+
+
+
+
+    function CreatePurchaseContractEntry_Item() {
+        if (x() >= LIMIT_ITEM) {
+            alert("Limit count item is " + LIMIT_ITEM);
+            return;
+        }
+
+        var item_n = '';  // dem so item
+
+        if (GLOBAL_INCREMENT > 1) {
+            item_n = 'item-' + Number(GLOBAL_INCREMENT + 1);
+        } else {
+            item_n = 'item-2';
+        }
+
+        var tabindexStep = GLOBAL_INCREMENT * 19;
+
+        $.get('/Purchase/AddItem', function (rs) {
+
+            var element = $(rs);
+            //  element.attr('id', item_n);   // cap nhat id
+
+
+
+            var purchase_ctr_no = element.find('input[type=text]').first();
+            purchase_ctr_no.attr('value', x()+1); // cap nhat purchase contract no
+
+            var childElem = element.find('input,select');
+
+            GLOBAL_INCREMENT += 1;
+
+            childElem.each(function () {
+                ChangeID_Name_TabIndex($(this), GLOBAL_INCREMENT, tabindexStep, true);
+            });
+
+            $('.content-bottom').append(element.prop('outerHTML'));
+
+            DisableRawMaterialType($('#AARMTP').val());
+            AddUnitbyCurrency();
+            // autoFill();
+            DatePickerProvide(); // goi lai su kien datepicker
+
+            var $target = $('html,body');
+            $target.animate({ scrollTop: $(document).height() }, 500);
+
+        }).fail(function (rs) {
+            ErrorAlert(rs.responseText);
+        });
+
+    }
+
+    function ChangeID_Name_TabIndex(selector, number_inc, tabindexStep, f_tabindex = false) {
+
+        var nameAttr = selector.attr('name');
+        var idAttr = selector.attr('id');
+        if (nameAttr != "undefined") {
+            selector.attr('name', nameAttr + '_' + number_inc);  // set lai name cho item moi, global_increment khong thay doi
+            selector.attr('id', idAttr + '_' + number_inc); // set lai id cho item moi
+        }
+
+        if (f_tabindex) {
+            tabindex = selector.attr('tabindex');
+            if (tabindex != undefined) {
+                tabindex = Number(tabindex) + tabindexStep; // set lai tabindex
+                selector.attr('tabindex', tabindex);
+            }
+        }
+
+    }
+
+        function DeleteItem(obj) {
+            if (x() != 1) {
+                var btn = $(obj);
+                $.confirm({
+                    title: "<span class='text-secondary'>@Button.BtnConfirm</span>",
+                    icon: 'fa fa-warning',
+                    content: '@Html.Raw(RLayout.ContentDelete)',
+                    type: 'blue',
+                    buttons: {
+                        confirm: {
+                            text: '@Button.BtnConfirm',
+                            btnClass: 'btn-confirm text-capitalize',
+                            action: function () {
+                                btn.parent().parent().remove();
+                                setNullProductDeleteItem();
+                                var parents = $('.content-bottom').find('.item-child');
+                                var i = 1;
+                                parents.each(function () {
+                                    var elem = $(this);
+                                    elem.find('input[type=text]').first().attr('value', i);
+                                    i++;
+                                });
+                            },
+
+                        },
+                        cancel: {
+                            text: '@Button.BtnCancel',
+                            btnClass: 'btn-cancel text-capitalize',
+                            action: function () {
+
+                            }
+                        }
+                    }
+                });
+
+            }
+        }
+
+        $('.content-bottom').bind('keypress', function (e) { // su kien enter = tab
+            if (e.keyCode === 13) {
+                var input_tabindex = $(this).find('input:focus, select:focus').attr('tabindex');
+                input_tabindex++;
+                $('[tabindex=' + input_tabindex + ']').focus();
+                return false;
+            }
+        });
+
+        var a, b, rs;
+
+        function GetItemCount(obj) { // get vi tri item cua chinh no
+            var id = $(obj).attr('id');
+            var indexOf_ = id.indexOf('_');
+            var itemCount;
+            if (indexOf_ !== -1) {
+                itemCount = id.substr(indexOf_, id.length);
+            }
+            else itemCount = '';
+
+            return itemCount;
+        }
+
+        $(function () {
+            $('#AASPLCD-js').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 15 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#AASPLCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                        $('#AASPLCD').val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#AASPLCD_dl').val('');
+                        $('#AASPLCD').val(''); // value for save
+                    }
+                },
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .attr("data-value", item.value)
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+
+            $('#div-AASPLCD .icon').click(function () {
+                $('#AASPLCD-js').autocomplete("search", "");
+            });
+        })
+
+
+
+        $('#AASPLCD').change(function () {
+            if ($(this).val() !== '') {
+                $.getJSON('@Url.Action("GetJsonSalePurchase","Master", new {area = "MasterSetting"})', { spcode: $(this).val() }).done(function (rs) {
+                    $('#AASPLCD_dl').val(rs.MASPNM);
+                });
+            }
+            else {
+                $('#AASPLCD_dl').val('');
+            }
+
+        });
+
+        $(function () {
+            $('#AAMKCD-js').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', {type: 0}).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{label: '@Html.Raw(RLayout.SelectAction)', value: ' '}];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#AAMKCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                        $('#AAMKCD').val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#AAMKCD_dl').val('');
+                        $('#AAMKCD').val(''); // value for save
+                    }
+
+                },
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+
+            $('#div-AAMKCD .icon').click(function () {
+                $('#AAMKCD-js').autocomplete("search", "");
+            });
+
+        })
+
+        $('#AAMKCD').change(function () {
+
+            var those = $(this);
+            if (those.val() === '') {
+                $('#AAMKCD_dl').val('');
+            } else {
+                $.getJSON('@Url.Action("GetJsonBySRCode", "Master", new {area = "MasterSetting" })',
+                    {
+                        codes: '@TopProSystem.Areas.MasterSetting.Models.ClassificationCode.CLASSIFICATTIONCODE005' + '|' + those.val()
+                    }).done(function (rs) {
+                        $('#AAMKCD_dl').val(rs.MNSRNM);
+
+                    }).fail(function (rs) {
+                        console.error(rs.responseText);
+                    });
+
+            }
+
+        });
+
+        $(function () {
+            $('#AACMDCD-js').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 4 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#AACMDCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                        $('#AACMDCD').val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#AACMDCD_dl').val('');
+                        $('#AACMDCD').val(''); // value for save
+                    }
+
+                },
+
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+
+            $('#div-AACMDCD .icon').click(function () {
+                $('#AACMDCD-js').autocomplete("search", "");
+            });
+        })
+
+
+
+        $('#AACMDCD').change(function () {
+            if ($(this).val() === '') {
+                $('#AACMDCD_dl').val('');
+            } else {
+                $.getJSON('@Url.Action("GetJsonBySRCode", "Master", new {area = "MasterSetting" })',
+                    {
+                        codes: '@TopProSystem.Areas.MasterSetting.Models.ClassificationCode.CLASSIFICATTIONCODE006' + '|' + $(this).val().trim()
+                    }).done(function (rs) {
+                        $('#AACMDCD_dl').val(rs.MNSRNM);
+                    }).fail(function (rs) {
+                        console.error(rs.responseText);
+                    })
+            }
+        });
+
+        $(function () {
+            $('#AAUSRCD-js').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 11 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#AAUSRCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                        $('#AAUSRCD').val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#AAUSRCD_dl').val('');
+                        $('#AAUSRCD').val(''); // value for save
+                    }
+
+                },
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+
+            $('#div-AAUSRCD .icon').click(function () {
+                $('#AAUSRCD-js').autocomplete("search", "");
+            });
+        })
+
+
+        $('#AAUSRCD').change(function () {
+            if ($(this).val() === '') {
+                $('#AAUSRCD_dl').val('');
+            } else {
+                $.getJSON('@Url.Action("GetUserName", "Master", new {area = "MasterSetting" })', {
+                    userid: $(this).val()
+                }).done(function (rs) {
+                    $('#AAUSRCD_dl').val(rs.username);
+                }).fail(function (rs) {
+                    console.error(rs.responseText);
+                })
+            }
+        });
+        //tuan
+        $(function () {
+            $('#AARMTP-js').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 12 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                        $('#AARMTP').val(''); // value for save
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#AARMTP_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                        $('#AARMTP').val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#AARMTP_dl').val('');
+                        $('#AARMTP').val(''); // value for save
+                    }
+                    DisableRawMaterialType(ui.item.value); // PNB EDIT
+                },
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+
+            $('#div-AARMTP .icon').click(function () {
+                $('#AARMTP-js').autocomplete("search", "");
+            });
+
+        })
+
+
+
+        $(function () {
+            $('#AADLVCD-js').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 16 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#AADLVCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                        $('#AADLVCD').val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#AADLVCD_dl').val('');
+                        $('#AADLVCD').val(''); // value for save
+                    }
+
+                },
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+
+            $('#div-AADLVCD .icon').click(function () {
+                $('#AADLVCD-js').autocomplete("search", "");
+            });
+        })
+
+
+        $('#AADLVCD').change(function () {
+            var those = $(this);
+            if (those.val() === '') {
+                $('#AADLVCD_dl').val('');
+            } else {
+                $.getJSON('@Url.Action("GetJsonBySRCode", "Master", new {area = "MasterSetting" })',
+                    {
+                        codes: '@TopProSystem.Areas.MasterSetting.Models.ClassificationCode.CLASSIFICATTIONCODE024' + '|' + those.val().trim()
+                    }).done(function (rs) {
+                        $('#AADLVCD_dl').val(rs.MNSRNM);
+                    }).fail(function (rs) {
+                        console.error(rs.responseText);
+                    });
+            }
+        });
+
+
+        function ABGRADE_Change(obj) {
+            var itemCount = GetItemCount(obj);
+
+            if ($(obj).val() === '') {
+                $('#ABGRADE_dl' + itemCount).val('');
+            } else {
+                $.getJSON('@Url.Action("GetJsonBySRCode", "Master", new {area = "MasterSetting" })',
+                    {
+                        codes: '@TopProSystem.Areas.MasterSetting.Models.ClassificationCode.CLASSIFICATTIONCODE015' + '|' + $(obj).val().trim()
+                    }).done(function (rs) {
+                        $('#ABGRADE_dl' + itemCount).val(rs.MNSRNM);
+                    }).fail(function (rs) {
+                        console.error(rs.responseText);
+                    })
+            }
+        }
+
+        $(function () {
+            $('#AACTRTP-js').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 5 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#AACTRTP_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                        $('#AACTRTP').val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#AACTRTP').val(''); // value for save
+                        $('#AACTRTP_dl').val('');
+                    }
+
+                },
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+
+            $('#div-AACTRTP .icon').click(function () {
+                $('#AACTRTP-js').autocomplete("search", "");
+            });
+        })
+
+
+
+
+        $('#AACTRTP').change(function () {
+            if ($(this).val() === '') {
+                $('#AACTRTP_dl').val('');
+            } else {
+                $.getJSON('@Url.Action("GetJsonBySRCode", "Master", new {area = "MasterSetting" })',
+                    {
+                        codes: '@TopProSystem.Areas.MasterSetting.Models.ClassificationCode.CLASSIFICATTIONCODE025' + '|' + $(this).val().trim()
+                    }).done(function (rs) {
+                        $('#AACTRTP_dl').val(rs.MNSRNM);
+                    }).fail(function (rs) {
+                        console.error(rs.responseText);
+                    })
+            }
+        });
+
+        $(function () {
+            $('#AAIDCD-js').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 14 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#AAIDCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                        $('#AAIDCD').val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#AAIDCD_dl').val('');
+                        $('#AAIDCD').val(''); // value for save
+                    }
+
+                },
+
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+
+            $('#div-AAIDCD .icon').click(function () {
+                $('#AAIDCD-js').autocomplete("search", "");
+            });
+        })
+
+
+
+        $('#AAIDCD').change(function () {
+            if ($(this).val() !== '') {
+                $.getJSON('@Url.Action("GetJsonMa003","Master", new {area = "MasterSetting" })', { userid: $(this).val() }).done(function (rs) {
+                    $('#AAIDCD_dl').val(rs.MCIDNM);
+                })
+            } else {
+                $('#AAIDCD_dl').val('');
+            }
+        });
+
+        $(function () {
+            $('#AACRRCD-js').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 1 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+
+                    if (ui.item.value !== ' ') {
+                        $('#AACRRCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                        $('#AACRRCD').val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#AACRRCD_dl').val('');
+                        $('#AACRRCD').val(''); // value for save
+                    }
+                    AddUnitbyCurrency(); // PNB 17-12
+                    // goi lai autocomplete cho exchange rate
+                    UpdateExchangeRateAfterSomethingChange($('#AAEXRT'), $('#AACRRCD'), $('#AARGSDT'));
+                },
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+
+            $('#div-AACRRCD .icon').click(function () {
+                $('#AACRRCD-js').autocomplete("search", "");
+            });
+
+        })
+
+        $('#AACRRCD').change(function () { // goi lai su kien cua exchange rate
+            AddUnitbyCurrency();   // PNB 17-12
+            $.getJSON('@Url.Action("GetJsonBySRCode", "Master", new {area = "MasterSetting" })',
+                {
+                    codes: '@TopProSystem.Areas.MasterSetting.Models.ClassificationCode.CLASSIFICATTIONCODE012' + '|' + $(this).val().trim()
+                }).done(function (rs) {
+                    $('#AACRRCD_dl').val(rs.MNSRNM);
+                }).fail(function (rs) {
+                    console.error(rs.responseText);
+                });
+        });
+
+
+        $('#AARGSDT').change(function () {// update lai exchange rate khi du lieu thay doi
+            UpdateExchangeRateAfterSomethingChange($('#AAEXRT'), $('#AACRRCD'), $(this));
+        })
+
+
+
+        $(function () {
+            $('#AAEXRT-js').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 8 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+
+                    $('#AAEXRT').val(ui.item.value); // value for save
+                    var AAEXRT = $('#AAEXRT');
+                    var _currencycode = $('#AACRRCD');
+                    var register_date = $('#AARGSDT');
+                    if (_currencycode.val() === ''/* || register_date.val() ===''*/) {
+
+                        return;
+                    }
+                    UpdateExchangeRateAfterSomethingChange(AAEXRT, _currencycode, register_date);
+                },
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+
+            $('#div-AAEXRT .icon').click(function () {
+                $('#AAEXRT-js').autocomplete("search", "");
+            });
+        })
+
+
+
+        //PNB
+        //grade
+        function Grade_autocomplete(obj){
+            var itemcount = GetItemCount(obj);
+            $('#ABGRADE-js' + itemcount).autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 17 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#ABGRADE_dl' + itemcount).val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                        $('#ABGRADE' + itemcount).val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#ABGRADE_dl' + itemcount).val('');
+                        $('#ABGRADE' + itemcount).val(''); // value for save
+                    }
+
+                },
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+            $('#ABGRADE-js' + itemcount).autocomplete("search", "");
+        }
+
+
+
+        $('#RAPSTLGR-js').autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 13 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{label: '@Html.Raw(RLayout.SelectAction)',value: ' '}];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();AASPLCD
+                    $(this).val('');
+                }
+                if (ui.item.value !== ' ') {
+                    $('#RAPSTLGR_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                    $('#RAPSTLGR').val(ui.item.value); // value for save
+                }
+                else {
+                    $('#RAPSTLGR_dl').val('');
+                    $('#RAPSTLGR').val(''); // value for save
+                }
+
+            },
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+
+        $('#div-RAPSTLGR .icon').click(function () {
+            $('#RAPSTLGR-js').autocomplete("search", "");
+        });
+
+
+        //steel grade
+        function steelGrade_autocomplete(obj){
+
+            var itemcount = GetItemCount(obj);
+            $('#RAPSTLGR-js'+itemcount).autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 13 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#RAPSTLGR' + itemcount).val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#RAPSTLGR' + itemcount).val(''); // value for save
+                    }
+                },
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+            $('#RAPSTLGR-js' + itemcount).autocomplete("search", "");
+        }
+        //SPEC
+        function Spec_autocomplete(obj){
+            var itemcount = GetItemCount(obj);
+            $('#ABMCSPC-js'+itemcount).autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 9 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#ABMCSPC' + itemcount).val(ui.item.value); // value for save
+                    } else {
+                        $('#ABMCSPC' + itemcount).val(''); // value for save
+                    }
+
+                },
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+            $('#ABMCSPC-js' + itemcount).autocomplete("search", "");
+        }
+
+
+        // coating
+        function coating_autocomplete(obj){
+            var itemcount = GetItemCount(obj);
+            $('#ABCOAT-js'+itemcount).autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 10 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+
+                    $('#ABCOAT'+itemcount).val(ui.item.value); // value for save
+                },
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+            $('#ABCOAT-js' + itemcount).autocomplete("search", "");
+        }
+
+
+
+        function UpdateExchangeRateAfterSomethingChange(AAEXRT,_currencycode, register_date) {
+            if (AAEXRT.val() !== '') {
+                $.ajax({
+                    url: '@Url.Action("GetExchangeRate", "Master",new {area = "MasterSetting" })',
+                    type: 'GET',
+                    dataType: 'json',
+                    async: 'false',
+                    data: { curcode: _currencycode.val().trim(), exchangerateCode: AAEXRT.val().trim(), date: register_date.val() },
+                    success: function (rs) {
+                        if (rs.data != null) {
+                            $('#AAEXRT_dl').val(rs.data.MJEXRT);
+                            $('#AATXEXR').val(rs.data.MJTXEXR);
+                        } else {
+                            $('#AAEXRT_dl').val('');
+                            $('#AATXEXR').val('');
+                        }
+                    },
+                    complete: function () {
+                        var itemCount;
+                        var items = $('.content-bottom').find('.item-child');
+                        items.each(function () {
+                            var item = $(this);
+                            var item_no = item.find('input[type=text]').first();
+                            itemCount = GetItemCount(item_no);
+
+                            UpdateValueForABPRUPD(itemCount);
+                            UpdateValueForABPRATD(itemCount);
+                            UpdateValueForABPTXAD(itemCount);
+
+                        });
+                    }
+                });
+            }
+        }
+
+
+        @*$('#AAEXRT').change(function () {
+        var AAEXRT = $(this);
+        var _currencycode = $('#AACRRCD');
+        var register_date = $('#AARGSDT');
+        if (_currencycode.val() === ''/* || register_date.val() ===''*/) {
+
+            return;
+        }
+
+        if (AAEXRT.val() !== '') {
+            $.ajax({
+                url: '@Url.Action("GetExchangeRate", "Master",new {area = "MasterSetting" })',
+                type: 'GET',
+                dataType: 'json',
+                async: 'false',
+                data: { curcode: _currencycode.val().trim(), exchangerateCode: AAEXRT.val().trim(), date: register_date.val() },
+                success: function (rs) {
+                    if (rs.data != null) {
+                        $('#AAEXRT_dl').val(rs.data.MJEXRT);
+                        $('#AATXEXR').val(rs.data.MJTXEXR);
+                    } else {
+                        $('#AAEXRT_dl').val('');
+                        $('#AATXEXR').val('');
+                    }
+                },
+                complete: function () {
+                    var itemCount;
+                    var items = $('.content-bottom').find('.item-child');
+                    items.each(function () {
+                        var item = $(this);
+                        var item_no = item.find('input[type=text]').first();
+                        itemCount = GetItemCount(item_no);
+
+                        UpdateValueForABPRUPD(itemCount);
+                        UpdateValueForABPRATD(itemCount);
+                        UpdateValueForABPTXAD(itemCount);
+
+                    });
+                }
+            });
+        }
+
+
+
+    });*@
+
+        $(function () {
+            $('#AATXCD-js').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 7 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#AATXCD').val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#AATXCD').val(''); // value for save
+                    }
+
+                    $.ajax({
+                        url: '@Url.Action("GetTax","Master",new {area = "MasterSetting" })',
+                        type: 'GET',
+                        dataType: 'json',
+                        async: 'false',
+                        data: { taxcode: $('#AATXCD').val().trim() },
+                        success: function (rs) {
+                            $('#AATXRT').val(rs.MKTXRT);
+                        },
+                        complete: function () {
+                            if ($('#AATXCD').val().trim() === '') {
+                                $('#AATXRT').val('');
+                            }
+
+                            var itemCount;
+                            var items = $('.content-bottom').find('.item-child');
+
+                            items.each(function () {
+                                var item = $(this);
+                                var item_no = item.find('input[type=text]').first();
+                                itemCount = GetItemCount(item_no);
+
+                                UpdateValueForABPTXAT(itemCount);
+                                UpdateValueForABPTXAD(itemCount);
+
+                            })
+                        }
+                    });
+                },
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+
+            $('#div-AATXCD .icon').click(function () {
+                $('#AATXCD-js').autocomplete("search", "");
+            });
+
+        })
+
+        $('#AATXCD').change(function () {
+
+            if ($(this).val() === '') return;
+
+            $.getJSON('@Url.Action("GetTax","Master",new {area = "MasterSetting" })', { taxcode: $(this).val() }, function (rs) {
+                $('#AATXRT').val(rs.MKTXRT);
+            }).done(function () {
+
+                var itemCount;
+                var items = $('.content-bottom').find('.item-child');
+
+                items.each(function () {
+                    var item = $(this);
+                    var item_no = item.find('input[type=text]').first();
+                    itemCount = GetItemCount(item_no);
+
+                    UpdateValueForABPTXAT(itemCount);
+                    UpdateValueForABPTXAD(itemCount);
+
+                })
+
+            });
+
+
+        })
+
+        //PNB EDIT
+        $(function () {
+            $('#AAPRICE-js').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 2 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{label: '@Html.Raw(RLayout.SelectAction)',value: ' '}];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#AAPRICE_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                        $('#AAPRICE').val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#AAPRICE_dl').val('');
+                        $('#AAPRICE').val(''); // value for save
+                    }
+
+                },
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+
+            $('#div-AAPRICE .icon').click(function () {
+                $('#AAPRICE-js').autocomplete("search", "");
+            });
+        })
+
+
+        $('#AAPRICE').change(function () {
+            if ($(this).val() === '') {
+                $('#AAPRICE_dl').val('');
+            } else {
+                $.getJSON('@Url.Action("GetJsonBySRCode", "Master", new {area = "MasterSetting" })',
+                    {
+                        codes: '@TopProSystem.Areas.MasterSetting.Models.ClassificationCode.CLASSIFICATTIONCODE019' + '|' + $(this).val().trim()
+                    }).done(function (rs) {
+                        $('#AAPRICE_dl').val(rs.MNSRNM);
+                    }).fail(function (rs) {
+                        console.error(rs.responseText);
+                    })
+            }
+        });
+
+        $(function () {
+            $('#AAPTTRM-js').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 3 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#AAPTTRM_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                        $('#AAPTTRM').val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#AAPTTRM_dl').val('');
+                        $('#AAPTTRM').val(''); // value for save
+                    }
+
+                },
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+
+            $('#div-AAPTTRM .icon').click(function () {
+                $('#AAPTTRM-js').autocomplete("search", "");
+            });
+        })
+
+        $('#AAPTTRM').change(function () {
+            if ($(this).val() === '') {
+                $('#AAPTTRM_dl').val('');
+            } else {
+                $.getJSON('@Url.Action("GetJsonBySRCode", "Master", new {area = "MasterSetting" })',
+                    {
+                        codes: '@TopProSystem.Areas.MasterSetting.Models.ClassificationCode.CLASSIFICATTIONCODE021' + '|' + $(this).val().trim()
+                    }).done(function (rs) {
+                        $('#AAPTTRM_dl').val(rs.MNSRNM);
+                    }).fail(function (rs) {
+                        console.error(rs.responseText);
+                    })
+            }
+        });
+
+
+        $(function () {
+            $('#AASETRM-js').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 6 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#AASETRM_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                        $('#AASETRM').val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#AASETRM_dl').val('');
+                        $('#AASETRM').val(''); // value for save
+                    }
+
+                },
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+
+            $('#div-AASETRM .icon').click(function () {
+                $('#AASETRM-js').autocomplete("search", "");
+            });
+
+        })
+
+        $('#AASETRM').change(function () {
+            if ($(this).val() === '') {
+                $('#AASETRM_dl').val('');
+            } else {
+                $.getJSON('@Url.Action("GetJsonBySRCode", "Master", new {area = "MasterSetting" })',
+                    {
+                        codes: '@TopProSystem.Areas.MasterSetting.Models.ClassificationCode.CLASSIFICATTIONCODE020' + '|' + $(this).val().trim()
+                    }).done(function (rs) {
+                        $('#AASETRM_dl').val(rs.MNSRNM);
+                    }).fail(function (rs) {
+                        console.error(rs.responseText);
+                    })
+            }
+        });
+
+        //PNB EDIT 17-12
+        $('#AARMTP').change(function () {
+            DisableRawMaterialType($(this).val())
+            if ($(this).val() === '') {
+                $('#AARMTP_dl').val('');
+            } else {
+                $.getJSON('@Url.Action("GetJsonBySRCode", "Master", new {area = "MasterSetting" })',
+                    {
+                        codes: '@TopProSystem.Areas.MasterSetting.Models.ClassificationCode.CLASSIFICATTIONCODE034' + '|' + $(this).val().trim()
+                    }).done(function (rs) {
+                        $('#AARMTP_dl').val(rs.MNSRNM);
+                    }).fail(function (rs) {
+                        console.error(rs.responseText);
+                    })
+            }
+        });
+
+        function Counting_ABPRUPD_ABPRAT(obj) {
+
+            var itemCount = GetItemCount(obj);
+
+            //ABPRUPD
+            UpdateValueForABPRUPD(itemCount);
+
+            //ABPRAT
+            UpdateValueForABPRAT(itemCount);
+
+            //ABPRATD
+            UpdateValueForABPRATD(itemCount);
+
+            //ABPTXAD
+            UpdateValueForABPTXAD(itemCount);
+
+
+            //ABPTXAT
+            UpdateValueForABPTXAT(itemCount);
+        }
+
+        function Counting_ABPRAT_ABPRATD(obj) {
+            var itemCount = GetItemCount(obj);
+
+            //ABPRAT
+            UpdateValueForABPRAT(itemCount);
+
+            //ABPRATD
+            UpdateValueForABPRATD(itemCount);
+
+            //ABPTXAD
+            UpdateValueForABPTXAD(itemCount);
+
+            //ABPTXAT
+            UpdateValueForABPTXAT(itemCount);
+        }
+
+
+
+
+        /// function for change value
+        //ABPTXAT
+        function UpdateValueForABPTXAT(itemCount, ABPTXAT, AATXRT, ABPRAT) {
+
+            ABPTXAT = ABPTXAT || $('#ABPTXAT' + itemCount);
+            AATXRT = AATXRT || $('#AATXRT');
+            ABPRAT = ABPRAT || $('#ABPRAT' + itemCount);
+
+            if (ABPRAT.val() !== '' && AATXRT.val() !== null) {
+                a = ABPRAT.val(), b = AATXRT.val();
+                ABPTXAT_Multiply_Result(a, b, ABPTXAT);
+
+            } else {
+                ABPTXAT.val('');
+            }
+        }
+
+        //ABPRATD
+        function UpdateValueForABPRATD(itemCount, ABPRUPD, ABPRATD, ABWT) {
+
+            ABPRUPD = ABPRUPD || $('#ABPRUPD' + itemCount);
+            ABPRATD = ABPRATD || $('#ABPRATD' + itemCount);
+            ABWT = ABWT || $('#ABWT' + itemCount);
+
+            if (ABPRUPD.val() !== '' && ABWT.val() !== '') {
+                a = ABWT.val(), b = ABPRUPD.val();
+                ABPRATD_Multiply_Result(a, b, ABPRATD)
+            } else {
+                ABPRATD.val('');
+            }
+        }
+
+        //ABPRAT
+        function UpdateValueForABPRAT(itemCount, ABPRAT, ABPRUP, ABWT) {
+            ABPRAT = ABPRAT || $('#ABPRAT' + itemCount);
+            ABPRUP = ABPRUP || $('#ABPRUP' + itemCount);
+            ABWT = ABWT || $('#ABWT' + itemCount);
+
+            if (ABPRUP.val() !== '' && ABWT.val() !== '') {
+                a = ABWT.val(), b = ABPRUP.val();
+                ABPRAT_Multiply_Result(a, b, ABPRAT);
+            } else {
+                ABPRAT.val('');
+            }
+        }
+
+        //ABPTXAD
+        function UpdateValueForABPTXAD(itemCount, AATXRT, ABPRATD, ABPTXAD) {
+            ABPTXAD = ABPTXAD || $('#ABPTXAD' + itemCount);
+            ABPRATD = ABPRATD || $('#ABPRATD' + itemCount);
+            AATXRT = AATXRT || $('#AATXRT');
+
+            if (AATXRT.val() !== null && ABPRATD.val() !== '') {
+                a = AATXRT.val(), b = ABPRATD.val();
+                ABPTXAD_Multiply_Result(a, b, ABPTXAD);
+            } else {
+                ABPTXAD.val('');
+            }
+        }
+
+        //ABPRUPD
+        function UpdateValueForABPRUPD(itemCount, ABPRUPD, AAEXRT, ABPRUP) {
+            ABPRUPD = ABPRUPD || $('#ABPRUPD' + itemCount);
+            AAEXRT = AAEXRT || $('#AAEXRT_dl');
+            ABPRUP = ABPRUP || $('#ABPRUP' + itemCount);
+
+            if (AAEXRT.val() !== null && ABPRUP.val() !== '') {
+                a = ABPRUP.val(), b = AAEXRT.val();
+                ABPRUPD_Multiply_Result(a, b, ABPRUPD);
+            } else {
+                ABPRUPD.val('');
+            }
+        }
+
+</script>
+
+<script>
+    //method validate PNB
+    $.validator.addMethod("cRequired", $.validator.methods.required,"@Html.Raw(RLayout.Required)");
+    $.validator.addMethod("cMaxlength", $.validator.methods.maxlength,
+    $.format("@Html.Raw(RLayout.Maxlength)"));
+    $.validator.addMethod("cNumber", $.validator.methods.number,"@Html.Raw(RLayout.IsNumber)");
+    $.validator.setDefaults({ ignore: ' :hidden' });
+    $(function () {
+        $('#form-data').validate({
+            rules: {
+                AARGSDT: { // registerdate
+                    cRequired: true,
+                },
+                AACMPDT:{  //Completion Date
+                    cRequired: true,
+                },
+                AACMPCD:{  //Completion Status
+                    cRequired: true,
+                }  ,
+                'AAUSRCD-js': { //User Code
+                    cRequired: true,
+                },
+                AASHPDT: {  //Shipping Month
+
+                    cRequired: true,
+                    dateformat: true,
+                },
+                AARMK1: {     //Remarks
+                    cRequired: true,
+                    cMaxlength: 255,
+                },
+                AARMK2: {  //Remarks
+                    cRequired: true,
+                    cMaxlength: 255,
+                },
+                AARMK3: {   //Remarks
+                    cRequired: true,
+                    cMaxlength: 255,
+                },
+                AARMK4: {    //Remarks
+                    cRequired: true,
+                    cMaxlength: 255,
+                },
+                AARMK5: {     //Remarks
+                    cRequired: true,
+                    cMaxlength: 255,
+                },
+                'AATXEXR-js': {    //Exchange Rate(Tax)
+                    cNumber: true,
+                },
+                'AATXRT-js': {       //Tax Rate
+                    cNumber: true,
+                },
+                'AASPLCD-js':{    //Supplier Code
+                    cRequired: true,
+                }  ,
+                'AAMKCD-js':{   //Maker Code
+                    cRequired: true,
+                },
+                AASPPNO:{ //  Sales Contract No
+                    cRequired: true,
+                },
+                'AARMTP-js':{   //Raw Material Type
+                    cRequired: true,
+                },
+                'AACRRCD-js':{   //Currency Code
+                    cRequired: true,
+                },
+                'AATXCD-js':{   //Tax Code
+                    cRequired: true,
+                },
+                'AADLVCD-js':{   //Delivery Condition
+                    cRequired: true,
+                },
+                'AAPRICE-js':{   //Price Term
+                    cRequired: true,
+                },
+                'AAPTTRM-js':{   //Type Of Terms
+                    cRequired: true,
+                },
+                'AACMDCD-js':{   //Commodity
+                    cRequired: true,
+                },
+                'AACTRTP-js':{   //Contract Type
+                    cRequired: true,
+                },
+                'AAIDCD-js':{   //Person Incharge
+                    cRequired: true,
+                },
+                'AASETRM-js':{   //Settlement Term
+                    cRequired: true,
+                },
+                'AAEXRT':{   //Exchange Rate
+                    cRequired: true,
+                },
+                'AAEXRT_dl':{   //Exchange Rate
+                    cRequired: true,
+                },
+                AADLPOT:{     //Discharge & Loading Port
+                    cRequired: true,
+                } ,
+                AATXEXR:{  //Exchange Rate(Tax)
+                    cRequired: true,
+                }  ,
+                AATXRT:{  //Tax Rate
+                    cRequired: true,
+                }
+            },
+            errorElement: 'label',
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+            },
+        });
+        jQuery.validator.addMethod("dateformat", function (value, elem) {
+            var reg =/^(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i;
+            var check = false;
+            if (reg.test(value)) {
+                check = true;
+            } else {
+                check = false;
+            }
+
+            return check;
+
+        }, "@Html.Raw(Resource.DateFormatMMflagyyyy)");
+
+    });
+    //validate by classname give item no  PNB
+    jQuery.validator.addClassRules({
+        ABMCSPC: {
+            cRequired: true,
+        },
+        ABGRADE: {
+            cRequired: true,
+        } ,
+        ABCOAT: {
+            cRequired: true,
+        },
+        ABBSZT: {
+            cRequired: true,
+            cNumber:true,
+        },
+        ABBSZW: {
+            cRequired: true,
+            cNumber:true,
+        },
+        ABBSZL: {
+            cRequired: true,
+            cNumber:true,
+        },
+        ABPRDNM: {
+            cRequired: true,
+        },
+        ABORDNO: {
+            cRequired: true,
+        },
+        ABPRDDIA: {
+            cRequired: true,
+        },
+        ABQTY: {
+            cRequired: true,
+            cNumber:true,
+        },
+        ABDLVDT: {
+            cRequired: true,
+        },
+        RAPSTLGR: {
+            cRequired: true,
+        },
+        ABWT: {
+            cRequired: true,
+            cNumber:true,
+        },
+        ABPRUP: {
+            cNumber: true,
+        },
+        ABPRAT: {
+            cNumber: true,
+        },
+        ABPTXAT: {
+            cNumber: true,
+        },
+        ABPRATD: {
+            cNumber: true,
+        },
+        ABPTXAD: {
+            cNumber: true,
+        },
+        ABPRUP: {
+            cRequired: true,
+            cNumber: true,
+        }
+    })
+</script>
+<script>
+    //disable by rawmaterial type PNB
+    function DisableRawMaterialType(string) {
+        if (string.trim().toUpperCase() === 'WR') {
+            $(".ABPRDNM").attr("disabled", true);
+            $(".ABPRDDIA").attr("disabled", true);       @*19/12*@
+            $(".ABCOAT").attr("disabled", true);
+            $(".ABBSZT").attr("disabled", true);
+            $(".ABBSZW").attr("disabled", true);
+            $(".ABBSZL").attr("disabled", true);
+  
+        }
+        else {
+            $(".ABPRDNM").removeAttr("disabled");
+            $(".ABCOAT").removeAttr("disabled");
+            $(".ABBSZT").removeAttr("disabled");
+            $(".ABBSZW").removeAttr("disabled");
+            $(".ABBSZL").removeAttr("disabled");
+            $(".ABPRDDIA").removeAttr("disabled");   @*19/12*@
+
+            
+        }
+    }
+    // render unit by currency code  PNB
+    function AddUnitbyCurrency() {
+        $('.unitcurrency').html($('#AACRRCD').val());
+    }
+    function setNullProductDeleteItem() {
+        $('.ABPRDNM').val('');
+        $('.ABPRDDIA').val('');
+    }
+</script>
+@RenderSection("scripts", false)
+

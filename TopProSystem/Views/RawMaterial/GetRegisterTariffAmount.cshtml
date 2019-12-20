@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Register Tariff Amount";
+    Layout = "~/Views/Shared/_LayoutPageRawMaterial.cshtml";
+    ViewBag.content = "Register Tariff Amount ";
+}
+
+<div class="row w-100 container-fluid m-0 p-0">
+    <form action="/" method="post">
+        <div class="col-md-12 mt-4 py-2 row w-100 m-0 p-0">
+            <div class="centerdiv" style="width: 280px">
+                <div class="row">
+                    <div class="col-md-6 col-6 p-0">
+                        <div class="float-right"><span class="title">Shipper Invoice No</span></div>
+                    </div>
+                    <div class="col-md-6 col-6" >
+                        <input type="text" name="name" value="" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-6 p-0">
+                        <div class="float-right"><span class="title">Order No</span></div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <input type="text" name="name" value="" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-6 p-0">
+                        <div class="float-right"><span class="title">Total Tariff Amount</span></div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <input type="text" name="name" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-3 w-100 p-0">
+                <div class="text-center">
+                    <small class="text-danger" id="message"></small>
+                    @*<button type="button" style="background-color: #0094ff; border: none; color: white; ">Search</button>
+                    <button type="button" style="background-color: #179d08; border-color: #34b05a; color: white; ">Confirm</button>
+                    <button type="button" style="background-color: #ff0000; border-color: #ff0000; color: white; ">Cancel</button>*@
+                    <button type="button" class="search">Search</button>
+                    <button type="button" class="confirm">Confirm</button>
+                    <button type="button" class="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+       
+    </form>
+</div>
+<div class="row w-100 container-fluid mt-2 mx-0 p-0 border-top border-dark data-display">
+    <table class="w-100 mt-2">
+        <thead>
+            <tr class="text-center thead">
+                <td>Contract Type</td>
+                <td>Inventory Status</td>
+                <td>Inventory Status Name</td>
+                <td>Inventory No</td>
+                <td>Spec</td>
+                <td>Thickness</td>
+                <td>Width</td>
+                <td>Length</td>
+                <td>Diameter</td>
+                <td>Qty</td>
+                <td>Weight</td>
+                <td>Current Tariff Amount</td>
+                <td>New Tariff Amount</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="tsheader">
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="tsheader">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="tsheader">
+                <td colspan="8" class="border-0"></td>
+                <td class="text-center" style=" background-image: url('/Images/bgTB.png');">Total</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

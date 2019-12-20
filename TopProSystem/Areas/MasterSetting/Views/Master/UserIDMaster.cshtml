@@ -1,0 +1,258 @@
+﻿@using StaticResources
+@using StaticResources.View.UserID
+@model IEnumerable<TopProSystem.Areas.MasterSetting.Models.MA003>
+@{
+    /**/
+
+    ViewBag.Title = Resource.MasterTitle;
+    Layout = "~/Areas/MasterSetting/Views/Shared/_LayoutMasterSeting.cshtml";
+    ViewBag.headerName = ViewBag.Title;
+}
+@using TopProSystem.Extension.AccountRole
+@{
+    var permission = new PermissionService();
+    var checkbuton = permission.AuthorizeAction(StandardPermissionProvider.UserIdMaster);
+}
+<script type="text/javascript">
+
+    $(function () {
+        @Html.Raw(TempData[TopProSystem.Models.ConstantData.Notification_key])
+    })
+
+</script>
+
+<style>
+    table tbody td {
+        white-space: nowrap;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="pos-top">
+        <div class="row mx-0">
+            <div class="col-lg-12">
+                <div>
+                    <div class="form-group">
+                        <input type="text" name="userid" class="search" value="" placeholder="@Resource.PlaceholderTextSearch" />
+                        <button type="button" id="btnSearch" class="btn-primary search ml-2">@Button.BtnSeach</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mx-0 mt-5">
+            <div class="col-lg-12">
+                @if (checkbuton.ShowDelete)
+                {
+                    <button class="btn-danger float-right ml-2" id="deleteBtn">@Button.BtnDelete</button>
+                }
+                @if (checkbuton.ShowAdd)
+                {
+                    <a href="@Url.Action("GetInsertUserID", "Master")" class="button float-right btn-addnew">@Button.BtnAdd</a>
+                }
+                </div>
+
+        </div>
+    </div>
+    <div class="data-display">
+        <table class="w-100 table-sm" id="dataTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>@Resource.MCIDCD</th>
+                    <th>@Resource.MCIDNM</th>
+                    <th>@Resource.MCSCTLV</th>
+                    <th>@Resource.MCSCTNC</th>
+                    <th>@Resource.MCRGSDT</th>
+                    <th>@Resource.MCRGSTM</th>
+                    <th>@Resource.MCUPDT</th>
+                    <th>@Resource.MCUPDTM</th>
+                    @if (checkbuton.ShowEdit)
+                    {
+                        <th>@Button.LbEdit</th>
+                    }
+                    @if (checkbuton.ShowDelete)
+                    {
+                        <th>@Button.LbSelect</th>
+
+                    }
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+ const URL_DELETE_USERID = '/Master/DeleteUserID';
+    const URL_CHECK_USERID_REFERENCE = '/Master/CheckUserIDCodeInUsedReference';
+  
+   $('#dataTable').on("click", function () {
+        var checkboxs = $(this).find("input[type=checkbox]:checked");
+        if (checkboxs.length != 0) {
+            checkboxs.each(function () {
+                var $checkbox = $(this);
+                $.getJSON(URL_CHECK_USERID_REFERENCE, {
+                    userid: $checkbox.val() }).done(function (data) {
+                        if (data.message != null && data.message!='') {
+                            ErrorAlert("@RLayout.IsUsed " + data.message)
+                        $checkbox.prop('checked', false);
+                    }
+                }).fail(function (rs) {
+                    console.log(rs.responseText);
+                })
+            })
+        }
+    })
+
+
+
+    $('table').on("click", function () {
+        var checkboxs = $(this).find("input[type=checkbox]:checked");
+        if (checkboxs.length != 0) {
+            checkboxs.each(function () {
+                 var $checkbox = $(this);
+                    if ($checkbox.val() == '@Session[TopProSystem.Models.ConstantData.SessionUserID]') {
+                        $checkbox.prop("checked", false);
+                        ErrorAlert('@RLayout.LogingInMessage');
+                    }
+            })
+        }
+    })
+
+    $('#deleteBtn').click(function () {
+        var length = $('input[type="checkbox"]:checked').length;
+        if (length == 0) {
+            alert("@Html.Raw(RLayout.ErrorNoRowSelect)");
+            return;
+        }
+
+        var value = '';
+        $('input[type="checkbox"]:checked').each(function () {
+            value += $(this).val() + '|';
+        });
+        value = value.substring(0, value.length - 1);
+
+        $.confirm({
+            title: "<span class='text-secondary'>@Button.BtnConfirm</span>",
+            icon: 'fa fa-warning',
+            content: '@Html.Raw(RLayout.ContentDelete)',
+            type: 'blue',
+            buttons: {
+                confirm: {
+                    text: '@Button.BtnConfirm',
+                    btnClass: 'btn-confirm text-capitalize',
+                    action: function () {
+                        $.ajax({
+                            url: URL_DELETE_USERID,
+                            type: 'GET',
+                            data: { arrayuserid: value },
+                            success: function (rs) {
+                                if (!rs) window.location.href = rs;
+                                else {
+                                    SuccessAlert('@RLayout.DeleteMsg');
+                                    $('#dataTable').DataTable().ajax.reload();
+                                }
+                            },
+                            error: function (rs) {
+                                console.log(rs.responseText);
+                            }
+                        });
+                    }
+
+                },
+                cancel: {
+                    text: '@Button.BtnCancel',
+                    btnClass: 'btn-cancel text-capitalize',
+                    action: function () {
+
+                    }
+                }
+            }
+        });
+    })
+</script>
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            var t = $('#dataTable').DataTable({
+                "ordering": false,
+                "info": false,
+                "lengthChange": false,
+                "pageLength": DataTableDisplayLength,
+                "bServerSide": true,
+                "sAjaxSource": "/Master/AjaxhanlderUserIDMaster",
+                "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                    oSettings.jqXHR = $.ajax({
+                        "dataType": 'json',
+                        "url": sSource,
+                        "type": 'POST',
+                        "data": aoData,
+                        "success": fnCallback,
+                        "error": function () {
+                            alert("@RLayout.SessiontimeoutRespone");
+                            window.location.href = "@Url.Action("GetLogin","Account", new {area = "" })"
+                        }
+                    });
+                },
+                "bProcessing": true,
+                "sServerMethod": "POST",
+                "sPaginationType": "full_numbers",
+                "language": {
+                    "paginate": {
+                        "first": '<i class="fa fa-fast-backward"></i>',
+                        "last": '<i class="fa fa-fast-forward"></i>',
+                        "next": '<i class="fa fa-forward"></i>',
+                        "previous": '<i class="fa fa-backward"></i>'
+                    },
+                    "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+                },
+                "columns": [
+                    { "data": null },
+                    { "data": "MCIDCD" },
+                    { "data": "MCIDNM" },
+                    { "data": "MCSCTLV" },
+                    { "data": "MCSCTNC" },
+                    { "data": "MCRGSDT" },
+                    { "data": "MCRGSTM" },
+                    { "data": "MCUPDT" },
+
+                    { "data": "MCUPDTM" },
+                        @if (checkbuton.ShowEdit)
+                            {
+                            <text>
+                    { "render": function (data, type, row) { return '<a href="/MasterSetting/Master/GetUpdateUserIDMaster?userid=' + row["MCIDCD"] + '" class="edit"><img src="/Images/Icon/edit-icon.png" /></a>' } },
+                            </text>    
+                             }
+                    @if (checkbuton.ShowDelete)
+                            {
+                            <text>
+                    { "render": function (data, type, row) { return '<input type="checkbox" name="name" value="' + row["MCIDCD"] + '" />' } }
+                              </text>    
+                    }
+                ]
+            });
+
+            t.on('draw.dt', function () {
+                var PageInfo = $('#dataTable').DataTable().page.info();
+                t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1 + PageInfo.start;
+                });
+            });
+
+            //t.on('xhr', function (e, settings, json) {
+            //    console.log(JSON.stringify(json));
+            //});
+            $('#btnSearch').on('click', function () {
+                var searchKey = $('.search').val();
+                if (searchKey == "") window.location.hash = "";
+                else
+                    window.location.hash = "search-key=" + searchKey;
+                t.search(searchKey).draw();
+            })
+
+
+        });
+    </script>
+}

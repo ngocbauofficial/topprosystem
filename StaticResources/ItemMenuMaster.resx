@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BankCodeMaster" xml:space="preserve">
+    <value>Bank Code Master</value>
+  </data>
+  <data name="BusinessTypeCodeMaster" xml:space="preserve">
+    <value>Business Type Code Master</value>
+  </data>
+  <data name="CalculationTypeMaster" xml:space="preserve">
+    <value>Calculation Type</value>
+  </data>
+  <data name="ClosingDateMaster" xml:space="preserve">
+    <value>Closing Date</value>
+  </data>
+  <data name="CoatingMaster" xml:space="preserve">
+    <value>Coating</value>
+  </data>
+  <data name="CommodityCodeMaster" xml:space="preserve">
+    <value>Commodity Code</value>
+  </data>
+  <data name="ContractTypeMaster" xml:space="preserve">
+    <value>Contract Type Master</value>
+  </data>
+  <data name="CountryCodeMaster" xml:space="preserve">
+    <value>Country Code Master</value>
+  </data>
+  <data name="CreditMaster" xml:space="preserve">
+    <value>Credit</value>
+  </data>
+  <data name="CurrencyCodeMaster" xml:space="preserve">
+    <value>Currency Code Master</value>
+  </data>
+  <data name="DamageCodeMaster" xml:space="preserve">
+    <value>Damage Code Master</value>
+  </data>
+  <data name="DataTypeMaster" xml:space="preserve">
+    <value>Data Type Master</value>
+  </data>
+  <data name="DaysInMonthMaster" xml:space="preserve">
+    <value>Days In Month</value>
+  </data>
+  <data name="DeliveryConditionMaster" xml:space="preserve">
+    <value>Delivery Condition Master</value>
+  </data>
+  <data name="DueDateTypeMaster" xml:space="preserve">
+    <value>Due Date Type</value>
+  </data>
+  <data name="ExchangeRateMaster" xml:space="preserve">
+    <value>Exchange Rate</value>
+  </data>
+  <data name="ExchangeRateTypeMaster" xml:space="preserve">
+    <value>Exchange Rate Type Master</value>
+  </data>
+  <data name="GradeMaster" xml:space="preserve">
+    <value>Grade Master</value>
+  </data>
+  <data name="InterruptedReasonCodeMaster" xml:space="preserve">
+    <value>Interrupted Reason Code Master</value>
+  </data>
+  <data name="InventoryStatusMaster" xml:space="preserve">
+    <value>Inventory Status Master</value>
+  </data>
+  <data name="InventoryTypeMaster" xml:space="preserve">
+    <value>Inventory Type Master</value>
+  </data>
+  <data name="LocationMaster" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="LogTypeMaster" xml:space="preserve">
+    <value>Log Type Master</value>
+  </data>
+  <data name="MachineNoMaster" xml:space="preserve">
+    <value>Machine No Master</value>
+  </data>
+  <data name="MakerCodeMaster" xml:space="preserve">
+    <value>Maker Code</value>
+  </data>
+  <data name="MasterSetting" xml:space="preserve">
+    <value>Master Setting</value>
+  </data>
+  <data name="MoneyTypeMaster" xml:space="preserve">
+    <value>Money Type Master</value>
+  </data>
+  <data name="PackingTypeMaster" xml:space="preserve">
+    <value>Packing Type Master</value>
+  </data>
+  <data name="PriceTermMaster" xml:space="preserve">
+    <value>Price Term Master</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="RawMaterialTypeMaster" xml:space="preserve">
+    <value>Raw Material Type</value>
+  </data>
+  <data name="ReasonForChangingCodeMaster" xml:space="preserve">
+    <value>Reason Changing Code Master</value>
+  </data>
+  <data name="SalePurchaseMaster" xml:space="preserve">
+    <value>Sale Purchase</value>
+  </data>
+  <data name="SectionCodeMaster" xml:space="preserve">
+    <value>Section Code Master</value>
+  </data>
+  <data name="SettlementTermMaster" xml:space="preserve">
+    <value>Settlement Term Master</value>
+  </data>
+  <data name="ShiftCodeMaster" xml:space="preserve">
+    <value>Shift Code Master</value>
+  </data>
+  <data name="SpecMaster" xml:space="preserve">
+    <value>Spec</value>
+  </data>
+  <data name="StatusCodeMaster" xml:space="preserve">
+    <value>Status Code Master</value>
+  </data>
+  <data name="SteelGradeMaster" xml:space="preserve">
+    <value>Steel Grade</value>
+  </data>
+  <data name="TaxMaster" xml:space="preserve">
+    <value>Tax</value>
+  </data>
+  <data name="TradeCategoryMaster" xml:space="preserve">
+    <value>Trade Category Master</value>
+  </data>
+  <data name="TypeofTermsMaster" xml:space="preserve">
+    <value>Type of Terms Master</value>
+  </data>
+  <data name="UnitPriceUnitMaster" xml:space="preserve">
+    <value>Unit Price Unit Master</value>
+  </data>
+  <data name="UserIDMaster" xml:space="preserve">
+    <value>User ID</value>
+  </data>
+  <data name="UserMaster" xml:space="preserve">
+    <value>User Master</value>
+  </data>
+  <data name="WeightCalculationCodeMaster" xml:space="preserve">
+    <value>Weight Calculation Code</value>
+  </data>
+  <data name="WeightDisplayCodeMaster" xml:space="preserve">
+    <value>Weight Display Code</value>
+  </data>
+</root>

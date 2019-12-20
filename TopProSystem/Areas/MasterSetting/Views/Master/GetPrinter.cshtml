@@ -1,0 +1,440 @@
+﻿@using StaticResources
+@using StaticResources.Controller
+@using System.Drawing.Printing;
+@model TopProSystem.Areas.MasterSetting.Models.PrinterSetting
+@{
+    ViewBag.Title = "Printer Setting";
+    Layout = "~/Areas/MasterSetting/Views/Shared/_LayoutMasterSeting.cshtml";
+    ViewBag.headerName = ViewBag.Title;
+}
+<style>
+    table tbody tr td:nth-last-child(3) {
+        text-align: center;
+    }
+
+    .modal-title {
+        font-size: 16px;
+        border-bottom: 1px solid #dee2e6;
+        padding: 10px;
+    }
+
+    .modal-content-add {
+        padding-top: 20px;
+        padding-left: 60px;
+        padding-right: 60px;
+        padding-bottom: 20px;
+    }
+
+        .modal-content-add input[type=number],
+        .modal-content-add input[type=text],
+        .modal-content-add select {
+            width: 75%;
+            border-radius: 3px;
+        }
+
+    .toggle-handle {
+        background-color: aliceblue;
+    }
+</style>
+
+
+<div class="container-fluid">
+    <div class="pos-top">
+
+        <div class="row mx-0 mt-5">
+            <div class="col-lg-12">
+                <button class="btn-danger float-right ml-2" id="deleteBtn">@Button.BtnDelete</button>
+                <a href="#" class="button float-right btn-addnew" data-toggle="modal" data-target=".modal-insert" onclick="javascript: document.getElementById('form-modal').reset();">@Button.BtnAdd</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="data-display">
+        <table id="dataTable" class="table-sm">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Printer Name</th>
+                    <th>Paper Type</th>
+                    <th>Landscape</th>
+                    <th>Copies</th>
+                    <th>Active</th>
+                    <th>Edit</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<div class="modal fade modal-insert" tabindex="-1" role="dialog" aria-labelledby="modal-insert" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-title"><span><i class="fa fa-plus"></i> Add New Printer</span></div>
+            <div class="modal-content-add">
+                <form action="#" method="post" id="form-modal">
+                    <div class="row" style="border: 1px solid #d2d2d2; padding: 5px;">
+                        <div class="col-lg-6">
+                            <div class="row form-group" style="margin-bottom: 0;">
+                                <label class="col-sm-4">Printer Name</label>
+                                <div class="col-sm-8">@Html.TextBoxFor(x => x.PrinterName)</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row form-group" style="margin-bottom: 0;">
+                                <label class="col-sm-4">Paper</label>
+                                <div class="col-sm-8">
+                                    <select id="PaperName" name="PaperName"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="border: 1px solid #d2d2d2; padding: 5px; margin-top: 5px;">
+                        <div class="col-lg-6">
+                            <span style="font-size:16px;">Orientation:</span><br />
+                            <label>
+                                <input type="radio" name="isHorizontal" id="isHorizontal_1" value="1" /> Landscape
+                            </label>
+                            <br />
+                            <label>
+                                <input type="radio" name="isHorizontal" id="isHorizontal_2" value="0" checked /> Portrait
+                            </label>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row form-group">
+                                <label class="col-sm-4">Copies</label>
+                                <div class="col-sm-8"><input type="number" name="Copies" id="Copies" min="1" max="10" value="1" /></div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-sm-4">Active</label>
+                                <div class="col-sm-8">
+                                    <input type="checkbox" name="Active" id="active-toggle" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="confirm" id="btn-confirm">Confirm</button>
+                <button class="cancel" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-update" tabindex="-1" role="dialog" aria-labelledby="modal-update" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-title"><span><i class="fa fa-edit"></i> Update printer</span></div>
+            <div class="modal-content-add">
+                <form action="#" method="post" id="form-modal">
+                    <input type="hidden" name="name" id="ID" value="" />
+                    <div class="row" style="border: 1px solid #d2d2d2; padding: 5px;">
+                        <div class="col-lg-6">
+                            <div class="row form-group" style="margin-bottom: 0;">
+                                <label class="col-sm-4">Printer Name</label>
+                                <div class="col-sm-8">@Html.TextBoxFor(x => x.PrinterName)</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row form-group" style="margin-bottom: 0;">
+                                <label class="col-sm-4">Paper</label>
+                                <div class="col-sm-8">
+                                    <select id="PaperName2" name="PaperName"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="border: 1px solid #d2d2d2; padding: 5px; margin-top: 5px;">
+                        <div class="col-lg-6">
+                            <span style="font-size:16px;">Orientation:</span><br />
+                            <label>
+                                <input type="radio" name="isHorizontal" id="isHorizontal_1" value="1" /> Landscape
+                            </label>
+                            <br />
+                            <label>
+                                <input type="radio" name="isHorizontal" id="isHorizontal_2" value="0" checked /> Portrait
+                            </label>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row form-group">
+                                <label class="col-sm-4">Copies</label>
+                                <div class="col-sm-8"><input type="number" name="Copies" id="Copies" min="1" max="10" value="1" /></div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-sm-4">Active</label>
+                                <div class="col-sm-8">
+                                    <input type="checkbox" name="Active" id="active-toggle-2" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="confirm" onclick="saveChangePrinter()">Confirm</button>
+                <button class="cancel" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="exp-loading" style="position:absolute; left: 50%; bottom: 50%; display: none; "><span class="fa fa-spinner fa-pulse fa-3x fa-fw"></span></div>
+<script type="text/javascript">
+    $(function () {
+
+        var t = $('#dataTable').DataTable({
+            "ordering": false,
+            "info": false,
+            "paging": false,
+            "lengthChange": false,
+            "bServerSide": true,
+            "sAjaxSource": '@Url.Action("GetAllPrinterAjaxHandler","Master", new {area = "MasterSetting"})',
+            "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                oSettings.jqXHR = $.ajax({
+                    "dataType": 'json',
+                    "url": sSource,
+                    "data": aoData,
+                    "success": fnCallback,
+                    "error": function () {
+                        alert("@RLayout.SessiontimeoutRespone");
+                        window.location.href = "@Url.Action("GetLogin","Account", new {area = "" })"
+                    }
+                });
+            },
+            "bProcessing": true,
+            "sServerMethod": "POST",
+            "sPaginationType": "full_numbers",
+            "language": {
+                "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+            },
+            "columns": [
+                { "data": null },
+                { "data": "printerName" },
+                { "data": "paperName" },
+                { "data": "isHorizontal" },
+                { "data": "copy" },
+                {
+                    "render": function (data, type, row) {
+                        if (parseInt(row["active"]) !== 0) {
+                            return '<span><img src="/Images/Icon/true.gif"/></span>'
+                        } else {
+                            return '';
+                        }
+                    }
+                },
+                { "render": function (row,type,data) { return '<a class="edit" href="#" onclick="update_printer('+data["id"]+')"><img src="/Images/Icon/edit-icon.png"></></a>' } },
+                { "render": function (row,type,data) { return '<input type="checkbox" value="'+data["id"]+'"/>' } }
+            ]
+
+        });
+
+        t.on('draw.dt', function () {
+            var PageInfo = $('#dataTable').DataTable().page.info();
+            t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1 + PageInfo.start;
+            });
+        });
+
+
+        $.getJSON('@Url.Action("GetAllPaperNameFromSystem","Master",new {area = "MasterSetting" })').done(function (rs) {
+            var html = '';
+            $.each(rs, function (key, item) {
+                html += '<option>' + rs[key] + '</option>';
+            });
+            $('#PaperName').html(html);
+            $('#PaperName2').html(html);
+        })
+
+        $('#active-toggle').bootstrapToggle({
+            on: 'On',
+            off: 'Off',
+            offstyle: 'danger',
+            onstyle: 'success',
+            size: 'small',
+        });
+        $('#active-toggle-2').bootstrapToggle({
+            on: 'On',
+            off: 'Off',
+            offstyle: 'danger',
+            onstyle: 'success',
+            size: 'small',
+        });
+
+        $('#active-toggle, #active-toggle-2').change(function () {
+            if ($(this).val() === '1') {
+                $(this).val(0);
+            } else {
+                $(this).val(1);
+            }
+
+        });
+
+        var document = [];
+        $.getJSON('@Url.Action("GetAllPrinterNameFromSystem", "Master",new {area = "MasterSetting" })').done(function (rs) {
+            $.each(rs, function (key) {
+                document.push(rs[key]);
+            })
+        });
+
+        $('#PrinterName').autocomplete({
+            source: document,
+            autoFocus: true,
+        });
+
+
+        $('#btn-confirm').click(function () {
+            $.ajax({
+                url: '@Url.Action("InsertPrinter","Master", new {area = "MasterSetting" })',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    PrinterName: $('#PrinterName').val(),
+                    PaperName: $('#PaperName').val(),
+                    Copies: $('#Copies').val(),
+                    isHorizontal: $('#isHorizontal_1').prop('checked') === true ? $('#isHorizontal_1').val() : $('#isHorizontal_2').val(),
+                    Active: $('#active-toggle').val(),
+                },
+                success: function (rs) {
+                    if (rs) {
+                        SuccessAlert('@ErrorResource.Insert');
+                        $('#dataTable').DataTable().ajax.reload();
+                    }
+                    else {
+                        ErrorAlert("Insert fail !");
+                    }
+                },
+                error: function (rs) {
+                    console.log(rs);
+                    ErrorAlert("Session timeout, please login again !");
+                },
+                complete: function () {
+                    $('.modal-insert').modal('hide');
+                },
+            });
+
+        });
+
+        $('#deleteBtn').click(function () {
+            var length = $('table').find('input[type=checkbox]:checked').length;
+            if (length == 0) {
+                alert('@RLayout.ErrorNoRowSelect');
+                return;
+            }
+
+            var dataS = [];
+            $('table').find('input[type=checkbox]:checked').each(function () {
+                dataS.push($(this).val());
+            });
+
+            $.confirm({
+                title: "<span class='text-secondary'>@RLayout.Warning</span>",
+                icon: 'fa fa-warning',
+                content: '@Html.Raw(RLayout.ContentDelete)',
+                type: 'blue',
+                buttons: {
+                    confirm: {
+                        text: '@Button.BtnConfirm',
+                        btnClass: 'btn-confirm text-capitalize',
+                        action: function () {
+                            $.ajax({
+                                url: '@Url.Action("DeletePrinter","Master")',
+                                type: 'GET',
+                                dataType: 'json',
+                                data: { array: dataS.join('|') },
+                                success: function (rs) {
+                                    if (rs) {
+                                        SuccessAlert('@ErrorResource.Delete');
+                                        $('#dataTable').DataTable().ajax.reload();
+                                    }
+                                }
+                            })
+                        }
+                    },
+                    cancel: {
+                        text: '@Button.BtnCancel',
+                        btnClass: 'btn-cancel text-capitalize',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
+
+
+        });
+
+    })
+
+    function update_printer(id) {
+        $.ajax({
+            url: '@Url.Action("GetprinterByid","Master")',
+            data: { id: id },
+            beforeSend: function () {
+                $('#exp-loading').css('display', 'block');
+            },
+            success: function (rs) {
+                var parent_modal = $('.modal-update');
+                var id = parent_modal.find('#ID');
+                var printername = parent_modal.find('#PrinterName');
+                var paper = parent_modal.find('#PaperName2');
+                var copies = parent_modal.find('#Copies');
+                var active = parent_modal.find('#active-toggle-2');
+
+                if (rs.isHorizontal === 1) {
+                    parent_modal.find('#isHorizontal_1').prop('checked', true);
+                } else {
+                    parent_modal.find('#isHorizontal_2').prop('checked', true);
+                }
+
+                id.val(rs.ID);
+                printername.val(rs.PrinterName);
+                paper.val(rs.PaperName);
+                copies.val(rs.Copies);
+                if (rs.Active === 0) {
+                    active.bootstrapToggle("off");
+                    active.val(0);
+                } else {
+                    active.bootstrapToggle("on");
+                    active.val(1);
+                }
+            },
+            complete: function () {
+                $('#exp-loading').css('display', 'none');
+                $('.modal-update').modal('show');
+            }
+        }) 
+    }
+
+    function saveChangePrinter() {
+        var parent_modal = $('.modal-update');
+        var printername = parent_modal.find('#PrinterName');
+        var paper = parent_modal.find('#PaperName2');
+        var copies = parent_modal.find('#Copies');
+        var active = parent_modal.find('#active-toggle-2');
+        var potrait = parent_modal.find('#isHorizontal_2');
+        var landscape = parent_modal.find('#isHorizontal_1');
+        var id = parent_modal.find('#ID');
+        $.ajax({
+            url: '@Url.Action("UpdatePrinter","Master")',
+            type: 'POST',
+            data: {
+                ID: id.val(),
+                PrinterName: printername.val(),
+                PaperName: paper.val(),
+                Copies: copies.val(),
+                isHorizontal: potrait.prop('checked') === true ? potrait.val(): landscape.val(),
+                Active: active.val(),
+            },
+            success: function (rs) {
+                if (rs) {
+                    SuccessAlert('@ErrorResource.Change');
+                    $('#dataTable').DataTable().ajax.reload();
+                }
+            },
+            complete: function () {
+                $('.modal-update').modal('hide');
+            }
+        })
+    }
+
+</script>

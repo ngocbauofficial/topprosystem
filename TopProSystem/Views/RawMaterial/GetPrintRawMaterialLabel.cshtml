@@ -1,0 +1,275 @@
+﻿@{
+    ViewBag.Title = "Print Raw Material Label";
+    Layout = "~/Views/Shared/_LayoutPageRawMaterial.cshtml";
+    ViewBag.content = "Print Raw Material Label";
+}
+
+@model string
+<div class="row w-100 container-fluid m-0 p-0">
+    @*<form action="/" method="post">*@
+    <div class="col-md-12 mt-4 py-2 row w-100 m-0 p-0">
+        <div class="centerdiv" style="width: 505px">
+            <form action="/" method="post" id="form-data">
+                <div class="row m-0">
+                    <div class="col-md-4 col-4 p-0">
+                        <div class="float-right"><span class="title">Select Label Type</span></div>
+                    </div>
+                    <div class="col-md-7 col-7">
+                        <select name="rmtype" id="rmtype">
+                            <option value="1" selected>1</option>
+                            <option value="2">2</option>
+                        </select>
+                        <input type="text" name="typedisplay" id="typedisplay" value="" readonly />
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <div class="col-md-4 col-4 p-0">
+                        <div class="float-right"><span class="title">Raw Material No. From</span></div>
+                    </div>
+                    <div class="col-md-7 col-7">
+                        <input type="text" name="rm-from" id="rm-from" value="" style="width: 264px" />
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <div class="col-md-4 col-4 p-0">
+                        <div class="float-right"><span class="title">Raw Material No. To</span></div>
+                    </div>
+                    <div class="col-md-7 col-7">
+                        <input type="text" name="rm-to" id="rm-to" value="" style="width: 264px" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-12 mt-3">
+            <div class="text-center">
+                <small id="message"></small>
+            </div>
+        </div>
+        <div class="col-md-12 mt-3 w-100 p-0">
+            <div class="text-center">
+                <small class="text-danger" id="message"></small>
+                @*<button type="button" style="background-color: #0094ff; border: none; color: white; ">Search</button>
+    <button type="submit" style="background-color: #179d08; border:none;  color: white; " onclick="createPDFView()">Confirm</button>
+    <button type="button" style="background-color: #ff0000; border: none;  color: white; ">Cancel</button>
+    <button type="submit" id="printbtn" class="d-none" style="background-color: #808080; border:none;  color: white; " onclick="CreatePDFFile()">Print</button>*@
+                <button type="button" class="search">Search</button>
+                <button type="submit" class="confirm" onclick="createPDFView()">Confirm</button>
+                <button type="button" class="cancel">Cancel</button>
+                <button type="submit" id="printbtn" class="d-none" onclick="CreatePDFFile()">Print</button>
+            </div>
+        </div>
+    </div>
+
+    @*</form>*@
+</div>
+
+<div class="row pdfviewer w-100 container-fluid mt-2 mx-0 p-0 border-top border-dark" id="pdfview-pos">
+
+</div>
+
+<script type="text/javascript">
+    var $message = $('#message');
+
+    $().ready(function () {
+        $('#rmtype').click(function () {
+            $('#typedisplay').val($(this).val());
+        })
+    })
+
+    function createPDFView() {
+        var from = Number($('#rm-from').val());
+        var to = Number($('#rm-to').val());
+        var type = $('#typedisplay').val();
+        $('#link').html('');
+        if (from == '' || to == '' || type == '') {
+            $message.removeClass('text-success').addClass('text-danger').html("Please select all information !");
+            return;
+        } else if ($.isNumeric(from) == false || $.isNumeric(to) == false) {
+            $message.removeClass('text-success').addClass('text-danger').html("From and To must is number !");
+            return;
+        } else if (from > to) {
+
+            $message.removeClass('text-success').addClass('text-danger').html("From must be smaller than To !");
+            return;
+        } else if (to - from >= 100) {
+            $message.removeClass('text-success').addClass('text-danger').html("The limit is 100 label !");
+            return;
+        }
+        $message.html('');
+        $('#pdfview-pos').html("");
+        switch (type) {
+            case '1':
+                for (var i = from; i <= to; i++) {
+                    var html = '';
+                    var string = "SS18168" + i;
+                    html += '<div class="col-lg col-md col-sm mt-4">';
+                    html += '<div class="pdfviewer-file1">';
+                    html += '<table border="1">';
+                    html += '<tr>';
+                    html += '<td colspan="2">';
+                    html += '<span>Mother Coil No</span>';
+                    html += '<div class="text-center">';
+                    html += '<p>' + string + '</p>';
+                    html += '<img src="/Images/barcode.jpg" alt="Alternate Text" width="315" height="40"/>';
+                    html += '</div>';
+                    html += '</td>';
+                    html += '';
+                    html += '</tr>';
+                    html += '<tr>';
+                    html += '<td colspan="2">';
+                    html += '<span>Grate</span>';
+                    html += '<p>M4/M120-27S</p>';
+                    html += '</td>';
+                    html += '</tr>';
+                    html += '<tr>';
+                    html += '<td>';
+                    html += '<span>Net Weight (Kgs)</span>';
+                    html += '<div class="text-center">';
+                    html += '<p>4070</p>';
+                    html += '</div>';
+                    html += '</td>';
+                    html += '<td>';
+                    html += '<span>Size (mm)</span>';
+                    html += '<div class="text-center">';
+                    html += '<p>0.5</p>';
+                    html += '</div>';
+                    html += '</td>';
+                    html += '</tr>';
+                    html += '<tr>';
+                    html += '<td colspan="2">';
+                    html += '<span>Mill Inspection No</span>';
+                    html += '<p>10436-5812457</p>';
+                    html += '</td>';
+                    html += '</tr>';
+                    html += '</table>';
+                    html += '</div>';
+                    html += '</div>';
+                    $('#pdfview-pos').append(html);
+                    $('#printbtn').removeClass('d-none');
+                }
+                break;
+            case '2':
+                for (var i = from; i <= to; i++) {
+                    var html = '';
+                    var string = "SS18168" + i;
+                    html += '<div class="col-lg col-md col-sm mt-4">';
+                    html += '<div class="pdfviewer-file">';
+                    html += '<table border="1">';
+                    html += '<tr>';
+                    html += '<td colspan="2">';
+                    html += '<small>Mother coil No</small>';
+                    html += '<div class="text-center">';
+                    html += '<span style="font-size:38px;">' + string + '</span><br />';
+                    html += '<img src="/Images/barcode.jpg" alt="Alternate Text" width="200" height="50" /><br />';
+                    html += '<small>' + string + '</small>';
+                    html += '</div>';
+                    html += '</td>';
+                    html += '</tr>';
+                    html += '<tr>';
+                    html += '<td colspan="2">';
+                    html += '<small>Grade</small><br />';
+                    html += '<span style="font-size: 20px;">M4/M120-27S</span>';
+                    html += '</td>';
+                    html += '</tr>';
+                    html += '<tr>';
+                    html += '<td colspan="2">';
+                    html += '<small>Size (mm)</small>';
+                    html += '<div class="text-center">';
+                    html += '<span style="font-size: 20px; word-spacing: 15px;">0.27 X 970 X Coil</span>';
+                    html += '</div>';
+                    html += '</td>';
+                    html += '</tr>';
+                    html += '<tr>';
+                    html += '<td>';
+                    html += '<small>Quantity/Pcs</small><br />';
+                    html += '<div class="text-center">';
+                    html += '<span style="font-size: 20px;">1</span>';
+                    html += '</div>';
+                    html += '</td>';
+                    html += '<td>';
+                    html += '<small>Net Weight (Kgs)</small><br />';
+                    html += '<div class="text-center">';
+                    html += '<span style="font-size: 20px;">4070</span>';
+                    html += '</div>';
+                    html += '</td>';
+                    html += '</tr>';
+                    html += '<tr>';
+                    html += '<td colspan="2">';
+                    html += '<small>Mill Inspection No</small><br />';
+                    html += '<span style="font-size: 20px;">10436-5812457</span>';
+                    html += '</td>';
+                    html += '</tr>';
+                    html += '<tr>';
+                    html += '<td colspan="2">';
+                    html += '<div class="text-center">';
+                    html += '<span style="font-size:38px;" >' + string + '</span><br />';
+                    html += '<img src="/Images/barcode.jpg" alt="Alternate Text" width="200" height="50" /><br />';
+                    html += '<small>' + string + '</small>';
+                    html += '</div>';
+                    html += '</td>';
+                    html += '</tr>';
+                    html += '</table>';
+                    html += '<table border="0" class="mt-4">';
+                    html += '<tr>';
+                    html += '<td class="w-100 p-0">';
+                    html += '<div class="float-left">';
+                    html += '<img src="/Images/barcode.jpg" alt="Alternate Text" width="140" height="25" />';
+                    html += '<div class="text-center">';
+                    html += '<small>' + string + '</small>';
+                    html += '</div>';
+                    html += '</div>';
+                    html += '</td>';
+                    html += '<td class="row p-0">';
+                    html += '<div class="float-right">';
+                    html += '<img src="/Images/barcode.jpg" alt="Alternate Text" width="140" height="25" />';
+                    html += '<div class="text-center">';
+                    html += '<small> ' + string + '</small>';
+                    html += '</div>';
+                    html += '</div>';
+                    html += '</td>';
+                    html += '</tr>';
+                    html += '</table>';
+                    html += '</div>';
+                    html += '</div>';
+                    $('#pdfview-pos').append(html);
+                    $('#printbtn').removeClass('d-none');
+                }
+                break;
+        }
+
+    }
+
+    function CreatePDFFile() {
+
+        $message.removeClass('text-danger text-success').addClass('text-info').html('Progressing...');
+
+        var type = $('#typedisplay').val();
+        var url = '';
+        switch (type) {
+            case '1':
+                url = '/RawMaterial/CreateStamp1';
+                break;
+            case '2':
+                url = '/RawMaterial/CreateStamp2';
+                break;
+        }
+        $.ajax({
+            url: url,
+            type: 'GET',
+            data: {
+                myString: $('#rm-from').val() + ' ' + $('#rm-to').val()
+            },
+            success: function (rs) {
+                if (rs == 'success') {
+                    $message.removeClass('text-info').addClass('text-success').html('Print SuccessFull ');
+                } else {
+                    // $message.removeClass('text-success').addClass('text-danger').html("Print fail, please try again !");
+                    $message.removeClass('text-success').addClass('text-danger').html(rs);
+                }
+            },
+            error: function (rs) {
+                $message.removeClass('text-success').addClass('text-danger').html("Print fail, please try again !");
+            }
+        });
+    }
+</script>

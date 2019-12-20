@@ -1,0 +1,444 @@
+﻿
+@{
+    ViewBag.Title = "Sales Order Stock Allocation";
+    Layout = "~/Views/Shared/_LayoutPageSale.cshtml";
+    ViewBag.content = ViewBag.Title;
+}
+
+<style>
+    #special-cell .divTableCell {
+        text-align: center;
+    }
+
+
+    .bg-spacing-cell {
+        background: #e5e4e4;
+    }
+
+    .content-bottom input {
+        width: 80px;
+    }
+
+    .content-bottom .divTableCell {
+        text-align: center;
+    }
+
+    .content-bottom .divTable {
+        border: 1px solid #999999;
+    }
+</style>
+@using StaticResources
+<div class="content-top row mx-0">
+    <div class="w-100 py-2 px-2" style="border-top: 1px solid #000; border-left: 1px solid #000; border-right: 1px solid #000; background: #e5e4e4">
+        <span class="title-center">Order Entry No.</span>
+        <input type="text" name="name" value="" class="txtsearch"/>
+        <span class="title-center">item No</span>
+        <input type="text" name="name" value="" />
+        <span class="title-center">Date</span>
+        <input type="text" name="name" value="" class="txtsearch"/>
+        <button type="button" class="search">Search</button>
+    </div>
+    <form>
+        <div class="divTable" style="border: 1px solid #000;">
+            <div class="divTableBody">
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <span class="title">Customer Spec</span>
+                    </div>
+                    <div class="divTableCell"><input type="text" name="name" value="" readonly /></div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <span class="title">Product Spec</span>
+                    </div>
+                    <div class="divTableCell"><input type="text" name="name" value="" readonly /></div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"></div>
+                    <div class="divTableCell">
+                        <div class="divTable">
+                            <div class="divTableBody">
+                                <div class="divTableRow">
+                                    <div class="divTableCell text-center" style="width: 30%"><span class="title-center">Thickness</span></div>
+                                    <div class="divTableCell text-center bg-spacing-cell" style="width: 5%"><span>&nbsp;</span></div>
+                                    <div class="divTableCell text-center" style="width: 30%"><span class="title-center">Width</span></div>
+                                    <div class="divTableCell text-center bg-spacing-cell" style="width: 5%"><span>&nbsp;</span></div>
+                                    <div class="divTableCell text-center" style="width: 30%"><span class="title-center">Length</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Customer Size</span></div>
+                    <div class="divTableCell">
+                        <div class="divTable">
+                            <div class="divTableBody">
+                                <div class="divTableRow" id="special-cell">
+                                    <div class="divTableCell" style="width: 30%"><input type="text" name="name" value="" readonly /></div>
+
+                                    <div class="divTableCell bg-spacing-cell" style="width: 5%"><span class="title-center">X</span></div>
+                                    <div class="divTableCell" style="width: 30%"><input type="text" name="name" value="" readonly /></div>
+
+                                    <div class="divTableCell bg-spacing-cell" style="width: 5%"><span class="title-center">X</span></div>
+                                    <div class="divTableCell" style="width: 30%"><input type="text" name="name" value="" readonly /></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Product Size</span></div>
+                    <div class="divTableCell">
+                        <div class="divTable">
+                            <div class="divTableBody">
+                                <div class="divTableRow" id="special-cell">
+                                    <div class="divTableCell" style="width: 30%"><input type="text" name="name" value="" readonly /></div>
+                                    <div class="divTableCell bg-spacing-cell" style="width: 5%"><span class="title-center">X</span></div>
+                                    <div class="divTableCell" style="width: 30%"><input type="text" name="name" value="" readonly /></div>
+                                    <div class="divTableCell bg-spacing-cell" style="width: 5%"><span class="title-center">X</span></div>
+                                    <div class="divTableCell" style="width: 30%"><input type="text" name="name" value="" readonly /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Product Name</span></div>
+                    <div class="divTableCell">@Html.DropDownList("adasdads", new SelectList(new List<int>() { 1, 2, 3, 4, 5, 6 }), RLayout.SelectAction, new { @tabindex = "16" })</div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Product Diameter</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="float-right my-2">
+            <button type="button" class="confirm">Confirm</button>
+            <button type="button" class="cancel">Cancel</button>
+        </div>
+    </form>
+</div>
+<div class="content-bottom row mx-0">
+    <div class="col-4 pl-0">
+        <div class="divTable">
+            <div class="divTableBody">
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <span class="title-center">Paking No</span>
+                    </div>
+                    <div class="divTableCell">
+                        <span class="title-center">Grade</span>
+                    </div>
+                    <div class="divTableCell">
+                        <span class="title-center">Qty</span>
+                    </div>
+                    <div class="divTableCell">
+                        <span class="title-center">Weight</span>
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="divTable">
+            <div class="divTableBody">
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <span class="title-center">Paking No</span>
+                    </div>
+                    <div class="divTableCell">
+                        <span class="title-center">Grade</span>
+                    </div>
+                    <div class="divTableCell">
+                        <span class="title-center">Qty</span>
+                    </div>
+                    <div class="divTableCell">
+                        <span class="title-center">Weight</span>
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4 pr-0">
+        <div class="divTable">
+            <div class="divTableBody">
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <span class="title-center">Paking No</span>
+                    </div>
+                    <div class="divTableCell">
+                        <span class="title-center">Grade</span>
+                    </div>
+                    <div class="divTableCell">
+                        <span class="title-center">Qty</span>
+                    </div>
+                    <div class="divTableCell">
+                        <span class="title-center">Weight</span>
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" readonly />
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+    <div class="col-12 p-0 mt-5">
+        <span class="title-header text-primary ">Total</span>
+        <input type="text" name="name" value="" class="w-auto" />
+        <input type="text" name="name" value="" class="w-auto" />
+    </div>
+</div>
+

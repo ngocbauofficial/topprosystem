@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ChangeCalculationTypeTitle" xml:space="preserve">
+    <value>Change Calculation</value>
+  </data>
+  <data name="ChangeCommodityTitle" xml:space="preserve">
+    <value>Change Commodity</value>
+  </data>
+  <data name="ChangeDaysInMonthTitle" xml:space="preserve">
+    <value>Change Days In Month Master</value>
+  </data>
+  <data name="ChangeDueDateTypeTitle" xml:space="preserve">
+    <value>Change Due Date Type Master</value>
+  </data>
+  <data name="ChangeMakerCodeTitle" xml:space="preserve">
+    <value>Change Maker Code</value>
+  </data>
+  <data name="ChangeWeightDisplayCodeTitle" xml:space="preserve">
+    <value>Change Weigth Display Code</value>
+  </data>
+  <data name="ErrorNoRowSelect" xml:space="preserve">
+    <value>Please select row to delete !</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <data name="InsertCalcualationTypeTitle" xml:space="preserve">
+    <value>Insert Calculation</value>
+  </data>
+  <data name="InsertCommodityTitle" xml:space="preserve">
+    <value>Insert Commodity</value>
+  </data>
+  <data name="InsertDaysInMonthTitle" xml:space="preserve">
+    <value>Insert Days In Month Master</value>
+  </data>
+  <data name="InsertDueDateTypeTitle" xml:space="preserve">
+    <value>Insert Due Date Type Master</value>
+  </data>
+  <data name="InsertMakerCodeTitle" xml:space="preserve">
+    <value>Insert Maker Code</value>
+  </data>
+  <data name="InsertWeightDisplayCodeTitle" xml:space="preserve">
+    <value>Insert Weigth Display Code</value>
+  </data>
+  <data name="IsUsed" xml:space="preserve">
+    <value>SR code already in used</value>
+  </data>
+  <data name="MasterCalcualationTypeTitle" xml:space="preserve">
+    <value>Calculation Type Master</value>
+  </data>
+  <data name="MasterCommodityTitle" xml:space="preserve">
+    <value>Commodity Master</value>
+  </data>
+  <data name="MasterDaysInMonthTitle" xml:space="preserve">
+    <value>Days In Month Master</value>
+  </data>
+  <data name="MasterDueDateTypeTitle" xml:space="preserve">
+    <value>Due Date Type Master</value>
+  </data>
+  <data name="MasterMakerCodeTitle" xml:space="preserve">
+    <value>Maker Code Master</value>
+  </data>
+  <data name="MasterWeightDisplayCodeTitle" xml:space="preserve">
+    <value>Weigth Display Code Master</value>
+  </data>
+  <data name="Maxlength" xml:space="preserve">
+    <value>Please enter no more than {0} characters.</value>
+  </data>
+  <data name="MessageDelete" xml:space="preserve">
+    <value>Are you sure ?</value>
+  </data>
+  <data name="Minlength" xml:space="preserve">
+    <value>Please enter no less than {0} characters.</value>
+  </data>
+  <data name="MNCLSCD" xml:space="preserve">
+    <value>CLASSIFICATION CODE</value>
+  </data>
+  <data name="MNRGSDT" xml:space="preserve">
+    <value>REGISTER DATE</value>
+  </data>
+  <data name="MNRGSTM" xml:space="preserve">
+    <value>REGISTER TIME</value>
+  </data>
+  <data name="MNSRCD" xml:space="preserve">
+    <value>SR CODE</value>
+  </data>
+  <data name="MNSRNM" xml:space="preserve">
+    <value>SR NAME</value>
+  </data>
+  <data name="MNSRSNM" xml:space="preserve">
+    <value>SR SHORT NAME</value>
+  </data>
+  <data name="MNUPDT" xml:space="preserve">
+    <value>DATE OF UPDATE</value>
+  </data>
+  <data name="MNUPDTM" xml:space="preserve">
+    <value>UPDATE TIME</value>
+  </data>
+  <data name="PlaceholderTextSearch" xml:space="preserve">
+    <value>Enter sr code ...</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Please enter this field</value>
+  </data>
+  <data name="ChangeDamageCodeTitle" xml:space="preserve">
+    <value>Change Damage Code</value>
+  </data>
+  <data name="ChangeSectionCodeTitle" xml:space="preserve">
+    <value>Change Section Code</value>
+  </data>
+  <data name="ChangeStatusCodeTitle" xml:space="preserve">
+    <value>Change Status Code </value>
+  </data>
+  <data name="InsertDamageCodeTitle" xml:space="preserve">
+    <value>Insert Damage Code</value>
+  </data>
+  <data name="InsertSectionCodeTitle" xml:space="preserve">
+    <value>Insert Section Code</value>
+  </data>
+  <data name="InsertStatusCodeTitle" xml:space="preserve">
+    <value>Insert Status Code</value>
+  </data>
+  <data name="MasterDamageCodeTitle" xml:space="preserve">
+    <value>Damage Code Master</value>
+  </data>
+  <data name="MasterSectionCodeTitle" xml:space="preserve">
+    <value>Section Code Master</value>
+  </data>
+  <data name="MasterStatusCodeTitle" xml:space="preserve">
+    <value>Status Code Master</value>
+  </data>
+  <data name="ChangeCountryCodeTitle" xml:space="preserve">
+    <value>Change Country Code</value>
+  </data>
+  <data name="InsertCountryCodeTitle" xml:space="preserve">
+    <value>Insert Country Code</value>
+  </data>
+  <data name="MasterCountryCodeTitle" xml:space="preserve">
+    <value>Country Code Master</value>
+  </data>
+  <data name="ChangeBankCodeTitle" xml:space="preserve">
+    <value>Change Bank Code</value>
+  </data>
+  <data name="ChangeBusinessTypeCodeTitle" xml:space="preserve">
+    <value>Change Business Type Code</value>
+  </data>
+  <data name="ChangeContractTypeTitle" xml:space="preserve">
+    <value>Change Contract Type</value>
+  </data>
+  <data name="ChangeCurrencyCodeTitle" xml:space="preserve">
+    <value>Change Currency Code</value>
+  </data>
+  <data name="ChangeDataTypeTitle" xml:space="preserve">
+    <value>Change Data Type</value>
+  </data>
+  <data name="ChangeDeliveryConditionTitle" xml:space="preserve">
+    <value>Change Delivery Condition</value>
+  </data>
+  <data name="ChangeExchangeRateTypeTitle" xml:space="preserve">
+    <value>Change Exchange Rate Type</value>
+  </data>
+  <data name="ChangeGradeTitle" xml:space="preserve">
+    <value>Change Grade</value>
+  </data>
+  <data name="ChangeInterruptedReasonCodeTitle" xml:space="preserve">
+    <value>Change Interrupted Reason Code</value>
+  </data>
+  <data name="ChangeInventoryStatusTitle" xml:space="preserve">
+    <value>Change Inventory Status</value>
+  </data>
+  <data name="ChangeInventoryTypeTitle" xml:space="preserve">
+    <value>Change Inventory Type</value>
+  </data>
+  <data name="ChangeLogTypeTitle" xml:space="preserve">
+    <value>Change Log Type</value>
+  </data>
+  <data name="ChangeMachineNoTitle" xml:space="preserve">
+    <value>Change Machine No</value>
+  </data>
+  <data name="ChangePackingTypeTitle" xml:space="preserve">
+    <value>Change Packing Type</value>
+  </data>
+  <data name="ChangePriceTermTitle" xml:space="preserve">
+    <value>Change Price Term</value>
+  </data>
+  <data name="ChangeReasonForChangingCodeTitle" xml:space="preserve">
+    <value>Change Reason For Changing Code</value>
+  </data>
+  <data name="ChangeSettlementTermTitle" xml:space="preserve">
+    <value>Change Settlement Term</value>
+  </data>
+  <data name="ChangeShiftCodeTitle" xml:space="preserve">
+    <value>Change Shift Code</value>
+  </data>
+  <data name="ChangeTradeCategoryTitle" xml:space="preserve">
+    <value>Change Trade Category </value>
+  </data>
+  <data name="ChangeTypeofTermsTitle" xml:space="preserve">
+    <value>Change Type of Terms</value>
+  </data>
+  <data name="ChangeUnitPriceUnitTitle" xml:space="preserve">
+    <value>Change Unit Price Unit </value>
+  </data>
+  <data name="InsertBankCodeTitle" xml:space="preserve">
+    <value>Insert Bank Code</value>
+  </data>
+  <data name="InsertBusinessTypeCodeTitle" xml:space="preserve">
+    <value>Insert Business Type Code</value>
+  </data>
+  <data name="InsertContractTypeTitle" xml:space="preserve">
+    <value>Insert Contract Type</value>
+  </data>
+  <data name="InsertCurrencyCodeTitle" xml:space="preserve">
+    <value>Insert Currency Code</value>
+  </data>
+  <data name="InsertDataTypeTitle" xml:space="preserve">
+    <value>Insert Data Type</value>
+  </data>
+  <data name="InsertDeliveryConditionTitle" xml:space="preserve">
+    <value>Insert Delivery Condition</value>
+  </data>
+  <data name="InsertExchangeRateTypeTitle" xml:space="preserve">
+    <value>Insert Exchange Rate Type</value>
+  </data>
+  <data name="InsertGradeTitle" xml:space="preserve">
+    <value>Insert Grade</value>
+  </data>
+  <data name="InsertInterruptedReasonCodetTitle" xml:space="preserve">
+    <value>Insert Interrupted Reason Code</value>
+  </data>
+  <data name="InsertInventoryStatusTitle" xml:space="preserve">
+    <value>Insert Inventory Status</value>
+  </data>
+  <data name="InsertInventoryTypeTitle" xml:space="preserve">
+    <value>Insert Inventory Type</value>
+  </data>
+  <data name="InsertLogTypeTitle" xml:space="preserve">
+    <value>Insert Log Type</value>
+  </data>
+  <data name="InsertMachineNoTitle" xml:space="preserve">
+    <value>Insert Machine No</value>
+  </data>
+  <data name="InsertPackingTypeTitle" xml:space="preserve">
+    <value>Insert Packing Type</value>
+  </data>
+  <data name="InsertPriceTermTitle" xml:space="preserve">
+    <value>Insert Price Term</value>
+  </data>
+  <data name="InsertReasonForChangingCodeTitle" xml:space="preserve">
+    <value>Insert Reason For Changing Code</value>
+  </data>
+  <data name="InsertSettlementTermTitle" xml:space="preserve">
+    <value>Insert Settlement Term</value>
+  </data>
+  <data name="InsertShiftCodeTitle" xml:space="preserve">
+    <value>Insert Shift Code</value>
+  </data>
+  <data name="InsertTradeCategoryTitle" xml:space="preserve">
+    <value>Insert Trade Category </value>
+  </data>
+  <data name="InsertTypeofTermsTitle" xml:space="preserve">
+    <value>Insert Type of Terms</value>
+  </data>
+  <data name="InsertUnitPriceUnitTitle" xml:space="preserve">
+    <value>Insert Unit Price Unit</value>
+  </data>
+  <data name="MasterBankCodeTitle" xml:space="preserve">
+    <value>Bank Code Master</value>
+  </data>
+  <data name="MasterBusinessTypeCodeTitle" xml:space="preserve">
+    <value>Business Type Code Master</value>
+  </data>
+  <data name="MasterContractTypeTitle" xml:space="preserve">
+    <value>Contract Type Master</value>
+  </data>
+  <data name="MasterCurrencyCodeTitle" xml:space="preserve">
+    <value>Currency Code Master</value>
+  </data>
+  <data name="MasterDataTypeTitle" xml:space="preserve">
+    <value>Data Type Master</value>
+  </data>
+  <data name="MasterDeliveryConditionTitle" xml:space="preserve">
+    <value>Delivery Condition Master</value>
+  </data>
+  <data name="MasterExchangeRateTypeTitle" xml:space="preserve">
+    <value>Exchange Rate Type Master</value>
+  </data>
+  <data name="MasterGradeTitle" xml:space="preserve">
+    <value>Grade Master</value>
+  </data>
+  <data name="MasterInterruptedReasonCodeTitle" xml:space="preserve">
+    <value>Interrupted Reason Code Master</value>
+  </data>
+  <data name="MasterInventoryStatusTitle" xml:space="preserve">
+    <value>Inventory Status Master</value>
+  </data>
+  <data name="MasterInventoryTypeTitle" xml:space="preserve">
+    <value>Inventory Type Master</value>
+  </data>
+  <data name="MasterLogTypeTitle" xml:space="preserve">
+    <value>Log Type Master</value>
+  </data>
+  <data name="MasterMachineNoTitle" xml:space="preserve">
+    <value>Master Machine No</value>
+  </data>
+  <data name="MasterPackingTypeTitle" xml:space="preserve">
+    <value>Packing Type Master</value>
+  </data>
+  <data name="MasterPriceTermTitle" xml:space="preserve">
+    <value>Price Term Master</value>
+  </data>
+  <data name="MasterReasonForChangingCodeTitle" xml:space="preserve">
+    <value>Reason For Changing Code Master</value>
+  </data>
+  <data name="MasterSettlementTermTitle" xml:space="preserve">
+    <value>Settlement Term Master</value>
+  </data>
+  <data name="MasterShiftCodeTitle" xml:space="preserve">
+    <value>Shift Code Master</value>
+  </data>
+  <data name="MasterTradeCategoryTitle" xml:space="preserve">
+    <value>Trade Category Master</value>
+  </data>
+  <data name="MasterTypeofTermsTitle" xml:space="preserve">
+    <value>Type of Terms Master</value>
+  </data>
+  <data name="MasterUnitPriceUnitTitle" xml:space="preserve">
+    <value>Unit Price Unit Master</value>
+  </data>
+  <data name="ChangeMoneyTypeTitle" xml:space="preserve">
+    <value>Change Money Type</value>
+  </data>
+  <data name="InsertMoneyTypeTitle" xml:space="preserve">
+    <value>Insert Money Type</value>
+  </data>
+  <data name="MasterMoneyTypeTitle" xml:space="preserve">
+    <value>Money Type Master</value>
+  </data>
+  <data name="EditWeightCalculationCodeTittle" xml:space="preserve">
+    <value>Edit Weight Calculation Code</value>
+  </data>
+  <data name="InsertWeightCalculationCodeTittle" xml:space="preserve">
+    <value>Insert Weight Calculation Code</value>
+  </data>
+  <data name="WeightCalculationCodeMasterTittle" xml:space="preserve">
+    <value>Weight Calculation Code Master</value>
+  </data>
+  <data name="RawMaterialTypeMasterInsert" xml:space="preserve">
+    <value>Insert Raw Material Type</value>
+  </data>
+  <data name="RawMaterialTypeMasterTitle" xml:space="preserve">
+    <value>Raw MaterialType Master</value>
+  </data>
+  <data name="RawMaterialTypeMasterUpdate" xml:space="preserve">
+    <value>Update Raw Material Type</value>
+  </data>
+</root>

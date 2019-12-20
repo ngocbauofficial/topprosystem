@@ -1,0 +1,96 @@
+﻿@using StaticResources.View.ClosingDate
+@using StaticResources
+@model TopProSystem.Areas.MasterSetting.Models.MA007
+
+@{
+    ViewBag.Title = Resource.InsertTitle;
+    ViewBag.headerName = Resource.InsertTitle;
+    Layout = "~/Areas/MasterSetting/Views/Shared/_LayoutMasterSeting.cshtml";
+}
+
+<style>
+    input[type=text], select {
+        width: 338px;
+    }
+
+    .divTableRow .divTableCell:first-child {
+        width: 10%;
+    }
+
+    .divTableRow .divTableCell:last-child {
+        width: 90%;
+    }
+</style>
+<div class="container-fluid">
+    <div class="data-content">
+        <form action="@Url.Action("InsertClosingDate","Master")" method="post" id="Insert-Master-Form">
+            <div class="divTable w-100" style="border: 1px solid #000">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title-normal">@Resource.MHBKMNT</span></div>
+                        <div class="divTableCell">
+                            @Html.TextBoxFor(x => x.MHBKMNT, new { @tabindex = "1" })
+                        </div>
+
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title-normal">@Resource.MHCLSDT</span></div>
+                        <div class="divTableCell">
+                            @Html.TextBoxFor(x => x.MHCLSDT, new { @tabindex = "2", @data_provide = "datepicker" })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3 float-right">
+                <button type="submit" class="btn-primary">@Button.BtnConfirm</button>
+                <button type="button" class="cancel" onclick="window.location.href='/MasterSetting/Master/ClosingDateMaster'">@Button.BtnCancel</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $('#Insert-Master-Form').validate({
+            rules: {
+                MHBKMNT: {
+                    required: true,
+                    maxlength: 6,
+                    number: true,
+                    dateFormatFullText: true,
+                    remote: {
+                        url: '/Master/CheckBookingMonthExists',
+                        type: 'GET',
+                        data: { bookingMonth: function () { return $('#MHBKMNT').val()}  }
+                    },
+                },
+                MHCLSDT: "required",
+            },
+            messages: {
+                MHBKMNT: {
+                    required: '@RLayout.Required',
+                    maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"6"))',
+                    number: '@RLayout.IsNumber',
+                    remote: '@RLayout.Exists'
+                },
+                MHCLSDT: '@RLayout.Required',
+            }
+        });
+
+        $.validator.addMethod("dateFormatFullText", function (value, element) {
+            
+            var re = /^([0-2][0-9]|(3)[0-1])(((0)[0-9])|((1)[0-2]))\d{2}$/i;
+            var check = false;
+            if (re.test(value)) {
+                check = true;
+            } else {
+                check = false;
+            }
+
+            return check;
+        }, "This field must have format ddMMyy");
+    </script>
+
+}

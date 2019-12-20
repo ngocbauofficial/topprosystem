@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title | Formosa Steel Corporation</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/Images/Icon/logo-system.png" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-confirm.min.css" rel="stylesheet" />
+    <link href="~/Content/datatables.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-toggle.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/MyScript/Script.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/additional-methods.min.js"></script>
+    <script src="~/Scripts/jquery-confirm.min.js"></script>
+    <script src="~/Scripts/datatables.min.js"></script>
+    <script src="~/Scripts/bootstrap-toggle.min.js"></script>
+
+
+
+    <script type="text/javascript">
+
+        $(function () {
+
+
+            $('input, select').bind('keypress', function (eInner) {
+                if (eInner.keyCode == 13) {
+                    var tabindex = $(this).attr('tabindex');
+                    tabindex++;
+                    $('[tabindex=' + tabindex + ']').focus();
+                    return false;
+                }
+            });
+
+            DatePickerProvide();
+        });
+
+
+    </script>
+</head>
+<body>
+    <div id="wrap">
+        @Html.Partial("_menu")
+
+        @Html.Partial("~/Views/Shared/_menu.cshtml")
+        <div class="container-fluid">
+            <div class="content">
+                <span id="header-name"> @ViewBag.headerName</span>
+
+                @RenderBody()
+            </div>
+
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+    <div id="alert-notify" style="position:fixed; right:0; top: 100px;"></div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><img src="/Images/Icon/top.png" alt="scrolltop" /></button>
+    <div style="bottom:0;display:block; font-size: 11px; width: 100%; text-align:center"><span>Copyright&copy; Champ Solutions</span></div>
+    <script type="text/javascript">
+
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+            } else {
+                document.getElementById("myBtn").style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            //document.body.scrollTop = 0;
+            //document.documentElement.scrollTop = 0;
+            var $target = $('html,body');
+            $target.animate({ scrollTop: 0 }, 200);
+        }
+    </script>
+    @RenderSection("scripts", false)
+</body>
+</html>

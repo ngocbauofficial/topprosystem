@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ec535074253f4438a8b716217b8e00ba" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="TopProSystemModel.MA003" Width="1.5" PointX="4.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopProSystemModel.MA004" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopProSystemModel.MA005" Width="1.5" PointX="6.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopProSystemModel.MA010" Width="1.5" PointX="6.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TopProSystemModel.MA001" Width="1.5" PointX="10.5" PointY="0.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.LogError" Width="1.5" PointX="4.75" PointY="9.875" />
+        <EntityTypeShape EntityType="TopProSystemModel.MA011" Width="1.5" PointX="6.75" PointY="9.125" />
+        <EntityTypeShape EntityType="TopProSystemModel.MA012" Width="1.5" PointX="8.875" PointY="9.5" />
+        <EntityTypeShape EntityType="TopProSystemModel.Tmp_MaterialWarehousingResult" Width="1.5" PointX="4.75" PointY="7.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.INV001" Width="1.5" PointX="3.125" PointY="0.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.TRA001" Width="1.5" PointX="1.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.PUH001" Width="1.5" PointX="12.25" PointY="0.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.PermissionAction" Width="1.5" PointX="5.375" PointY="13.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.PermissionRecord" Width="1.5" PointX="7.375" PointY="13.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.Role_Mapping" Width="1.5" PointX="9.375" PointY="13.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.Role_Mapping_Action" Width="1.5" PointX="16.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.SecurityLevel" Width="1.5" PointX="16.5" PointY="4.375" />
+        <EntityTypeShape EntityType="TopProSystemModel.RawMaterialType" Width="1.5" PointX="16.375" PointY="6.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.SteelGrade" Width="1.5" PointX="7.375" PointY="16.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.PrinterSetting" Width="1.5" PointX="9.375" PointY="16.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.InspectionItemNoMaterial" Width="1.5" PointX="16.375" PointY="10.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.RawMaterial" Width="1.5" PointX="16.375" PointY="14.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.MA007" Width="1.5" PointX="8.625" PointY="3.625" />
+        <EntityTypeShape EntityType="TopProSystemModel.MA006" Width="1.5" PointX="8.625" PointY="0.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.MA009" Width="1.5" PointX="8.625" PointY="6.25" />
+        <EntityTypeShape EntityType="TopProSystemModel.MA002" Width="1.5" PointX="11.375" PointY="17.75" />
+        <EntityTypeShape EntityType="TopProSystemModel.PUR001" Width="1.5" PointX="14.25" PointY="0.625" />
+        <EntityTypeShape EntityType="TopProSystemModel.LogUserAction" Width="1.5" PointX="18.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

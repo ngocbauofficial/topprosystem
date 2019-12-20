@@ -1,0 +1,142 @@
+﻿@using StaticResources
+@{
+    ViewBag.Title = "Raw Material Request Entry";
+    Layout = "~/Views/Shared/_LayoutPageRawMaterial.cshtml";
+    ViewBag.content = "Raw Material Request Entry";
+}
+
+<div class="row w-100 container-fluid m-0 p-0">
+    <form action="/" method="post">
+        <div class="col-md-12 mt-4 py-2 row w-100 m-0 p-0">
+            <div class="centerdiv" style="width: 441px;">
+                <div class="row m-0">
+                    <div class="col-md-4 col-5 p-0">
+                        <div class="float-right"><span class="title">Material Request No</span></div>
+                    </div>
+                    <div class="col-md-8 col-7">
+                        <input type="text" name="name" value="" />
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <div class="col-md-4 col-5 p-0">
+                        <div class="float-right"><span class="title">Request Date</span></div>
+                    </div>
+                    <div class="col-md-8 col-7">
+                        <select>
+                            <option value="" selected disabled>@RLayout.SelectAction</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <div class="col-md-4 col-5 p-0">
+                        <div class="float-right"><span class="title">Section</span></div>
+                    </div>
+                    <div class="col-md-8 col-7">
+                        <select>
+                            <option value="" selected disabled>@RLayout.SelectAction</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                        <input type="text" name="name" value="" />
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <div class="col-md-4 col-5 p-0">
+                        <div class="float-right"><span class="title">Machine No.</span></div>
+                    </div>
+                    <div class="col-md-8 col-7" >
+                        <select>
+                            <option value="" selected disabled>@RLayout.SelectAction</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                        <input type="text" name="name" value="" />
+                    </div>
+                </div>
+                <div class="row mx-0 mt-1">
+                    <div class="col-md-4 col-5 p-0">
+                        <div class="float-right"><span class="title">Job No</span></div>
+                    </div>
+                    <div class="col-md-8 col-7">
+                        <input type="text" name="name" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-4 w-100 p-0">
+                <div class="text-center">
+                    <small class="text-danger" id="message"></small>
+                    <button type="button" class="add-item">Add item</button>
+                    <button type="button" class="confirm">Confirm</button>
+                    <button type="button" class="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="row w-100 container-fluid mt-2 mx-0 p-0 border-top border-dark data-display">
+    <table class="w-100 mt-2">
+        <thead>
+            <tr class="text-center thead">
+                <th>Job No</th>
+                <th>Order Entry No</th>
+                <th>Raw Material No</th>
+                <th>Spec</th>
+                <th>Prod Name</th>
+                <th>Prod Diameter</th>
+                <th>Thickness</th>
+                <th>Width</th>
+                <th>Length</th>
+                <th>Quantity</th>
+                <th>Weight</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="tsheader">
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td> 
+            </tr>
+            <tr class="tsheader">
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td> 
+                <td></td> 
+            </tr>
+
+            <tr class="tsheader">
+                <td colspan="8" class="border-0"></td>
+                <td class="text-center" style=" background-image: url('/Images/bgTB.png'); border-left: 1px solid #cfcbcb">Total</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+

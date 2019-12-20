@@ -1,0 +1,238 @@
+﻿@model IEnumerable<TopProSystem.Areas.MasterSetting.Models.MA009>
+@using StaticResources.View.ExchangeRate
+@using StaticResources
+@{
+    ViewBag.Title = Resource.MasterTitle;
+    ViewBag.headerName = ViewBag.Title;
+    Layout = "~/Areas/MasterSetting/Views/Shared/_LayoutMasterSeting.cshtml";
+}
+@using TopProSystem.Extension.AccountRole
+@{
+    var permission = new PermissionService();
+    var checkbuton = permission.AuthorizeAction(StandardPermissionProvider.ExchangeRateMaster);
+}
+
+<script type="text/javascript">
+    $(function () {
+        @Html.Raw(TempData[TopProSystem.Models.ConstantData.Notification_key])
+    })
+</script>
+<style>
+    .data-display table tr td:nth-child(2), .data-display table tr td:nth-child(6), .data-display table tr td:nth-child(5) {
+        text-align: center;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="pos-top">
+        <div class="row mx-0">
+            <div class="col-lg-12">
+                <form action="#" method="get" class="form-inline">
+                    <div class="form-group">
+                        <input type="text" name="curCode" id="curCode" class="search" value="" placeholder="@Resource.Placeholder" />
+                        <button type="button" id="btnSearch" class="btn-primary search ml-2">@Button.BtnSeach</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="row mx-0 mt-5">
+            <div class="col-lg-12">
+                @if (checkbuton.ShowDelete)
+                {
+                    <button class="btn-danger float-right ml-2" id="deleteBtn">@Button.BtnDelete</button>
+                }
+                @if (checkbuton.ShowAdd)
+                {
+                    <a href="@Url.Action("GetInsertExchangeRate","Master")" class="button float-right btn-addnew">@Button.BtnAdd</a>
+                }
+
+            </div>
+
+        </div>
+    </div>
+    <div class="data-display">
+        <table class="w-100 table-sm" id="dataTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>@Resource.MJCRRCD</th>
+                    <th>@Resource.MJEXRTT</th>
+                    <th>@Resource.MJEXRDT</th>
+                    <th>@Resource.MJEXRT</th>
+                    <th>@Resource.MJTXEXR</th>
+                    <th>@Resource.MJRGSDT</th>
+                    <th>@Resource.MJRGSTM</th>
+                    <th>@Resource.MJUPDT</th>
+                    <th>@Resource.MJUPDTM</th>
+                    @if (checkbuton.ShowEdit)
+                    {
+                        <th>@Button.LbEdit</th>
+                    }
+                    @if (checkbuton.ShowDelete)
+                    {
+                        <th>@Button.LbSelect</th>
+                    }
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    const URL_DELETE_EXCHANGE_RATE = '/Master/DeleteExchangeRate';
+    const URL_AJAXSOURCE = '/Master/AjaxHandlerExchangeRateMaster';
+  //  var displayrecordCount = ;
+
+    
+     const URL_CHECK_EXCHANGERATEMASTER_REFERENCE ='/Master/CheckExchangeRateInUsedReference'
+
+    
+   $('#dataTable').on("click", function () {
+        var checkboxs = $(this).find("input[type=checkbox]:checked");
+        if (checkboxs.length != 0) {
+            checkboxs.each(function () {
+                var $checkbox = $(this);
+                $.getJSON(URL_CHECK_EXCHANGERATEMASTER_REFERENCE, {
+                    code: $checkbox.val() }).done(function (data) {
+                        if (data.message != null && data.message!='') {
+                            ErrorAlert("@RLayout.IsUsed " + data.message)
+                        $checkbox.prop('checked', false);
+                    }
+                }).fail(function (rs) {
+                    console.log(rs.responseText);
+                })
+            })
+        }
+    })
+
+
+    $('#deleteBtn').click(function () {
+        var length = $('input[type="checkbox"]:checked').length;
+        if (length == 0) {
+            alert("@Html.Raw(RLayout.ErrorNoRowSelect)");
+            return;
+        }
+        var value = '';
+        $('input[type="checkbox"]:checked').each(function () {
+            value += $(this).val() + '|';
+        });
+        value = value.substring(0, value.length - 1);
+        $.confirm({
+            title: "<span class='text-secondary'>@Button.BtnConfirm</span>",
+            icon: 'fa fa-warning',
+            content: '@Html.Raw(RLayout.ContentDelete)',
+            type: 'blue',
+            buttons: {
+                confirm: {
+                    text: '@Button.BtnConfirm',
+                    icon: 'fa fa warning',
+                    btnClass: 'btn-confirm text-capitalize',
+                    action: function () {
+                        $.getJSON(URL_DELETE_EXCHANGE_RATE, { _array: value }).done(function (rs) {
+                            if (!rs) {
+                                window.location.href = rs;
+                            }
+                            else {
+                                SuccessAlert('@RLayout.DeleteMsg');
+                                $('#dataTable').DataTable().ajax.reload();
+                            }
+                        }).fail(function (rs) {
+                            console.log(rs.responseText);
+                        });
+                    }
+                },
+                cancel: {
+                    text: '@Button.BtnCancel',
+                    btnClass: 'btn-cancel text-capitalize',
+                    action: function () {
+                    }
+                }
+            }
+        });
+    })
+
+
+    $(document).ready(function () {
+        var t = $('#dataTable').DataTable({
+            "ordering": false,
+            "info": false,
+            "lengthChange": false,
+            "pageLength": DataTableDisplayLength,
+            "bServerSide": true,
+            "sAjaxSource": URL_AJAXSOURCE,
+            "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                oSettings.jqXHR = $.ajax({
+                    "dataType": 'json',
+                    "url": sSource,
+                    "data": aoData,
+                    "success": fnCallback,
+                    "error": function () {
+                        alert("@RLayout.SessiontimeoutRespone");
+                        window.location.href = "@Url.Action("GetLogin","Account", new {area = "" })"
+                    }
+                });
+            },
+            "bProcessing": true,
+            "sServerMethod": "POST",
+            "sPaginationType": "full_numbers",
+            "language": {
+                "paginate": {
+                    "first": "<<",
+                    "last": ">>",
+                    "next": ">",
+                    "previous": "<"
+                },
+                "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+            },
+            "columns": [
+                { "data": null },
+                { "data": "MJCRRCD" },
+                { "data": "MJEXRTT" },
+                { "data": "MJEXRTD" },
+                { "data": "MJEXRT" },
+                { "data": "MJTXEXR" },
+                { "data": "MJRGSDT" },
+                { "data": "MJRGSTM" },
+                { "data": "MJUPDT" },
+                { "data": "MJUPDTM" },
+                  @if (checkbuton.ShowEdit)
+                  {
+                      <text>
+                      { "render": function(data, type, row) { return '<a href="/MasterSetting/Master/GetUpdateExchangeRate?curCode=' + row["MJCRRCD"] + '" class="edit"><img src="/Images/Icon/edit-icon.png" /></a>' } },
+                      </text>
+                  }
+                  @if (checkbuton.ShowDelete)
+                  { 
+                   <text>
+                   { "render": function(data, type, row) { return '<input type="checkbox" name="name" value="' + row["MJCRRCD"] + '" />' } }               
+                   </text>
+                  }
+
+            ]
+
+        });
+
+
+
+
+        t.on('draw.dt', function () {
+            var PageInfo = $('#dataTable').DataTable().page.info();
+            t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1 + PageInfo.start;
+            });
+        });
+
+
+        $('#btnSearch').on('click', function () {
+            var searchKey = $('.search').val();
+            if (searchKey == "") window.location.hash = "";
+            else
+                window.location.hash = "search-key=" + searchKey;
+            t.search(searchKey).draw();
+        })
+
+
+    });
+</script>

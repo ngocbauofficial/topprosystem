@@ -1,0 +1,324 @@
+﻿@using StaticResources
+@using StaticResources.View.PUR001
+@model TopProSystem.Areas.MasterSetting.Models.PUR001
+@{
+    ViewBag.Title = Resource.InsertTitle;
+    Layout = "~/Views/Shared/_LayoutPagePurchase.cshtml";
+    ViewBag.content = Resource.InsertTitle;
+}
+
+
+<form action="@Url.Action("InsertPurchaseContract", "Purchase", new { area = "" })" id="form-data" method="post">
+    <div class="content-top row mx-0">
+        <div class="divTable" style="border: 1px solid #000;">
+            <div class="divTableBody">
+                <div class="divTableRow">
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AARGSDT)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AARGSDT, new { Value = string.Format("{0:dd/MM/yyyy}", DateTime.Now), @readonly = "", @tabindex = "1" })
+                    </div>
+                    <div class="divTableCell"><span class="title">Raw Material Type</span> </div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AARMTP, Model.RawMaterialTypes, RLayout.SelectAction, new { @tabindex = "24" })*@
+                        <div id="div-AARMTP" class="input-icons">
+                            @Html.HiddenFor(x => x.AARMTP)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AARMTP-js" id="AARMTP-js" class="input-as-select" placeholder="@Html.Raw(RLayout.SelectAction)" value="" readonly tabindex="24" />
+                            <input type="text" name="AARMTP_dl" id="AARMTP_dl" value="" readonly="" class="input-r-display">
+                        </div>
+                    </div>
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AAPURNO)</span></div>
+                    <div class="divTableCell">
+                        <input type="text" value="" readonly />
+                    </div>
+
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AAUPDT)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.AAUPDT, new { @tabindex = "2", @readonly = "" }) </div>
+
+                    <div class="divTableCell " style="width: 180px"><span class="title">@Html.DisplayNameFor(x => x.AAMKCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAMKCD, new SelectList(new List<string>()), new { @tabindex = "5" })*@
+                        <div class="input-icons" id="div-AAMKCD">
+                            @Html.HiddenFor(x => x.AAMKCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AAMKCD-js" id="AAMKCD-js" class="input-as-select" readonly placeholder="@RLayout.SelectAction" tabindex="5" />
+                            <input type="text" name="AAMKCD_dl" id="AAMKCD_dl" value="" readonly class="input-r-display" />
+                        </div>
+
+                    </div>
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AACMDCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AACMDCD, Model.CommodityCodes, RLayout.SelectAction, new { @tabindex = "16" })*@
+                        <div id="div-AACMDCD" class="input-icons">
+                            @Html.HiddenFor(x => x.AACMDCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AACMDCD-js" id="AACMDCD-js" class="input-as-select" readonly value="" placeholder="@Html.Raw(RLayout.SelectAction)" tabindex="16" />
+                            <input type="text" name="AACMDCD_dl" id="AACMDCD_dl" value="" readonly class="input-r-display" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AACMPCD)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.AACMPCD, new { Value = "Open", @readonly = "", @tabindex = "3" })</div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AASPPNO)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.AASPPNO, new { @tabindex = "6" }) </div>
+
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AACTRTP)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AACTRTP, Model.ContractTypes, RLayout.SelectAction, new { @tabindex = "17" })*@
+                        <div id="div-AACTRTP" class="input-icons">
+                            @Html.HiddenFor(x => x.AACTRTP)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AACTRTP-js" class="input-as-select" id="AACTRTP-js" value="" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="17" />
+                            <input type="text" name="AACTRTP_dl" id="AACTRTP_dl" value="" readonly class="input-r-display" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AACMPDT)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.AACMPDT, new { @tabindex = "4", @readonly = "" }) </div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AASPLCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AASPLCD, Model.SupplierCodes, RLayout.SelectAction, new { @tabindex = "7" })*@
+                        <div id="div-AASPLCD" class="input-icons">
+                            @Html.HiddenFor(x => x.AASPLCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AASPLCD-js" class="input-as-select" id="AASPLCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="7" />
+                            <input type="text" name="AASPLCD_dl" id="AASPLCD_dl" value="" readonly class="input-r-display" />
+                        </div>
+
+                    </div>
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AAIDCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAIDCD, Model.PersonIncharges, RLayout.SelectAction, new { @tabindex = "18" })*@
+                        <div id="div-AAIDCD" class="input-icons">
+                            <input type="text" name="AAIDCD" id="AAIDCD" value="@Session["UserCode"]" readonly />
+                            <input type="text" name="AAIDCD_dl" id="AAIDCD_dl" value="@Session["Name"]" readonly class="input-r-display" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AAUSRCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAUSRCD, Model.UserCodes, RLayout.SelectAction, new { @tabindex = "8" })*@
+                        <div id="div-AAUSRCD" class="input-icons">
+                            @Html.HiddenFor(x => x.AAUSRCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AAUSRCD-js" id="AAUSRCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" class="input-as-select" readonly tabindex="8" />
+                            <input type="text" name="AAUSRCD_dl" id="AAUSRCD_dl" value="" readonly class="input-r-display" />
+                        </div>
+                    </div>
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AASETRM)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AASETRM, Model.SettelementTerms, RLayout.SelectAction, new { @tabindex = "22" })*@
+                        <div id="div-AASETRM" class="input-icons">
+                            @Html.HiddenFor(x => x.AASETRM)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" class="input-as-select" name="AASETRM-js" id="AASETRM-js" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="22" />
+                            <input type="text" name="AASETRM_dl" id="AASETRM_dl" value="" readonly="" class="input-r-display">
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AACRRCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AACRRCD, Model.CurrencyCodes, RLayout.SelectAction, new { @tabindex = "11" })*@
+                        <div id="div-AACRRCD" class="input-icons">
+                            @Html.HiddenFor(x => x.AACRRCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" class="input-as-select" name="AACRRCD-js" id="AACRRCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="11" />
+                            <input type="text" id="AACRRCD_dl" value="" readonly class="input-r-display" />
+                        </div>
+                    </div>
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AAEXRT)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAEXRT, Model.ExchangeRateType, RLayout.SelectAction, new { Name = "AAEXRT_sl", @tabindex = "19" })*@
+                        <div id="div-AAEXRT" class="input-icons">
+                            <input type="hidden" name="AAEXRT-sl" id="AAEXRT" value="" />
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" name="AAEXRT-js" id="AAEXRT-js" placeholder="@Html.Raw(RLayout.SelectAction)" class="input-as-select" readonly tabindex="19" />
+                            <input type="text" id="AAEXRT_dl" name="AAEXRT" value="" readonly class="input-r-display" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell"><span class="title">Domestic Currency</span></div>
+                    @*PNB Edit*@
+                    <div class="divTableCell"><input type="text" name="name" value="VND" tabindex="12" readonly class="text-left" /></div>
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AATXEXR)</span></div>
+                    <div class="divTableCell">
+                        <input type="text" name="AATEXRT" id="AATEXRT" readonly tabindex="20" />
+                        @Html.TextBoxFor(x => x.AATXEXR, new { @tabindex = "21", @readonly = "", @class = "input-r-display",@style="width:200px" })
+                    </div>
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AATXCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AATXCD, Model.TaxCodes, RLayout.SelectAction, new { @tabindex = "13" })*@
+                        <div id="div-AATXCD" class="input-icons">
+                            @Html.HiddenFor(x => x.AATXCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input type="text" class="input-as-select" name="AATXCD-js" id="AATXCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="13" />
+                            <input type="text" name="AATXCD_dl" id="AATXCD_dl" value="" readonly class="input-r-display" />       @*20/12*@
+                        </div>
+                    </div>
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AATXRT)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AATXRT, new { @tabindex = "21", @readonly = "" })
+
+                    </div>
+
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AASHPDT)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AASHPDT, new { @tabindex = "9" })
+                    <span class="title-float-left">MM/YYYY</span>
+                </div>
+
+                <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AADLPOT)</span></div>
+                <div class="divTableCell">
+                    @Html.TextBoxFor(x => x.AADLPOT, new { @tabindex = "23" })
+                </div>
+
+            </div>
+
+
+            <div class="divTableRow">
+                <div class="divTableCell border-0"></div>
+                <div class="divTableCell border-0"></div>
+
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AADLVCD)</span></div>
+                <div style="position:relative" class="divTableCell">
+                    <div class="input-icons" id="div-AADLVCD">
+                        @Html.HiddenFor(x => x.AADLVCD)
+                        <i class="fa fa-caret-down icon"></i>
+                        <input type="text" class="input-as-select" name="AADLVCD-js" id="AADLVCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="10" />
+                        <input type="text" name="AADLVCD_dl" id="AADLVCD_dl" value="" readonly class="input-r-display" />
+                    </div>
+                </div>
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AARMK1)</span></div>
+                <div class="divTableCell"> @Html.TextBoxFor(x => x.AARMK1, new { @class = "w-100" })</div>
+
+            </div>
+
+
+            <div class="divTableRow">
+                <div class="divTableCell border-0"></div>
+                <div class="divTableCell border-0"></div>
+
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AAPRICE)</span></div>
+                @*PNB EDIT*@
+                <div class="divTableCell">
+                    @*@Html.DropDownListFor(x => x.AAPRICE, Model.Priceterms, RLayout.SelectAction, new { @tabindex = "14" })*@
+                    <div id="div-AAPRICE" class="input-icons">
+                        @Html.HiddenFor(x => x.AAPRICE)
+                        <i class="fa fa-caret-down icon"></i>
+                        <input type="text" name="AAPRICE-js" id="AAPRICE-js" class="input-as-select" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="14" />
+                        <input type="text" name="AAPRICE_dl" id="AAPRICE_dl" value="" readonly="" class="input-r-display">
+                    </div>
+                </div>
+                <div class="divTableCell "><span class="title">@Html.DisplayNameFor(x => x.AARMK2)</span></div>
+                <div class="divTableCell">
+                    @Html.TextBoxFor(x => x.AARMK2, new { @class = "w-100" })
+                </div>
+
+
+            </div>
+            <div class="divTableRow">
+                <div class="divTableCell border-0"></div>
+                <div class="divTableCell border-0"></div>
+                <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AAPTTRM)</span></div>
+                @*PNB EDIT*@
+                <div class="divTableCell">
+                    @*@Html.DropDownListFor(x => x.AAPTTRM, Model.TypeOfTerms, RLayout.SelectAction, new { @tabindex = "15" })*@
+                    <div id="div-AAPTTRM" class="input-icons">
+                        @Html.HiddenFor(x => x.AAPTTRM)
+                        <i class="fa fa-caret-down icon"></i>
+                        <input type="text" name="AAPTTRM-js" id="AAPTTRM-js" class="input-as-select" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="15" />
+                        <input type="text" name="AAPTTRM_dl" id="AAPTTRM_dl" value="" readonly="" class="input-r-display">
+                    </div>
+                </div>
+                <div class="divTableCell "><span class="title">@Html.DisplayNameFor(x => x.AARMK3)</span></div>
+                <div class="divTableCell">
+                    @Html.TextBoxFor(x => x.AARMK3, new { @class = "w-100" })
+                </div>
+
+            </div>
+
+
+            <div class="divTableRow">
+                <div class="divTableCell border-0"></div>
+                <div class="divTableCell border-0"></div>
+                <div class="divTableCell border-bottom-0"></div>
+                <div class="divTableCell border-0"></div>
+                <div class="divTableCell "><span class="title">@Html.DisplayNameFor(x => x.AARMK4)</span></div>
+                <div class="divTableCell">
+                    @Html.TextBoxFor(x => x.AARMK4, new { @class = "w-100" })
+                </div>
+            </div>
+            <div class="divTableRow">
+                <div class="divTableCell border-0"></div>
+                <div class="divTableCell border-0"></div>
+                <div class="divTableCell border-bottom-0"></div>
+                <div class="divTableCell border-0"></div>
+                <div class="divTableCell "><span class="title">@Html.DisplayNameFor(x => x.AARMK5)</span></div>
+                <div class="divTableCell">
+                    @Html.TextBoxFor(x => x.AARMK5, new { @class = "w-100" })
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-lg-12 p-0  my-2">
+        <div class="float-right">
+            <small id="message" style="font-size:11px; color:#ff0000; font-weight:bold"></small>
+            <button type="button" class="add-item" onclick="CreatePurchaseContractEntry_Item()">@Button.BtnAddItem</button>
+            <button type="submit" class="confirm">@Button.BtnConfirm</button>
+            <button type="button" class="cancel" onclick="javascript:window.location.href='@Url.Action("GetPurchaseContractEntry")'">@Button.BtnCancel</button>
+        </div>
+    </div>
+
+</div>
+<div class="content-bottom row mx-0">
+    @Html.Partial("_PurchaseContractEntry")
+</div>
+</form>
+<section>
+    <script src="~/Scripts/SaveDataChangeLanguage/PurchaseAdd.js"></script>
+</section>

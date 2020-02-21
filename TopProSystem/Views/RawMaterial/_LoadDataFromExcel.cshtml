@@ -1,0 +1,102 @@
+﻿@*@using PagedList.Mvc;
+    @using PagedList;*@
+@using StaticResources
+@using StaticResources.View.PUR001;
+@model IEnumerable<TopProSystem.Areas.MasterSetting.Models.DataInspecExcel>
+@*@model IPagedList<TopProSystem.Areas.MasterSetting.Models.InspectionItemNoMaterial>*@
+
+@{
+    Layout = "";
+}
+
+
+@{
+    int i = 1;
+}
+@foreach (var item in Model)
+{
+
+    <tr id="row_n" class="td-Row">
+        <th class="setNo"></th>
+        <th><input class="inspecNo" id="inspecNo_n" name="inspecNo_n" type="text" value="@item.InspectionNo" required /></th>
+        <th><input id="rawMatNo_n" name="rawMatNo_n" type="text" value="@item.RawMaterialNo" readonly /></th>
+        <th><input id="quantity_n" name="quantity_n" type="text" value="@item.Quantity" readonly /></th>
+        <th><input class="weight-check" id="weight_n" name="weight_n" type="text" value="@item.Weight" required onkeypress="return validate(event)" ; /></th>
+        <th><input id="statusCode_n" name="statusCode_n" type="text" value="@item.StatusCode" readonly /></th>
+        <th><input id="purUP_n" name="purUP_n" type="text" value="@item.PurchaseUP" readonly /></th>
+        <th><input id="purUPD_n" name="purUPD_n" type="text" value="@item.PurchaseUPD" readonly /></th>
+        <th><input id="purA_n" name="purA_n" type="text" value="@item.PurAmount" readonly /></th>
+        <th><input id="purAD_n" name="purAD_n" type="text" value="@item.PurAmountDomestic" readonly /></th>
+        <th><input id="txA_n" name="txA_n" type="text" value="@item.TaxAmount" readonly /></th>
+        <th><input id="txAD_n" name="txAD_n" type="text" value="@item.TaxAmountDomestic" readonly /></th>
+        <th><input class="chkDel" id="chkDel_n" type="checkbox" style="margin-top:7px" />
+        <th style="display:none"><input id="chkExisted_@i" name="chkExisted_@i" value="0" style="margin-top:7px" />
+</tr>
+    i++;
+
+}
+
+@*<script>
+    function validate(evt) {
+        var theEvent = evt || window.event;
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+        var regex = /[0-9]|\./;
+        if (!regex.test(key)) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+
+    $(".weight-check").change(function () {
+        var weiVal = $(this).val();
+        var newwei = Number(weiVal).toFixed(2);
+        $(this).val(newwei);
+
+        var getID = $(this).attr('id');
+        var stt = getID.split('_')[1];
+
+        var purUP = $("#purUP_" + stt).val();
+
+        if (purUP != '') {
+            if (newwei != '') {
+                var purAmt = Number(parseFloat(purUP) * parseFloat(newwei)).toFixed(2);
+                $("#purA_" + stt).val(purAmt);
+
+                var taxRate = $("#AATXRT").val() == '' ? '' : $("#AATXRT").val().trim();
+                if (taxRate != '') {
+                    var txAmt = Number(parseFloat(taxRate) / 100 * parseFloat(purAmt)).toFixed(2);
+                    $("#txA_" + stt).val(txAmt);
+                }
+
+            }
+            else {
+                $("#purA_" + stt).val('');
+                $("#txA_" + stt).val('');
+            }
+        }
+
+        var purUPD = $("#purUPD_" + stt).val();
+        if (purUPD != '') {
+            if (newwei != '') {
+                var purDAmt = Number(parseFloat(purUPD) * parseFloat(newwei)).toFixed(2);
+                $("#purAD_" + stt).val(purDAmt);
+
+                var taxRate = $("#AATXRT").val() == '' ? '' : $("#AATXRT").val().trim();
+                if (taxRate != '') {
+                    var txAmtD = Number(parseFloat(taxRate) / 100 * parseFloat(purDAmt)).toFixed(2);
+                    $("#txAD_" + stt).val(txAmtD);
+                }
+            }
+            else {
+                $("#purAD_" + stt).val('');
+                $("#txAD_" + stt).val('');
+            }
+        }
+
+
+
+
+    });
+
+</script>*@

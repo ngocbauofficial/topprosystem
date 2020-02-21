@@ -1,0 +1,52 @@
+﻿
+@using StaticResources
+    
+<style>
+</style>
+<button id="open-menu-toggle" title="@RLayout.Togglemenu"><i class="fa fa-arrow-right"></i></button>
+<div class="menu-hide">
+    <div class="header-menu">
+        <strong><i class="fa fa-cogs"> </i> @ItemMenuMaster.MasterSetting</strong>
+        <button id="close-menu-toggle" title="@RLayout.Togglemenu" onclick="closeHiddenMenu()"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="menu-hide-content">
+        <ul class="list-unstyled">
+
+            @{
+                var siteMap = new TopProSystem.Extension.SiteMapRole.XmlSiteMap();
+                siteMap.LoadFrom("~/Extension/SiteMap/MasterMenu.config");
+            }
+            @{
+                var rootNode = siteMap.RootNode;
+            }
+            @helper RenderMenuItem(TopProSystem.Extension.SiteMapRole.SiteMapNode item)
+            {
+                string url = null;
+                if (!string.IsNullOrEmpty(item.ControllerName) && !string.IsNullOrEmpty(item.ActionName))
+                {
+                    if (!string.IsNullOrEmpty(item.Area))
+                    {
+                        url = Url.Action(item.ActionName, item.ControllerName, new { Area = item.Area }, null);
+
+                    }
+                    else
+                    {
+                        url = Url.Action(item.ActionName, item.ControllerName, new { Area = "" }, null);
+                    }
+                }
+                else if (!string.IsNullOrEmpty(item.Url))
+                {
+                    url = item.Url.StartsWith("~/", StringComparison.Ordinal) ? Url.Content(item.Url) : item.Url;
+                }
+                <li class="nav-item"> <a class="nav-link" href="@url">@item.name</a></li>
+
+            }
+            @foreach (var item in rootNode.ChildNodes.Where(x => x.Visible).OrderBy(x=>x.name.Substring(0,1)))
+            {
+                @RenderMenuItem(item)
+            }
+        </ul>
+    </div>
+    <div></div>
+
+</div>

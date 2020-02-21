@@ -1,0 +1,156 @@
+﻿@using StaticResources
+<script type="text/javascript">
+      const URL_DELETE_SOMETHING = '/Master/Delete_Due_Maker_Commodity_Days_Cal_Weigth';
+    const URL_CHECK_SRCODE_EXISTS = '/Master/CheckSRCodeExists';
+    const URL_CHECK_SROCDE_INSUSED_INORTHER = '/Master/CheckSRCodeInUsedOnOrtherData';
+
+   $('#dataTable').on("click", function () {
+        var checkboxs = $(this).find("input[type=checkbox]:checked");
+        if (checkboxs.length != 0) {
+            checkboxs.each(function () {
+                var $checkbox = $(this);
+                $.getJSON(URL_CHECK_SROCDE_INSUSED_INORTHER, {
+                    srCode: $checkbox.val(), classiCode:$('input[name*="classicode"]').val() }).done(function (data) {
+                        if (data.message != null && data.message!='') {
+                            ErrorAlert("@RLayout.IsUsed " + data.message)
+                        $checkbox.prop('checked', false);
+                    }
+                }).fail(function (rs) {
+                    console.log(rs.responseText);
+                })
+            })
+        }
+    })
+
+
+    $('#deleteBtn').click(function () {
+        var length = $('input[type="checkbox"]:checked').length;
+        if (length == 0) {
+                   alert("@Html.Raw(RLayout.ErrorNoRowSelect)");
+            return false;
+        }
+        var val = '';
+        var id = '';
+        $('input[type="checkbox"]:checked').each(function () {
+            val += $(this).val() + '|';
+            id = $(this).attr('id');
+        })
+
+        val = id + '|' + val.substring(0, val.length - 1);
+
+        $.confirm({
+            title: "<span class='text-secondary'>@Button.BtnConfirm</span>",
+            icon: 'fa fa-warning',
+            content: '@Html.Raw(RLayout.ContentDelete)',
+            type: 'blue',
+            buttons: {
+                confirm: {
+                    text: '@Button.BtnConfirm',
+                    btnClass: 'btn-confirm text-capitalize',
+                    action: function () {
+                        $.ajax({
+                            url: URL_DELETE_SOMETHING,
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                _array: function () { return val; }
+                            },
+                            success: function (rs) {
+                                if (rs != true)
+                                    window.location.href = rs;
+                                else {
+                                    SuccessAlert('@RLayout.DeleteMsg');
+                                    $('#dataTable').DataTable().ajax.reload();
+                                }
+                            },
+                            error: function (rs) {
+                                console.log(rs.responseText);
+                                alert("Session time out, please login !");
+                                window.location.href = '@Url.Action("GetLogin","Account",new {area = "" })';
+                            }
+                        });
+                    }
+                },
+                cancel: {
+                    text: '@Button.BtnCancel',
+                    btnClass: 'btn-cancel text-capitalize',
+
+                }
+            }
+        })
+    })
+
+
+        $('#Insert-Master-Form').validate({
+            rules: {
+                MNSRCD: {
+                    required: true,
+                    alphatext: true,
+                    maxlength: 6,
+                    minlength: 1,
+                    remote: {
+                        url: URL_CHECK_SRCODE_EXISTS,
+                        type: 'GET',
+                        data: { arraycode: function () { return $('#MNCLSCD').val() + '|' + $('#MNSRCD').val(); } }
+                    }
+                },
+                MNSRSNM: {
+                    maxlength: 15
+                },
+                MNSRNM: {
+                    required: true,
+                    maxlength: 30
+                }
+            },
+            messages: {
+                MNSRCD: {
+                    required: '@Html.Raw(RLayout.Required)',
+                    remote: '@Html.Raw(RLayout.Exists)',
+                    maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"6"))',
+                    minlength: '@Html.Raw(string.Format(RLayout.Minlength,"1"))',
+                },
+                MNSRNM: {
+                 required: '@Html.Raw(RLayout.Required)',
+                    maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"30"))',
+                },
+                MNSRSNM: {
+                   maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"15"))',
+                },
+            },
+            errorElement: 'label',
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+            },
+        })
+
+
+
+         $('#Update-Master-Form').validate({
+            rules: {
+                MNSRSNM: {
+                    maxlength: 15
+                },
+                MNSRNM: {
+                    required: true,
+                    maxlength: 30
+                }
+            },
+            messages: {
+               MNSRSNM:{
+                    maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"15"))',
+                },
+                MNSRNM: {
+                    required: '@Html.Raw(RLayout.Required)',
+                      maxlength:'@Html.Raw(string.Format(RLayout.Maxlength,"30"))',
+                }
+            },
+            errorElement: 'label',
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+            },
+    })
+
+     $.validator.addMethod("alphatext", function (value, element) {
+       return alphatext(value);
+    }, "@RLayout.InValidValue");
+</script>

@@ -1,0 +1,313 @@
+﻿@using StaticResources
+@using StaticResources.View.PUR001
+@model TopProSystem.Areas.MasterSetting.Models.PUR001
+@{
+    /**/
+    Layout = "~/Views/Shared/_LayoutPagePurchase.cshtml";
+    ViewBag.Title = Resource.MainPurchaseTile;
+    ViewBag.content =Resource.MainPurchaseTile;
+
+}
+<style>
+    .label-search {
+        width: 125px;
+        font-size: 13px;
+    }
+
+    .input-search {
+        width: 400px;
+    }
+
+    .form-group {
+        margin-bottom: 0px;
+        min-width: 525px;
+    }
+
+    .pos-top .row:nth-child(2) {
+        margin-top: 0px !important;
+    }
+
+    select.search {
+        height: 26px;
+        width: 150px;
+    }
+</style>
+<div class="pos-top">
+    <div class="row mx-0">
+        <div class="col-lg-12">
+            <form action="#" id="form-search" method="get">
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label ">@Html.DisplayNameFor(x => x.AAPURNO)</label>
+                    <div class="input-search">
+                        <div class="d-inline">
+                            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" id="AAPURNO" name="AAPURNO" class="search" value="" />
+                            <button type="button" id="btnSearch" class="btn-primary search">@Button.BtnSeach</button>
+                        </div>
+
+                    </div>
+                    
+                </div>
+                
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label">@Html.DisplayNameFor(x => x.AARMTP)</label>
+                    <div class="input-search">
+                        <div class="d-inline">
+                            <div class="input-icons" id="div-AARMTP">
+                                @Html.HiddenFor(x => x.AARMTP)
+                                <i class="fa fa-caret-down icon"></i>
+                                <input type="text" name="AARMTP-js" id="AARMTP-js" class="input-as-select search" readonly placeholder="@RLayout.SelectAction" />
+                                <input type="text" name="AARMTP_dl" id="AARMTP_dl" value="" readonly class="search" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label">@Html.DisplayNameFor(x => x.AAMKCD)</label>
+                    <div class="input-search">
+                        <div class="d-inline">
+                            <div class="input-icons" id="div-AAMKCD">
+                                @Html.HiddenFor(x => x.AAMKCD)
+                                <i class="fa fa-caret-down icon"></i>
+                                <input type="text" name="AAMKCD-js" id="AAMKCD-js" class="input-as-select search" readonly placeholder="@RLayout.SelectAction" tabindex="5" />
+                                <input type="text" name="AAMKCD_dl" id="AAMKCD_dl" value="" readonly class="search" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label">@Html.DisplayNameFor(x => x.AASPLCD)</label>
+                    <div class="input-search">
+                        <div class="d-inline">
+                            <div id="div-AASPLCD" class="input-icons">
+                                @Html.HiddenFor(x => x.AASPLCD)
+                                <i class="fa fa-caret-down icon"></i>
+                                <input type="text" name="AASPLCD-js" class="input-as-select search" id="AASPLCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="7" />
+                                <input type="text" name="AASPLCD_dl" id="AASPLCD_dl" value="" readonly class="search" />
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label">@Html.DisplayNameFor(x => x.AACMDCD)</label>
+                    <div class="input-search">
+                        <div class="d-inline">
+                            <div id="div-AACMDCD" class="input-icons">
+                                @Html.HiddenFor(x => x.AACMDCD)
+                                <i class="fa fa-caret-down icon"></i>
+                                <input type="text" name="AACMDCD-js" class="input-as-select search" id="AACMDCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="7" />
+                                <input type="text" name="AACMDCD_dl" id="AACMDCD_dl" value="" readonly class="search" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label">@Html.DisplayNameFor(x=>x.AAUSRCD)</label>
+                    <div class="input-search">
+                        <div class="d-inline">
+                            @*@Html.DropDownListFor(x => x.AAUSRCD, Model.UserCodes, RLayout.SelectAction, new { @class = "search", @tabindex = "8" })
+                            <input type="text" name="AAUSRCD_dl" id="AAUSRCD_dl" value="" readonly />*@
+
+                            <div id="div-AAUSRCD" class="input-icons">
+                                @Html.HiddenFor(x => x.AAUSRCD)
+                                <i class="fa fa-caret-down icon"></i>
+                                <input type="text" name="AAUSRCD-js" id="AAUSRCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" class="input-as-select search" readonly tabindex="8" />
+                                <input type="text" name="AAUSRCD_dl" id="AAUSRCD_dl" value="" readonly class="search" />
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label">@Html.DisplayNameFor(x => x.AASHPDT)</label>
+                    <div class="d-inline">
+                        <input type="text"  id="AASHPDT" name="AASHPDT" class="search" value="" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label">@Html.DisplayNameFor(x => x.AASPPNO)</label>
+                    <div class="d-inline">
+                        <input type="text" id="AASPPNO" name="AASPPNO" class=" search" value="" />
+                    </div>
+                </div>
+                @*<div class="form-group row">
+                    <label class="label-search col-form-label"></label>
+                    <div class="input-search">
+                        <button type="button" id="btnSearch" class="btn-primary search">@Button.BtnSeach</button>
+                    </div>
+                </div>*@
+            </form>
+        </div>
+    </div>
+    <div class="row mx-0 mt-5">
+        <div class="col-lg-12">
+            <button class="btn-danger float-right ml-2" id="deleteBtn">@Button.BtnDelete</button>
+            <a href="@Url.Action("GetPurchaseContractEntry_Add")" class="button float-right btn-addnew">@Button.BtnAdd</a>
+        </div>
+    </div>
+</div>
+<div class="data-display">
+    <table class="table-sm w-100" id="dataTable" >
+        <thead>
+            <tr>
+                <th># &nbsp;</th>
+                <th>@Html.DisplayNameFor(x => x.AAPURNO)</th>
+                <th>@Resource.MakerName</th>
+                <th>@Html.DisplayNameFor(x => x.AASPPNO)</th>
+                <th>@Resource.SupplierName</th>
+                <th>@Html.DisplayNameFor(x=>x.AACMDCD)</th>
+                <th>@Html.DisplayNameFor(x=>x.AAIDCD)</th>
+                <th>@Html.DisplayNameFor(x=>x.AACTRTP)</th>
+                <th>@Html.DisplayNameFor(x => x.AASHPDT)</th>
+                <th>@Html.DisplayNameFor(x => x.AAIDCD)</th>
+                <th>@Html.DisplayNameFor(x => x.AADLVCD)</th>
+                <th>@Button.LbEdit</th>
+                <th>@Button.LbSelect</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        var t = $('#dataTable').DataTable({
+            "serverSide": true, // for process server side
+            "processing": true, // for show progress bar
+            "filter": false, // this is for disable filter (search box)
+            "orderMulti": true, // for disable multiple column at once
+            // "stateSave": true,
+            "scrollX": true,
+            "autoWidth":false,
+            "pageLength": DataTableDisplayLength,
+            "search.smart": false,
+            "searchable": false,
+            "orderable": false,
+            "targets": 0,
+            "lengthChange": false,
+            "ordering": false,
+            "info": false,
+            "ajax": {
+                "url": "/Purchase/AjaxHandler",
+                "type": "POST",
+                "datatype": "json",
+                data: function (data) {
+                    data.PurchaseNo = $('#AAPURNO').val();
+                    data.ShippingMonth = $('#AASHPDT').val();
+                    data.SupplierContractNo = $('#AASPPNO').val();
+                    data.MakerCode = $('#AAMKCD').val();
+                    data.SupplierCode = $('#AASPLCD').val();
+                    data.CommondityCode = $('#AACMDCD').val();
+                    data.UserCode = $('#AAUSRCD').val();
+                    data.RawMaterialType = $('#AARMTP').val();
+                    return data
+                        ;
+                }
+            },
+            "language": {
+                "paginate": {
+                    "first": '<i class="fa fa-fast-backward"></i>',
+                    "last": '<i class="fa fa-fast-forward"></i>',
+                    "next": '<i class="fa fa-forward"></i>',
+                    "previous": '<i class="fa fa-backward"></i>'
+                },
+                "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+            },
+            "columns": [
+                { "data": function () {return "" } },
+                { "data": "ABPURNO" },
+                { "data": "AAMKCD" },
+                { "data": "AASPPNO" },
+                { "data": "AASPLCD" },
+                { "data": "AACMDCD" },
+                { "data": "AAUSRCD" },
+                { "data": "AACTRTP" },
+                { "data": "AASHPDT" },
+                { "data": "AAIDCD" },
+                { "data": "AADLVCD" },
+                {
+                    "render": function (data, type, row)
+                    {
+                        //if (row["disableEdit"] !== '') return '';
+                        return '<a href="/Purchase/GetPurchaseContractEntry_Change?key=' + row["AADSTNC"] + '" class="edit"><img src="/Images/Icon/edit-icon.png" /></a>'
+                    }
+                },
+                {
+                    "render": function (data, type, row)
+                    {
+                        if (!row["_canDelete"]) {
+                            return '<input type="checkbox" name="name" value="' + row["AADSTNC"] + '"/>'
+                        } else {
+                            return "";
+                        }
+                    }
+                }
+            ]
+        });
+        t.on('draw.dt', function () {
+            var PageInfo = $('#dataTable').DataTable().page.info();
+            t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1 + PageInfo.start;
+            });
+        });
+        $('#btnSearch').on('click', function () {
+            $('#dataTable').DataTable().ajax.reload();
+        })
+    });
+    $('#deleteBtn').click(function () {
+        var length = $('input[type="checkbox"]:checked').length;
+        if (length == 0) {
+            alert("@Html.Raw(RLayout.ErrorNoRowSelect)");
+            return false;
+        }
+        var vals = [];
+        $('input[type="checkbox"]:checked').each(function () {
+            vals.push($(this).val());
+        });
+        $.confirm({
+            title: "<span class='text-secondary'>@Button.BtnConfirm</span>",
+            icon: 'fa fa-warning',
+            content: '@Html.Raw(RLayout.ContentDelete)',
+            type: 'blue',
+            buttons: {
+                confirm: {
+                    text: '@Button.BtnConfirm',
+                    btnClass: 'btn-confirm text-capitalize',
+                    action: function () {
+                        $.ajax({
+                            url: '/Purchase/DeletePurchaseContract',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                keys: function () { return vals.join('|'); }
+                            },
+                            success: function (rs) {
+                                console.log(typeof rs);
+                                if (typeof rs !== 'boolean')
+                                    ErrorAlert("Cannot delete, please contact support for error: " + rs);
+                                else {
+                                    if (rs) {
+                                        SuccessAlert('@RLayout.DeleteMsg');
+                                        $('#dataTable').DataTable().ajax.reload();
+                                    } else {
+                                        ErrorAlert("Cannot delete !");
+                                    }
+                                }
+                            },
+                            error: function (rs) {
+                                console.log(rs.responseText);
+                            }
+                        });
+                    }
+                },
+                cancel: {
+                    text: '@Button.BtnCancel',
+                    btnClass: 'btn-cancel text-capitalize',
+                }
+            }
+        });
+    })
+</script>
+@section scripts{
+    <script src="~/Scripts/SaveDataChangeLanguage/SearchCommon.js"></script>
+    }

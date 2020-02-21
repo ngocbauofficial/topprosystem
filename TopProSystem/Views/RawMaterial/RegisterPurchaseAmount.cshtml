@@ -1,0 +1,327 @@
+﻿@model TopProSystem.Areas.MasterSetting.Models.INV001
+@using StaticResources
+@{
+    ViewBag.Title = "Register Purchase Amount";
+    Layout = "~/Views/Shared/_LayoutPageRawMaterial.cshtml";
+    ViewBag.content = ViewBag.Title;
+}
+
+<div class="content-top row mx-0">
+    <form action="/" method="post">
+        <div class="w-100 row m-0">
+            <div class="divTable w-50" style="border: 1px solid #000; border-right:none">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                        <div class="divTableCell border-bottom-0"><span class="title">@Html.DisplayNameFor(x => x.CACTRNO)</span></div>
+                        <div class="divTableCell border-bottom-0">
+                            @Html.TextBoxFor(x => x.CACTRNO, new { @class = "searchtxt" })
+                            <button type="button" id="btnSearch" class="search">@Button.BtnSeach</button>
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CACTITM)</span></div>
+                        <div class="divTableCell">@Html.TextBoxFor(x => x.CACTITM, new { @class = "searchtxt" })</div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CAPIVNO)</span></div>
+                        <div class="divTableCell">@Html.TextBoxFor(x => x.CAPIVNO, new { @readonly = "" })</div>
+                    </div>
+
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CASEDT)</span></div>
+                        <div class="divTableCell">@Html.TextBoxFor(x => x.CASEDT, new { @readonly = "" })</div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CACRRCD)</span></div>
+                        <div class="divTableCell">@Html.TextBoxFor(x => x.CACRRCD, new { @readonly = "" })</div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CADCRCD)</span></div>
+                        <div class="divTableCell"><input type="text" name="name" value="VND" readonly /></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divTable w-50 " style="border: 1px solid #000">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CAPRUP)</span></div>
+                        <div class="divTableCell">@Html.TextBoxFor(x => x.CAPRUP)</div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CAEXRT)</span></div>
+                        <div class="divTableCell">
+                            @Html.TextBoxFor(x => x.CAEXRTT, new { @readonly = "" })
+                            @Html.TextBoxFor(x => x.CAEXRT, new { @readonly = "" })
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CATEXRT)</span></div>
+                        <div class="divTableCell">
+                            @Html.TextBoxFor(x => x.CATEXRT, new { @readonly = "" })
+                            @Html.TextBoxFor(x => x.CATXEXR, new { @readonly = "" })
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CATXCD)</span></div>
+                        <div class="divTableCell">@Html.TextBoxFor(x => x.CATXCD, new { @readonly = "" })</div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CATXRT)</span></div>
+                        <div class="divTableCell">@Html.TextBoxFor(x => x.CATXRT, new { @readonly = "" })</div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title">&nbsp;</span></div>
+                        <div class="divTableCell"><input type="text" name="name" value="" style="visibility:hidden" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="float-right my-2">
+            <button type="button" class="confirm" onclick="Update()">@Button.BtnConfirm   </button>
+            <button type="button" class="cancel">@Button.BtnCancel</button>
+        </div>
+    </form>
+</div>
+<div class="data-display content-bottom">
+    <table class="table-sm w-100" id="dataTable">
+        <thead>
+            <tr>
+                <th># &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th>@Html.DisplayNameFor(x => x.CAINVNO)</th>
+                <th>@Html.DisplayNameFor(x => x.CASPEC)</th>
+                <th>@Html.DisplayNameFor(x => x.CABSZT)</th>
+                <th>@Html.DisplayNameFor(x => x.CABSZW)</th>
+                <th>@Html.DisplayNameFor(x => x.CABSZL)</th>
+                <th>@Html.DisplayNameFor(x => x.CAPRDNM)</th>
+                <th>@Html.DisplayNameFor(x => x.CAPRDDIA)</th>
+                <th>@Html.DisplayNameFor(x => x.CASTLGR)</th>
+                <th>@Html.DisplayNameFor(x => x.CAQTY)</th>
+                <th>@Html.DisplayNameFor(x => x.CAWT)</th>
+
+                <th>@Html.DisplayNameFor(x => x.CAPRUPD)</th>
+                <th>@Html.DisplayNameFor(x => x.CAPRUPD)</th>
+                <th>@Html.DisplayNameFor(x => x.CAPURAT)</th>
+                <th>@Html.DisplayNameFor(x => x.CAPURATD)</th>
+                <th>@Html.DisplayNameFor(x => x.CAPTXAT)</th>
+                <th>@Html.DisplayNameFor(x => x.CAPTXAD)</th>
+            </tr>
+        </thead>
+        @*<tfoot>
+                <tr>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style=" border-left: 1px solid #cfcbcb;">Totals</td>
+                    <td></td>
+                    <td></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                </tr>
+            </tfoot>*@
+    </table>
+</div>
+
+<div id="exp-loading" style="position:absolute; left: 50%; bottom: 50%; display: none; "><span class="fa fa-spinner fa-pulse fa-3x fa-fw"></span></div>
+
+
+<script>
+    var searching = { search: false, nodata: true };
+    function Update() {
+        var CACTRNO = $('#CACTRNO').val();
+        var CACTITM = $('#CACTITM').val();
+        var CAPRUP = $('#CAPRUP').val();
+        if (searching.search) {
+            if (!searching.nodata) {
+                if ($('#CAPRUP').val() === '') {
+                    alert('Please enter Purchase Unit Price.');
+                    return;
+                }
+                $('#exp-loading').css('display', 'block');
+                $.ajax({
+                    url: '@Url.Action("UpdateRegisterPurchaseAmount","RawMaterial")',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { purchaseNo: CACTRNO, itemNo: CACTITM, purchasePrice: CAPRUP },
+                    success: function (rs) {
+                        if (rs == 1) {
+                            $('#exp-loading').css('display', 'none');
+                            SuccessAlert("Update successfull.");
+                            searching.search = false;
+                            searching.nodata = true;
+                        }
+                        else {
+                            $('#exp-loading').css('display', 'none');
+                            ErrorAlert("Update fail, please check data.");
+                        }
+                    },
+                    error: function (rs) {
+                        $('#exp-loading').css('display', 'none');
+                        ErrorAlert("Update fail, please check data.");
+                    }
+                });
+            }
+            else {
+                ErrorAlert("No data found.");
+            }
+
+        } else {
+            ErrorAlert("Please search to confirm data first.");
+        }
+
+    }
+
+    $("#CAPRUP").keyup(function () {
+        if (searching.search == true && searching.nodata == false) {
+            $('#dataTable').DataTable().ajax.reload();
+        }
+    })
+    $(".searchtxt").keyup(function () {
+        var input = $(this);
+        if (input.val()) {
+            input.css("border", "1px solid #999999");
+        }
+    });
+    $('#btnSearch').click(function () {
+        var CACTRNO = $('#CACTRNO').val();
+        var CACTITM = $('#CACTITM').val();
+        if ((!CACTRNO) || !CACTITM) {
+            alert("Please enter Purchase Contract No & Item No");
+
+            if (!CACTITM) {
+                $('#CACTITM').css("border", "1px solid red")
+                $('#CACTITM').focus();
+            }
+            if (!CACTRNO) {
+                $('#CACTRNO').css("border", "1px solid red")
+                $('#CACTRNO').focus();
+            }
+            return false;
+        }
+        else {
+            searching.search = true;
+            $.ajax({
+                url: "/RawMaterial/SearchINV001",
+                type: "POST",
+                async: true,
+                typedata: 'json',
+                data: { 'CACTRNO': CACTRNO, 'CACTITM': CACTITM },
+                success: function (data) {
+                    searching.search = true;
+                    if (data == false) {
+                        searching.nodata = true;
+                        ErrorAlert("No data found.");
+                        $('#CAPIVNO').val("");
+                        $('#CASEDT').val("");
+                        $('#CACRRCD').val("");
+                        $('#CAPRUP').val("");
+                        $('#CAEXRTT').val("");
+                        $('#CATEXRT').val("");
+                        $('#CATXCD').val("");
+                        $('#CATXRT').val("");
+                        $('#CAEXRT').val("");
+                        $('#CATXEXR').val("");
+                        $('#dataTable').DataTable().ajax.reload();
+
+                    }
+                    else {
+                        searching.nodata = false;
+                        $('#CAPIVNO').val(data.CAPIVNO);
+                        $('#CASEDT').val(dateFormat(new Date(parseInt((data.CASEDT).match(/\d+/)[0]))) );
+                        $('#CACRRCD').val(data.CACRRCD);
+                         $('#CAPRUP').val(data.CAPRUP);
+                        $('#CAEXRTT').val(data.CAEXRTT);
+                        $('#CATEXRT').val(data.CATEXRT);
+                        $('#CATXCD').val(data.CATXCD);
+                        $('#CATXRT').val(data.CATXRT);
+                        $('#CAEXRT').val(data.CAEXRT);
+                        $('#CATXEXR').val(data.CATXEXR);
+                        $('#dataTable').DataTable().ajax.reload();
+                    }
+                },
+                error: {},
+            });
+        }
+    })
+    var TotalQty;
+    var TotalWeight;
+    $(document).ready(function () {
+        var t = $('#dataTable').DataTable({
+            "serverSide": true, // for process server side
+            "processing": true, // for show progress bar
+            "filter": false, // this is for disable filter (search box)
+            "orderMulti": true, // for disable multiple column at once
+            // "stateSave": true,
+            "scrollX": true,
+            "autoWidth": false,
+            "pageLength": DataTableDisplayLength,
+            "search.smart": false,
+            "searchable": false,
+            "orderable": false,
+            "targets": 0,
+            "lengthChange": false,
+            "ordering": false,
+            "info": false,
+            "ajax": {
+                "url": "/RawMaterial/AjaxHandlerRegisterPurchaseAmount",
+                "type": "POST",
+                "datatype": "json",
+                "data": function (data) {
+                    data.CACTRNO = $('#CACTRNO').val();
+                    data.CACTITM = $('#CACTITM').val();
+                    data.CAPRUP = $('#CAPRUP').val();
+                    return data;
+                },
+                dataSrc: function (data) {
+                    TotalQty = data.TotalQty;
+                    TotalWeight = data.TotalWeight;
+                    return data.data;
+                }
+            },
+            "language": {
+                "paginate": {
+                    "first": '<i class="fa fa-fast-backward"></i>',
+                    "last": '<i class="fa fa-fast-forward"></i>',
+                    "next": '<i class="fa fa-forward"></i>',
+                    "previous": '<i class="fa fa-backward"></i>'
+                },
+                "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+            },
+            "columns": [
+                { "data": function () { return ""; } },
+                { "data": "CAINVNO" },
+                { "data": "CAMCSPC" },
+                { "data": "CABSZT" },
+                { "data": "CABSZW" },
+                { "data": "CABSZL" },
+                { "data": "CAPRDNM" },
+                { "data": "CAPRDDIA" },
+                { "data": "CASTLGR" },
+                { "data": "CAQTY" },
+                { "data": "CAWT" },
+                { "data": "CAPRUP" },
+                { "data": "CAPRUPD" },
+                { "data": "CAPURAT" },
+                { "data": "CAPURATD" },
+                { "data": "CAPTXAT" },
+                { "data": "CAPTXAD" },
+            ],
+
+        });
+        t.on('draw.dt', function () {
+            var PageInfo = $('#dataTable').DataTable().page.info();
+            t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1 + PageInfo.start;
+            });
+        });
+    });
+</script>
+<div></div>

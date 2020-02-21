@@ -1,0 +1,249 @@
+﻿@model TopProSystem.Areas.MasterSetting.Models.INV001
+@using StaticResources
+@{
+                /**/
+
+                ViewBag.Title = "Print Raw Material Receving List";
+                Layout = "~/Views/Shared/_LayoutPageRawMaterial.cshtml";
+                ViewBag.content = "Print Raw Material Receving List";
+}
+
+
+<div class="row w-100 container-fluid m-0 p-0">
+    <form action="#" id="form-search" method="get">
+        <div class="col-md-12 mt-4 py-2 row w-100 m-0 p-0">
+            <div class="centerdiv" style="width: 280px">
+                <div class="row">
+                    <div class="col-md-4 col-4 p-0">
+                        <div class="float-right"><span class="title">@Html.DisplayNameFor(x => x.CASEDT)</span></div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        @Html.TextBoxFor(x => x.CASEDT, new { @data_provide = "datepicker" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-4 p-0">
+                        <div class="float-right"><span class="title">@Html.DisplayNameFor(x => x.CAVESEL)</span></div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        @Html.TextBoxFor(x => x.CAVESEL)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-4 p-0">
+                        <div class="float-right"><span class="title">Status</span></div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        @Html.DropDownList("Status", new List<SelectListItem> { new SelectListItem { Text = "WareHouse", Value = "1" }, new SelectListItem { Text = "No WareHouse", Value = "0" } })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-3 w-100 p-0">
+                <div class="text-center">
+                    <button type="button" id="btnExcel" class="excel">Excel</button>
+                    <button type="button" id="btnSearch" class="search">@Button.BtnSeach</button>
+                    <button type="button" id="btnConfirm" class="confirm">@Button.BtnConfirm</button>
+                    <button type="button" class="cancel">@Button.BtnCancel</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="row w-100 container-fluid mt-2 mx-0 p-0 border-top border-dark data-display">
+    <table class="w-100 mt-2" id="dataTable">
+        <thead>
+            <tr class="text-center thead">
+                <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #</th>
+                <th>@Html.DisplayNameFor(x => x.CASEDT)</th>
+                <th>@Html.DisplayNameFor(x => x.CACMDCD)</th>
+                <th>@Html.DisplayNameFor(x => x.CASPEC)</th>
+                <th>@Html.DisplayNameFor(x => x.CABSZT)</th>
+                <th>@Html.DisplayNameFor(x => x.CABSZW)</th>
+                <th>@Html.DisplayNameFor(x => x.CABSZL)</th>
+                <th>@Html.DisplayNameFor(x => x.CAPRDNM)</th>
+                <th>@Html.DisplayNameFor(x => x.CAPRDDIA)</th>
+                <th>@Html.DisplayNameFor(x => x.CAVESEL)</th>
+                <th>@Html.DisplayNameFor(x => x.CAINVNO)</th>
+                <th>PO No</th>
+                <th>@Html.DisplayNameFor(x => x.CAISPNO)</th>
+                <th>@Html.DisplayNameFor(x => x.CAQTY)</th>
+                <th>@Html.DisplayNameFor(x => x.CAWT)</th>
+                <th>@Html.DisplayNameFor(x => x.CALCTCD)</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                <th colspan="13" style="text-align:right">Total:</th>
+                <th class="text-center">0</th>
+                <th class="text-center">0</th>
+                <th class="text-center"></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<div id="exp-loading" style="position:absolute; left: 50%; bottom: 50%; display: none; "><span class="fa fa-spinner fa-pulse fa-3x fa-fw"></span></div>
+
+<script>
+
+        var TotalQty;
+        var TotalWeight;
+        $(document).ready(function () {
+            var t = $('#dataTable').DataTable({
+                "serverSide": true, // for process server side
+                "processing": true, // for show progress bar
+                "filter": false, // this is for disable filter (search box)
+                "orderMulti": true, // for disable multiple column at once
+                "stateSave": true,
+                "scrollX": true,
+                "autoWidth": false,
+                "pageLength": DataTableDisplayLength,
+                "search.smart": false,
+                "searchable": false,
+                "orderable": false,
+                "targets": 0,
+                "lengthChange": false,
+                "ordering": false,
+                "info": false,
+                "ajax": {
+                    "url": "/RawMaterial/AjaxhandlerReceivingList",
+                    "type": "POST",
+                    "datatype": "json",
+                    "data": function (data) {
+                        data.StockEntryDate = $('#CASEDT').val();
+                        data.VesselName = $('#CAVESEL').val();
+                        data.Status = $('#Status').val();
+                        return data;
+                    },
+                    dataSrc: function (data) {
+                        TotalQty = data.totalCAQTY;
+                        TotalWeight = data.totalCAWT;
+                        return data.data;
+                    }
+                },
+                "language": {
+                    "paginate": {
+                        "first": '<i class="fa fa-fast-backward"></i>',
+                        "last": '<i class="fa fa-fast-forward"></i>',
+                        "next": '<i class="fa fa-forward"></i>',
+                        "previous": '<i class="fa fa-backward"></i>'
+                    },
+                    "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+                },
+                "columns": [
+                    { "data": function () { return ""; } },
+                    { "data": "CASEDT" },
+                    { "data": "CACMDCD" },
+                    { "data": "CASPEC" },
+                    { "data": "CABSZT" },
+                    { "data": "CABSZW" },
+                    { "data": "CABSZL" },
+                    { "data": "CAPRDNM" },
+                    { "data": "CAPRDDIA" },
+                    { "data": "CAVESEL" },
+                    { "data": "CAINVNO" },
+                    { "data": "CAORDNO" },
+                    { "data": "CAISPNO" },
+                    { "data": "CAQTY" },
+                    { "data": "CAWT" },
+                    { "data": "CALCTCD" },
+                ],
+                "footerCallback": function (row, data, start, end, display) {
+                    var api = this.api();
+
+                    $(api.column(13).footer()).html(TotalQty);
+                    $(api.column(14).footer()).html(TotalWeight);
+
+                },
+            });
+            t.on('draw.dt', function () {
+                var PageInfo = $('#dataTable').DataTable().page.info();
+                t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1 + PageInfo.start;
+                });
+            });
+        });
+
+        $('#btnSearch').on('click', function () {
+            $('#dataTable').DataTable().ajax.reload();
+        })
+
+        $('#btnConfirm').on('click', function () {
+            $.ajax({
+                url: '/RawMaterial/PrinPdfRawMaterialReceivingList',
+                type: 'Post',
+                data:  {
+                   StockEntryDate : $('#CASEDT').val(),
+                   VesselName : $('#CAVESEL').val(),
+                   Status : $('#Status').val(),
+                },
+                beforeSend: function () {
+                    $('#exp-loading').css('display', 'block');
+                },
+                success: function (rs) {
+                    if (rs.result == "0") {
+                        ErrorAlert("@Html.Raw(RLayout.NoDataFound)");
+                    }
+                    else {
+                        window.location = '/RawMaterial/DownloadFileReceiving?file=' + rs.stringpath;
+                    }
+                },
+                complete: function () {
+                    $('#exp-loading').css('display', 'none');
+                },
+                error: function (rs) {
+                    console.log(rs.responseText);
+                    debugger;
+                    alert("Session timeout, please login again !");
+                    // window.location.href = '/';
+                }
+            })
+        })
+
+        $('#btnExcel').on('click', function () {
+            $.ajax({
+                url: '/RawMaterial/ExportExcelRawMaterialReceivingList',
+                type: 'Post',
+                data: {
+                    StockEntryDate: $('#CASEDT').val(),
+                    VesselName: $('#CAVESEL').val(),
+                    Status: $('#Status').val(),
+                },
+                beforeSend: function () {
+                    $('#exp-loading').css('display', 'block');
+                },
+                success: function (rs) {
+                    if (rs.result == "0")
+                    {
+                        ErrorAlert("@Html.Raw(RLayout.NoDataFound)");
+                    }
+                    else
+                    {
+                        window.location = '/RawMaterial/DownloadFileReceiving?file=' + rs.stringpath;
+                    }
+                },
+                complete: function () {
+                    $('#exp-loading').css('display', 'none');
+                },
+                error: function (rs) {
+                    console.log(rs.responseText);
+                    debugger;
+                    alert("Session timeout, please login again !");
+                    // window.location.href = '/';
+                }
+            })
+        })
+</script>
+
+
+
+
+
+
+
+
+
+
+

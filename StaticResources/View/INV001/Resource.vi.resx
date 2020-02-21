@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CAADJNO" xml:space="preserve">
+    <value>Số điều chỉnh</value>
+  </data>
+  <data name="CAANNDT" xml:space="preserve">
+    <value>Anneal Cmpltd Date</value>
+  </data>
+  <data name="CABSZL" xml:space="preserve">
+    <value>Chiều dài</value>
+  </data>
+  <data name="CABSZT" xml:space="preserve">
+    <value>Độ dày</value>
+  </data>
+  <data name="CABSZW" xml:space="preserve">
+    <value>Chiều Rộng</value>
+  </data>
+  <data name="CACALWT" xml:space="preserve">
+    <value>Tính toán trọng lượng</value>
+  </data>
+  <data name="CACILID" xml:space="preserve">
+    <value>Coilid</value>
+  </data>
+  <data name="CACILOD" xml:space="preserve">
+    <value>Coilod</value>
+  </data>
+  <data name="CACMBL" xml:space="preserve">
+    <value>Tổ hợp (Chiều dài)</value>
+  </data>
+  <data name="CACMBT" xml:space="preserve">
+    <value>Tổ hợp (Độ dày)</value>
+  </data>
+  <data name="CACMBW" xml:space="preserve">
+    <value>Tổ hợp (Chiều rộng)</value>
+  </data>
+  <data name="CACMDCD" xml:space="preserve">
+    <value>Mã hàng</value>
+  </data>
+  <data name="CACOAT" xml:space="preserve">
+    <value>Coating</value>
+  </data>
+  <data name="CACOATB" xml:space="preserve">
+    <value>Coatingwt(Back)</value>
+  </data>
+  <data name="CACOATF" xml:space="preserve">
+    <value>Coatingwt(Front)</value>
+  </data>
+  <data name="CACRLOS" xml:space="preserve">
+    <value>Core Lose</value>
+  </data>
+  <data name="CACRRCD" xml:space="preserve">
+    <value>Mã tiền tệ</value>
+  </data>
+  <data name="CACSTCD" xml:space="preserve">
+    <value>Mã khách hàng</value>
+  </data>
+  <data name="CACSTHC" xml:space="preserve">
+    <value>Customer Hndl Charge</value>
+  </data>
+  <data name="CACTITM" xml:space="preserve">
+    <value>Item No Of P-Cnt No</value>
+  </data>
+  <data name="CACTLM1" xml:space="preserve">
+    <value>Control Mark 1</value>
+  </data>
+  <data name="CACTPDT" xml:space="preserve">
+    <value>Cstm Hnd Chrg Pd To</value>
+  </data>
+  <data name="CACTRNO" xml:space="preserve">
+    <value>Số hợp đồng mua bán</value>
+  </data>
+  <data name="CACTRTP" xml:space="preserve">
+    <value>Loại hợp đồng</value>
+  </data>
+  <data name="CACTSPC" xml:space="preserve">
+    <value>Customer Spec</value>
+  </data>
+  <data name="CACTUP" xml:space="preserve">
+    <value>Cstm Hnd Chrg U/P</value>
+  </data>
+  <data name="CACTUPU" xml:space="preserve">
+    <value>Cstm Hnd Chrg Up/U</value>
+  </data>
+  <data name="CADCRCD" xml:space="preserve">
+    <value>Domestic Current Code</value>
+  </data>
+  <data name="CADINO" xml:space="preserve">
+    <value>D/I No</value>
+  </data>
+  <data name="CADLDTT" xml:space="preserve">
+    <value>Ngày giao tới người dùng</value>
+  </data>
+  <data name="CADLVDT" xml:space="preserve">
+    <value>Ngày chuyển giao</value>
+  </data>
+  <data name="CADLVTO" xml:space="preserve">
+    <value>Chuyển tới</value>
+  </data>
+  <data name="CADMGCD" xml:space="preserve">
+    <value>Mã thiệt hại</value>
+  </data>
+  <data name="CADNSTY" xml:space="preserve">
+    <value>Tỷ trọng</value>
+  </data>
+  <data name="CADONO" xml:space="preserve">
+    <value>D/O No</value>
+  </data>
+  <data name="CADPSCD" xml:space="preserve">
+    <value>Deposity/Asset Code</value>
+  </data>
+  <data name="CADSTNC" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CADTCD" xml:space="preserve">
+    <value>Mã dữ liệu</value>
+  </data>
+  <data name="CAEXRT" xml:space="preserve">
+    <value>Tỷ giá</value>
+  </data>
+  <data name="CAEXRTT" xml:space="preserve">
+    <value>Tỷ giá thuế</value>
+  </data>
+  <data name="CAGRADE" xml:space="preserve">
+    <value>Cấp</value>
+  </data>
+  <data name="CAHCGAT" xml:space="preserve">
+    <value>Hndl Chrg Amount</value>
+  </data>
+  <data name="CAIDCD" xml:space="preserve">
+    <value>Idcode</value>
+  </data>
+  <data name="CAINDCT" xml:space="preserve">
+    <value>Induction</value>
+  </data>
+  <data name="CAINPCK" xml:space="preserve">
+    <value>Qtinpackage</value>
+  </data>
+  <data name="CAINTPC" xml:space="preserve">
+    <value>Prc Chrg Amp(Intrnl)</value>
+  </data>
+  <data name="CAINTPK" xml:space="preserve">
+    <value>Pck Chrg Amt (Intrnl)</value>
+  </data>
+  <data name="CAINVNO" xml:space="preserve">
+    <value>Mã số tồn kho</value>
+  </data>
+  <data name="CAINVST" xml:space="preserve">
+    <value>Tình trạng tồn kho</value>
+  </data>
+  <data name="CAINVTP" xml:space="preserve">
+    <value>Loại tồn kho</value>
+  </data>
+  <data name="CAISPNO" xml:space="preserve">
+    <value>Số kiểm duyệt</value>
+  </data>
+  <data name="CAISSDT" xml:space="preserve">
+    <value>Ngày phát hành</value>
+  </data>
+  <data name="CAISSLP" xml:space="preserve">
+    <value>Số mặt hàng (Kèm Biên lai)</value>
+  </data>
+  <data name="CAIVCDT" xml:space="preserve">
+    <value>Ngày xuất hóa đơn</value>
+  </data>
+  <data name="CAJBITM" xml:space="preserve">
+    <value>Item No Of Job No</value>
+  </data>
+  <data name="CAJOBNO" xml:space="preserve">
+    <value>Job No</value>
+  </data>
+  <data name="CALCTCD" xml:space="preserve">
+    <value>Mã vị trí</value>
+  </data>
+  <data name="CAMCHNO" xml:space="preserve">
+    <value>Machine No</value>
+  </data>
+  <data name="CAMCSPC" xml:space="preserve">
+    <value>Thông số cuộn mẹ</value>
+  </data>
+  <data name="CAMKCD" xml:space="preserve">
+    <value>Mã số đánh dấu</value>
+  </data>
+  <data name="CAOEITM" xml:space="preserve">
+    <value>Item No Of O.E.No</value>
+  </data>
+  <data name="CAOENO" xml:space="preserve">
+    <value>Order Entry No</value>
+  </data>
+  <data name="CAOEPO" xml:space="preserve">
+    <value>P.O.No(Order Entry)</value>
+  </data>
+  <data name="CAOGLNO" xml:space="preserve">
+    <value>Số gốc</value>
+  </data>
+  <data name="CAORDNO" xml:space="preserve">
+    <value>Số đơn hàng</value>
+  </data>
+  <data name="CAPAYDT" xml:space="preserve">
+    <value>Ngày thanh toán</value>
+  </data>
+  <data name="CAPCKDT" xml:space="preserve">
+    <value>Ngày đóng gói</value>
+  </data>
+  <data name="CAPCKM" xml:space="preserve">
+    <value>Paking Make</value>
+  </data>
+  <data name="CAPCKNO" xml:space="preserve">
+    <value>Số đóng gói</value>
+  </data>
+  <data name="CAPCKTP" xml:space="preserve">
+    <value>Loại đóng gói</value>
+  </data>
+  <data name="CAPCKWT" xml:space="preserve">
+    <value>Khối lượng đóng gói</value>
+  </data>
+  <data name="CAPFRUP" xml:space="preserve">
+    <value>Prchs Frt U/P</value>
+  </data>
+  <data name="CAPFUPU" xml:space="preserve">
+    <value>Prchs Frt U.P/U</value>
+  </data>
+  <data name="CAPIVDT" xml:space="preserve">
+    <value>Ngày gửi hóa đơn</value>
+  </data>
+  <data name="CAPIVNO" xml:space="preserve">
+    <value>Số gửi hóa đơn</value>
+  </data>
+  <data name="CAPKATB" xml:space="preserve">
+    <value>Pck Chrg Amt (Supcnt)</value>
+  </data>
+  <data name="CAPODT" xml:space="preserve">
+    <value>P.O.Date</value>
+  </data>
+  <data name="CAPRATB" xml:space="preserve">
+    <value>Prc Chrg Amp(Supcnt)</value>
+  </data>
+  <data name="CAPRCDT" xml:space="preserve">
+    <value>Ngày gia công</value>
+  </data>
+  <data name="CAPRCTP" xml:space="preserve">
+    <value>Loại gia công</value>
+  </data>
+  <data name="CAPRDNM" xml:space="preserve">
+    <value>Tên sản phẩm</value>
+  </data>
+  <data name="CAPRUP" xml:space="preserve">
+    <value>Purchase Unit Price</value>
+  </data>
+  <data name="CAPRUPD" xml:space="preserve">
+    <value>Purchase U/B(Dcurr)</value>
+  </data>
+  <data name="CAPRUPU" xml:space="preserve">
+    <value>Purchase U.B/U</value>
+  </data>
+  <data name="CAPSLP" xml:space="preserve">
+    <value>Purchase Slip No</value>
+  </data>
+  <data name="CAPSLPI" xml:space="preserve">
+    <value>Itm No (Prchs Slp No)</value>
+  </data>
+  <data name="CAPTXAD" xml:space="preserve">
+    <value>Tax Amount Domestic</value>
+  </data>
+  <data name="CAPTXAT" xml:space="preserve">
+    <value>Tax Amount</value>
+  </data>
+  <data name="CAPUFAT" xml:space="preserve">
+    <value>Prch Frt Amount</value>
+  </data>
+  <data name="CAPUFRT" xml:space="preserve">
+    <value>Prchs Frt Paid To</value>
+  </data>
+  <data name="CAPURAT" xml:space="preserve">
+    <value>Tổng mua</value>
+  </data>
+  <data name="CAPURATD" xml:space="preserve">
+    <value>Purchase Amount Domestic</value>
+  </data>
+  <data name="CAPURGD" xml:space="preserve">
+    <value>Purchasegoodcode</value>
+  </data>
+  <data name="CAPURUP" xml:space="preserve">
+    <value>Purchase U/B</value>
+  </data>
+  <data name="CAQTY" xml:space="preserve">
+    <value>Số lượng</value>
+  </data>
+  <data name="CARGSDT" xml:space="preserve">
+    <value>Ngày đăng ký</value>
+  </data>
+  <data name="CARSNCD" xml:space="preserve">
+    <value>Present Code</value>
+  </data>
+  <data name="CASCTNC" xml:space="preserve">
+    <value>Bộ phận phụ trách</value>
+  </data>
+  <data name="CASECCD" xml:space="preserve">
+    <value>Mã số bộ phận</value>
+  </data>
+  <data name="CASEDT" xml:space="preserve">
+    <value>Stock Entry Date</value>
+  </data>
+  <data name="CASHPDT" xml:space="preserve">
+    <value>Ngày chuyển giao</value>
+  </data>
+  <data name="CASIZEL" xml:space="preserve">
+    <value>Kích thước(Chiều dài)</value>
+  </data>
+  <data name="CASIZET" xml:space="preserve">
+    <value>Kích thước(Độ dày)</value>
+  </data>
+  <data name="CASIZEW" xml:space="preserve">
+    <value>Kích thước(Chiều rộng)</value>
+  </data>
+  <data name="CASLUWT" xml:space="preserve">
+    <value>Sale Unit Weight</value>
+  </data>
+  <data name="CASMNTH" xml:space="preserve">
+    <value>Shipper Month</value>
+  </data>
+  <data name="CASPEC" xml:space="preserve">
+    <value>Thông số kĩ thuật</value>
+  </data>
+  <data name="CASPLCD" xml:space="preserve">
+    <value>Supplier Code</value>
+  </data>
+  <data name="CASPPNO" xml:space="preserve">
+    <value>Supplier Contract No</value>
+  </data>
+  <data name="CASPTCD" xml:space="preserve">
+    <value>Support / Longterm</value>
+  </data>
+  <data name="CASSLP" xml:space="preserve">
+    <value>Sales Slip No</value>
+  </data>
+  <data name="CASTKPO" xml:space="preserve">
+    <value>P.O.No(Stock Entry)</value>
+  </data>
+  <data name="CASTSCD" xml:space="preserve">
+    <value>Stscode</value>
+  </data>
+  <data name="CASUBNO" xml:space="preserve">
+    <value>Item No (Inspctn No)</value>
+  </data>
+  <data name="CATCNO" xml:space="preserve">
+    <value>Số công ty thương mại</value>
+  </data>
+  <data name="CATEXRT" xml:space="preserve">
+    <value>Loại tỷ giá thuế</value>
+  </data>
+  <data name="CATRDCD" xml:space="preserve">
+    <value>Danh mục thương mại</value>
+  </data>
+  <data name="CATRFAT" xml:space="preserve">
+    <value>Lượng thuế quan</value>
+  </data>
+  <data name="CATRFUP" xml:space="preserve">
+    <value>U/P Of Tariff</value>
+  </data>
+  <data name="CATRPDT" xml:space="preserve">
+    <value>Tariff Paid To</value>
+  </data>
+  <data name="CATRUPU" xml:space="preserve">
+    <value>U.P/U Of Tariff</value>
+  </data>
+  <data name="CATXCD" xml:space="preserve">
+    <value>Mã số thuế</value>
+  </data>
+  <data name="CATXEXR" xml:space="preserve">
+    <value>Tỷ giá thuế</value>
+  </data>
+  <data name="CATXRT" xml:space="preserve">
+    <value>Mức thuế</value>
+  </data>
+  <data name="CAUPDT" xml:space="preserve">
+    <value>Ngày cập nhập</value>
+  </data>
+  <data name="CAUSMNG" xml:space="preserve">
+    <value>User Management No</value>
+  </data>
+  <data name="CAUSRCD" xml:space="preserve">
+    <value>Mã số người dùng</value>
+  </data>
+  <data name="CAVESEL" xml:space="preserve">
+    <value>Vessl </value>
+  </data>
+  <data name="CAWT" xml:space="preserve">
+    <value>Khối lượng</value>
+  </data>
+  <data name="CAYLDAT" xml:space="preserve">
+    <value>Lượng Lợi tức</value>
+  </data>
+</root>

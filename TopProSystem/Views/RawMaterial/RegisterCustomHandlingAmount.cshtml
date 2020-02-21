@@ -1,0 +1,267 @@
+﻿@model TopProSystem.Areas.MasterSetting.Models.INV001
+@using StaticResources
+@{
+    ViewBag.Title = "Register Custom Handling Amount";
+    Layout = "~/Views/Shared/_LayoutPageRawMaterial.cshtml";
+    ViewBag.content = "Register Custom Handling Amount";
+}
+
+<div class="row w-100 container-fluid m-0 p-0">
+    <form action="/" method="post">
+        <div class="col-md-12 mt-4 py-2 row w-100 m-0 p-0">
+            <div class="centerdiv" style="width: 280px">
+                <div class="row">
+                    <div class="col-md-6 col-6 p-0">
+                        <div class="float-right"><span class="title">@Html.DisplayNameFor(x => x.CAPIVNO)</span></div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <input type="text" name="CAPIVNO" id="CAPIVNO" value="" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-6 p-0">
+                        <div class="float-right"><span class="title">@Html.DisplayNameFor(x => x.CAORDNO)</span></div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <input type="text" name="CAORDNO" id="CAORDNO" value="" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-6 p-0">
+                        <div class="float-right"><span class="title" style="white-space: nowrap;">Total Custom Handling Amount</span></div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <input type="text" id="TotalHandling" name="TotalHandling" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-3 w-100 p-0">
+                <div class="text-center">
+                    <small class="text-danger" id="message"></small>
+                    <button type="button" id="btnSearch" class="search">@Button.BtnSeach</button>
+                    <button type="button" id="btnConfirm" class="confirm">@Button.BtnConfirm</button>
+                    <button type="button" class="cancel">@Button.BtnCancel</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="row w-100 container-fluid mt-2 mx-0 p-0 border-top border-dark data-display">
+    <table class="w-100 mt-2 table-sm table-responsive-md" id="dataTable">
+        <thead>
+            <tr class="text-center thead">
+                <th># &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th>@Html.DisplayNameFor(x => x.CACTRTP)</th>
+                <th>@Html.DisplayNameFor(x => x.CAINVST)</th>
+                <th>@Html.DisplayNameFor(x => x.CAINVNO)</th>
+                <th>@Html.DisplayNameFor(x => x.CASPEC)</th>
+                <th>@Html.DisplayNameFor(x => x.CABSZT)</th>
+                <th>@Html.DisplayNameFor(x => x.CABSZW)</th>
+                <th>@Html.DisplayNameFor(x => x.CABSZL)</th>
+                <th>@Html.DisplayNameFor(x => x.CAPRDNM)</th>
+                <th>@Html.DisplayNameFor(x => x.CAPRDDIA)</th>
+                <th>@Html.DisplayNameFor(x => x.CASTLGR)</th>
+                <th>@Html.DisplayNameFor(x => x.CAQTY)</th>
+                <th>@Html.DisplayNameFor(x => x.CAWT)</th>
+                <th style="white-space: nowrap;">@Html.DisplayNameFor(x => x.CACSTHC)</th>
+                <th style="white-space: nowrap;">New Custom Handling Amount</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th colspan="12" style="text-align:right">Total:</th>
+                <th class="text-center" id="total"></th>
+                <th class="text-center">0</th>
+                <th class="text-center"></th>
+            </tr>
+        </tfoot>
+
+    </table>
+</div>
+
+
+
+<div id="exp-loading" style="position:absolute; left: 50%; bottom: 50%; display: none; "><span class="fa fa-spinner fa-pulse fa-3x fa-fw"></span></div>
+<script>
+    var searching = { search: false, data: false };
+    var CONFIRM = false;
+   
+    $('#CAPIVNO, #CAORDNO,#TotalHandling').change(function () {
+        searching.search = false;
+        searching.data = false;
+    });
+
+
+    $('#btnConfirm').click(function () {
+        var CAPIVNO = $('#CAPIVNO').val();
+        var CAORDNO = $('#CAORDNO').val();
+        var TotalHandling = $('#TotalHandling').val();
+
+        if ($('#TotalHandling').val() === '') {
+            alert('Please enter Custom Handling Amount.');
+            return;
+        }
+        if (searching.search) {
+            if (searching.data) {
+                $.ajax({
+                    url: '@Url.Action("UpdateRegisterCustomHandlingAmount", "RawMaterial")',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { 'CAPIVNO': CAPIVNO, 'CAORDNO': CAORDNO, 'TotalHandling': TotalHandling },
+                    success: function (rs) {
+                        if (rs === 1) {
+                            CONFIRM = true;
+                            SuccessAlert("Update successfull.");
+                            searching.search = false;
+                            searching.data = false;
+                         
+                            $('#dataTable').DataTable().ajax.reload();
+                        }
+                        else if (rs === 2) {
+                            ErrorAlert("No data found.");
+                         
+                            $('#dataTable').DataTable().ajax.reload();
+                        }
+                        else {
+                            ErrorAlert("Update Fail.");
+                        }
+                    },
+                    error: function (rs) {
+                        ErrorAlert("Update Fail.");
+                    }
+                });
+            } else {
+                ErrorAlert("No data found.");
+            }
+
+        }
+        else {
+            alert("Please search to confirm data first.");
+        }
+
+    })
+
+
+
+    $('#btnSearch').click(function () {
+
+        var CAPIVNO = $('#CAPIVNO').val();
+        var CAORDNO = $('#CAORDNO').val();
+        var TotalHandling = $('#TotalHandling').val();
+        CONFIRM = false;
+        searching.search = true;
+        $.ajax({
+            url: "/RawMaterial/SearchRegisterCustomHandlingAmount",
+            type: "POST",
+            async: true,
+            dataType: 'json',
+            data: { 'CAPIVNO': CAPIVNO, 'CAORDNO': CAORDNO },
+            success: function (data) {
+                if (data == false) {
+                    searching.data = false;
+                    $('#dataTable').DataTable().ajax.reload();
+                    
+                }
+                else {
+                    searching.data = true;
+                    $('#dataTable').DataTable().ajax.reload();
+                }
+            },
+            error: {},
+        });
+
+    });
+    var totalCAQTY;
+    var totalCAWT;
+    var totalCACSTHC;
+    var totalNCACSTHC;
+            $(document).ready(function () {
+                var t = $('#dataTable').DataTable({
+                    "serverSide": true, // for process server side
+                    "processing": true, // for show progress bar
+                    "filter": false, // this is for disable filter (search box)
+                    "orderMulti": true, // for disable multiple column at once
+                    // "stateSave": true,
+                    "scrollX": true,
+                    "autoWidth": false,
+                    "pageLength": DataTableDisplayLength,
+                    "search.smart": false,
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": 0,
+                    "lengthChange": false,
+                    "ordering": false,
+                    "info": false,
+                    "ajax": {
+                        "url": "/RawMaterial/AjaxHandlerRegisterCustomHandlingAmount",
+                        "type": "POST",
+                        "datatype": "json",
+                        "data": function (data) {
+                            data.CAPIVNO = $('#CAPIVNO').val();
+                            data.CAORDNO = $('#CAORDNO').val();
+                            data.TotalHandling = $('#TotalHandling').val();
+                            return data;
+                        },
+                         'dataSrc': function (data) {
+                             totalCAQTY = data.totalCAQTY;
+                             totalCAWT = data.totalCAWT;
+                             totalCACSTHC = data.totalCACSTHC;
+                             totalNCACSTHC = data.totalNCACSTHC;
+                            return data.data;
+                        }
+
+                    },
+                    "language": {
+                        "paginate": {
+                            "first": '<i class="fa fa-fast-backward"></i>',
+                            "last": '<i class="fa fa-fast-forward"></i>',
+                            "next": '<i class="fa fa-forward"></i>',
+                            "previous": '<i class="fa fa-backward"></i>'
+                        },
+                        "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+                    },
+                    "columns": [
+                        { "data": function () { return ""; } },
+                        { "data": "CACTRTP" },
+                        { "data": "CAINVST" },
+                        { "data": "CAINVNO" },
+                        { "data": "CASPEC" },
+                        { "data": "CABSZT" },
+                        { "data": "CABSZW" },
+                        { "data": "CABSZL" },
+                        { "data": "CAPRDNM" },
+                        { "data": "CAPRDDIA" },
+                        { "data": "CASTLGR" },
+                        { "data": "CAQTY" },
+                        { "data": "CAWT" },
+                        { "data": "CACSTHC" },
+                        {
+                            "render": function (data, type, row) {
+                                if (CONFIRM === false) {
+                                    return row["NCACSTHC"];
+                                } else {
+                                    return row["CACSTHC"];
+                                }
+                            }
+                        }
+               
+                    ],
+                    "footerCallback": function (row, data, start, end, display) {
+                        var api = this.api();
+
+                        $(api.column(12).footer()).html(totalCAWT);
+                        $(api.column(13).footer()).html(totalCACSTHC);
+                        $(api.column(14).footer()).html(totalNCACSTHC);
+                    },
+                });
+                t.on('draw.dt', function () {
+                    var PageInfo = $('#dataTable').DataTable().page.info();
+                    t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1 + PageInfo.start;
+                    });
+                });
+    });
+
+
+</script>

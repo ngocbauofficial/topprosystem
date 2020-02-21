@@ -1,0 +1,159 @@
+﻿@model TopProSystem.Areas.MasterSetting.Models.MA002
+@using StaticResources
+@using StaticResources.View.User
+@{
+    ViewBag.Title = Resource.ChangeTitle;
+    Layout = "~/Areas/MasterSetting/Views/Shared/_LayoutMasterSeting.cshtml";
+    ViewBag.headerName = ViewBag.Title;
+}
+
+
+<div class="container-fluid">
+    <div class="data-content">
+        <form action="@Url.Action("UpdateUserMaster","Master")" method="post" name="formdata" id="User-Master-Form">
+            <div class="divTable w-100" style="border: 1px solid #000">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title-normal">@Resource.MBUSRCD</span></div>
+                        <div class="divTableCell">
+                            <input type="text" name="MBUSRCD" id="MBUSRCD" value="@Model.MBUSRCD.Trim()" tabindex="1" readonly style="width: 338px; " />
+                        </div>
+                        <div class="divTableCell"><span class="title-normal">@Resource.MBUSTEL</span></div>
+                        <div class="divTableCell">
+                            <input type="text" name="MBUSTEL" id="MBUSTEL" value="@Model.MBUSTEL" tabindex="7" />
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title-normal">@Resource.MBUSRNM</span></div>
+                        <div class="divTableCell">
+                            <input type="text" name="MBUSRNM" id="MBUSRNM" value="@Model.MBUSRNM" tabindex="2" readonly style="width: 338px; background: #f5f5f5" />
+                        </div>
+                        <div class="divTableCell"><span class="title-normal"> @Resource.COMBINATIONCODE</span></div>
+                        <div class="divTableCell">
+                            @Html.DropDownListFor(x => x.MBCOMCD, new List<SelectListItem>() { new SelectListItem { Value = "1", Text = "MM" }, new SelectListItem { Value = "2", Text = "INCH" } }, RLayout.SelectAction, new { @tabindex = "8" })
+                            <span class="title-normal">(1:MM 2:INCH)</span>
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title-normal">@Resource.MBUSSNM</span></div>
+                        <div class="divTableCell">
+                            <input type="text" name="MBUSSNM" id="MBUSSNM" value="@Model.MBUSSNM" tabindex="3" style="width: 338px;" />
+                        </div>
+                        <div class="divTableCell"><span class="title-normal">@Resource.UNITOFWGTCODE</span></div>
+                        <div class="divTableCell">
+                            @Html.DropDownListFor(x => x.MBUNICD, new List<SelectListItem>() { new SelectListItem { Value = "1", Text = "KG" }, new SelectListItem { Value = "2", Text = "POUND" } }, RLayout.SelectAction, new { @tabindex = "9" })
+                        <span class="title-normal"> (1:KG 2:POUND)</span>
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell border-bottom-0"><span class="title-normal">@Resource.MBUSAD1</span></div>
+                    <div class="divTableCell">
+                        <input type="text" name="MBUSAD1" id="MBUSAD1" value="@Model.MBUSAD1" tabindex="4" style="width: 338px;" />
+                    </div>
+                    <div class="divTableCell"><span class="title-normal">@Resource.MBWTCAL</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownListFor(x => x.MBWTCAL, Model.WeightCalculationCode, RLayout.SelectAction, new { @tabindex = "10" })
+                        <input type="text" name="MBWTCAL_dl" id="MBWTCAL_dl" value="" readonly="">
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell border-bottom-0"></div>
+                    <div class="divTableCell">
+                        <input type="text" name="MBUSAD2" id="MBUSAD2" value="@Model.MBUSAD2" tabindex="5" style="width: 338px;" />
+                    </div>
+                    <div class="divTableCell border-left-0">&nbsp;</div>
+                    <div class="divTableCell border-left-0">&nbsp;</div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"></div>
+                    <div class="divTableCell">
+                        <input type="text" name="MBUSAD3" id="MBUSAD3" value="@Model.MBUSAD3" tabindex="6" style="width: 338px;" />
+                    </div>
+                    <div class="divTableCell border-left-0">&nbsp;</div>
+                    <div class="divTableCell border-left-0">&nbsp;</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="mt-3 float-right">
+            <button type="submit" class="btn-primary">@Button.BtnConfirm</button>
+            <button type="button" class="cancel" onclick="javascript:window.location.href='/MasterSetting/Master/UserMaster'">@Button.BtnCancel</button>
+        </div>
+    </form>
+</div>
+
+</div>
+
+<script type="text/javascript">
+
+
+    $('#User-Master-Form').validate({
+        rules: {
+
+            MBUSTEL: {
+                maxlength: 16,
+            },
+
+            MBUSSNM: {
+                maxlength: 15,
+            },
+            MBUSAD1: {
+                required: true,
+                maxlength: 60,
+            },
+            MBUSAD2: {
+                maxlength: 60
+            },
+            MBUSAD3: {
+                maxlength: 60
+            }
+        },
+
+          messages: {
+
+              MBUSTEL: {
+             maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"16"))',
+              },
+
+              MBUSSNM: {
+          maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"15"))',
+              },
+            MBUSAD1: {
+                required: '@Html.Raw(RLayout.Required)',
+                 maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"60"))',
+            },
+             MBUSAD2: {
+
+                 maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"60"))',
+            },
+              MBUSAD3: {
+
+                 maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"60"))',
+            },
+
+        },
+        errorElement: 'label',
+        errorPlacement: function (error, element) {
+            error.insertAfter(element);
+        },
+    })
+    $(document).ready(function () {
+        $('#MBWTCAL').change();
+
+    })
+    $('#MBWTCAL').change(function () {
+        if ($(this).val() === '') {
+            $('#MBWTCAL_dl').val('');
+        } else {
+            $.getJSON('/MasterSetting/Master/GetJsonBySRCode',
+                {
+                    codes: '033' + '|' + $(this).val().trim()
+                }).done(function (rs) {
+                    $('#MBWTCAL_dl').val(rs.MNSRNM);
+                }).fail(function (rs) {
+                    console.error(rs.responseText);
+                })
+        }
+    })
+
+</script>

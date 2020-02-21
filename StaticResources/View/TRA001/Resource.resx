@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DAADJNO" xml:space="preserve">
+    <value>Adjustment No</value>
+  </data>
+  <data name="DABALWT" xml:space="preserve">
+    <value>Balance Weigth</value>
+  </data>
+  <data name="DABKCD" xml:space="preserve">
+    <value>Booking Code</value>
+  </data>
+  <data name="DABKTMG" xml:space="preserve">
+    <value>Bookingb Timing</value>
+  </data>
+  <data name="DABSZL" xml:space="preserve">
+    <value>Page Site(Length)</value>
+  </data>
+  <data name="DABSZT" xml:space="preserve">
+    <value>Page Site(Thk)</value>
+  </data>
+  <data name="DABSZW" xml:space="preserve">
+    <value>Page Site(Width)</value>
+  </data>
+  <data name="DACALWT" xml:space="preserve">
+    <value>Calculate Weight</value>
+  </data>
+  <data name="DACHGWK" xml:space="preserve">
+    <value>Incharge Of Work</value>
+  </data>
+  <data name="DACMDCD" xml:space="preserve">
+    <value>Comodity Code</value>
+  </data>
+  <data name="DACOAT" xml:space="preserve">
+    <value>Coating</value>
+  </data>
+  <data name="DACSTCD" xml:space="preserve">
+    <value>Customer Code</value>
+  </data>
+  <data name="DACSTHC" xml:space="preserve">
+    <value>Customer Hndl Chagre</value>
+  </data>
+  <data name="DACTINF" xml:space="preserve">
+    <value>Customer Information</value>
+  </data>
+  <data name="DACTITM" xml:space="preserve">
+    <value>Item No Of P-Cnt No</value>
+  </data>
+  <data name="DACTPDT" xml:space="preserve">
+    <value>Cstm Hndl Chrg Pd To</value>
+  </data>
+  <data name="DACTRNO" xml:space="preserve">
+    <value>Purchase Contract No</value>
+  </data>
+  <data name="DACTRTP" xml:space="preserve">
+    <value>Contract Type</value>
+  </data>
+  <data name="DACTSPC" xml:space="preserve">
+    <value>Customer Spec</value>
+  </data>
+  <data name="DACTUP" xml:space="preserve">
+    <value>Cstm Hndl Chrg U/P</value>
+  </data>
+  <data name="DACTUPU" xml:space="preserve">
+    <value>Cstm Hndl Chrg U.P/U</value>
+  </data>
+  <data name="DADFTSR" xml:space="preserve">
+    <value>Deficit/Surplus</value>
+  </data>
+  <data name="DADINO" xml:space="preserve">
+    <value>D/I No</value>
+  </data>
+  <data name="DADLDTT" xml:space="preserve">
+    <value>Delivery Date To User</value>
+  </data>
+  <data name="DADLVTO" xml:space="preserve">
+    <value>Delivery To</value>
+  </data>
+  <data name="DADONO" xml:space="preserve">
+    <value>D/O No</value>
+  </data>
+  <data name="DADOSUB" xml:space="preserve">
+    <value>Sub No Of D/O No</value>
+  </data>
+  <data name="DADPSCD" xml:space="preserve">
+    <value>Deposit/Asset Code</value>
+  </data>
+  <data name="DADSTNC" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DAEXRT" xml:space="preserve">
+    <value>Exchange Rate</value>
+  </data>
+  <data name="DAEXRTT" xml:space="preserve">
+    <value>Exchange Rate Type</value>
+  </data>
+  <data name="DAFHPDT" xml:space="preserve">
+    <value>Frt Hndl Chrg Pd To</value>
+  </data>
+  <data name="DAFRPDT" xml:space="preserve">
+    <value>Freight Paid To</value>
+  </data>
+  <data name="DAFRTUP" xml:space="preserve">
+    <value>Freight Unit Price</value>
+  </data>
+  <data name="DAFRUPU" xml:space="preserve">
+    <value>Freight U.P/U</value>
+  </data>
+  <data name="DAGRADE" xml:space="preserve">
+    <value>Grade</value>
+  </data>
+  <data name="DAHCGAT" xml:space="preserve">
+    <value>Hndl Chgr Amount</value>
+  </data>
+  <data name="DAIDCD" xml:space="preserve">
+    <value>Id Code</value>
+  </data>
+  <data name="DAINPCK" xml:space="preserve">
+    <value>Quantity In A Pck</value>
+  </data>
+  <data name="DAINTPC" xml:space="preserve">
+    <value>Prc Chrg Amt(Int Rnl)</value>
+  </data>
+  <data name="DAINTPK" xml:space="preserve">
+    <value>Prc Chrg Amt(Intrnl)</value>
+  </data>
+  <data name="DAINVNO" xml:space="preserve">
+    <value>Eventory No</value>
+  </data>
+  <data name="DAINVTP" xml:space="preserve">
+    <value>Eventory Type</value>
+  </data>
+  <data name="DAIOPSL" xml:space="preserve">
+    <value>Itm No (Orgnl Pur Slp)</value>
+  </data>
+  <data name="DAIOSSL" xml:space="preserve">
+    <value>Itm No(Orginal Slip )</value>
+  </data>
+  <data name="DAISPNO" xml:space="preserve">
+    <value>Inspection No</value>
+  </data>
+  <data name="DAISSLP" xml:space="preserve">
+    <value>Item No (Sale Slip)</value>
+  </data>
+  <data name="DAIVCDT" xml:space="preserve">
+    <value>Invoice Date</value>
+  </data>
+  <data name="DAJBITM" xml:space="preserve">
+    <value>Item No Of Job No</value>
+  </data>
+  <data name="DAJOBNO" xml:space="preserve">
+    <value>Job No</value>
+  </data>
+  <data name="DALCTCD" xml:space="preserve">
+    <value>Location Code</value>
+  </data>
+  <data name="DALOGDT" xml:space="preserve">
+    <value>Log Date</value>
+  </data>
+  <data name="DALOGTP" xml:space="preserve">
+    <value>Log Type</value>
+  </data>
+  <data name="DAMCHNO" xml:space="preserve">
+    <value>Machine No</value>
+  </data>
+  <data name="DAMKCD" xml:space="preserve">
+    <value>Marker Code</value>
+  </data>
+  <data name="DANORVS" xml:space="preserve">
+    <value>The No Of Revision</value>
+  </data>
+  <data name="DAOEDT" xml:space="preserve">
+    <value>Order Entry Date</value>
+  </data>
+  <data name="DAOEITM" xml:space="preserve">
+    <value>Item No (O.E No)</value>
+  </data>
+  <data name="DAOENO" xml:space="preserve">
+    <value>Order Entry No</value>
+  </data>
+  <data name="DAOGLNO" xml:space="preserve">
+    <value>Original No</value>
+  </data>
+  <data name="DAOPSLP" xml:space="preserve">
+    <value>Orgnl Prchs Slip No</value>
+  </data>
+  <data name="DAORDNO" xml:space="preserve">
+    <value>Order No</value>
+  </data>
+  <data name="DAOSSLP" xml:space="preserve">
+    <value>Orginal Sale Slip No</value>
+  </data>
+  <data name="DAPCKDT" xml:space="preserve">
+    <value>Paking Date</value>
+  </data>
+  <data name="DAPCKM" xml:space="preserve">
+    <value>Paking Mark</value>
+  </data>
+  <data name="DAPCKNO" xml:space="preserve">
+    <value>Paking No</value>
+  </data>
+  <data name="DAPCKTP" xml:space="preserve">
+    <value>Paking Type</value>
+  </data>
+  <data name="DAPFRUP" xml:space="preserve">
+    <value>Prch Frght U/P</value>
+  </data>
+  <data name="DAPFUPU" xml:space="preserve">
+    <value>Prch Frght U.P/U</value>
+  </data>
+  <data name="DAPGMID" xml:space="preserve">
+    <value>Program Id</value>
+  </data>
+  <data name="DAPIVDT" xml:space="preserve">
+    <value>Shipper Invoice Date</value>
+  </data>
+  <data name="DAPIVNO" xml:space="preserve">
+    <value>Shipper Invoice No</value>
+  </data>
+  <data name="DAPKATB" xml:space="preserve">
+    <value>Prc Chrg Amt(Subcnt)</value>
+  </data>
+  <data name="DAPONO" xml:space="preserve">
+    <value>P.O. No</value>
+  </data>
+  <data name="DAPRATB" xml:space="preserve">
+    <value>Prc Chrg Amt(Subcnt)</value>
+  </data>
+  <data name="DAPRCDT" xml:space="preserve">
+    <value>Processing Date</value>
+  </data>
+  <data name="DAPRCTP" xml:space="preserve">
+    <value>Processing Type</value>
+  </data>
+  <data name="DAPRDNM" xml:space="preserve">
+    <value>Product Name</value>
+  </data>
+  <data name="DAPSLP" xml:space="preserve">
+    <value>Purchase Slip No</value>
+  </data>
+  <data name="DAPSLPI" xml:space="preserve">
+    <value>Itm No (Prchs Slip No)</value>
+  </data>
+  <data name="DAPUFAT" xml:space="preserve">
+    <value>Prchcs Frt Amount</value>
+  </data>
+  <data name="DAPUFRT" xml:space="preserve">
+    <value>Purchase Freight To</value>
+  </data>
+  <data name="DAPURAT" xml:space="preserve">
+    <value>Purchase Amount</value>
+  </data>
+  <data name="DAPURGD" xml:space="preserve">
+    <value>Purchase Goods Code</value>
+  </data>
+  <data name="DAPURUP" xml:space="preserve">
+    <value>Purchase Unit Price</value>
+  </data>
+  <data name="DAPUUPU" xml:space="preserve">
+    <value>Purchase U.P/U</value>
+  </data>
+  <data name="DAQTY" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="DARMK20" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="DARSNCD" xml:space="preserve">
+    <value>Present Code</value>
+  </data>
+  <data name="DASCTNC" xml:space="preserve">
+    <value>Section Incharge</value>
+  </data>
+  <data name="DASECCD" xml:space="preserve">
+    <value>Section Code</value>
+  </data>
+  <data name="DASEDT" xml:space="preserve">
+    <value>Stock Entry Date</value>
+  </data>
+  <data name="DASHIFT" xml:space="preserve">
+    <value>Ship Code</value>
+  </data>
+  <data name="DASLUP" xml:space="preserve">
+    <value>Sale U/P</value>
+  </data>
+  <data name="DASLUPU" xml:space="preserve">
+    <value>Sale U.P/U</value>
+  </data>
+  <data name="DASMNTH" xml:space="preserve">
+    <value>Shipping Month</value>
+  </data>
+  <data name="DASPEC" xml:space="preserve">
+    <value>Spec</value>
+  </data>
+  <data name="DASPLCD" xml:space="preserve">
+    <value>Supplier Code</value>
+  </data>
+  <data name="DASPPNO" xml:space="preserve">
+    <value>Supplier Contract No</value>
+  </data>
+  <data name="DASPTCD" xml:space="preserve">
+    <value>Support/Long Term</value>
+  </data>
+  <data name="DASSLP" xml:space="preserve">
+    <value>Sale Slip No</value>
+  </data>
+  <data name="DASTSCD" xml:space="preserve">
+    <value>Sts Code</value>
+  </data>
+  <data name="DATCNO" xml:space="preserve">
+    <value>Tradding Company No</value>
+  </data>
+  <data name="DATEXRT" xml:space="preserve">
+    <value>Exchange Rate Type(Tax)</value>
+  </data>
+  <data name="DATRDCD" xml:space="preserve">
+    <value>Trade Category</value>
+  </data>
+  <data name="DATRFAT" xml:space="preserve">
+    <value>Tariff Amount</value>
+  </data>
+  <data name="DATRFUP" xml:space="preserve">
+    <value>U/P Of Tariff</value>
+  </data>
+  <data name="DATRNDT" xml:space="preserve">
+    <value>Transection Date</value>
+  </data>
+  <data name="DATRPDT" xml:space="preserve">
+    <value>Tariff Paid  To</value>
+  </data>
+  <data name="DATRUCK" xml:space="preserve">
+    <value>Lorry No</value>
+  </data>
+  <data name="DATRUPU" xml:space="preserve">
+    <value>U.P/U Of Tariff</value>
+  </data>
+  <data name="DATXCD" xml:space="preserve">
+    <value>Tax Code</value>
+  </data>
+  <data name="DATXEXR" xml:space="preserve">
+    <value>Exchange Rate(Tax)</value>
+  </data>
+  <data name="DATXRT" xml:space="preserve">
+    <value>Tax Rate</value>
+  </data>
+  <data name="DAUPDT" xml:space="preserve">
+    <value>Date Of Update</value>
+  </data>
+  <data name="DAUPHFR" xml:space="preserve">
+    <value>U/P Of Hndl Chrg Frt</value>
+  </data>
+  <data name="DAUPUHF" xml:space="preserve">
+    <value>Up/U Hndl Chrg Frt </value>
+  </data>
+  <data name="DAUSMNG" xml:space="preserve">
+    <value>User Management No</value>
+  </data>
+  <data name="DAUSRCD" xml:space="preserve">
+    <value>User Code</value>
+  </data>
+  <data name="DAVESEL" xml:space="preserve">
+    <value>Vessl</value>
+  </data>
+  <data name="DAWSID" xml:space="preserve">
+    <value>Workstation Id</value>
+  </data>
+  <data name="DAWT" xml:space="preserve">
+    <value>Weight </value>
+  </data>
+  <data name="DAWTCD" xml:space="preserve">
+    <value>Weight Code</value>
+  </data>
+  <data name="DAYLDAT" xml:space="preserve">
+    <value>Yield Amount</value>
+  </data>
+</root>

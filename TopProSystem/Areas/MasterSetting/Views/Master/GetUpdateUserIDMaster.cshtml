@@ -1,0 +1,116 @@
+﻿@model TopProSystem.Areas.MasterSetting.Models.MA003
+@using StaticResources
+@using StaticResources.View.UserID
+@{
+    ViewBag.Title = Resource.ChangeTitle;
+    Layout = "~/Areas/MasterSetting/Views/Shared/_LayoutMasterSeting.cshtml";
+    ViewBag.headerName = ViewBag.Title;
+}
+
+<style>
+    input[type = text], input[type = "password"], select {
+        width: 300px;
+    }
+
+    .divTableRow .divTableCell:first-child {
+        width: 10%;
+    }
+
+    .divTableRow .divTableCell:last-child {
+        width: 90%;
+    }
+</style>
+<div class="container-fluid">
+    <div class="data-content">
+        <form action="@Url.Action("UpdateUserID","Master")" method="post" name="formdata" id="UserId-Master-Form">
+            <div class="divTable" style="border: 1px solid #000">
+                <div class="divTableBody">
+                    <div class="divTableRow ">
+                        <div class="divTableCell "><span class="title-normal">@Resource.MCIDCD</span></div>
+                        <div class="divTableCell ">
+                            <input type="text" name="MCIDCD" id="MCIDCD" value="@Model.MCIDCD.Trim()" readonly tabindex="1" />
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell "><span class="title-normal">@Resource.MCIDNM</span></div>
+                        <div class="divTableCell "><input type="text" name="MCIDNM" id="MCIDNM" value="@Model.MCIDNM.Trim()" tabindex="2" /></div>
+                    </div>
+
+                    @{
+
+                        var ListRole = new List<SelectListItem>();
+                        ListRole.Add(new SelectListItem
+                        {
+                            Value = "1",
+                            Text = "Administrators"
+                        });
+                        ListRole.Add(new SelectListItem
+                        {
+                            Value = "2",
+                            Text = "Regional Sales Managers"
+                        });
+                        ListRole.Add(new SelectListItem
+                        {
+                            Value = "3",
+                            Text = "IT Manager"
+                        });
+                        ListRole.Add(new SelectListItem
+                        {
+                            Value = "4",
+                            Text = "Registered"
+                        });
+                    }
+                    <div class="divTableRow">
+                        <div class="divTableCell "><span class="title-normal">@Resource.MCSCTLV</span></div>
+                        <div class="divTableCell ">
+                            @Html.DropDownListFor(x => x.MCSCTLV, ListRole, RLayout.SelectAction, new { @tabindex = 3 })
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell "><span class="title-normal">@Resource.MCSCTNC</span></div>
+                        <div class="divTableCell ">
+                            @Html.DropDownListFor(x => x.MCSCTNC, Model.SectionCode, RLayout.SelectAction, new { @tabindex = "4" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3 float-right">
+                <button type="submit" class="btn-primary">@Button.BtnConfirm</button>
+                <button type="button" class="cancel" onclick="javascript:window.location.href='/MasterSetting/Master/UserIDMaster'">@Button.BtnCancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $('#MCSCTLV').val('@Model.MCSCTLV.Trim()');
+    $('#MCSCTNC').val('@Model.MCSCTNC.Trim()');
+
+    $('#UserId-Master-Form').validate({
+        rules: {
+            MCIDNM: {
+                required: true,
+                maxlength: 20,
+            },
+            MCSCTLV: 'required',
+            MCSCTNC: 'required',
+        },
+        messages: {
+         MCIDNM: {
+                required: '@Html.Raw(RLayout.Required)',
+                 maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"20"))',
+            },
+            MCSCTLV: '@Html.Raw(RLayout.Required)',
+            MCSCTNC: '@Html.Raw(RLayout.Required)',
+
+        },
+        errorElement: 'label',
+        errorPlacement: function (error, element) {
+            error.insertAfter(element);
+        },
+    })
+</script>
+
+
+

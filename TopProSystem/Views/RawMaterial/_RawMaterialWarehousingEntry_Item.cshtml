@@ -1,0 +1,173 @@
+﻿
+@model TopProSystem.Areas.MasterSetting.Models.RawMaterial
+@using StaticResources
+@{
+    Layout = null;
+
+}
+
+<div class="w-100 py-2 px-2" style="border-top: 1px solid #000; border-left: 1px solid #000; border-right: 1px solid #000; background: #e5e4e4">
+    <span class="title-float-left">Item No.</span>
+
+    @Html.TextBoxFor(x => x.PurchaseContract.ABCTITM, new { @type = "number", @tabindex = "21" })
+    <button class="cancel" type="button" style=" border-color:none; float:right">Delete item</button>
+    <div class="file-upload float-right">
+        <div class="file-select">
+            <div class="file-select-button" id="fileName">Excel File</div>
+            <div class="file-select-name" id="noFile">No file chosen...</div>
+            <input type="file" name="excelfile" id="excelfile">
+
+        </div>
+        <a href="#" onclick="removeexcel()" id="removeexcelfile" class="d-none fileupload-exists" data-dismiss="excelfile"><i class="fa-remove-excel fa fa-times" aria-hidden="true"></i></a>
+    </div>
+    <script>
+        $(function () {
+            $('#excelfile').change(function () {
+                var val = $(this).val().toLowerCase(),
+                    regex = new RegExp("(.*?)\.(xlsx|xls)$");
+                if (!(regex.test(val))) {
+                    $(this).val('');
+                    alert('Please select excel file ');
+                }
+                else {
+                    var filename = $("#excelfile").val();
+                    if (/^\s*$/.test(filename)) {
+                        $(".file-upload").removeClass('active');
+                        $("#noFile").text("No file chosen...");
+                    }
+                    else {
+                        $(".file-upload").addClass('active');
+                        $(".fileupload-exists").removeClass("d-none");
+                        $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+                    }
+                }
+            });
+        });
+        function removeexcel() {
+            $('#excelfile').val('');
+            $("#noFile").text("No file chosen...");
+            $(".file-upload").removeClass('active');
+            $(".fileupload-exists").addClass("d-none");
+        }
+    </script>
+
+
+</div>
+@*<div class="divTable" style="border: 1px solid">
+    <div class="divTableBody">
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.ABMCSPC)</span></div>
+            <div class="divTableCell">
+
+                @Html.DropDownListFor(x => x.PurchaseContract.ABMCSPC, Model.PurchaseContract.Specs, RLayout.SelectAction, new { @tabindex = "22" })
+            </div>
+            <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.ABGRADE)</span></div>
+            <div class="divTableCell">
+                @Html.DropDownListFor(x => x.PurchaseContract.ABGRADE, Model.PurchaseContract.Grades, RLayout.SelectAction, new { @tabindex = "26" })
+            </div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.ABCOAT)   </span></div>
+            <div class="divTableCell">
+                @Html.DropDownListFor(x => x.PurchaseContract.ABCOAT, Model.PurchaseContract.Coatings, RLayout.SelectAction, new { @tabindex = "23" })
+            </div>
+            <div class="divTableCell"><span class="title">Size</span></div>
+            <div class="divTableCell">
+                @Html.TextBoxFor(x => x.PurchaseContract.ABBSZT, new { @type = "number", @tabindex = "27" }) X
+                @Html.TextBoxFor(x => x.PurchaseContract.ABBSZW, new { @type = "number", @tabindex = "28" }) X
+                @Html.TextBoxFor(x => x.PurchaseContract.ABBSZL, new { @type = "number", @tabindex = "29" })
+            </div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">Product Name</span></div>
+            <div class="divTableCell">@Html.DropDownList("Select", new SelectList(new List<string>() { "1", "2" }), RLayout.SelectAction, new { @tabindex = "24" })</div>
+            <div class="divTableCell"><span class="title">Product Diameter</span></div>
+            <div class="divTableCell">@Html.DropDownList("Select", new SelectList(new List<string>() { "1", "2" }), RLayout.SelectAction, new { @tabindex = "30" })</div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.ABORDNO)</span></div>
+            <div class="divTableCell">@Html.TextBoxFor(x => x.PurchaseContract.ABORDNO, new { @tabindex = "25" })</div>
+            <div class="divTableCell"><span class="title"> Steel Grade</span></div>
+            <div class="divTableCell">@Html.DropDownListFor(x => x.PurchaseContract.RAPSTLGR, Model.PurchaseContract.SteelGrades, RLayout.SelectAction, new { @tabindex = "40" })</div>
+        </div>
+    </div>
+</div>*@
+
+<div class="divTable" style="border-right: 1px solid; border-left: 1px solid;border-bottom: 1px solid; ">
+    <div class="divTableBody" id="dataFill">
+        <div class="divTableRow">
+            <div class="divTableCell text-center"><span class="title-center">Inspection No</span></div>
+            <div class="divTableCell text-center"><span class="title-center">Raw Material No</span></div>
+            <div class="divTableCell text-center"><span class="title-center">Quantity</span></div>
+            <div class="divTableCell text-center"><span class="title-center">Weight</span></div>
+            <div class="divTableCell text-center"><span class="title-center">Status Code</span></div>
+        </div>
+        @for (int i = 1; i < 6; i++)
+        {
+            <div class="divTableRow itemno-rawmaterial">
+                <div class="divTableCell text-center"><input type="text" name="InspectionNo_@i" value="" style="width:230px;" /></div>
+                <div class="divTableCell text-center"><input type="text" name="RawMaterialNo_@i" value="" /></div>
+                <div class="divTableCell text-center"><input class="quantity" type="text" name="Quantity_@i" value="" /></div>
+                <div class="divTableCell text-center"><input class="weight" type="text" name="Weight_@i" value="" /></div>
+                <div class="divTableCell text-center"><input type="text" name="StatusCode_@i" value="" /></div>
+            </div>
+        }
+
+        <div class="divTableRow" id="totalRow">
+            <div class="divTableCell"></div>
+            <div class="divTableCell text-center"><span class="title-center">Total</span></div>
+            <div class="divTableCell text-center"><input class="totalquantity" type="text" value="" readonly style="background: #e5e4e4" /></div>
+            <div class="divTableCell text-center"><input class="totalweight" type="text" value="" readonly style="background: #e5e4e4" /></div>
+            <div class="divTableCell text-center"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    $('#dataFill').on('keyup', function () {
+        var quantitysum = 0;
+        $(".quantity").each(function () {
+            quantitysum += +$(this).val();
+        });
+        $('.totalquantity').val(quantitysum);
+        var sumweight = 0;
+        $(".weight").each(function () {
+            sumweight += +$(this).val();
+        });
+        $('.totalweight').val(sumweight);
+    })
+</script>
+<script type="text/javascript">
+    $('#dataFill').on('keyup', function () {
+        var tabindexs = new Array();
+        for (var i = 1; i <= 5; i++) {
+            var input = $('#dataFill .divTableRow:nth-last-child(2) .divTableCell:nth-child(' + i + ') input');  // lấy ra thẻ input của phần tử cuối thứ 2 duoi dem len
+            if (input.val() != '') {
+                var obj = { "value": input.val(), "tabindex": input.attr('tabindex') };
+                tabindexs.push(obj);
+            }
+        }
+
+        if (tabindexs.length < 5) return false;
+        var html = '<div class="divTableRow itemno-rawmaterial">';
+        var countitem = $('.itemno-rawmaterial').length + 1;
+        for (var i = 1; i <= 5; i++) {
+            if (i == 1) html += ' <div class="divTableCell text-center"><input type="text" name="InspectionNo_' + countitem + '" value=""  style="width:230px;"  /></div>';
+            if (i == 2) html += '<div class="divTableCell text-center"><input type="text" name="RawMaterialNo_' + countitem + '" value="" /></div>';
+            if (i == 3) html += '<div class="divTableCell text-center"><input type="text" class="quantity" name="Quantity_' + countitem + '" value="" /></div>';
+            if (i == 4) html += '<div class="divTableCell text-center"><input type="text" class="weight" name="Weight_' + countitem + '" value="" /></div>';
+            if (i == 5) html += '<div class="divTableCell text-center"><input type="text" name="StatusCode_' + countitem + '" value="" /></div>';
+        }
+
+        html += '</div>';
+
+        $('#dataFill .divTableRow:nth-last-child(2)').after(html);
+
+        $('html,body').animate({ scrollTop: document.body.scrollHeight }, 200);
+    })
+
+</script>

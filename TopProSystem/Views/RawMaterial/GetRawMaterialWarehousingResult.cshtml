@@ -1,0 +1,417 @@
+﻿@using StaticResources
+@{
+    ViewBag.Title = "Get Raw Material Warehousing Result";
+    Layout = "~/Views/Shared/_LayoutPageRawMaterial.cshtml";
+    ViewBag.content = "Raw Material Warehousing Result";
+}
+
+
+<script>
+
+    $(document).ready(function () {
+        $('body').css('min-width', '0');
+    })
+</script>
+<style>
+    @@media only screen and (max-width:800px ) {
+        #getrawmaterial form input[type=text], #getrawmaterial form span {
+            font-size: 16px !important;
+        }
+
+        .navbar-toggler img {
+            width: 2rem !important;
+        }
+
+        .header-text-color {
+            font-size: 1.2rem !important;
+            white-space: nowrap;
+        }
+
+        #getrawmaterial button {
+            width: 80px !important;
+        }
+
+        .navbar-nav .nav-link {
+            padding-left: 20px !important;
+        }
+
+        .table-responsive .thead th {
+            white-space: nowrap !important;
+        }
+
+        .table-responsive tbody td {
+            padding: 4px;
+        }
+
+        .table-responsive tbody tr:hover {
+            background: #7deaee !important;
+        }
+
+        .table-responsive .tsheader td {
+            white-space: nowrap !important;
+        }
+
+        #getrawmaterial .centerdiv {
+            margin-top: 0px !important;
+        }
+
+        .fa-home {
+            font-size: 30px;
+        }
+
+        table {
+            margin-bottom: 5px;
+        }
+    }
+</style>
+<div id="getrawmaterial" class="row w-100 container-fluid m-0 p-0">
+    @using (Html.BeginForm())
+    {
+
+          
+        <div class="col-md-12 mt-4 py-2 row w-100 m-0 p-0">
+            <div class="centerdiv" style="width: 300px;">
+                @if (ViewBag.Page == null)
+                {<div class="row">
+                        <div class="col-md-5 col-5 p-0">
+                            <div class="float-right"><span class="title">Date :</span></div>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <input type="text" name="Date" id="Date" data-provide="datepicker" required />
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-md-5 col-5 p-0">
+                            <div class="float-right"><span class="title">Location Code :</span></div>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            @Html.DropDownList("location_code", new SelectList(ViewBag.locationCode, "MDLCTCD", "MDLCTNM"), RLayout.SelectAction, new { @tabindex = "4" , @required = ""})
+                        </div>
+                    </div>
+                }
+                else
+                {
+
+                    <div class="row">
+                        <div class="col-md-5 col-5 p-0">
+                            <div class="float-right"><span class="title">Date :</span></div>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            @TempData["Date"]
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 col-5 p-0">
+                            <div class="float-right"><span class="title">Location Code :</span></div>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            @TempData["location_code"]
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 col-5 p-0">
+                            <div class="float-right"><span class="title">Inventory No :</span></div>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <input type="text" name="Inventory" id="inventory" autofocus required />
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-md-5 col-5 p-0">
+                            <div class="float-right"><span class="title">Inspection No :</span></div>
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <input type="text" name="InspectionNo" id="InspectionNo" required />
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="col-md-12 mt-3 w-100 p-0">
+                <div class="text-center">
+
+                    @if (ViewBag.Page != null)
+                    {
+                        <button type="button" class="add-item" id="btn-addItem">Add</button>
+                        <button type="button" class="confirm" id="btn-confirmSumit">Confirm</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="confirm">Confirm</button>
+                    }
+                    <button type="button" class="cancel" onclick="javascript:window.location.href = '@Url.Action("BackToFirstStep","RawMaterial")'">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+<button class="mb-1 mt-2 cancel float-right w-auto" id="deleteBtn">Delete from all select</button>
+<button class="mb-1 mt-2 mr-1 add-item float-right w-auto" id="selectAll-btn">Select All</button>
+<div class="row w-100 container-fluid mt-2 mx-0 p-0 border-top border-dark data-display">
+    <div class="table-responsive">
+        <table class="w-100 mt-2" id="dataTable">
+            <thead>
+                <tr class="text-center thead">
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Location code</th>
+                    <th>Inventory No.</th>
+                    <th> Inspection No</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    var success_message = '@TopProSystem.Models.ConstantData.SuccessMessage';
+
+    $('#btn-addItem').click(function () {
+        var inventory = $('#inventory');
+        var inspection = $('#InspectionNo');
+        var date = '@TempData["Date"]', location_code = '@TempData["location_code"]';
+        if (inventory.val() !== '' && inspection.val() !== '') {
+            $.ajax({
+                url: '@Url.Action("InsertRawMaterialStockEntryResult", "RawMaterial")',
+                data: { SERGSDT: date, SELCTCD: location_code, SEINVNO: inventory.val(), SEISPNO: inspection.val() },
+                type: 'POST',
+                async:false,
+                dataType: 'json',
+                success: function (rs) {
+                    if (rs === success_message) {
+                        $("#dataTable").DataTable().ajax.reload();
+                    } else if (rs === 'inv_exists') {
+                        ErrorAlert("Inventory no. already exists.");
+                    } else if (rs === 'ins_exists') {
+                        ErrorAlert("Inspection no. already exists.");
+                    } else if (rs === 'completed') {
+                        ErrorAlert("Inspection already in stock.");
+                    }
+                    else {
+                        ErrorAlert("Insert fail.");
+                    }
+                },
+                complete: function () {
+                    inventory.val("");
+                    inspection.val("");
+                    inventory.focus();
+                },
+                error: function (er) {
+                    ErrorAlert("Have some error with system, please contact support !");
+                    console.log(er.responseText);
+                }
+            });
+            return;
+        }
+    })
+
+    $('input,select').focus(function () {
+        $('input,select').parent().find('.icon-focus').remove();
+        $(this).after('<i class="fa fa-hand-o-left icon-focus" style="position:absolute; padding-left: 2px; margin-top: 5px;"></i>');
+    });
+
+    $('#btn-confirmSumit').click(function () {
+        $.confirm({
+            title: "<span class='text-secondary'>@Button.BtnConfirm</span>",
+            icon: 'fa fa-warning',
+            content: '@Html.Raw(RLayout.ContentDelete)',
+            type: 'blue',
+            buttons: {
+                confirm: {
+                    text: '@Button.BtnConfirm',
+                    btnClass: 'btn-confirm text-capitalize',
+                    action: function () {
+                        $.ajax({
+                            url: '@Url.Action("ConfirmStockEntry","RawMaterial")',
+                            type: 'GET',
+                            success: function (rs) {
+                                if (rs) {
+                                    SuccessAlert("Update successfull.");
+                                    $("#dataTable").DataTable().ajax.reload();
+                                }
+                            },
+                            error: function (rs) {
+                                alert(rs.responseText);
+                            }
+                        })
+                    }
+                },
+                cancel: {
+                    text: '@Button.BtnCancel',
+                    btnClass: 'btn-cancel text-capitalize',
+
+                }
+            }
+        })
+    })
+
+    $('input[type=text]').change(function () {
+        var input = $(this);
+        var inventory = $('#inventory'), inspection = $('#InspectionNo'), button_submit = $('#btn-addItem');
+
+        if (input.attr('id') === inventory.attr('id')) {
+            if (inventory.val() !== '') { 
+                $.getJSON("@Url.Action("CheckInventoryNoExists","RawMaterial")", { inventory: inventory.val() }).done(function (rs) {
+                    if (parseInt(rs) === 2) {
+                        ErrorAlert('Inventory No. do not exists.');
+                    } else if (parseInt(rs) === 1) {
+                        ErrorAlert('Inventory already in stock.');
+                    }
+                    else {
+                        inspection.focus();
+                    }
+                });
+            }
+        } else if (input.attr('id') == inspection.attr('id')) {
+            if (inventory.val() === '') {
+                inspection.val('');
+                ErrorAlert('Please scan Inventory No. first.');
+                inventory.focus();
+            } else {
+                if (inspection.val() !=='') {
+                    $.getJSON('@Url.Action("CheckInspectionScaningExists","RawMaterial")', {inspectionNo: inspection.val() }).done(function (rs) {
+                        if (parseInt(rs) === 2) {
+                            ErrorAlert("Inspection No. do not exists.");
+                        } else if (parseInt(rs) === 1) {
+                            ErrorAlert('Inspection No. already in stock.');
+                        }else {
+                            button_submit.click();
+                        }
+                    });
+                }
+            }
+        }
+        return;
+    })
+
+    
+
+    function mobileEvent() {
+       $('input[type=text]').change();
+    }
+
+
+
+    $('#selectAll-btn').click(function () {
+        var checkboxs = $('input[type=checkbox]');
+        var length = checkboxs.length, checked_length = $('input[type=checkbox]:checked').length;
+        if (length !== checked_length) {
+            checkboxs.prop('checked', true);
+        } else {
+            checkboxs.prop('checked', false);
+        }
+
+    })
+
+
+
+    $(document).ready(function () {
+        var t = $('#dataTable').DataTable({
+            "ordering": false,
+            "info": false,
+            "searching": false,
+            "lengthChange": false,
+            "pageLength": DataTableDisplayLength,
+            "bServerSide": true,
+            "sAjaxSource": "/RawMaterial/AjaxHandlerRawMaterialStockEntryResult",
+            "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                oSettings.jqXHR = $.ajax({
+                    "dataType": 'json',
+                    "url": sSource,
+                    "type": 'POST',
+                    "data": aoData,
+                    "success": fnCallback,
+                    "error": function () {
+                        alert("@RLayout.SessiontimeoutRespone");
+                        @*window.location.href = "@Url.Action("GetLogin","Account", new {area = "" })"*@
+                    }
+                });
+            },
+            "bProcessing": true,
+            "sServerMethod": "POST",
+            "language": {
+                "paginate": {
+                    "first": '<i class="fa fa-fast-backward"></i>',
+                    "last": '<i class="fa fa-fast-forward"></i>',
+                    "next": '<i class="fa fa-forward"></i>',
+                    "previous": '<i class="fa fa-backward"></i>'
+                },
+
+                "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+            },
+            "columns": [
+                 { "data": null },
+                    { "data": "Date" },
+                    { "data": "Location_code" },
+                    { "data": "Inventory" },
+                    { "data": "Inspection" },
+                { "render": function (data, type, row) { return '<input type="checkbox" name="name" id="' + row["ID"] + '" value="' + row["ID"] + '"  />' } }
+            ]
+
+        });
+
+        t.on('draw.dt', function () {
+            var PageInfo = $('#dataTable').DataTable().page.info();
+            t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1 + PageInfo.start;
+            });
+        });
+    });
+
+    $('#deleteBtn').click(function () {
+        var length = $('input[type="checkbox"]:checked').length;
+        if (length == 0) {
+            alert("@Html.Raw(RLayout.ErrorNoRowSelect)");
+            return false;
+        }
+        var array = [];
+        $('input[type="checkbox"]:checked').each(function () {
+            id = $(this).val();
+            array.push(id);
+        })
+        $.confirm({
+            title: "<span class='text-secondary'>@Button.BtnConfirm</span>",
+            icon: 'fa fa-warning',
+            content: '@Html.Raw(RLayout.ContentDelete)',
+            type: 'blue',
+            buttons: {
+                confirm: {
+                    text: '@Button.BtnConfirm',
+                    btnClass: 'btn-confirm text-capitalize',
+                    action: function () {
+                        $.ajax({
+                            url: '/RawMaterial/Delete_RawMaterialStockEntryResult',
+                            type: 'GET',
+                            dataType: 'json',
+                            data: {
+                                _array: function () { return array.join('|'); }
+                            },
+                            success: function (rs) {
+                                if (rs == success_message) {
+                                    SuccessAlert("Delete successfull.");
+                                    $('#dataTable').DataTable().ajax.reload();
+                                }
+                            },
+                            error: function (rs) {
+                                console.log(rs.responseText);
+                            }
+                        });
+                    }
+                },
+                cancel: {
+                    text: '@Button.BtnCancel',
+                    btnClass: 'btn-cancel text-capitalize',
+
+                }
+            }
+        })
+    })
+</script>
+
+
+
+
+

@@ -1,0 +1,1344 @@
+﻿@using StaticResources
+@using StaticResources.View.PUR001
+@model TopProSystem.Areas.MasterSetting.Models.PUR001
+@{
+    ViewBag.Title = "Edit Raw Material Stock Entry";
+    Layout = "~/Views/Shared/_LayoutPageRawMaterial.cshtml";
+    ViewBag.content = "Edit Raw Material Stock Entry";
+}
+
+<style>
+    .error {
+        border: 1px solid #f00 !important;
+    }
+
+    .valid {
+        border: 1px solid #0f0 !important;
+    }
+</style>
+
+<form action="@Url.Action("GetRawMaterialStockEntry_Add", "RawMaterial", new { id = "frmAddNew" })" id="form-data" method="post" name="formdata">
+    @Html.HiddenFor(x => x.AADSTNC)
+    <div class="content-top row mx-0">
+        <div class="divTable" style="border: 1px solid #000;">
+            <div class="divTableBody">
+                <div class="divTableRow">
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AAPURNO)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AAPURNO, new { @tabindex = "1", @readonly = "" })
+
+                    </div>
+
+                    <div class="divTableCell"><span class="title">Raw Material Type</span> </div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AARMTP, Model.RawMaterialTypes, RLayout.SelectAction, new { @tabindex = "24" })*@
+                        <div id="div-AARMTP" class="input-icons">
+                            @Html.TextBoxFor(x => x.AARMTP, new { @readonly = "readonly" })
+                            <input type="text" name="AARMTP_dl" id="AARMTP_dl" value="" readonly="" style="width: 200px">
+                        </div>
+                    </div>
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AAPURNO)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AAPURNO, new { @readonly = "" })
+                    </div>
+                </div>
+
+
+
+
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABCTITM)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.ABCTITM, new { @tabindex = "2", @readonly = "" })
+                    </div>
+
+                    <div class="divTableCell " style="width: 180px"><span class="title">@Html.DisplayNameFor(x => x.AAMKCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAMKCD, new SelectList(new List<string>()), new { @tabindex = "5" })*@
+                        <div class="input-icons" id="div-AAMKCD">
+                            @Html.TextBoxFor(x => x.AAMKCD, new { @readonly = "readonly" })
+                            <input type="text" name="AAMKCD_dl" id="AAMKCD_dl" value="" readonly="" style="width: 200px">
+                        </div>
+
+                    </div>
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AACMDCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AACMDCD, Model.CommodityCodes, RLayout.SelectAction, new { @tabindex = "16" })*@
+                        <div id="div-AACMDCD" class="input-icons">
+                            @Html.TextBoxFor(x => x.AACMDCD, new { @readonly = "readonly" })
+                            <input type="text" name="AACMDCD_dl" id="AACMDCD_dl" value="" readonly="" style="width: 200px">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="divTableRow">
+                    <div class="divTableCell" style="border-right:none"></div>
+
+                    <div class="divTableCell">
+                        @*<button type="button" id="btnSearch">@Button.BtnSeach</button>*@
+                    </div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AASPPNO)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.AASPPNO, new { @tabindex = "6" }) </div>
+
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AACTRTP)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AACTRTP, Model.ContractTypes, RLayout.SelectAction, new { @tabindex = "17" })*@
+                        <div id="div-AACTRTP" class="input-icons">
+                            @Html.TextBoxFor(x => x.AACTRTP, new { @readonly = "readonly" })
+                            <input type="text" name="AACTRTP_dl" id="AACTRTP_dl" value="" readonly="" style="width: 200px">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABSEDT)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.ABSEDT, "{0:dd/MM/yyyy}", new { @data_provide = "datepicker", @class = "ABSEDT", @required = "required", @autocomplete = "off" })</div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AASPLCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AASPLCD, Model.SupplierCodes, RLayout.SelectAction, new { @tabindex = "7" })*@
+                        <div id="div-AASPLCD" class="input-icons">
+                            @Html.TextBoxFor(x => x.AASPLCD, new { @readonly = "readonly" })
+                            <input type="text" name="AASPLCD_dl" id="AASPLCD_dl" value="" readonly="" style="width: 200px">
+                        </div>
+
+                    </div>
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AAIDCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAIDCD, Model.PersonIncharges, RLayout.SelectAction, new { @tabindex = "18" })*@
+                        <div id="div-AAIDCD" class="input-icons">
+                            @Html.HiddenFor(x => x.AAIDCD)
+                            <i class="fa fa-caret-down icon"></i>
+                            <input required="required" type="text" name="AAIDCD-js" id="AAIDCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" class="input-as-select" readonly tabindex="18" />
+                            <input type="text" name="AAIDCD_dl" id="AAIDCD_dl" value="" readonly style="width:200px" />
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABPIVNO)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.ABPIVNO, new { @tabindex = "4", @required = "required" })</div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AAUSRCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAUSRCD, Model.UserCodes, RLayout.SelectAction, new { @tabindex = "8" })*@
+                        <div id="div-AAUSRCD" class="input-icons">
+                            @Html.TextBoxFor(x => x.AAUSRCD, new { @readonly = "readonly" })
+                            <input type="text" name="AAUSRCD_dl" id="AAUSRCD_dl" value="" readonly="" style="width: 200px">
+                        </div>
+                    </div>
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AASETRM)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AASETRM, Model.SettelementTerms, RLayout.SelectAction, new { @tabindex = "22" })*@
+                        <div id="div-AASETRM" class="input-icons">
+                            @Html.TextBoxFor(x => x.AASETRM, new { @readonly = "readonly" })
+                            <input type="text" name="AASETRM_dl" id="AASETRM_dl" value="" readonly="" style="width: 200px">
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABPIVDT)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.ABPIVDT, "{0:dd/MM/yyyy}", new { @data_provide = "datepicker", @class = "ABPIVDT", @required = "required", @autocomplete = "off" })</div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AACRRCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AACRRCD, Model.CurrencyCodes, RLayout.SelectAction, new { @tabindex = "11" })*@
+                        <div id="div-AACRRCD" class="input-icons">
+                            @Html.TextBoxFor(x => x.AACRRCD, new { @readonly = "readonly" })
+                            <input type="text" name="AACRRCD_dl" id="AACRRCD_dl" value="" readonly="" style="width: 200px">
+                        </div>
+                    </div>
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AAEXRTT)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAEXRT, Model.ExchangeRateType, RLayout.SelectAction, new { Name = "AAEXRT_sl", @tabindex = "19" })*@
+                        <div id="div-AAEXRTT" class="input-icons">
+                            @Html.TextBoxFor(x => x.AAEXRTT, new { @readonly = "readonly" })
+                            @*<input type="text" name="AAEXRT_dl" id="AAEXRT_dl" value="" readonly="" style="width: 200px">*@
+                            @Html.TextBoxFor(x => x.AAEXRT, new { @readonly = "readonly" })
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABVESEL)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.ABVESEL, new { @tabindex = "4", @required = "required" })</div>
+                    <div class="divTableCell"><span class="title">Domestic Currency</span></div>
+                    @*PNB Edit*@
+                    <div class="divTableCell"><input type="text" name="name" value="VND" tabindex="12" readonly class="text-left" /></div>
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AATEXRT)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AATEXRT, new { @readonly = "" })
+                        @Html.TextBoxFor(x => x.AATXEXR, new { @readonly = "readonly" })
+                    </div>
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AATXCD)</span></div>
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AATXCD, Model.TaxCodes, RLayout.SelectAction, new { @tabindex = "13" })*@
+                        <div id="div-AATXCD" class="input-icons">
+                            @Html.TextBoxFor(x => x.AATXCD, new { @readonly = "readonly" })
+                            <input type="text" name="AATXCD_dl" id="AATXCD_dl" value="" readonly="" style="width: 200px">
+                        </div>
+                    </div>
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AATXRT)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AATXRT, new { @tabindex = "21", @readonly = "" })
+
+                    </div>
+
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AASHPDT)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AASHPDT, new { @tabindex = "9", @readonly = "" })
+                        <span class="title-float-left">&nbsp;MM/YYYY</span> @*19/12*@
+                    </div>
+
+                    <div class="divTableCell"><span class="title float-right">@Html.DisplayNameFor(x => x.AADLPOT)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AADLPOT, new { @tabindex = "23", @readonly = "" })
+                    </div>
+
+                </div>
+
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AADLVCD)</span></div>
+                    <div style="position:relative" class="divTableCell">
+                        <div class="input-icons" id="div-AADLVCD">
+                            @Html.TextBoxFor(x => x.AADLVCD, new { @readonly = "readonly" })
+                            <input type="text" name="AADLVCD_dl" id="AADLVCD_dl" value="" readonly="" style="width: 200px">
+                        </div>
+                    </div>
+                    <div class="divTableCell "><span class="title">@Html.DisplayNameFor(x => x.AARMK1)</span></div>
+                    <div class="divTableCell"> @Html.TextBoxFor(x => x.AARMK1, new { @class = "w-100", @readonly = "" })</div>
+
+                </div>
+
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AAPRICE)</span></div>
+                    @*PNB EDIT*@
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAPRICE, Model.Priceterms, RLayout.SelectAction, new { @tabindex = "14" })*@
+                        <div id="div-AAPRICE" class="input-icons">
+                            @Html.TextBoxFor(x => x.AAPRICE, new { @readonly = "readonly" })
+                            <input type="text" name="AAPRICE_dl" id="AAPRICE_dl" value="" readonly="" style="width: 200px">
+                        </div>
+                    </div>
+                    <div class="divTableCell "><span class="title">@Html.DisplayNameFor(x => x.AARMK2)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AARMK2, new { @class = "w-100", @readonly = "" })
+                    </div>
+
+
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.AAPTTRM)</span></div>
+                    @*PNB EDIT*@
+                    <div class="divTableCell">
+                        @*@Html.DropDownListFor(x => x.AAPTTRM, Model.TypeOfTerms, RLayout.SelectAction, new { @tabindex = "15" })*@
+                        <div id="div-AAPTTRM" class="input-icons">
+                            @Html.TextBoxFor(x => x.AAPTTRM, new { @readonly = "readonly" })
+                            <input type="text" name="AAPTTRM_dl" id="AAPTTRM_dl" value="" readonly="" style="width: 200px">
+                        </div>
+                    </div>
+                    <div class="divTableCell "><span class="title">@Html.DisplayNameFor(x => x.AARMK3)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AARMK3, new { @class = "w-100", @readonly = "" })
+                    </div>
+
+                </div>
+
+
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-bottom-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell "><span class="title">@Html.DisplayNameFor(x => x.AARMK4)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AARMK4, new { @class = "w-100", @readonly = "" })
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-bottom-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell "><span class="title">@Html.DisplayNameFor(x => x.AARMK5)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.AARMK5, new { @class = "w-100", @readonly = "" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-12 p-0  my-2">
+            <div class="float-right">
+                <small id="message" style="font-size:11px; color:#ff0000; font-weight:bold"></small>
+                @*@if (Model._completed != true)
+                    {
+
+
+                    }*@
+
+                <input type="file" id="selectedFile" style="display:none" accept=".xlsx" />
+                <button type="button" id="importExcel" class="excel" onclick="document.getElementById('selectedFile').click();">Import</button>
+                <button type="submit" class="confirm confirmAll">@Button.BtnConfirm</button>
+                <button type="button" class="cancel" onclick="javascript:window.location.href='@Url.Action("GetRawMaterialWarehousingEntry")'">@Button.BtnCancel</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="content-bottom row mx-0">
+        <div class="divTable" style="border: 1px solid #000;">
+            <div class="divTableBody">
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABMCSPC)</span></div>
+
+                    <div class="divTableCell">
+                        <div class="input-icons" id="div-ABMCSPC">
+                            @Html.TextBoxFor(x => x.ABMCSPC, new { @readonly = "" })
+                        </div>
+                    </div>
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABGRADE)</span></div>
+                    @*PNB EDIT*@
+
+                    <div class="divTableCell">
+                        <div class="input-icons" id="div-ABGRADE">
+                            @Html.TextBoxFor(x => x.ABGRADE, new { @readonly = "" })
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="divTableRow">
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABCOAT)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.ABCOAT, new { @class = "", @tabindex = "38", @readonly = "" })
+                    </div>
+                    <div class="divTableCell border-0" style="border-left: 1px solid #999999!important;"></div>
+                    <div class="divTableCell border-0"></div>
+                </div>
+
+
+                <div class="divTableRow">
+
+                    <div class="divTableCell"><span class="title">Size</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.ABBSZT, new { @type = "number", @class = "ABBSZT", @tabindex = "35", @readonly = "" }) X
+                        @Html.TextBoxFor(x => x.ABBSZW, new { @type = "number", @class = "ABBSZW", @tabindex = "36", @readonly = "" }) X
+                        @Html.TextBoxFor(x => x.ABBSZL, new { @type = "number", @class = "ABBSZL", @tabindex = "37", @readonly = "" })
+
+                    </div>
+                    <div class="divTableCell border-0" style="border-left: 1px solid #999999!important;"></div>
+                    <div class="divTableCell border-0"></div>
+                </div>
+
+
+                @*PNB EDIT*@
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABPRDNM)</span></div>
+                    <div class="divTableCell">
+                        @Html.TextBoxFor(x => x.ABPRDNM, new { @tabindex = "38", @readonly = "" })
+                    </div>
+                    <div class="divTableCell border-0" style="border-left: 1px solid #999999!important;"></div>
+                    <div class="divTableCell border-0"></div>
+                </div>
+
+
+
+
+                @*PNB EDIT*@
+                <div class="divTableRow">
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABPRDDIA)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.ABPRDDIA, new { @tabindex = 39, @readonly = "" })</div>
+
+                    <div class="divTableCell border-0" style="border-left: 1px solid #999999!important;"></div>
+                    <div class="divTableCell border-0"></div>
+                </div>
+
+                <div class="divTableRow">
+
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.RAPSTLGR)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.RAPSTLGR, new { @tabindex = 39, @readonly = "" })</div>
+
+                    <div class="divTableCell border-0" style="border-left: 1px solid #999999!important;"></div>
+                    <div class="divTableCell border-0"></div>
+                </div>
+
+                <div class="divTableRow">
+
+
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.ABORDNO)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.ABORDNO, new { @tabindex = 39, @readonly = "" })</div>
+
+                    <div class="divTableCell border-0" style="border-left: 1px solid #999999!important;"></div>
+                    <div class="divTableCell border-0"></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    @Html.HiddenFor(x => x.AARMTP)
+    @Html.HiddenFor(x => x.ABPRUP)
+    @Html.HiddenFor(x => x.ABPRUPD)
+    @Html.HiddenFor(x => x.ID)
+    <div class="col-lg-12 p-0  my-2">
+        <div class="float-right">
+            <small id="message" style="font-size:11px; color:#ff0000; font-weight:bold"></small>
+
+            <button type="button" id="add-rows" class="confirm">Add</button>
+            <button type="button" id="del-row" class="cancel">Delete</button>
+        </div>
+    </div>
+    <div class="data-display" style=" overflow: auto; overflow-y: scroll;max-height:500px">
+        <table class="table-sm w-100 table table-bordered" id="dataTable">
+            <thead>
+                <tr>
+                    <th># &nbsp;</th>
+                    <th>@Resource.InspectionNo</th>
+                    <th>@Resource.RawMaterialNo</th>
+                    <th>@Resource.Quantity</th>
+                    <th>@Resource.Weight</th>
+                    <th>@Resource.AARMTP</th>
+                    <th>@Resource.ABPRUP</th>
+                    <th>@Resource.ABPRUPD</th>
+                    <th>@Resource.PurchaseAmount</th>
+                    <th>@Resource.PurchaseAmountDomestic</th>
+                    <th>@Resource.TaxAmount</th>
+                    <th>@Resource.TaxAmountDomestic</th>
+                    <th><input id="chkDelAll" type="checkbox" style="margin-top:7px" /></th>
+                    <th style="display:none">#</th>
+                </tr>
+            </thead>
+            <tbody class="tbl-Data-excel" style="text-align:center"></tbody>
+
+        </table>
+
+    </div>
+    <div id="exp-loading" style="position:absolute; left: 50%; bottom: -60%; display:none"><span class="fa fa-spinner fa-pulse fa-3x fa-fw"></span></div>
+    <input style="display:none" id="chkPIC" />
+    <input style="display:none" value="@ViewBag.Key" id="keyLoad" name="keyLoad" />
+    <input style="display:none" class="totalRecord" id="totalExcelRecord" name="totalExcelRecord" value="1" />
+    <input style="display:none" id="LastRaw" name="LastRaw" value="@ViewBag.LastestRaw" />
+</form>
+
+
+
+<script>
+
+    $(document).on('click', '#chkDelAll', function () {
+
+        if ($(this).is(":checked")) {
+            $(".chkDel").prop("checked", true);
+        }
+        else {
+            $(".chkDel").prop("checked", false);
+        }
+
+
+    });
+
+    $(document).on('change', '.chkDel', function () {
+        var getthisID = $(this).attr('id')
+        if ($(this).is(":checked")) {
+            document.getElementById(getthisID).checked = true;
+        }
+        else {
+            ;
+            document.getElementById(getthisID).checked = false;
+            document.getElementById('chkDelAll').checked = false;
+        }
+    });
+
+    $(".confirmAll").click(function () {
+
+        var getTotal = $('#dataTable tr').length;
+
+        if (getTotal < 2) {
+            alert("Please add Inspection");
+            $('html, body').animate({
+                scrollTop: $("#dataTable").offset().top
+            }, 500);
+            return false;
+        }
+        $(".error-inspec").each(function(){
+            alert("Please Check Error Inspection");
+            var idNoinspec = $(this).attr('id');
+            $('html, body').animate({
+                scrollTop: $("#" +idNoinspec).offset().top
+            }, 500);
+            return false;
+        });
+
+    });
+
+
+    $(document).ready(function () {
+        LoadInExSQL();
+        var valPIC = '@ViewBag.PIC';
+        if (valPIC == '') {
+            $("#chkPIC").prop('required', true);
+        }
+        $("#AAIDCD").val(valPIC);
+
+    });
+
+    $(document).ready(function () {
+        $('#selectedFile').change(function () {
+
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+
+                var fileUpload = $("#selectedFile").get(0);
+                var files = fileUpload.files;
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                // Adding one more key to FormData object
+                //fileData.append('statuscode', statuscode);
+                //fileData.append('taxRate', taxRate);
+                //fileData.append('pUP', pUP);
+                //fileData.append('pUPD', pUPD);
+                //fileData.append('comodity', commodity);
+                //fileData.append('markerCode', markerCode);
+
+                // Looping over all files and add it to FormData object
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+
+                }
+
+
+                $.ajax({
+                    url: '@Url.Action("LoadExcelData", "RawMaterial")',
+                    type: "POST",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: fileData,
+                    success: function (result) {
+                        $("#exp-loading").css("display", "");
+                        setTimeout(LoadDataExcelTable(result), 1000);
+                        $('#selectedFile').val(null);
+                    },
+                    error: function (err) {
+                        //alert(err.statusText);
+                    }
+                });
+            } else {
+                //alert("FormData is not supported.");
+            }
+        });
+    });
+
+
+    function LoadDataExcelTable(result) {
+
+        var statuscode = $("#AARMTP").val() == '' ? '' : $("#AARMTP").val().trim();
+        var taxRate = $("#AATXRT").val() == '' ? '' : $("#AATXRT").val().trim();
+        var pUP = $("#ABPRUP").val() == '' ? '' : $("#ABPRUP").val().trim();
+        var pUPD = $("#ABPRUPD").val() == '' ? '' : $("#ABPRUPD").val().trim();
+        var commodity = $("#AACMDCD").val() == '' ? '' : $("#AACMDCD").val().substr(0, 1).trim();
+        var markerCode = $("#AAMKCD").val() == '' ? '' : $("#AAMKCD").val().trim();
+        var steelGrade = $("#RAPSTLGR").val() == '' ? '' : $("#RAPSTLGR").val().trim();
+        var producDameter = $("#ABPRDDIA").val() == '' ? '' : $("#ABPRDDIA").val().trim();
+        var contractNo = $("#AASPPNO").val() == '' ? '' : $("#AASPPNO").val().trim();
+
+        $.ajax({
+            url: '@Url.Action("LoadDataFromExcel", "RawMaterial")',
+            dataType: 'html',
+            data: {
+                filename: result, statuscode: statuscode, taxRate: taxRate, pUP: pUP, pUPD: pUPD, commodity: commodity, markerCode: markerCode, steelGrade: steelGrade,
+                producDameter: producDameter, contractNo: contractNo
+            },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                if (content.includes("SalesContractNoarenotmatching")) {
+                    alert("Sales Contract No are not matching !!!");
+                }
+                else if(content.includes("SizeOrSteelGradeNoarenotmatching")){
+                    alert("Size Or Steel Grade are not matching !!!");
+                }
+                else {
+                    var rowCount = $('#dataTable tr').length;
+                    if (rowCount > 1) {
+                        $(".td-Row").last().after(content);
+                    }
+                    else {
+                        $(".tbl-Data-excel").html(content);
+                    }
+                    LoadTableSort();
+                }
+
+                $("#exp-loading").css("display", "none");
+
+            },
+            error: function (err) {
+                alert(err.statusText);
+            }
+        });
+    }
+
+
+</script>
+
+
+<script>
+
+    $("#add-rows").click(function () {
+        var rowCount = $('#dataTable tr').length;
+        event.preventDefault();
+        var htlm = '<tr id="row_n" class="td-Row">'
+                       + '<th class="setNo"></th>'
+                       + '<th><input class="inspecNo" id="inspecNo_n" name="inspecNo_n" type="text" required /></th>'
+                       + '<th><input class="rawMatNo" id="rawMatNo_n" name="rawMatNo_n" type="text" readonly /></th>'
+                       + '<th><input class="quantity" id="quantity_n" name="quantity_n" type="text" onkeypress="return validateInt(event)" ; /></th>'
+                       + '<th><input class="weight-check weight" id="weight_n" name="weight_n" type="text" required onkeypress="return validate(event)"; /></th>'
+                       + '<th><input class="statusCode" id="statusCode_n" name="statusCode_n" type="text" value="@ViewBag.StatusCode" readonly /></th>'
+                       + '<th><input class="purUP" id="purUP_n" name="purUP_n" type="text" readonly value="@ViewBag.PurUP" /></th>'
+                       + '<th><input class="purUPD" id="purUPD_n" name="purUPD_n" type="text" readonly value="@ViewBag.PurUPD" /></th>'
+                       + '<th><input class="purA" id="purA_n" name="purA_n" type="text" readonly /></th>'
+                       + '<th><input class="purAD" id="purAD_n" name="purAD_n" type="text" readonly /></th>'
+                       + '<th><input class="txA" id="txA_n" name="txA_n" type="text" readonly /></th>'
+                       + '<th><input class="txAD" id="txAD_n" name="txAD_n" type="text" readonly /></th>'
+                       + '<th><input class="chkDel" id="chkDel_n" type="checkbox" style="margin-top:7px" /></th>'
+                       + '<th style="display:none"><input  name="chkExisted_n" id="chkExisted_n" value="0" style="margin-top:7px" />'
+                   + '</tr>'
+
+        var rowCount = $('#dataTable tr').length;
+        if (rowCount > 1) {
+            $(".td-Row").last().after(htlm);
+        }
+        else {
+            $(".tbl-Data-excel").html(htlm);
+        }
+
+        LoadTableSort();
+
+    });
+
+    $("#del-row").click(function () {
+        $.confirm({
+            title: "<span class='text-secondary'>@Button.BtnConfirm</span>",
+            icon: 'fa fa-spinner',
+            content: '@Html.Raw(RLayout.ContentDelete)',
+            type: 'blue',
+            buttons: {
+                confirm: {
+                    text: '@Button.BtnConfirm',
+                    btnClass: 'btn-confirm text-capitalize',
+                    action: function () {
+
+                        var keyLoad = $("#keyLoad").val() == '' ? '' : $("#keyLoad").val().trim();
+
+                        if ($("#chkDelAll").is(":checked")) {
+                            if (keyLoad != '') {
+                                $.ajax({
+                                    url: '@Url.Action("DeleteINVTRA", "RawMaterial")',
+                                    dataType: 'html',
+                                    data: {
+                                        keys: keyLoad
+                                    },
+                                    traditional: true,
+                                    type: 'POST',
+                                    success: function (content) {
+                                        $(".tbl-Data-excel").html('');
+                                    },
+                                    error: function (err) {
+                                        alert(err.statusText);
+                                    }
+                                });
+                            }
+                            else {
+                                $(".tbl-Data-excel").html('');
+                            }
+
+                        }
+                        else {
+                            var inspecList = '';
+                            $('input[class="chkDel"]:checked').each(function () {
+
+                                var getNo = $(this).attr('id').split('_')[1].trim();
+                                var getInspec = $("#inspecNo_" + getNo).val();
+
+                                if ($("#row_" + getNo).hasClass("sql-data")) {
+                                    inspecList = inspecList + ',' + getInspec;
+                                    $('#row_' + getNo).remove();
+                                }
+                                else {
+                                    $('#row_' + getNo).remove();
+                                }
+                            });
+                            $.ajax({
+                                url: '@Url.Action("DelSameInspec", "RawMaterial")',
+                                dataType: 'html',
+                                data: {
+                                    key: keyLoad, inspec: inspecList
+                                },
+                                traditional: true,
+                                type: 'POST',
+                                success: function (content) {
+
+                                },
+                                error: function (err) {
+                                    alert(err.statusText);
+                                }
+                            });
+                        }
+
+                        LoadTableSort();
+                    }
+                },
+                cancel: {
+                    text: '@Button.BtnCancel',
+                    btnClass: 'btn-cancel text-capitalize',
+                }
+            }
+        });
+
+
+    });
+
+
+    $(document).on('change', '.weight-check', function () {
+        var weiVal = $(this).val();
+        var newwei = Number(weiVal).toFixed(2);
+        $(this).val(newwei);
+
+        var getID = $(this).attr('id');
+        var stt = getID.split('_')[1];
+
+        var purUP = $("#purUP_" + stt).val();
+
+        if (purUP != '') {
+            if (newwei != '') {
+                var purAmt = Number(parseFloat(purUP) * parseFloat(newwei)).toFixed(2);
+                $("#purA_" + stt).val(purAmt);
+
+                var taxRate = $("#AATXRT").val() == '' ? '' : $("#AATXRT").val().trim();
+                if (taxRate != '') {
+                    var txAmt = Number(parseFloat(taxRate) / 100 * parseFloat(purAmt)).toFixed(2);
+                    $("#txA_" + stt).val(txAmt);
+                }
+
+            }
+            else {
+                $("#purA_" + stt).val('');
+                $("#txA_" + stt).val('');
+            }
+        }
+
+        var purUPD = $("#purUPD_" + stt).val();
+        if (purUPD != '') {
+            if (newwei != '') {
+                var purDAmt = Number(parseFloat(purUPD) * parseFloat(newwei)).toFixed(2);
+                $("#purAD_" + stt).val(purDAmt);
+
+                var taxRate = $("#AATXRT").val() == '' ? '' : $("#AATXRT").val().trim();
+                if (taxRate != '') {
+                    var txAmtD = Number(parseFloat(taxRate) / 100 * parseFloat(purDAmt)).toFixed(2);
+                    $("#txAD_" + stt).val(txAmtD);
+                }
+            }
+            else {
+                $("#purAD_" + stt).val('');
+                $("#txAD_" + stt).val('');
+            }
+        }
+    });
+
+    function validate(evt) {
+        var theEvent = evt || window.event;
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+        var regex = /[0-9]|\./;
+        if (!regex.test(key)) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+
+    function validateInt(evt) {
+        var theEvent = evt || window.event;
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+        var regex = /[0-9]/;
+        if (!regex.test(key)) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+
+    function LoadInExSQL() {
+
+        var keyLoad = $("#keyLoad").val() == '' ? '' : $("#keyLoad").val().trim();
+        if (keyLoad != '') {
+            $("#exp-loading").css("display", "");
+            $.ajax({
+                url: '@Url.Action("LoadDataSQLInEx", "RawMaterial")',
+                dataType: 'html',
+                data: {
+                    key: keyLoad,
+                },
+                traditional: true,
+                type: 'POST',
+                success: function (content) {
+                    $("#exp-loading").css("display", "none");
+                    $(".data-display").html(content);
+                    LoadTableSort();
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        }
+
+    };
+
+
+    function getRawNo(curRunNo) {
+
+        var comodity = $("#AACMDCD").val() == '' ? '' : $("#AACMDCD").val().substr(0, 1).trim();
+        var marker = $("#AAMKCD").val() == '' ? '' : $("#AAMKCD").val().trim();
+
+        var d = new Date();
+        var month = d.getMonth();
+        month = parseInt(month) + 1;
+        if (month == 10) {
+            month = 'X';
+        }
+        else if (month == 11) {
+            month = 'Y';
+        }
+        else if (month == 12) {
+            month = "Z";
+        }
+
+        var year = d.getFullYear();
+        var nYear = year.toString();
+        nYear = nYear.slice(-2);
+        var newCurNo = '';
+
+        if (curRunNo.length == 1) {
+            newCurNo = "000" + curRunNo;
+        }
+        else if (curRunNo.length == 2) {
+            newCurNo = "00" + curRunNo;
+        }
+        else if (curRunNo.length == 3) {
+            newCurNo = "0" + curRunNo;
+        }
+        else if (curRunNo.length == 4) {
+            newCurNo = curRunNo;
+        }
+        var result = comodity + marker + nYear + month + newCurNo;
+
+
+        return result;
+    }
+
+
+
+    ///Load table St
+
+    function LoadTableSort() {
+
+        var i = 1;
+        var lastNM = $("#lastMN").val();
+        var newStart = $("#LastRaw").val();
+
+
+
+        $(".td-Row").each(function () {
+
+            var ogriID = $(this).attr('id');
+            var idNo = $(this).attr('id').split('_')[1].trim();
+
+
+            if ($("#" + ogriID).hasClass("sql-data")) {
+
+                $(this).prop('id', 'row_' + i);
+
+                $("#no_" + idNo).attr('name', 'no_' + i);
+                $("#no_" + idNo).attr('id', 'no_' + i);
+
+                $("#inspecNo_" + idNo).attr('name', 'inspecNo_' + i);
+                $("#inspecNo_" + idNo).attr('id', 'inspecNo_' + i);
+
+                $("#rawMatNo_" + idNo).attr('name', 'rawMatNo_' + i);
+                $("#rawMatNo_" + idNo).attr('id', 'rawMatNo_' + i);
+
+                $("#quantity_" + idNo).attr('name', 'quantity_' + i);
+                $("#quantity_" + idNo).attr('id', 'quantity_' + i);
+
+                $("#weight_" + idNo).attr('name', 'weight_' + i);
+                $("#weight_" + idNo).attr('id', 'weight_' + i);
+
+                $("#statusCode_" + idNo).attr('name', 'statusCode_' + i);
+                $("#statusCode_" + idNo).attr('id', 'statusCode_' + i);
+
+                $("#purUP_" + idNo).attr('name', 'purUP_' + i);
+                $("#purUP_" + idNo).attr('id', 'purUP_' + i);
+
+                $("#purUPD_" + idNo).attr('name', 'purUPD_' + i);
+                $("#purUPD_" + idNo).attr('id', 'purUPD_' + i);
+
+                $("#purA_" + idNo).attr('name', 'purA_' + i);
+                $("#purA_" + idNo).attr('id', 'purA_' + i);
+
+                $("#purAD_" + idNo).attr('name', 'purAD_' + i);
+                $("#purAD_" + idNo).attr('id', 'purAD_' + i);
+
+                $("#txA_" + idNo).attr('name', 'txA_' + i);
+                $("#txA_" + idNo).attr('id', 'txA_' + i);
+
+                $("#txAD_" + idNo).attr('name', 'txAD_' + i);
+                $("#txAD_" + idNo).attr('id', 'txAD_' + i);
+
+                $("#chkDel_" + idNo).attr('id', 'chkDel_' + i);
+
+                $("#chkExisted_" + idNo).attr('name', 'chkExisted_' + i);
+                $("#chkExisted_" + idNo).attr('id', 'chkExisted_' + i);
+
+
+            }
+            else {
+                if ((idNo == 'n' || idNo >= i)) {
+
+                    $(this).prop('id', 'row_' + i);
+
+                    $("#no_" + idNo).attr('name', 'no_' + i);
+                    $("#no_" + idNo).attr('id', 'no_' + i);
+
+                    $("#inspecNo_" + idNo).attr('name', 'inspecNo_' + i);
+                    $("#inspecNo_" + idNo).attr('id', 'inspecNo_' + i);
+
+                    var rNo = getRawNo('' + newStart);
+
+                    $("#rawMatNo_" + idNo).attr('name', 'rawMatNo_' + i);
+                    $("#rawMatNo_" + idNo).attr('id', 'rawMatNo_' + i);
+                    $("#rawMatNo_" + i).val(rNo);
+
+                    $("#quantity_" + idNo).attr('name', 'quantity_' + i);
+                    $("#quantity_" + idNo).attr('id', 'quantity_' + i);
+
+                    $("#weight_" + idNo).attr('name', 'weight_' + i);
+                    $("#weight_" + idNo).attr('id', 'weight_' + i);
+
+                    $("#statusCode_" + idNo).attr('name', 'statusCode_' + i);
+                    $("#statusCode_" + idNo).attr('id', 'statusCode_' + i);
+
+                    $("#purUP_" + idNo).attr('name', 'purUP_' + i);
+                    $("#purUP_" + idNo).attr('id', 'purUP_' + i);
+
+                    $("#purUPD_" + idNo).attr('name', 'purUPD_' + i);
+                    $("#purUPD_" + idNo).attr('id', 'purUPD_' + i);
+
+                    $("#purA_" + idNo).attr('name', 'purA_' + i);
+                    $("#purA_" + idNo).attr('id', 'purA_' + i);
+
+                    $("#purAD_" + idNo).attr('name', 'purAD_' + i);
+                    $("#purAD_" + idNo).attr('id', 'purAD_' + i);
+
+                    $("#txA_" + idNo).attr('name', 'txA_' + i);
+                    $("#txA_" + idNo).attr('id', 'txA_' + i);
+
+                    $("#txAD_" + idNo).attr('name', 'txAD_' + i);
+                    $("#txAD_" + idNo).attr('id', 'txAD_' + i);
+
+                    $("#chkDel_" + idNo).attr('id', 'chkDel_' + i);
+
+                    $("#chkExisted_" + idNo).attr('name', 'chkExisted_' + i);
+                    $("#chkExisted_" + idNo).attr('id', 'chkExisted_' + i);
+                }
+                newStart++;
+            }
+            i++;
+
+        });
+
+        $(".totalRecord").val(i);
+        var getTotal = $('#dataTable tr').length;
+
+        if (getTotal > 1) {
+            $("#chkPIC").prop('required', false);
+        }
+        else {
+            $("#chkPIC").prop('required', true);
+        }
+
+        LoadStt();
+        CheckSameInspec();
+     
+
+
+    };
+
+    function LoadStt() {
+        var i = 1;
+        $(".setNo").each(function () {
+            $(this).text(i);
+            i++;
+        });
+    }
+
+
+    $(document).on('change', '.inspecNo', function () {
+        CheckSameInspec();
+    });
+
+
+    function CheckSameInspec() {
+        var lstInNo = [];
+        var chkSame = 0;
+        var keyLoad = $("#keyLoad").val() == '' ? '' : $("#keyLoad").val().trim();
+        var lstInsSQL = @Html.Raw(Json.Encode(ViewBag.ListInspection));
+
+        $(".inspecNo").each(function () {
+
+            var getINval = $(this).val();
+            var getIDIns = $(this).attr('id');
+            var idNo = $(this).attr('id').split('_')[1].trim();
+
+
+
+            if (lstInNo.includes(getINval) || lstInsSQL.includes(getINval)) {
+                $("#" + getIDIns).css("border", "");
+                $("#" + getIDIns).attr("style", "border:1px red solid !important");  
+                $("#" + getIDIns).addClass( "error-inspec" );
+                chkSame++;
+            }
+            else if (getINval != '') {                
+                $("#" + getIDIns).css("border", "");
+                $("#" + getIDIns).attr("style", "border: 1px solid #999999 !important");      
+                $("#" + getIDIns).removeClass( "error-inspec" );
+                lstInNo.push(getINval);
+            }
+        });
+
+        if (chkSame > 0) {
+            $("#chkPIC").prop('required', true);
+        }
+        
+    };
+
+
+
+
+</script>
+
+
+
+<script>
+    $("#btnSearch").click(function () {
+        var purNo = $("#AAPURNO").val();
+        var item = $("#ABCTITM").val();
+        if (purNo == '' || item == '') {
+            if (purNo == '') {
+                $("#AAPURNO").css("border", "red 1px solid");
+            }
+            if (item == '') {
+                $("#ABCTITM").css("border", "red 1px solid");
+            }
+        }
+        else {
+            var url = "/RawMaterial/GetRawMaterialStockEntry_Add?purContractNo=" + purNo + '&item=' + item;
+            window.location.href = url;
+
+        }
+    });
+
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        ///Rawmat
+        var valRM = $("#AARMTP").val();
+        $.ajax({
+            url: '@Url.Action("GetValueMA0012NameBaseOnCode", "RawMaterial")',
+            data: { Code: valRM, number: '034' },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#AARMTP_dl").val(content);
+            }
+        });
+
+        ///Marker Code
+        var valMC = $("#AAMKCD").val();
+        $.ajax({
+            url: '@Url.Action("GetValueMA0012NameBaseOnCode", "RawMaterial")',
+            data: { Code: valMC, number: '005' },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#AAMKCD_dl").val(content);
+            }
+        });
+
+        ///Comodity Code
+        var valCC = $("#AACMDCD").val();
+        $.ajax({
+            url: '@Url.Action("GetValueMA0012NameBaseOnCode", "RawMaterial")',
+            data: { Code: valCC, number: '006' },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#AACMDCD_dl").val(content);
+            }
+        });
+        ///Contract Type
+        var valCT = $("#AACTRTP").val();
+        $.ajax({
+            url: '@Url.Action("GetValueMA0012NameBaseOnCode", "RawMaterial")',
+            data: { Code: valCT, number: '025' },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#AACTRTP_dl").val(content);
+            }
+        });
+        ///Supplier Code
+        var valSC = $("#AASPLCD").val();
+        $.ajax({
+            url: '@Url.Action("GetValueMA001NameBaseOnCode", "RawMaterial")',
+            data: { Code: valSC },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#AASPLCD_dl").val(content);
+            }
+        });
+
+        ///Person Incharge
+
+        var valSC = $("#AAIDCD").val();
+        $.ajax({
+            url: '@Url.Action("GetValueMA003NameBaseOnCode", "RawMaterial")',
+            data: { Code: valSC },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#AAIDCD_dl").val(content);
+            }
+        });
+
+        if ($('#AAIDCD').val() !== '') {
+            $('#AAIDCD-js').autocomplete().val($('#AAIDCD').val());
+        }
+
+        ///User Code
+        var valUSC = $("#AAUSRCD").val();
+        $.ajax({
+            url: '@Url.Action("GetValueMA002NameBaseOnCode", "RawMaterial")',
+            data: { Code: valUSC },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#AAUSRCD_dl").val(content);
+            }
+        });
+
+        ///Settlement Term
+        var valSMT = $("#AASETRM").val();
+        $.ajax({
+            url: '@Url.Action("GetValueMA0012NameBaseOnCode", "RawMaterial")',
+            data: { Code: valSMT, number: '020' },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#AASETRM_dl").val(content);
+            }
+        });
+
+        ///Currency Code
+        var valCurC = $("#AACRRCD").val();
+        $.ajax({
+            url: '@Url.Action("GetValueMA0012NameBaseOnCode", "RawMaterial")',
+            data: { Code: valCurC, number: '012' },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#AACRRCD_dl").val(content);
+            }
+        });
+
+        ///Exchange Rate
+        @*var valExrate = $("#AAEXRT").val();
+        $.ajax({
+            url: '@Url.Action("GetValueMA0012NameBaseOnCode", "RawMaterial")',
+            data: { Code: valExrate, number: '012' },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#AAEXRT_dl").val(content);
+            }
+        });*@
+
+        ///Currency Code
+        var valCurC = $("#AATXCD").val();
+        $.ajax({
+            url: '@Url.Action("GetValueMA010NameBaseOnCode", "RawMaterial")',
+            data: { Code: valCurC },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#AATXCD_dl").val(content);
+            }
+        });
+
+        ///Delivery Condition
+        var valdlvcd = $("#AADLVCD").val();
+        $.ajax({
+            url: '@Url.Action("GetValueMA0012NameBaseOnCode", "RawMaterial")',
+            data: { Code: valdlvcd, number: '024' },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#AADLVCD_dl").val(content);
+            }
+        });
+
+        ///Price Term
+
+        var valPrice = $("#AAPRICE").val();
+        $.ajax({
+            url: '@Url.Action("GetValueMA0012NameBaseOnCode", "RawMaterial")',
+            data: { Code: valPrice, number: '019' },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#AAPRICE_dl").val(content);
+            }
+        });
+
+        ///Price Term
+
+        var valPTTRM = $("#AAPTTRM").val();
+        $.ajax({
+            url: '@Url.Action("GetValueMA0012NameBaseOnCode", "RawMaterial")',
+            data: { Code: valPTTRM, number: '021' },
+            traditional: true,
+            type: 'POST',
+            success: function (content) {
+                $("#AAPTTRM_dl").val(content);
+            }
+        });
+
+
+
+    });
+
+</script>
+
+
+<script>
+    $(function () {
+        $('#AAIDCD-js').autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 14 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+                    $("#chkPIC").prop('required', true);
+                }
+                if (ui.item.value !== ' ') {
+                    $('#AAIDCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                    $('#AAIDCD').val(ui.item.value); // value for save
+                    $("#chkPIC").prop('required', false);
+                }
+                else {
+                    $('#AAIDCD_dl').val('');
+                    $('#AAIDCD').val(''); // value for save
+                    $("#chkPIC").prop('required', true);
+
+                }
+
+            },
+
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+
+        $('#div-AAIDCD .icon').click(function () {
+            $('#AAIDCD-js').autocomplete("search", "");
+        });
+    })
+
+
+    $('#AAIDCD').change(function () {
+        if ($(this).val() !== '') {
+            $.getJSON('@Url.Action("GetJsonMa003","Master", new {area = "MasterSetting" })', { userid: $(this).val() }).done(function (rs) {
+                $('#AAIDCD_dl').val(rs.MCIDNM);
+            })
+        } else {
+            $('#AAIDCD_dl').val('');
+
+        }
+    });
+
+
+</script>
+
+
+

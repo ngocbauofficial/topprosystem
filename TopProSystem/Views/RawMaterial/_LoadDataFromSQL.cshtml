@@ -1,0 +1,171 @@
+﻿@*@using PagedList.Mvc;
+@using PagedList;*@
+@using StaticResources
+@using StaticResources.View.PUR001;
+@model IEnumerable<TopProSystem.Areas.MasterSetting.Models.DataInspecExcel>
+@*@model IPagedList<TopProSystem.Areas.MasterSetting.Models.InspectionItemNoMaterial>*@
+
+@{
+    Layout = "";
+}
+@*<style>
+    select, input[type="text"], input[type="date"], input[type=number] {
+    width: auto;
+    max-width:150px;
+    height: 24px;
+    border: 1px solid #999999;
+    padding-left: 3px;
+    padding-right: 3px;
+    font-size: 12px;
+    margin-top: 2px;
+    font-family: sans-serif;
+}
+    input[type=text]:read-only {
+    background: #f5f5f5;
+    border: 1px solid #999999 !important;
+}
+</style>*@
+<table class="table-sm w-100 table table-bordered" id="dataTable">
+    <thead>
+        <tr>
+            <th style="width:20px!important"># &nbsp;</th>
+            <th>@Resource.InspectionNo</th>
+            <th>@Resource.RawMaterialNo</th>
+            <th>@Resource.Quantity</th>
+            <th>@Resource.Weight</th>
+            <th>@Resource.AARMTP</th>
+            <th>@Resource.ABPRUP</th>
+            <th>@Resource.ABPRUPD</th>
+            <th>@Resource.PurchaseAmount</th>
+            <th>@Resource.PurchaseAmountDomestic</th>
+            <th>@Resource.TaxAmount</th>
+            <th>@Resource.TaxAmountDomestic</th>
+            <th><input id="chkDelAll" type="checkbox" style="margin-top:7px" /></th>
+            <th style="display:none">#</th>
+
+           
+        </tr>
+    </thead>
+    <tbody class="tbl-Data-excel" style="text-align:center">
+        @{
+            int i = 1;
+            string lastMatNo = "";
+        }
+        @foreach (var item in Model)
+        {
+
+            <tr id="row_@i" class="td-Row sql-data">
+                <th class="setNo"></th>
+                <th><input class="inspecNo" id="inspecNo_@i" name="inspecNo_@i" type="text" value="@item.InspectionNo" readonly required /></th>
+                <th><input id="rawMatNo_@i" name="rawMatNo_@i" type="text" value="@item.RawMaterialNo" readonly /></th>
+                <th><input id="quantity_@i" name="quantity_@i" type="text" value="@item.Quantity" readonly /></th>
+
+                <th>
+                    @if (item.Status != "1")
+                    {
+                        <input class="weight-check" id="weight_@i" name="weight_@i" type="text" value="@item.Weight" required onkeypress="return validate(event)" ; />
+                    }
+                    else
+                    {
+                        <input class="weight-check" id="weight_@i" name="weight_@i" type="text" value="@item.Weight" readonly />
+                    }
+               
+                </th>
+                <th><input id="statusCode_@i" name="statusCode_@i" type="text" value="@item.StatusCode" readonly /></th>
+                <th><input id="purUP_@i" name="purUP_@i" type="text" value="@item.PurchaseUP" readonly /></th>
+                <th><input id="purUPD_@i" name="purUPD_@i" type="text" value="@item.PurchaseUPD" readonly /></th>
+                <th><input id="purA_@i" name="purA_@i" type="text" value="@item.PurAmount" readonly /></th>
+                <th><input id="purAD_@i" name="purAD_@i" type="text" value="@item.PurAmountDomestic" readonly /></th>
+                <th><input id="txA_@i" name="txA_@i" type="text" value="@item.TaxAmount" readonly /></th>
+                <th><input id="txAD_@i" name="txAD_@i" type="text" value="@item.TaxAmountDomestic" readonly /></th>
+                <th>
+                    @if (item.Status != "1")
+                    {
+                        <input class="chkDel" id="chkDel_@i" type="checkbox" style="margin-top:7px" />
+                    }
+                    
+                </th>
+                <th style="display:none"><input id="chkExisted_@i" name="chkExisted_@i" value="1.0" style="margin-top:7px" /></th>
+</tr>
+            i++;
+            lastMatNo = item.RawMaterialNo; 
+
+        }
+
+    </tbody>    
+</table>
+<input style="display:none" value="@lastMatNo" id="lastMN" name="lastMN" class="last-mat-no"/>
+<input style="display:none" value="@i" id="totalRow" name="totalRow" class="total-Row" />
+
+<script>
+    $(document).ready(function () {
+        var getTotal = $("#totalRow").val();
+        console.log(getTotal);
+        $(".totalRecord").val(getTotal);
+    });
+</script>
+
+@*<script>
+    function validate(evt) {
+        var theEvent = evt || window.event;
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+        var regex = /[0-9]|\./;
+        if (!regex.test(key)) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+
+    $(".weight-check").change(function () {
+        var weiVal = $(this).val();
+        var newwei = Number(weiVal).toFixed(2);
+        $(this).val(newwei);
+
+        var getID = $(this).attr('id');
+        var stt = getID.split('_')[1];
+
+        var purUP = $("#purUP_" + stt).val();
+        
+        if (purUP != '') {
+            if (newwei != '') {
+                var purAmt = Number(parseFloat(purUP) * parseFloat(newwei)).toFixed(2);
+                $("#purA_" + stt).val(purAmt);
+
+                var taxRate = $("#AATXRT").val() == '' ? '' : $("#AATXRT").val().trim();
+                if (taxRate != '') {
+                    var txAmt = Number(parseFloat(taxRate) / 100 * parseFloat(purAmt)).toFixed(2);
+                    $("#txA_" + stt).val(txAmt);
+                }
+
+            }
+            else {
+                $("#purA_" + stt).val('');
+                $("#txA_" + stt).val('');
+            }
+        }
+
+        var purUPD = $("#purUPD_" + stt).val();
+        if (purUPD != '') {
+            if (newwei != '') {
+                var purDAmt = Number(parseFloat(purUPD) * parseFloat(newwei)).toFixed(2);
+                $("#purAD_" + stt).val(purDAmt);
+
+                var taxRate = $("#AATXRT").val() == '' ? '' : $("#AATXRT").val().trim();
+                if (taxRate != '') {
+                    var txAmtD = Number(parseFloat(taxRate) / 100 * parseFloat(purDAmt)).toFixed(2);
+                    $("#txAD_" + stt).val(txAmtD);
+                }
+            }
+            else {
+                $("#purAD_" + stt).val('');
+                $("#txAD_" + stt).val('');
+            }
+        }
+
+
+        
+
+    });
+
+</script>*@

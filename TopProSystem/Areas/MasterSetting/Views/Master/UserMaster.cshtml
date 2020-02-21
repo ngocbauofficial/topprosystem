@@ -1,0 +1,280 @@
+﻿@using StaticResources
+@using StaticResources.View.User
+@model IEnumerable<TopProSystem.Areas.MasterSetting.Models.MA002>
+
+@{
+    ViewBag.Title = Resource.MasterTitle;
+    Layout = "~/Areas/MasterSetting/Views/Shared/_LayoutMasterSeting.cshtml";
+    ViewBag.headerName = ViewBag.Title;
+}
+@using TopProSystem.Extension.AccountRole
+@{
+    var permission = new PermissionService();
+    var checkbuton = permission.AuthorizeAction(StandardPermissionProvider.UserMaster);
+}
+<style>
+    table th, table td {
+        white-space: nowrap;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(function () {
+        @Html.Raw(TempData[TopProSystem.Models.ConstantData.Notification_key])
+    })
+
+</script>
+<div class="container-fluid">
+    <div class="pos-top">
+        <div class="row mx-0">
+            <div class="col-lg-12">
+                <div>
+                    <div class="form-group">
+                        <input type="text" name="userid" class="search" value="" placeholder="@Resource.PlaceholderTextSearch" />
+                        <button type="button" id="btnSearch" class="btn-primary search ml-2">@Button.BtnSeach</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-0 mt-5">
+            <div class="col-lg-12">
+                @if (checkbuton.ShowDelete)
+                {
+                    <button class="btn-danger float-right ml-2" id="deleteBtn">@Button.BtnDelete</button>
+                }
+                @if (checkbuton.ShowAdd)
+                {
+                    <a href="@Url.Action("GetInsertUserMaster", "Master")" class="button float-right btn-addnew">@Button.BtnAdd</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="data-display">
+        <table class="w-100 table-sm" id="dataTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>@Resource.MBUSRCD</th>
+                    <th>@Resource.MBUSRNM</th>
+                    <th>@Resource.MBUSSNM</th>
+                    <th>@Resource.MBUSAD1</th>
+                    <th>@Resource.MBUSAD2</th>
+                    <th>@Resource.MBUSAD3</th>
+                    <th>@Resource.MBUSTEL</th>
+                    <th>@Resource.COMBINATIONCODE</th>
+                    <th>@Resource.UNITOFWGTCODE</th>
+                    <th>@Resource.MBWTCAL</th>
+                    <th>@Resource.MBRGSDT</th>
+                    <th>@Resource.MBRGSTM</th>
+                    <th>@Resource.MBUPDT</th>
+                    <th>@Resource.MBUPDTM</th>
+                    @if (checkbuton.ShowEdit)
+                    {
+                        <th>@Button.LbEdit</th>
+                    }
+                    @if (checkbuton.ShowDelete)
+                    {
+                        <th>@Button.LbSelect</th>
+                    }
+
+                </tr>
+
+            </thead>
+            @*<tbody>
+                    @{int seq = 1;}
+                    @foreach (var i in Model)
+                    {
+                        <tr id="@i.MBUSRCD">
+                            <td>@seq</td>
+                            <td>@i.MBUSRCD</td>
+                            <td>@i.MBUSRNM</td>
+                            <td>@i.MBUSSNM</td>
+                            <td>@i.MBUSAD1</td>
+                            <td>@i.MBUSAD2</td>
+                            <td>@i.MBUSAD3</td>
+                            <td>@i.MBUSTEL</td>
+                            <td></td>
+                            <td></td>
+                            <td>@i.MBWTCAL</td>
+                            <td>@String.Format("{0:dd/MM/yyyy}", i.MBRGSDT)</td>
+                            <td>@i.MBRGSTM</td>
+                            <td>@String.Format("{0:dd/MM/yyyy}", i.MBUPDT)</td>
+                            <td>@i.MBUPDTM</td>
+                            <td>
+                                <a href="@Url.Action("GetUpdateUserMaster","Master", new {userid = i.MBUSRCD })" class="edit"><img src="~/Images/Icon/edit-icon.png" /></a>
+                            </td>
+                            <td><input type="checkbox" name="name" value="@i.MBUSRCD.Trim()" /></td>
+                        </tr>
+                        seq++;
+                    }
+                </tbody>*@
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    const URL_CHECK_USERID_REFERENCE = '/Master/CheckUserCodeInUsedReference';
+    const URL_DELETE_USER_MASTER = '/Master/DeleteUserMaster';
+
+   $('#dataTable').on("click", function () {
+        var checkboxs = $(this).find("input[type=checkbox]:checked");
+        if (checkboxs.length != 0) {
+            checkboxs.each(function () {
+                var $checkbox = $(this);
+                $.getJSON(URL_CHECK_USERID_REFERENCE, {
+                    userid: $checkbox.val() }).done(function (data) {
+                        if (data.message != null && data.message!='') {
+                            ErrorAlert("@RLayout.IsUsed " + data.message)
+                        $checkbox.prop('checked', false);
+                    }
+                }).fail(function (rs) {
+                    console.log(rs.responseText);
+                })
+            })
+        }
+    })
+
+
+    $('#deleteBtn').click(function () {
+        var length = $('input[type="checkbox"]:checked').length;
+        if (length == 0) {
+            alert("@Html.Raw(RLayout.ErrorNoRowSelect)");
+            return false;
+        }
+        var val = '';
+        $('input[type="checkbox"]:checked').each(function () {
+            val += $(this).val() + '|';
+
+        })
+        val = val.substring(0, val.length - 1);
+
+        $.confirm({
+            title: "<span class='text-secondary'>@Html.Raw(Button.BtnConfirm)</span>",
+            icon: 'fa fa-warning',
+            content: '@Html.Raw(RLayout.ContentDelete)',
+            type: 'blue',
+            buttons: {
+                confirm: {
+                    text: '@Button.BtnConfirm',
+                    btnClass: 'btn-confirm text-capitalize',
+                    action: function () {
+                        $.getJSON(URL_DELETE_USER_MASTER, { arrayuserid: val }).done(function (rs) {
+                            if (!rs) window.location.href = rs;
+                            else {
+                                SuccessAlert('@RLayout.DeleteMsg');
+                                $('#dataTable').DataTable().ajax.reload();
+
+                            }
+                        }).fail(function (rs) {
+                            console.log(rs.responseText);
+                        });
+                    }
+                },
+                cancel: {
+                    text: '@Button.BtnCancel',
+                    btnClass: 'btn-cancel text-capitalize',
+                    action: function () {
+
+                    }
+                }
+            }
+        });
+    })
+
+</script>
+
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            var t = $('#dataTable').DataTable({
+                "ordering": false,
+                "info": false,
+                "scrollX": true,
+                "lengthChange": false,
+                "pageLength": DataTableDisplayLength,
+                "bServerSide": true,
+                "sAjaxSource": "/Master/AjaxhanlderUser",
+                "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                oSettings.jqXHR = $.ajax({
+                    "dataType": 'json',
+                    "type": 'POST',
+                    "url": sSource,
+                    "data": aoData,
+                    "success": fnCallback,
+                    "error": function () {
+                        alert("@RLayout.SessiontimeoutRespone");
+                        window.location.href = "@Url.Action("GetLogin","Account", new {area = "" })"
+                    }
+                });
+            },
+                "bProcessing": true,
+                "sServerMethod": "POST",
+                "sPaginationType": "full_numbers",
+                "language": {
+                    "paginate": {
+                        "first": '<i class="fa fa-fast-backward"></i>',
+                        "last": '<i class="fa fa-fast-forward"></i>',
+                        "next": '<i class="fa fa-forward"></i>',
+                        "previous": '<i class="fa fa-backward"></i>'
+                    },
+                    "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+                },
+                "columns": [
+                    { "data": function () {return "" } },
+                    { "data": "MBUSRCD" },
+                    { "data": "MBUSRNM" },
+                    { "data": "MBUSSNM" },
+                    { "data": "MBUSAD1" },
+                    { "data": "MBUSAD2" },
+                    { "data": "MBUSAD3" },
+                    { "data": "MBUSTEL" },
+                    { "data": "MBCOMCD" },
+                    { "data": "MBUNICD" },
+                    { "data": "MBWTCAL" },
+                    { "data": "MBRGSDT" },
+                    { "data": "MBRGSTM" },
+                    { "data": "MBUPDT" },
+                    { "data": "MBUPDTM" },
+                    @if (checkbuton.ShowEdit)
+                    {
+                      <text>
+                    { "render": function (data, type, row) { return '<a href="/MasterSetting/Master/GetUpdateUserMaster?userid=' + row["MBUSRCD"] + '" class="edit"><img src="/Images/Icon/edit-icon.png" /></a>' } },
+                    </text>
+                     }
+                     @if (checkbuton.ShowDelete)
+{    <text>
+    { "render": function(data, type, row) { return '<input type="checkbox" name="name" id="' + row["MBUSRCD"] + '" value="' + row["MBUSRCD"] + '"/>' } }
+      </text>
+}
+        ],
+
+
+
+            });
+
+            t.on('draw.dt', function () {
+                var PageInfo = $('#dataTable').DataTable().page.info();
+                t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1 + PageInfo.start;
+                });
+            });
+
+            //t.on('xhr', function (e, settings, json) {
+            //    console.log(JSON.stringify(json));
+            //});
+
+            $('#btnSearch').on('click', function () {
+                var searchKey = $('.search').val();
+                if (searchKey == "") window.location.hash = "";
+                else
+                    window.location.hash = "search-key=" + searchKey;
+                t.search(searchKey).draw();
+            })
+        });
+    </script>
+
+}

@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "Register Purchase Amount";
+    Layout = "~/Views/Shared/_LayoutPageRawMaterial.cshtml";
+    ViewBag.content = "Register Purchase Amount ";
+}
+
+
+<div class="content-top row mx-0">
+    <form action="/" method="post">
+        <div class="divTable" style="border: 1px solid #000">
+            <div class="divTableBody">
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Purchase No</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" tabindex="1"/></div>
+                    <div class="divTableCell"><span class="title">Purchase Unit Price</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" tabindex="9"/></div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Purchase Item No</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" tabindex="2"/></div>
+                    <div class="divTableCell"><span class="title">Exchange Rate</span></div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" tabindex="10"/>
+                        <input type="text" name="name" value="" tabindex="11"/>
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Shipper Invoice No</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" tabindex="3"/></div>
+                    <div class="divTableCell"><span class="title">Exchange Rate (Tax)</span></div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" tabindex="12"/>
+                        <input type="text" name="name" value="" tabindex="13"/>
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Stock Entry Date</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" data-provide="datepicker" tabindex="4"/></div>
+                    <div class="divTableCell"><span class="title">Tax Code</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" tabindex="14"/></div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Currency Code</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" tabindex="5"/></div>
+                    <div class="divTableCell"><span class="title">Tax Rate</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" tabindex="15"/></div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Domestic Currency Code</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" tabindex="6"/></div>
+                    <div class="divTableCell"><span class="title">PAYMENT TERM</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" tabindex="16"/></div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Unit Price</span></div>
+                    <div class="divTableCell">
+                        <input type="text" name="name" value="" tabindex="7"/>
+                        <input type="text" name="name" value="" tabindex="8"/>
+                    </div>
+                    <div class="divTableCell"><span class="title">PAYMENT DATE</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" tabindex="17" data-provide="datepicker"/></div>
+                </div>
+            </div>
+        </div>
+        <div class="float-right mt-2">
+            <small class="text-danger" id="message"></small>
+            @*<button type="button" style="background-color: #0094ff; border: none; color: white; ">Search</button>
+            <button type="button" style="background-color: #179d08; border-color: #34b05a; color: white; ">Confirm</button>
+            <button type="button" style="background-color: #ff0000; border-color: #ff0000; color: white; ">Cancel</button>*@
+            <button type="button" class="search">Search</button>
+            <button type="button" class="confirm">Confirm</button>
+            <button type="button" class="cancel">Cancel</button>
+        </div>
+    </form>
+    
+</div>
+
+           
+<div class="row content-bottom mx-0 data-display">
+    <table class="w-100 table-sm">
+        <thead>
+            <tr class="text-center thead">
+                <th>Inventory No.</th>
+                <th>Spec</th>
+                <th>Thickness</th>
+                <th>Width</th>
+                <th>Length</th>
+                <th>Diameter</th>
+                <th>Qty</th>
+                <th>Weight</th>
+                <th>Purchase U.P. (MT)</th>
+                <th>Purchase U.P. (MT) Domestic</th>
+                <th>Purchase Amount</th>
+                <th>Purchase Amount Domestic</th>
+                <th>Tax Amount</th>
+                <th>Tax Amount Domestic</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="tsheader">
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="tsheader">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr class="tsheader">
+                <td colspan="5" class="border-0"></td>
+                <td class="text-center" style=" background-image: url('/Images/bgTB.png'); border-left: 1px solid #cfcbcb">Total</td>
+                <td></td>
+                <td></td>
+                <td colspan="6" class="border-0"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

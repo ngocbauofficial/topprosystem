@@ -1,0 +1,193 @@
+﻿@using StaticResources
+@{
+    ViewBag.Title = "Insert Raw Material Warehousing Entry";
+    Layout = "~/Views/Shared/_LayoutPageRawMaterial.cshtml";
+    ViewBag.content = ViewBag.Title;
+}
+
+@{
+    var selectUserCode = new SelectList(ViewBag.UserCode, "MBUSRCD", "MBUSRNM");
+    var selectCommodityCode = new SelectList(ViewBag.CommodityCode, "MNSRCD", "MNSRNM");
+    var selectMakerCode = new SelectList(ViewBag.MakerCode, "MNSRCD", "MNSRNM");
+    //var selectPersonInCharge = new SelectList(ViewBag.PersonInCharge, "MNSRCD", "MNSRNM");
+    var selectContractType = new SelectList(ViewBag.ContractType, "MNSRCD", "MNSRNM");
+    var selectSpec = new SelectList(ViewBag.Spec, "ID", "MFPRDSP");
+    var selectCoating = new SelectList(ViewBag.Coating, "ID", "MECOAT");
+    var selectGrade = new SelectList(ViewBag.Grade, "MNSRCD", "MNSRNM");
+}
+
+<script type="text/javascript">
+
+
+    $(window).on('load', function () {
+
+        $('#parent #form-data input').each(function () {
+            var id = $(this).attr('id');
+            if (typeof Cookies.get(id) != 'undefined') {
+                var val = Cookies.get(id);
+                $('#parent #form-data #' + id).val(val);
+
+            }
+        });
+
+        $('#parent #form-data select').each(function () {
+            var id = $(this).attr('id');
+            if (typeof Cookies.get(id) != 'undefined') {
+                var val = Cookies.get(id);
+                $('#parent #form-data #' + id).val(val);
+            }
+        });
+
+    })
+
+    function addItem() {
+
+        $('#parent #form-data input').each(function () {
+
+            var id = $(this).attr('id');
+            var val = $('#' + id).val();
+            if (val != '') Cookies.set(id, val);
+
+        });
+
+        $('#parent #form-data select').each(function () {
+
+            var id = $(this).attr('id');
+            var val = $('#' + id).val();
+            if (val != '') Cookies.set(id, val);
+        });
+
+        window.open("/RawMaterial/GetRawMaterialWarehousingEntry_Add");
+    }
+
+    $().ready(function () {
+
+        $('#btnReset').click(function () {
+
+            $('#parent #form-data input').each(function () {
+
+                var id = $(this).attr('id');
+                if (typeof Cookies.get(id) != 'undefined') Cookies.remove(id);
+
+            });
+
+            $('#parent #form-data select').each(function () {
+
+                var id = $(this).attr('id');
+                if (typeof Cookies.get(id) != 'undefined') {
+                    Cookies.remove(id);
+                }
+
+            });
+        })
+    })
+
+</script>
+<div class="content-top row mx-0" id="parent">
+    <form action="/" method="post" id="form-data">
+        <div class="divTable" style="border:1px solid #000">
+            <div class="divTableBody">
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Purchase Contract No.</span></div>
+                    <div class="divTableCell">
+                        <input tabindex="4" type="text" name="name" value="" id="pur"/>
+                    </div>
+                    <div class="divTableCell"><span class="title">Vessel Name</span></div>
+                    <div class="divTableCell">
+                        <input tabindex="12" type="text" name="name" value="" id="ves"/>
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Supplier Contract No.</span></div>
+                    <div class="divTableCell">
+                        <input tabindex="5" type="text" name="name" value="" id="sup"/>
+                    </div>
+                    <div class="divTableCell"><span class="title">Maker Code</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownList("MakerCode", selectMakerCode, RLayout.SelectAction, new { @tabindex = "13" })
+                        <input type="text" name="name" value="" id="mak"/>
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Supplier Code</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownList("Select1", new SelectList(new List<String>() { "1", "2" }), RLayout.SelectAction, new { @tabindex = "6" })
+                        <input tabindex="" type="text" name="name" value="" id="supp"/>
+                    </div>
+                    <div class="divTableCell"><span class="title">PO Date</span></div>
+                    <div class="divTableCell">
+                        <input tabindex="14" type="text" data-provide="datepicker" id="pod">
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Shippers Invoice No</span></div>
+                    <div class="divTableCell">
+                        <input type="text" tabindex="7" name="name" value="" id="shid"/>
+                    </div>
+                    <div class="divTableCell">
+                        <span class="title">Shippers Invoice Date</span>
+                    </div>
+                    <div class="divTableCell">
+                        <input tabindex="15" type="text" data-provide="datepicker" id="shin">
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Stock Entry Date</span></div>
+                    <div class="divTableCell">
+                        <input tabindex="8" type="text" data-provide="datepicker" id="sto">
+                    </div>
+                    <div class="divTableCell"><span class="title">Person In Charge</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownList("Select2", new SelectList(new List<String>() { "1", "2" }), RLayout.SelectAction, new { tabindex = "16" })
+                        <input type="text" name="name" value="" id="per"/>
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">User Code</span></div>
+                    <div class="divTableCell">
+
+                        @Html.DropDownList("UserCode", selectUserCode, RLayout.SelectAction, new { @tabindex = "9" })
+                        <input type="text" name="name" value="" id="use"/>
+                    </div>
+                    <div class="divTableCell"><span class="title">Contract Type</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownList("ContractType", selectContractType, RLayout.SelectAction, new { tabindex = "17" })
+                        <input type="text" name="name" value="" id="con"/>
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Deposit/Asset</span></div>
+                    <div class="divTableCell">
+
+                        @Html.DropDownList("Select3", new SelectList(new List<String>() { "1", "2" }), RLayout.SelectAction, new { @tabindex = "10" })
+                        <input type="text" name="name" value="" id="dep"/>
+                    </div>
+                    <div class="divTableCell"><span class="title">Shipping Date</span></div>
+                    <div class="divTableCell">
+                        <input tabindex="18" type="text" data-provide="datepicker" id="shipd">
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Commodity Code</span></div>
+                    <div class="divTableCell">
+
+                        @Html.DropDownList("CommodityCode", selectCommodityCode, RLayout.SelectAction, new { tabindex = "11" })
+                        <input type="text" name="name" value="" id="com"/>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="float-right mt-2">
+            <button type="button" class="confirm" onclick="addItem()">Add item</button>
+            <button type="button" tabindex="19" class="confirm">Confirm</button>
+            <button type="button" tabindex="20" class="cancel" onclick="javscript:window.location.href = '@Url.Action("GetRawMaterialWarehousingEntry")'">Cancel</button>
+        </div>
+    </form>
+</div>
+<div class="content-bottom row mx-0">
+    
+    @Html.Partial("_RawMaterialWarehousingEntry_Item-2")
+</div>
+
+

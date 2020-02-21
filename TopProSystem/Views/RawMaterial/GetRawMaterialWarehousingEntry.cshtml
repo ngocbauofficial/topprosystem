@@ -1,0 +1,537 @@
+﻿@using StaticResources
+@using StaticResources.View.INV001
+@model TopProSystem.Areas.MasterSetting.Models.INV001
+@{
+    ViewBag.Title = "Raw Material Warehousing Entry";
+    Layout = "~/Views/Shared/_LayoutPageRawMaterial.cshtml";
+    ViewBag.content = ViewBag.Title;
+}
+<style>
+    .label-search {
+        width: 125px;
+        font-size: 13px;
+    }
+
+    .input-search {
+        width: 400px;
+    }
+
+    .form-group {
+        margin-bottom: 0px;
+        min-width: 525px;
+    }
+
+    .pos-top .row:nth-child(2) {
+        margin-top: 0px !important;
+    }
+
+    select.search {
+        height: 26px;
+        width: 150px;
+    }
+</style>
+<div class="pos-top">
+    <div class="row mx-0">
+        <div class="col-lg-12">
+            <form action="#" id="form-search" method="get">
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label ">@Html.DisplayNameFor(x => x.CACTRNO)</label>
+                    <div class="input-search">
+                        <div class="d-inline">
+                            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" id="CACTRNO" name="CACTRNO" class="search" value="" />
+                            <button type="button" id="btnSearch" class="btn-primary search">@Button.BtnSeach</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label"> @Html.DisplayNameFor(x => x.CARMTP)</label>
+                    <div class="input-search">
+                        <div class="d-inline">
+                            <div class="input-icons" id="div-CARMTP">
+                                @Html.HiddenFor(x => x.CARMTP)
+                                <i class="fa fa-caret-down icon"></i>
+                                <input type="text" name="CARMTP-js" id="CARMTP-js" class="input-as-select search" readonly placeholder="@RLayout.SelectAction" />
+                                <input type="text" name="CARMTP_dl" id="CARMTP_dl" value="" readonly class="search" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label">@Html.DisplayNameFor(x => x.CAMKCD)</label>
+                    <div class="input-search">
+                        <div class="d-inline">
+                            <div class="input-icons" id="div-CAMKCD">
+                                @Html.HiddenFor(x => x.CAMKCD)
+                                <i class="fa fa-caret-down icon"></i>
+                                <input type="text" name="CAMKCD-js" id="CAMKCD-js" class="input-as-select search" readonly placeholder="@RLayout.SelectAction" tabindex="5" />
+                                <input type="text" name="CAMKCD_dl" id="CAMKCD_dl" value="" readonly class="search" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label">@Html.DisplayNameFor(x => x.CASPLCD)</label>
+                    <div class="input-search">
+                        <div class="d-inline">
+                            <div id="div-CASPLCD" class="input-icons">
+                                @Html.HiddenFor(x => x.CASPLCD)
+                                <i class="fa fa-caret-down icon"></i>
+                                <input type="text" name="CASPLCD-js" class="input-as-select search" id="CASPLCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="7" />
+                                <input type="text" name="CASPLCD_dl" id="CASPLCD_dl" value="" readonly class="search" />
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label">@Html.DisplayNameFor(x => x.CACMDCD)</label>
+                    <div class="input-search">
+                        <div class="d-inline">
+                            <div id="div-CACMDCD" class="input-icons">
+                                @Html.HiddenFor(x => x.CACMDCD)
+                                <i class="fa fa-caret-down icon"></i>
+                                <input type="text" name="CACMDCD-js" class="input-as-select search" id="CACMDCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" readonly tabindex="7" />
+                                <input type="text" name="CACMDCD_dl" id="CACMDCD_dl" value="" readonly class="search" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label">@Html.DisplayNameFor(x => x.CAUSRCD)</label>
+                    <div class="input-search">
+                        <div class="d-inline">
+                            @*@Html.DropDownListFor(x => x.AAUSRCD, Model.UserCodes, RLayout.SelectAction, new { @class = "search", @tabindex = "8" })
+                                <input type="text" name="AAUSRCD_dl" id="AAUSRCD_dl" value="" readonly />*@
+
+                            <div id="div-CAUSRCD" class="input-icons">
+                                @Html.HiddenFor(x => x.CAUSRCD)
+                                <i class="fa fa-caret-down icon"></i>
+                                <input type="text" name="CAUSRCD-js" id="CAUSRCD-js" placeholder="@Html.Raw(RLayout.SelectAction)" class="input-as-select search" readonly tabindex="8" />
+                                <input type="text" name="CAUSRCD_dl" id="CAUSRCD_dl" value="" readonly class="search" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label">@Html.DisplayNameFor(x => x.CASMNTH)</label>
+                    <div class="d-inline">
+                        <input type="text" id="CASMNTH" name="CASMNTH" class="search" value="" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="label-search col-form-label">@Html.DisplayNameFor(x => x.CASPPNO)</label>
+                    <div class="d-inline">
+                        <input type="text" id="CASPPNO" name="CASPPNO" class=" search" value="" />
+                    </div>
+                </div>
+                @*<div class="form-group row">
+                        <label class="label-search col-form-label"></label>
+                        <div class="input-search">
+                            <button type="button" id="btnSearch" class="btn-primary search">@Button.BtnSeach</button>
+                        </div>
+                    </div>*@
+            </form>
+        </div>
+    </div>
+    <div class="row mx-0 mt-5">
+        <div class="col-lg-12">
+            <button class="btn-danger float-right ml-2" id="deleteBtn">@Button.BtnDelete</button>
+            <a href="@Url.Action("GetRawMaterialStockEntry_Add")" class="button float-right btn-addnew">@Button.BtnAdd</a>
+        </div>
+    </div>
+</div>
+
+<div class="data-display">
+    <table class="table-sm w-100" id="dataTable">
+        <thead>
+            <tr>
+                <th># &nbsp;</th>
+                <th>@Html.DisplayNameFor(x => x.CACTRNO)</th>
+                <th>@Html.DisplayNameFor(x => x.CACTITM)</th>
+                <th>@Resource.MakerName</th>
+                <th>@Html.DisplayNameFor(x => x.CASPPNO)</th>
+                <th>@Resource.SupplierName</th>
+                <th>@Html.DisplayNameFor(x => x.CACMDCD)</th>
+                <th>@Html.DisplayNameFor(x => x.CAUSRCD)</th>
+                <th>@Html.DisplayNameFor(x => x.CACTRTP)</th>
+                <th>@Html.DisplayNameFor(x => x.CASMNTH)</th>
+                <th>@Html.DisplayNameFor(x => x.CAIDCD)</th>
+                <th>@Button.LbEdit</th>
+                <th>@Button.LbSelect</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        var t = $('#dataTable').DataTable({
+            "serverSide": true, // for process server side
+            "processing": true, // for show progress bar
+            "filter": false, // this is for disable filter (search box)
+            "orderMulti": true, // for disable multiple column at once
+            // "stateSave": true,
+            "scrollX": true,
+            "autoWidth": false,
+            "pageLength": DataTableDisplayLength,
+            "search.smart": false,
+            "searchable": false,
+            "orderable": false,
+            "targets": 0,
+            "lengthChange": false,
+            "ordering": false,
+            "info": false,
+            "ajax": {
+                "url": "/RawMaterial/AjaxHandler",
+                "type": "POST",
+                "datatype": "json",
+                data: function (data) {
+                    data.PurchaseContractNo = $('#CACTRNO').val();
+                    data.ShippingMonth = $('#CASHPDT').val();
+                    data.SupplierContractNo = $('#CASPPNO').val();
+                    data.MakerCode = $('#CAMKCD').val();
+                    data.SupplierCode = $('#CASPLCD').val();
+                    data.CommondityCode = $('#CACMDCD').val();
+                    data.UserCode = $('#CAUSRCD').val();
+                    data.RawMaterialType = $('#CARMTP').val();
+                    return data
+                    ;
+                }
+            },
+            "language": {
+                "paginate": {
+                    "first": '<i class="fa fa-fast-backward"></i>',
+                    "last": '<i class="fa fa-fast-forward"></i>',
+                    "next": '<i class="fa fa-forward"></i>',
+                    "previous": '<i class="fa fa-backward"></i>'
+                },
+                "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+            },
+            "columns": [
+                { "data": function () { return "" } },
+                { "data": "CACTRNO" },
+                { "data": "CACTITM" },
+                { "data": "CAMKCD" },
+                { "data": "CASPPNO" },
+                { "data": "CASPLCD" },
+                { "data": "CACMDCD" },
+                { "data": "CAUSRCD" },
+                { "data": "CACTRTP" },
+                { "data": "CASMNTH" },
+                { "data": "CAIDCD" },                
+                {
+                    "render": function (data, type, row) {
+                        //if (row["disableEdit"] !== '') return '';
+                        return '<a href="/RawMaterial/GetRawMaterialStockEntry_Edit?purContractNo=' + row["CACTRNO"] + '&item= ' + row["CACTITM"] + '" class="edit"><img src="/Images/Icon/edit-icon.png" /></a>'
+                    }
+                },
+                { "render": function (data, type, row) { return '<input type="checkbox" name="name" value="' + row["CADSTNC"] + '"/>' } }
+            ]
+        });
+        t.on('draw.dt', function () {
+            var PageInfo = $('#dataTable').DataTable().page.info();
+            t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1 + PageInfo.start;
+            });
+        });
+        $('#btnSearch').on('click', function () {
+            $('#dataTable').DataTable().ajax.reload();
+        })
+    });
+
+
+
+
+    $('#deleteBtn').click(function () {
+        var length = $('input[type="checkbox"]:checked').length;
+        if (length == 0) {
+            alert("@Html.Raw(RLayout.ErrorNoRowSelect)");
+            return false;
+        }
+        var vals = [];
+        $('input[type="checkbox"]:checked').each(function () {
+            vals.push($(this).val());
+        });
+        $.confirm({
+            title: "<span class='text-secondary'>@Button.BtnConfirm</span>",
+            icon: 'fa fa-warning',
+            content: '@Html.Raw(RLayout.ContentDelete)',
+            type: 'blue',
+            buttons: {
+                confirm: {
+                    text: '@Button.BtnConfirm',
+                    btnClass: 'btn-confirm text-capitalize',
+                    action: function () {
+                        $.ajax({
+                            url: '/RawMaterial/DeleteINVTRA',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                keys: function () { return vals.join('|'); }
+                            },
+                            success: function (rs) {
+                                console.log(typeof rs);
+                                if (typeof rs !== 'boolean')
+                                    ErrorAlert("Cannot delete, please contact support for error: " + rs);
+                                else {
+                                    if (rs) {
+                                        SuccessAlert('@RLayout.DeleteMsg');
+                                        $('#dataTable').DataTable().ajax.reload();
+                                    } else {
+                                        ErrorAlert("Cannot delete !");
+                                    }
+                                }
+                            },
+                            error: function (rs) {
+                                console.log(rs.responseText);
+                            }
+                        });
+                    }
+                },
+                cancel: {
+                    text: '@Button.BtnCancel',
+                    btnClass: 'btn-cancel text-capitalize',
+                }
+            }
+        });
+    })
+</script>
+<script>
+
+    //tuan
+    $(function () {
+        $('#CARMTP-js').autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 12 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+                    $('#CARMTP').val(''); // value for save
+                }
+                if (ui.item.value !== ' ') {
+                    $('#CARMTP_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                    $('#CARMTP').val(ui.item.value); // value for save
+                }
+                else {
+                    $('#CARMTP').val('');
+                    $('#CARMTP').val(''); // value for save
+                }
+                //  DisableRawMaterialType(ui.item.value); // PNB EDIT
+            },
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+
+        $('#div-CARMTP .icon').click(function () {
+            $('#CARMTP-js').autocomplete("search", "");
+        });
+
+    })
+
+
+    $(function () {
+        $('#CAMKCD-js').autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 0 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+
+                }
+                if (ui.item.value !== ' ') {
+                    $('#CAMKCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                    $('#CAMKCD').val(ui.item.value); // value for save
+                }
+                else {
+                    $('#CAMKCD_dl').val('');
+                    $('#CAMKCD').val(''); // value for save
+                }
+
+            },
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+
+        $('#div-CAMKCD .icon').click(function () {
+            $('#CAMKCD-js').autocomplete("search", "");
+        });
+
+    })
+
+
+
+
+
+    $(function () {
+        $('#CASPLCD-js').autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 15 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+
+                }
+                if (ui.item.value !== ' ') {
+                    $('#CASPLCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                    $('#CASPLCD').val(ui.item.value); // value for save
+                }
+                else {
+                    $('#CASPLCD_dl').val('');
+                    $('#CASPLCD').val(''); // value for save
+                }
+            },
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .attr("data-value", item.value)
+                .append(item.label)
+                .appendTo(ul);
+        };
+
+        $('#div-CASPLCD .icon').click(function () {
+            $('#CASPLCD-js').autocomplete("search", "");
+        });
+    })
+
+    $(function () {
+        $('#CACMDCD-js').autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 4 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+                }
+                if (ui.item.value !== ' ') {
+                    $('#CACMDCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                    $('#CACMDCD').val(ui.item.value); // value for save
+                }
+                else {
+                    $('#CACMDCD_dl').val('');
+                    $('#CACMDCD').val(''); // value for save
+                }
+
+            },
+
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+
+        $('#div-CACMDCD .icon').click(function () {
+            $('#CACMDCD-js').autocomplete("search", "");
+        });
+    })
+
+
+
+
+
+    $(function () {
+        $('#CAUSRCD-js').autocomplete({
+            source: function (request, response) {
+                $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 11 }).done(function (rs) {
+                    var keys = Object.keys(rs);
+                    var data = Object.values(rs);
+                    var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                    for (var i = 0; i < keys.length; i++) {
+                        array.push({ label: data[i], value: keys[i] });
+                    }
+                    response(array);
+                });
+            },
+            minLength: 0,
+            select: function (even, ui) {
+                if (ui.item.value === ' ') {
+                    even.preventDefault();
+                    $(this).val('');
+                }
+                if (ui.item.value !== ' ') {
+                    $('#CAUSRCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                    $('#CAUSRCD').val(ui.item.value); // value for save
+                }
+                else {
+                    $('#CAUSRCD_dl').val('');
+                    $('#CAUSRCD').val(''); // value for save
+                }
+
+            },
+
+        }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append(item.label)
+                .appendTo(ul);
+        };
+
+        $('#div-CAUSRCD .icon').click(function () {
+            $('#CAUSRCD-js').autocomplete("search", "");
+        });
+    })
+
+
+
+</script>
+
+@section scripts{
+    <script src="~/Scripts/SaveDataChangeLanguage/SearchCommon.js"></script>
+}

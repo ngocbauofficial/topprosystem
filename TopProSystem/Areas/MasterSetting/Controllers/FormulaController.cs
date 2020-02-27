@@ -86,7 +86,6 @@ namespace TopProSystem.Areas.MasterSetting.Controllers
                 double a = Convert.ToDouble(ABWT);
                 double number = 2.2;
                 Int64 result = Rouding(a / number);
-
                 return Json(result, JsonRequestBehavior.DenyGet);
             }
             return Json(-1, JsonRequestBehavior.DenyGet);

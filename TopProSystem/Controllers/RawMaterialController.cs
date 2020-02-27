@@ -1493,7 +1493,7 @@ namespace TopProSystem.Controllers
             {
                 Directory.CreateDirectory(RawMaterialPDFFilePath);
             }
-            string filePath = RawMaterialPDFFilePath + System.IO.Path.GetFileName("RawMaterialRecevingList_" + DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ff") + ".pdf");
+            string filePath = RawMaterialPDFFilePath + System.IO.Path.GetFileName("RawMaterialReceivingList_" + DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ff") + ".pdf");
             Document doc = new Document(PageSize.A4.Rotate(), 10f, 10f, 10f, 0);
             PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
             doc.Open();
@@ -1571,14 +1571,14 @@ namespace TopProSystem.Controllers
             #endregion
             #region title
             Font FontTitle = new Font(baseFont, 20, Font.BOLD, BaseColor.BLACK);
-            Paragraph paragraphtitle = new Paragraph("Raw Material Receving List", FontTitle);
+            Paragraph paragraphtitle = new Paragraph("Raw Material Receiving List", FontTitle);
             paragraphtitle.Alignment = Element.ALIGN_CENTER;
             paragraphtitle.SpacingBefore = 5f;
             doc.Add(paragraphtitle);
             #endregion
             #region body
             #region tbody
-            PdfPTable tablebody = CreatePdfPTableReceving(new PdfPTable(15), 20f);
+            PdfPTable tablebody = CreatePdfPTableReceiving(new PdfPTable(15), 20f);
             List<string> columnname = new List<string>() { "Stock Entry Date", "Commodity Code", "Spec", "Thick", "Width", "Length", "Product Name", "Product Diameter", "Vessel", " Inventory No", " PO No", "Inspection No", "Qty", "Wt", "Location" };
             PdfPCell cellcolumnnametitle = new PdfPCell();
             cellcolumnnametitle.BackgroundColor = new BaseColor(216, 216, 216);
@@ -1601,7 +1601,7 @@ namespace TopProSystem.Controllers
                 AddItemOnTable(tablebody, item, cellcolumnname, fonttable);
             }
             doc.Add(tablebody);
-            tablebody = CreatePdfPTableReceving(tablebody, 20f);
+            tablebody = CreatePdfPTableReceiving(tablebody, 20f);
             int i = 0;
             foreach (var item in ListItem.Skip(20))
             {
@@ -1610,7 +1610,7 @@ namespace TopProSystem.Controllers
                     if (i != 0)
                     {
                         doc.Add(tablebody);
-                        tablebody = CreatePdfPTableReceving(tablebody, 20f);
+                        tablebody = CreatePdfPTableReceiving(tablebody, 20f);
                     }
                     doc.NewPage();
                     foreach (string itemtitle in columnname)
@@ -1679,68 +1679,75 @@ namespace TopProSystem.Controllers
                 return Json(new { result = "0" });
             }
             var allItem = Dal.GetTotalDisplayRecordByStockEntryDateAndVesselName(StockEntryDate, VesselName, Status, 0, 0, false);
-            string path = CreateExportExcelRawMaterialRecevingList(allItem);
+            string path = CreateExportExcelRawMaterialReceivingList(allItem);
             return Json(new { result = "1", stringpath = path });
         }
-        public string CreateExportExcelRawMaterialRecevingList(IEnumerable<INV001> ListItem)
+        public string CreateExportExcelRawMaterialReceivingList(IEnumerable<INV001> ListItem)
         {
             ExcelPackage pck = new ExcelPackage();
             ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Sheet1");
             ws.DefaultRowHeight = 18;
-            ws.Cells["A1"].Value = "Stock Entry Date";
-            ws.Cells["B1"].Value = "Commodity Code";
-            ws.Cells["C1"].Value = "Spec";
-            ws.Cells["D1"].Value = "Thickness";
-            ws.Cells["E1"].Value = "Width";
-            ws.Cells["F1"].Value = "Length";
-            ws.Cells["G1"].Value = "Product Name";
-            ws.Cells["H1"].Value = "Prod Diameter";
-            ws.Cells["I1"].Value = "Vessel";
-            ws.Cells["J1"].Value = "Inventory No";
-            ws.Cells["K1"].Value = "PO No";
-            ws.Cells["L1"].Value = "Inspection No";
-            ws.Cells["M1"].Value = "Qty";
-            ws.Cells["N1"].Value = "Wt";
-            ws.Cells["O1"].Value = "Location";
-            using (var range = ws.Cells["A1:O1"])
+            ws.Cells["A1"].Value = "#";
+            ws.Cells["B1"].Value = "Stock Entry Date";
+            ws.Cells["C1"].Value = "Commodity Code";
+            ws.Cells["D1"].Value = "Spec";
+            ws.Cells["E1"].Value = "Thickness";
+            ws.Cells["F1"].Value = "Width";
+            ws.Cells["G1"].Value = "Length";
+            ws.Cells["H1"].Value = "Product Name";
+            ws.Cells["I1"].Value = "Prod Diameter";
+            ws.Cells["J1"].Value = "Vessel";
+            ws.Cells["K1"].Value = "Inventory No";
+            ws.Cells["L1"].Value = "PO No";
+            ws.Cells["M1"].Value = "Inspection No";
+            ws.Cells["N1"].Value = "Qty";
+            ws.Cells["O1"].Value = "Wt";
+            ws.Cells["P1"].Value = "Location";
+
+            using (var range = ws.Cells["A1:P1"])
             {
                 range.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                 range.Style.Fill.BackgroundColor.SetColor(0, 221, 235, 247);
                 range.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
-                range.Style.Font.SetFromFont(new System.Drawing.Font("Arial", 10));
+                range.Style.Font.SetFromFont(new System.Drawing.Font("Calibri Light", 11));
                 range.Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
                 range.Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
                 range.Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
                 range.Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+    
             }
+            int i = 1;
             int rowgroup = 2;
             foreach (var item in ListItem)
             {
-                ws.Cells[string.Format("A{0}:O{1}", rowgroup, rowgroup)].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
-                ws.Cells[string.Format("A{0}:O{1}", rowgroup, rowgroup)].Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
-                ws.Cells[string.Format("A{0}:O{1}", rowgroup, rowgroup)].Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
-                ws.Cells[string.Format("A{0}:O{1}", rowgroup, rowgroup)].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
-                ws.Cells[string.Format("A{0}", rowgroup)].Value = item.CASEDT;
-                ws.Cells[string.Format("B{0}", rowgroup)].Value = item.CACMDCD;
-                ws.Cells[string.Format("C{0}", rowgroup)].Value = item.CASPEC;
-                ws.Cells[string.Format("D{0}", rowgroup)].Value = item.CABSZT;
-                ws.Cells[string.Format("E{0}", rowgroup)].Value = item.CABSZW;
-                ws.Cells[string.Format("F{0}", rowgroup)].Value = item.CABSZL;
-                ws.Cells[string.Format("G{0}", rowgroup)].Value = item.CAPRDNM;
-                ws.Cells[string.Format("H{0}", rowgroup)].Value = item.CAPRDDIA;
-                ws.Cells[string.Format("I{0}", rowgroup)].Value = item.CAVESEL;
-                ws.Cells[string.Format("J{0}", rowgroup)].Value = item.CAINVNO;
-                ws.Cells[string.Format("K{0}", rowgroup)].Value = item.CAORDNO;
-                ws.Cells[string.Format("L{0}", rowgroup)].Value = item.CAISPNO;
-                ws.Cells[string.Format("M{0}", rowgroup)].Value = item.CAQTY;
-                ws.Cells[string.Format("N{0}", rowgroup)].Value = item.CAWT;
-                ws.Cells[string.Format("0{0}", rowgroup)].Value = item.CALCTCD;
+                ws.Cells[string.Format("A{0}:P{1}", rowgroup, rowgroup)].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                ws.Cells[string.Format("A{0}:P{1}", rowgroup, rowgroup)].Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                ws.Cells[string.Format("A{0}:P{1}", rowgroup, rowgroup)].Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                ws.Cells[string.Format("A{0}:P{1}", rowgroup, rowgroup)].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                ws.Cells[string.Format("A{0}:P{1}", rowgroup, rowgroup)].Style.Font.SetFromFont(new System.Drawing.Font("Calibri Light", 11));
+                ws.Cells[string.Format("A{0}", rowgroup)].Value = i;
+                ws.Cells[string.Format("B{0}", rowgroup)].Value = item.CASEDT;
+                ws.Cells[string.Format("C{0}", rowgroup)].Value = item.CACMDCD;
+                ws.Cells[string.Format("D{0}", rowgroup)].Value = item.CASPEC;
+                ws.Cells[string.Format("E{0}", rowgroup)].Value = item.CABSZT;
+                ws.Cells[string.Format("F{0}", rowgroup)].Value = item.CABSZW;
+                ws.Cells[string.Format("G{0}", rowgroup)].Value = item.CABSZL;
+                ws.Cells[string.Format("H{0}", rowgroup)].Value = item.CAPRDNM;
+                ws.Cells[string.Format("I{0}", rowgroup)].Value = item.CAPRDDIA;
+                ws.Cells[string.Format("J{0}", rowgroup)].Value = item.CAVESEL;
+                ws.Cells[string.Format("K{0}", rowgroup)].Value = item.CAINVNO;
+                ws.Cells[string.Format("L{0}", rowgroup)].Value = item.CAORDNO;
+                ws.Cells[string.Format("M{0}", rowgroup)].Value = item.CAISPNO;
+                ws.Cells[string.Format("N{0}", rowgroup)].Value = item.CAQTY;
+                ws.Cells[string.Format("O{0}", rowgroup)].Value = item.CAWT;
+                ws.Cells[string.Format("P{0}", rowgroup)].Value = item.CALCTCD;
+                i++;
                 rowgroup++;
             }
-            ws.Cells[rowgroup, 12].Value = "-- Total --";
-            ws.Cells[rowgroup, 13].Formula = "=SUM(M2" + ":M" + (rowgroup - 1) + ")";
+            ws.Cells[rowgroup, 13].Value = "-- Total --";
             ws.Cells[rowgroup, 14].Formula = "=SUM(N2" + ":N" + (rowgroup - 1) + ")";
-            ws.Cells["A:AZ"].AutoFitColumns();
+            ws.Cells[rowgroup, 15].Formula = "=SUM(O2" + ":O" + (rowgroup - 1) + ")";
+            ws.Cells["BGetRawMaterialStockEntry_Add:AZ"].AutoFitColumns();
             if (!Directory.Exists(SaveExcelURL))
             {
                 Directory.CreateDirectory(SaveExcelURL);
@@ -1767,7 +1774,7 @@ namespace TopProSystem.Controllers
             cellcolumnname.Phrase = new Paragraph(value, font);
             return cellcolumnname;
         }
-        public PdfPTable CreatePdfPTableReceving(PdfPTable tablebody, float SpacingBefore)
+        public PdfPTable CreatePdfPTableReceiving(PdfPTable tablebody, float SpacingBefore)
         {
             tablebody = new PdfPTable(15);
             tablebody.SetWidths(new float[] { 8f, 7f, 8f, 4f, 4f, 5f, 7f, 8f, 7f, 8f, 7f, 9f, 5f, 7f, 6f });

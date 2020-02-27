@@ -27,6 +27,7 @@ namespace TopProSystem
         }
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
+           
             HttpCookie cookie = HttpContext.Current.Request.Cookies["Language"];
             if (cookie != null && cookie.Value != null)
             {

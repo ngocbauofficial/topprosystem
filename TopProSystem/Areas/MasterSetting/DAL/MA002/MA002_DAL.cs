@@ -157,7 +157,7 @@ namespace TopProSystem.Areas.MasterSetting.DAL.MA002
         }
         public Models.MA002 GetReference(Models.MA002 mA002)
         {
-            //mA002.WeightCalculationCode = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(Models.ClassificationCode.CLASSIFICATTIONCODE033)).Select(x => new System.Web.Mvc.SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD });
+          
             mA002.WeightCalculationCode = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(Models.ClassificationCode.CLASSIFICATTIONCODE033)).Select(x => new System.Web.Mvc.SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD + " - " + x.MNSRNM });
             return mA002;
         }

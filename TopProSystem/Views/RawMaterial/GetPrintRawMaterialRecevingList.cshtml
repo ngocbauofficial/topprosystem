@@ -42,7 +42,7 @@
                 <div class="text-center">
                     <button type="button" id="btnExcel" class="excel">Excel</button>
                     <button type="button" id="btnSearch" class="search">@Button.BtnSeach</button>
-                    <button type="button" id="btnConfirm" class="confirm">@Button.BtnConfirm</button>
+                    <button type="button" id="btnConfirm" class="pdf">PDF</button>
                     <button type="button" class="cancel">@Button.BtnCancel</button>
                 </div>
             </div>
@@ -166,11 +166,17 @@
             });
         });
 
-        $('#btnSearch').on('click', function () {
+    $('#btnSearch').on('click', function () {
+        if ($('#CASEDT').val() == '' && $('#CAVESEL').val() == '') {
+            return alert('Please enter Stock Entry Date or Vessl');
+        }
             $('#dataTable').DataTable().ajax.reload();
         })
 
-        $('#btnConfirm').on('click', function () {
+    $('#btnConfirm').on('click', function () {
+        if ($('#CASEDT').val() == '' && $('#CAVESEL').val() == '') {
+            return alert('Please enter Stock Entry Date or Vessl')
+        }
             $.ajax({
                 url: '/RawMaterial/PrinPdfRawMaterialReceivingList',
                 type: 'Post',
@@ -202,7 +208,10 @@
             })
         })
 
-        $('#btnExcel').on('click', function () {
+    $('#btnExcel').on('click', function () {
+        if ($('#CASEDT').val() == '' && $('#CAVESEL').val() == '') {
+            return alert('Please enter Stock Entry Date or Vessl')
+        }
             $.ajax({
                 url: '/RawMaterial/ExportExcelRawMaterialReceivingList',
                 type: 'Post',

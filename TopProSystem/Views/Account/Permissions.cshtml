@@ -32,13 +32,13 @@
         font-size: 25px;
     }
 
-    .icon-up:before {
+    .icon-up:after {
         content: '\f0d8';
         font-family: FontAwesome;
         padding-right: 5px;
     }
 
-    .icon-down:before {
+    .icon-down:after {
         content: '\f0d7' !important;
         font-family: FontAwesome;
         padding-right: 5px;
@@ -46,6 +46,8 @@
 
     .area-tr {
         border: 1px solid #000;
+cursor:pointer;
+user-select:none;
     }
 
     .btn-permissions {
@@ -56,14 +58,15 @@
     .table {
         font-size: 15px;
     }
-
     .hide tr {
         background: #e5e4e4;
         border: 1px solid black;
     }
-
     .in {
         display: none;
+    }
+    .item-menu {
+        padding-left: 35px !important;
     }
 </style>
 <div class="box box-default">
@@ -80,7 +83,6 @@
                 <button type="submit" class="btn-permissions btn-primary">Save</button>
             </div>
         </div>
-
         <div class="content">
             <div class="form-horizontal">
                 <div class="panel-group">
@@ -120,7 +122,6 @@
                                             });
                                             </text>
                                         }
-
                                     }        }
                                         });
                                 </script>
@@ -128,7 +129,7 @@
                                 <table class="table table-hover table-bordered">
                                     <tbody>
                                         <tr>
-                                            <th scope="col">
+                                            <th scope="col" width="50%">
                                                 <span>Permission name</span>
                                             </th>
                                             @foreach (var cr in Model.AvailableCustomerRoles)
@@ -145,75 +146,50 @@
                                     </tbody>
                                     @foreach (var pr in Model.AvailablePermissions.Where(x => x.Category == "Area"))
                                     {
-
-                                        <tr class="parent-per area-tr">
-                                            <td>
+                                        bool numberitemmenu = Model.AvailablePermissions.Where(x => x.Category == pr.SystemName).Count() > 0;
+                                                <tr class="parent-per area-tr" id="@pr.SystemName">
+                                            <td class="@(@numberitemmenu?"area-td icon-down icon-up":"")">
                                                 <span>@pr.Name</span>
                                             </td>
                                             @foreach (var cr in Model.AvailableCustomerRoles)
-                                            {
-                                                var allowed = Model.Allowed.ContainsKey(pr.SystemName) && Model.Allowed[pr.SystemName][cr.Id];
+                                        {
+                                            var allowed = Model.Allowed.ContainsKey(pr.SystemName) && Model.Allowed[pr.SystemName][cr.Id];
                                                 <td>
                                                     <input id="selectall-@(cr.Id)-@(pr.Id)" class="allow_@(cr.Id)" type="checkbox" value="@(pr.SystemName)" name="allow_@(cr.Id)" @(allowed ? " checked=checked" : null) />
                                                 </td>
                                             }
                                         </tr>
-
                                         foreach (var prs in Model.AvailablePermissions.Where(x => x.Category == pr.SystemName))
                                         {
-
-
-                                            <tr class="@pr.Category ">
-                                                <td data-toggle="toggle" style="cursor:pointer" class=" parent-per icon-down icon-up">
-                                                    <span>@prs.Name</span>
+                                        <tr class="@pr.SystemName in">
+                                            @*<td  class=" parent-per icon-down icon-up">*@
+                                            <td  class="parent-per item-menu">
+                                            <span>@prs.Name</span>
+                                            </td>
+                                            @foreach (var cr in Model.AvailableCustomerRoles)
+                                            {
+                                                var allowed = Model.Allowed.ContainsKey(prs.SystemName) && Model.Allowed[prs.SystemName][cr.Id];
+                                                <td>
+                                                    <input id="selectall-@(cr.Id)-@(prs.Id)" class="allow_@(cr.Id)" type="checkbox" value="@(prs.SystemName)" name="allow_@(cr.Id)" @(allowed ? " checked='checked'" : null) />
                                                 </td>
-                                                @foreach (var cr in Model.AvailableCustomerRoles)
-                                                {
-                                                    var allowed = Model.Allowed.ContainsKey(prs.SystemName) && Model.Allowed[prs.SystemName][cr.Id];
-                                                    <td>
-                                                        <input id="selectall-@(cr.Id)-@(prs.Id)" class="allow_@(cr.Id)" type="checkbox" value="@(prs.SystemName)" name="allow_@(cr.Id)" @(allowed ? " checked='checked'" : null) />
-                                                    </td>
-                                                }
-                                            </tr>
-
-                                            <tbody class="hide" style="background: rgba(83, 125, 134, 0.26);">
-                                                @foreach (var ar in Model.AvailableActionRoles)
-                                                {
-
-                                                    <tr>
-                                                        <td>
-                                                            <span>@ar.Name</span>
-                                                        </td>
-                                                        @foreach (var cr in Model.AvailableCustomerRoles)
-                                                        {
-                                                            var allowed = Model.AllowedAction.ContainsKey(prs.SystemName + ar.Name) && Model.AllowedAction[prs.SystemName + ar.Name][cr.Id];
-                                                            <td>
-                                                                <input class="allow_@(cr.Id)_@(prs.Id)" type="checkbox" value="@(prs.SystemName)_@(ar.Name)" name="allow_@(cr.Id)" @(allowed ? " checked=checked" : null) />
-                                                            </td>
-                                                        }
-                                                    </tr>
-                                                }
-                                            </tbody>
-
-
+                                            }
+                                        </tr>
                                         }
-
-
-
                                     }
-
                                 </table>
                             }
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     }
 </div>
 <script>
-    $("#AccessMaster").click(function () {
-        ($(".Master").toggleClass("in"));
+    $(".area-td").click(function () {
+        var elementparent = $(this).parent();  
+        var id = elementparent.attr("id");
+        $("." + id).toggleClass("in");
+        $(this).toggleClass("icon-down");
     })
 </script>

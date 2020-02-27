@@ -1198,6 +1198,47 @@
             });
         })
 
+     $(function () {
+            $('#AAIDCD-js').autocomplete({
+                source: function (request, response) {
+                    $.getJSON('@Url.Action("GetReferenceEachProperties","Purchase")', { type: 14 }).done(function (rs) {
+                        var keys = Object.keys(rs);
+                        var data = Object.values(rs);
+                        var array = [{ label: '@Html.Raw(RLayout.SelectAction)', value: ' ' }];
+                        for (var i = 0; i < keys.length; i++) {
+                            array.push({ label: data[i], value: keys[i] });
+                        }
+                        response(array);
+                    });
+                },
+                minLength: 0,
+                select: function (even, ui) {
+                    if (ui.item.value === ' ') {
+                        even.preventDefault();
+                        $(this).val('');
+                    }
+                    if (ui.item.value !== ' ') {
+                        $('#AAIDCD_dl').val(ui.item.label.substr(ui.item.label.indexOf('-') + 1, ui.item.label.length));
+                        $('#AAIDCD').val(ui.item.value); // value for save
+                    }
+                    else {
+                        $('#AAIDCD_dl').val('');
+                        $('#AAIDCD').val(''); // value for save
+                    }
+
+                },
+
+
+            }).bind('click', function () { $(this).autocomplete("search", ""); }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append(item.label)
+                    .appendTo(ul);
+            };
+
+            $('#div-AAIDCD .icon').click(function () {
+                $('#AAIDCD-js').autocomplete("search", "");
+            });
+        })
 
         $('#AAPRICE').change(function () {
             if ($(this).val() === '') {

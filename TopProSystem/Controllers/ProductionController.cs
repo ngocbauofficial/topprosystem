@@ -8,6 +8,7 @@ namespace TopProSystem.Controllers
 {
     public class ProductionController : Controller
     {
+
         public ActionResult GetProductionMenu()
         {
             TempData["active"] = "active-menu";

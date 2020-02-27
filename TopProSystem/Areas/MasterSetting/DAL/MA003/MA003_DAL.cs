@@ -92,8 +92,7 @@ namespace TopProSystem.Areas.MasterSetting.DAL.MA003
 
         public Models.MA003 GetListForient()
         {
-            var model = new Models.MA003();
-            //model.SectionCode = dc.MA012.Where(x => x.MNCLSCD.Equals(Models.ClassificationCode.CLASSIFICATTIONCODE008)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRNM });
+            var model = new Models.MA003();        
             model.SectionCode = dc.MA012.Where(x => x.MNCLSCD.Equals(Models.ClassificationCode.CLASSIFICATTIONCODE008)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD + " - " + x.MNSRNM });
             return model;
         }
@@ -143,7 +142,6 @@ namespace TopProSystem.Areas.MasterSetting.DAL.MA003
                     return _model;
                 }
             }
-
             return null;
         }
 

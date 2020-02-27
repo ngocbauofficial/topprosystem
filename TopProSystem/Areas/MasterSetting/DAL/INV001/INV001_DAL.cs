@@ -47,16 +47,6 @@ namespace TopProSystem.Areas.MasterSetting.DAL.INV001
             double? sumWeight = db.INV001.Where(x => x.CACTRNO == purchaseContractNo && x.CACTITM == ItemNo).Sum(x => x.CAWT);
             return sumWeight;
         }
-
-        // Summary:
-        //    Search from INV001 by two parameter {shipper invoice no & Order no}
-        //    
-        //
-        // Parameters:
-        //   sinvoiceNo:
-        //     a string
-        //   orderNo:
-        //     a string
         public int GetTotalRecordByshipperInvoiceAndOrderNo(string sinvoiceNo, string orderNo)
         {
             if (string.IsNullOrEmpty(sinvoiceNo) && string.IsNullOrEmpty(orderNo))
@@ -238,33 +228,54 @@ namespace TopProSystem.Areas.MasterSetting.DAL.INV001
 
         public IEnumerable<Models.INV001> GetTotalDisplayRecordByStockEntryDateAndVesselName(DateTime? StockEntryDate, string VesselName, string Status = "1", int skip = 0, int take = 0, bool paging = true)
         {
-            if (StockEntryDate != null && string.IsNullOrEmpty(VesselName))
+            if (StockEntryDate == null && string.IsNullOrEmpty(VesselName))
             {
                 return new List<Models.INV001>();
             }
             else
             {
                 IQueryable<Models.INV001> data = db.INV001;
-             
+
+                if (StockEntryDate != null)
+                {
+                    data = data.Where(x => x.CASEDT == StockEntryDate);
+                }
+                if(!string.IsNullOrEmpty(VesselName))
+                {
+                    data = data.Where(x => x.CAVESEL == VesselName);
+                }
+                data = data.Where(x => x.CAINVST == Status);
                 if (paging)
                 {
-                    data = data.Where(x => x.CASEDT == StockEntryDate && x.CAVESEL.Trim() == VesselName && x.CAINVST == Status).OrderBy(x => x.CARGSDT).Skip(skip).Take(take);
+                    data = data.OrderBy(x => x.CARGSDT).Skip(skip).Take(take);
                     return data;
                 }
                 else
                 {
-                    data = data.Where(x => x.CASEDT == StockEntryDate && x.CAVESEL.Trim() == VesselName && x.CAINVST == Status).OrderBy(x => x.ID);
+                    data = data.OrderBy(x => x.ID);
                     return data;
                 }
             }
         }
         public int GetTotalRecordByStockEntryDateAndVesselName(DateTime? StockEntryDate, string VesselName, string Status = "1")
         {
-          
-                using (var dc = new TopProSystemEntities())
+            if (StockEntryDate == null && string.IsNullOrEmpty(VesselName))
+            {
+                return 0;
+            }
+            using (var dc = new TopProSystemEntities())
                 {
-                
-                  var countdata  = dc.INV001.Where(x => x.CASEDT == StockEntryDate && x.CAVESEL.Trim() == VesselName && x.CAINVST == Status).Count();
+                IQueryable<Models.INV001> data = db.INV001;
+
+                if (StockEntryDate != null)
+                {
+                    data = data.Where(x => x.CASEDT == StockEntryDate);
+                }
+                if (!string.IsNullOrEmpty(VesselName))
+                {
+                    data = data.Where(x => x.CAVESEL == VesselName);
+                }
+                    var countdata  = data.Where(x =>x.CAINVST == Status).Count();
                     return countdata;
                 }
 
@@ -273,19 +284,50 @@ namespace TopProSystem.Areas.MasterSetting.DAL.INV001
      
         public double? totalQtybyStockandVessl(DateTime? StockEntryDate, string VesselName, string Status = "1")
         {
+            if (StockEntryDate == null && string.IsNullOrEmpty(VesselName))
+            {
+                return 0;
+            }
             using (var dc = new TopProSystemEntities())
             {
-                var countdata = dc.INV001.Where(x => x.CASEDT == StockEntryDate && x.CAVESEL.Trim() == VesselName && x.CAINVST == Status).Sum(x=>x.CAQTY);
+
+                IQueryable<Models.INV001> data = db.INV001;
+
+                if (StockEntryDate != null)
+                {
+                    data = data.Where(x => x.CASEDT == StockEntryDate);
+                }
+                if (!string.IsNullOrEmpty(VesselName))
+                {
+                    data = data.Where(x => x.CAVESEL == VesselName);
+                }
+                var countdata = data.Where(x => x.CAINVST == Status).Sum(x=>x.CAQTY);
                 return countdata;
+        
+
+
             }
         }
         public double? totalWtbyStockandVessl(DateTime? StockEntryDate, string VesselName, string Status = "1")
         {
+            if (StockEntryDate == null && string.IsNullOrEmpty(VesselName))
+            {
+                return 0;
+            }
             using (var dc = new TopProSystemEntities())
             {
-                var countdata =dc.INV001.Where(x => x.CASEDT == StockEntryDate && x.CAVESEL.Trim() == VesselName && x.CAINVST == Status).Sum(x => x.CAWT);
 
-             
+                IQueryable<Models.INV001> data = dc.INV001;
+
+                if (StockEntryDate != null)
+                {
+                    data = data.Where(x => x.CASEDT == StockEntryDate);
+                }
+                if (!string.IsNullOrEmpty(VesselName))
+                {
+                    data = data.Where(x => x.CAVESEL == VesselName);
+                }
+                var countdata = data.Where(x => x.CAINVST == Status).Sum(x => x.CAWT);
                 return countdata;
             }
         }
@@ -302,9 +344,6 @@ namespace TopProSystem.Areas.MasterSetting.DAL.INV001
                         return true;
                     }
                 }
-
-                //model.PURCODE = CreateGuid();
-                //model.Deleted = 0;
                 dc.INV001.Add(model);
                 if (dc.SaveChanges() > 0)
                 {
@@ -325,75 +364,6 @@ namespace TopProSystem.Areas.MasterSetting.DAL.INV001
         {
             if (_model == null) _model = new Models.INV001();
 
-
-            //_model.Grades = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE015)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD }).ToList();
-            //_model.MakerCodes = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE005)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD }).ToList();
-            //_model.CurrencyCodes = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE012)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD }).ToList();
-            //_model.Priceterms = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE019)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD }).ToList();    //pnb edit
-            //_model.TypeOfTerms = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE021)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD }).ToList();    //pnb edit
-            //_model.CommodityCodes = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE006)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD }).ToList();
-            //_model.ContractTypes = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE025)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD }).ToList();
-            //_model.SettelementTerms = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE020)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD }).ToList(); //pnb edit
-            //_model.ExchangeRateType = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE018)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD }).ToList();
-            //_model.RawMaterialTypes = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE034)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRNM }).ToList();
-            //_model.TaxCodes = dc.MA010.OrderByDescending(x => x.MKRGSDT).ToList().ConvertAll(x =>
-            //{
-            //    return new SelectListItem()
-            //    {
-            //        Value = x.MKTXCD,
-            //        Text = x.MKTXCD.ToString()
-            //    };
-            //});
-
-            //_model.ExchangeRates = dc.MA009.OrderByDescending(x => x.MJRGSDT).ToList().ConvertAll(x =>
-            //{
-            //    return new SelectListItem()
-            //    {
-            //        Value = x.MJCRRCD,
-            //        Text = x.MJEXRTT
-            //    };
-            //});
-            //_model.Specs = dc.MA006.OrderByDescending(x => x.MFRGSDT).ToList().ConvertAll(x =>
-            //{
-            //    return new SelectListItem()
-            //    {
-            //        Value = x.MFPRDSP,
-            //        Text = x.MFPRDSP
-            //    };
-            //});
-
-            //_model.Coatings = dc.MA005.OrderByDescending(x => x.MERGSDT).Select(x => new SelectListItem { Value = x.MECOAT, Text = x.MECOAT });
-            //_model.UserCodes = dc.MA002.Select(x => new SelectListItem { Value = x.MBUSRCD, Text = x.MBUSRCD }).ToList();
-
-            //_model.SteelGrades = dc.SteelGrades.Select(x => new SelectListItem { Value = x.Grade, Text = x.Grade });
-            //_model.PersonIncharges = dc.MA003.OrderByDescending(x => x.MCRGSDT).Select(x => new SelectListItem { Value = x.MCIDCD, Text = x.MCIDCD });
-            //_model.SupplierCodes = dc.MA001.OrderByDescending(x => x.MARGSDT).Where(x => x.MASPCTG.Trim().Equals("P")).Select(x => new SelectListItem { Value = x.MASPCD, Text = x.MASPCD });
-            //_model.DeliveryConditionCodes = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE024)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD }).ToList();
-            //return _model;
-
-            /**********bao edit*************/
-
-            // _model.Grades = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE015)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD + "  -  " + x.MNSRNM + "  " }).ToList();
-            // _model.MakerCodes = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE005)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD + "  -  " + x.MNSRNM + "  " }).ToList();
-            // _model.CurrencyCodes = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE012)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD + "  -  " + x.MNSRNM + "  " }).ToList();
-            // _model.Priceterms = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE019)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD + "  -  " + x.MNSRNM + "  " }).ToList();    //pnb edit
-            //_model.TypeOfTerms = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE021)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD + "  -  " + x.MNSRNM + "  " }).ToList();    //pnb edit
-            // _model.CommodityCodes = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE006)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD + "  -  " + x.MNSRNM + "  " }).ToList();
-            // _model.ContractTypes = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE025)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD + "  -  " + x.MNSRNM + "  " }).ToList();
-            // _model.SettelementTerms = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE020)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD + "  -  " + x.MNSRNM + "  " }).ToList(); //pnb edit
-            // _model.RawMaterialTypes = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE034)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD + "  -  " + x.MNSRNM + "  " }).ToList();
-            //_model.ExchangeRateType = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE018)).Select(x => new SelectListItem { Value = x.MNSRCD, Text = x.MNSRCD + "  -  " + x.MNSRNM + "  " }).ToList();
-
-
-            //_model.TaxCodes = dc.MA010.OrderByDescending(x => x.MKRGSDT).ToList().ConvertAll(x =>
-            //{
-            //    return new SelectListItem()
-            //    {
-            //        Value = x.MKTXCD,
-            //        Text = x.MKTXCD.ToString()
-            //    };
-            //});
-
             _model.ExchangeRates = dc.MA009.OrderByDescending(x => x.MJRGSDT).ToList().ConvertAll(x =>
             {
                 return new SelectListItem()
@@ -402,24 +372,7 @@ namespace TopProSystem.Areas.MasterSetting.DAL.INV001
                     Text = Areas.MasterSetting.Controllers.MasterController.GetSRNameBySRCode(ClassificationCode.CLASSIFICATTIONCODE018, x.MJEXRTT)
                 };
             });
-            //  _model.Specs = dc.MA006.OrderByDescending(x => x.MFRGSDT).ToList().ConvertAll(x =>
-            //    {
-            //      return new SelectListItem()
-            //      {
-            //          Value = x.MFPRDSP,
-            //         Text = x.MFPRDSP
-            //     };
-            //  });
-
-            //  _model.Coatings = dc.MA005.OrderByDescending(x => x.MERGSDT).Select(x => new SelectListItem { Value = x.MECOAT, Text = x.MECOAT });
-            // _model.UserCodes = dc.MA002.Select(x => new SelectListItem { Value = x.MBUSRCD, Text = x.MBUSRCD + "  -  " + x.MBUSRNM }).ToList();
-
-            //  _model.SteelGrades = dc.SteelGrades.Select(x => new SelectListItem { Value = x.Grade, Text = x.Grade });
-            // _model.PersonIncharges = dc.MA003.OrderByDescending(x => x.MCRGSDT).Select(x => new SelectListItem { Value = x.MCIDCD, Text = x.MCIDCD + "  -  " + x.MCIDNM });
-            //  _model.SupplierCodes = dc.MA001.OrderByDescending(x => x.MARGSDT).Where(x => x.MASPCTG.Trim().Equals("P")).Select(x => new SelectListItem { Value = x.MASPCD, Text = x.MASPCD + "  -  " + x.MASPNM });
-            //   _model.DeliveryConditionCodes = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE024)).Select(x => new SelectListItem { Value = x.MNSRCD.Trim(), Text = x.MNSRCD + "  -  " + x.MNSRNM }).ToList();
-            /*sugar edit for the fucking order like shit */
-
+          
             _model.Grades = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE015)).ToDictionary(x => x.MNSRCD, x => x.MNSRCD.Trim() + " - " + x.MNSRNM.Trim());
             _model.MakerCodes = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE005)).ToDictionary(x => x.MNSRCD, x => x.MNSRCD.Trim() + " - " + x.MNSRNM.Trim());
             _model.CurrencyCodes = dc.MA012.OrderByDescending(x => x.MNRGSDT).Where(x => x.MNCLSCD.Equals(ClassificationCode.CLASSIFICATTIONCODE012)).ToDictionary(x => x.MNSRCD, x => x.MNSRCD.Trim() + " - " + x.MNSRNM.Trim());
@@ -532,7 +485,6 @@ namespace TopProSystem.Areas.MasterSetting.DAL.INV001
 
             return list;
         }
-
         public enum ScaningMS
         {
             Instock = 1,

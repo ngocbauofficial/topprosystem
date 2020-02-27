@@ -255,31 +255,31 @@ namespace TopProSystem.Controllers
                     Name = cr.Name
                 });
             }
-            foreach (var ar in actionRoles)
-            {
-                model.AvailableActionRoles.Add(new PermissionAction
-                {
-                    Id = ar.Id,
-                    Name = ar.Name
-                });
-            }
+            //foreach (var ar in actionRoles)
+            //{
+            //    model.AvailableActionRoles.Add(new PermissionAction
+            //    {
+            //        Id = ar.Id,
+            //        Name = ar.Name
+            //    });
+            //}
             foreach (var pr in permissionRecords)
             {
-                foreach (var ar in actionRoles)
-                {
+                //foreach (var ar in actionRoles)
+                //{
                     foreach (var cr in customerRoles)
                     {
                         bool allowed = db.Role_Mapping.Count(x => x.PermissionRecord_Id == pr.Id && x.CustomerRole_Id == cr.Id) > 0;
-                        bool allowedAction = db.Role_Mapping_Action.Count(x => x.PermissionRecord_Id == pr.Id && x.CustomerRole_Id == cr.Id && x.Action_Id == ar.Id) > 0;
+                        bool allowedAction = db.Role_Mapping_Action.Count(x => x.PermissionRecord_Id == pr.Id && x.CustomerRole_Id == cr.Id /*&& x.Action_Id == ar.Id*/) > 0;
                         if (!model.Allowed.ContainsKey(pr.SystemName))
                             model.Allowed[pr.SystemName] = new Dictionary<string, bool>();
                         model.Allowed[pr.SystemName][cr.Id] = allowed;
-                        if (!model.AllowedAction.ContainsKey(pr.SystemName + ar.Name))
-                            model.AllowedAction[pr.SystemName + ar.Name] = new Dictionary<string, bool>();
-                        model.AllowedAction[pr.SystemName + ar.Name][cr.Id] = allowedAction;
+                        //if (!model.AllowedAction.ContainsKey(pr.SystemName + ar.Name))
+                        //    model.AllowedAction[pr.SystemName + ar.Name] = new Dictionary<string, bool>();
+                        //model.AllowedAction[pr.SystemName + ar.Name][cr.Id] = allowedAction;
 
                     }
-                }
+                //}
             }
             return View(model);
         }
@@ -320,34 +320,34 @@ namespace TopProSystem.Controllers
                             db.SaveChanges();
                         }
                     }
-                    string formKeyaction = "allow_" + cr.Id + "_" + pr.Id;
-                    var permissionRecordSystemNamesToRestrictAction = form[formKey] != null ? form[formKey].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList() : new List<string>();
-                    foreach (var ar in permissionAction)
-                    {
-                        bool allowaction = permissionRecordSystemNamesToRestrictAction.Contains(pr.SystemName + "_" + ar.Name);
-                        if (allowaction)
-                        {
-                            var mappingrecord = db.Role_Mapping_Action.FirstOrDefault(x => x.PermissionRecord_Id == pr.Id && x.CustomerRole_Id == cr.Id && x.Action_Id == ar.Id);
-                            if (mappingrecord == null)
-                            {
-                                var mapping = new Role_Mapping_Action();
-                                mapping.CustomerRole_Id = cr.Id;
-                                mapping.PermissionRecord_Id = pr.Id;
-                                mapping.Action_Id = ar.Id;
-                                db.Role_Mapping_Action.Add(mapping);
-                                db.SaveChanges();
-                            }
-                        }
-                        else
-                        {
-                            var mappingrecord = db.Role_Mapping_Action.FirstOrDefault(x => x.PermissionRecord_Id == pr.Id && x.CustomerRole_Id == cr.Id && x.Action_Id == ar.Id);
-                            if (mappingrecord != null)
-                            {
-                                db.Role_Mapping_Action.Remove(mappingrecord);
-                                db.SaveChanges();
-                            }
-                        }
-                    }
+                    //string formKeyaction = "allow_" + cr.Id + "_" + pr.Id;
+                    //var permissionRecordSystemNamesToRestrictAction = form[formKey] != null ? form[formKey].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList() : new List<string>();
+                    //foreach (var ar in permissionAction)
+                    //{
+                    //    bool allowaction = permissionRecordSystemNamesToRestrictAction.Contains(pr.SystemName + "_" + ar.Name);
+                    //    if (allowaction)
+                    //    {
+                    //        var mappingrecord = db.Role_Mapping_Action.FirstOrDefault(x => x.PermissionRecord_Id == pr.Id && x.CustomerRole_Id == cr.Id && x.Action_Id == ar.Id);
+                    //        if (mappingrecord == null)
+                    //        {
+                    //            var mapping = new Role_Mapping_Action();
+                    //            mapping.CustomerRole_Id = cr.Id;
+                    //            mapping.PermissionRecord_Id = pr.Id;
+                    //            mapping.Action_Id = ar.Id;
+                    //            db.Role_Mapping_Action.Add(mapping);
+                    //            db.SaveChanges();
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+                    //        var mappingrecord = db.Role_Mapping_Action.FirstOrDefault(x => x.PermissionRecord_Id == pr.Id && x.CustomerRole_Id == cr.Id && x.Action_Id == ar.Id);
+                    //        if (mappingrecord != null)
+                    //        {
+                    //            db.Role_Mapping_Action.Remove(mappingrecord);
+                    //            db.SaveChanges();
+                    //        }
+                    //    }
+                    //}
 
                 }
             }

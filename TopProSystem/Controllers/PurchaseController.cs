@@ -1174,7 +1174,7 @@ namespace TopProSystem.Controllers
             }
             catch (Exception ex)
             {
-                throw;
+                throw ;
             }
         }
         public string CreatePurchaseHistoryByMakerByCommodityFile()
@@ -2604,10 +2604,7 @@ namespace TopProSystem.Controllers
                         {
                             CreateBeginText(writer, baseFont, fsdata, left_start_pos, start_pos_number - itemSpacing_top - spacing_top, model.ABPRDDIA + " mm");
                         }
-
                         CreateBeginText(writer, baseFont, fsdata, left_start_pos + spacing_right, start_pos_number - itemSpacing_top - spacing_top, Ma012_dal.GetSRNameBySRCode(ClassificationCode.CLASSIFICATTIONCODE015, model.ABGRADE));
-
-
                         if (model.ABWT != null)
                         {
                             CreateBeginText(writer, baseFont, fsdata, 375, start_pos_number - itemSpacing_top, MoneyFormat(model.ABWT.ToString()), align: true, alignment: Element.ALIGN_RIGHT);
@@ -2645,8 +2642,7 @@ namespace TopProSystem.Controllers
                     CreateBeginText(writer, baseFont, fsdata, 22, 170 - spacing_top - spacing_top, data.AARMK3);
                     CreateBeginText(writer, baseFont, fsdata, 22, 170 - spacing_top - spacing_top - spacing_top, data.AARMK4);
                     CreateBeginText(writer, baseFont, fsdata, 22, 170 - spacing_top - spacing_top - spacing_top - spacing_top, data.AARMK5);
-
-                    /*descript tion*/
+                    /*description*/
                     skip += 8;
                 } //end for
 
@@ -2681,8 +2677,7 @@ namespace TopProSystem.Controllers
                     writer.DirectContent.ShowTextAligned(alignment, text, x, y, 0);
                 }
                 writer.DirectContent.EndText();
-            }
-            
+            }          
         }
 
         #region download

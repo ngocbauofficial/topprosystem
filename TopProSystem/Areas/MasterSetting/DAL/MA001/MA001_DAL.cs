@@ -21,7 +21,6 @@ namespace TopProSystem.Areas.MasterSetting.DAL.MA001
                 try
                 {
                     dc.MA001.Add(model);
-
                     if (dc.SaveChanges() > 0)
                     {
                         var _model = dc.MA001.Where(x => x.MASPCD.Trim().Equals(model.MASPCD.Trim())).SingleOrDefault();
@@ -83,7 +82,6 @@ namespace TopProSystem.Areas.MasterSetting.DAL.MA001
                     _model.MASTXCD = model.MASTXCD;
                     _model.MAUPDT = DateTime.Now;
                     _model.MAUPDTM = DateTime.Now.TimeOfDay.ToString().Substring(0, 8);
-
                     if (dc.SaveChanges() > 0)
                     {
                         _model = dc.MA001.Where(x => x.MASPCD.Trim().Equals(model.MASPCD.Trim())).SingleOrDefault();
@@ -91,7 +89,6 @@ namespace TopProSystem.Areas.MasterSetting.DAL.MA001
                         {
                             return true;
                         }
-
                     }
                 }
                 return false;
@@ -125,7 +122,6 @@ namespace TopProSystem.Areas.MasterSetting.DAL.MA001
                 WriteLogError_DAL.WriteLogErrorException(ex);
                 return false;
             }
-
             return false;
         }
         public Models.MA001 GetListForientkey(string spcode)
@@ -133,16 +129,6 @@ namespace TopProSystem.Areas.MasterSetting.DAL.MA001
             Models.MA001 model = null;
             if(String.IsNullOrEmpty(spcode)) model = new Models.MA001();
             else model = dc.MA001.Single(x => x.MASPCD.Trim().Equals(spcode.Trim()));
-
-            //model.DueDate = dc.MA012.Where(x => x.MNCLSCD.Trim().Equals(Models.ClassificationCode.CLASSIFICATTIONCODE001)).ToList().Select(a => new SelectListItem { Value = a.MNSRCD, Text = a.MNSRCD });
-            //model.currencyCode = dc.MA012.Where(x => x.MNCLSCD.Trim().Equals(Models.ClassificationCode.CLASSIFICATTIONCODE012)).ToList().Select(a => new SelectListItem { Value = a.MNSRCD, Text = a.MNSRCD });
-            //model.taxCode = dc.MA010.ToList().Select(a => new SelectListItem { Value = a.MKTXCD, Text = a.MKTXCD });
-            //model.CalculationType = dc.MA012.Where(x => x.MNCLSCD.Trim().Equals(Models.ClassificationCode.CLASSIFICATTIONCODE003)).ToList().Select(a => new SelectListItem { Value = a.MNSRCD, Text = a.MNSRCD });
-            //model.DayinMonth = dc.MA012.Where(x => x.MNCLSCD.Trim().Equals(Models.ClassificationCode.CLASSIFICATTIONCODE002)).ToList().Select(a => new SelectListItem { Value = a.MNSRCD, Text = a.MNSRCD });
-            //model.CountryCode = dc.MA012.Where(x => x.MNCLSCD.Equals(Models.ClassificationCode.CLASSIFICATTIONCODE010)).ToList().Select(a => new SelectListItem { Value = a.MNSRCD, Text = a.MNSRCD });
-            //model.BusinessTypeCode = dc.MA012.Where(x => x.MNCLSCD.Equals(Models.ClassificationCode.CLASSIFICATTIONCODE011)).ToList().Select(a => new SelectListItem { Value = a.MNSRCD, Text = a.MNSRCD });
-            //model.Personincharge = dc.MA003.Select(x => new SelectListItem { Value = x.MCIDCD, Text = x.MCIDCD });
-
             model.DueDate = dc.MA012.Where(x => x.MNCLSCD.Trim().Equals(Models.ClassificationCode.CLASSIFICATTIONCODE001)).ToList().Select(a => new SelectListItem { Value = a.MNSRCD, Text = a.MNSRCD + " - " + a.MNSRNM });
             model.currencyCode = dc.MA012.Where(x => x.MNCLSCD.Trim().Equals(Models.ClassificationCode.CLASSIFICATTIONCODE012)).ToList().Select(a => new SelectListItem { Value = a.MNSRCD, Text = a.MNSRCD + " - " + a.MNSRNM });
             model.taxCode = dc.MA010.ToList().Select(a => new SelectListItem { Value = a.MKTXCD, Text = a.MKTXCD + " - " + a.MKTXDL });
@@ -151,7 +137,6 @@ namespace TopProSystem.Areas.MasterSetting.DAL.MA001
             model.CountryCode = dc.MA012.Where(x => x.MNCLSCD.Equals(Models.ClassificationCode.CLASSIFICATTIONCODE010)).ToList().Select(a => new SelectListItem { Value = a.MNSRCD, Text = a.MNSRCD + " - " + a.MNSRNM });
             model.BusinessTypeCode = dc.MA012.Where(x => x.MNCLSCD.Equals(Models.ClassificationCode.CLASSIFICATTIONCODE011)).ToList().Select(a => new SelectListItem { Value = a.MNSRCD, Text = a.MNSRCD + " - " + a.MNSRNM });
             model.Personincharge = dc.MA003.Select(x => new SelectListItem { Value = x.MCIDCD, Text = x.MCIDCD + " - " + x.MCIDNM });
-
             return model;
         }
         public bool CheckSpCodeExists(string spcode)
@@ -181,7 +166,6 @@ namespace TopProSystem.Areas.MasterSetting.DAL.MA001
                 return dc.MA001.Where(x => x.MASPCD.Trim().ToUpper().Contains(searchParam.Trim().ToUpper())).OrderByDescending(x => new { x.MARGSDT, x.MARGSTM }).Skip(skip).Take(take).ToList();
             }
         }
-
         public Models.MA001 GetSalePurchase(string spcode)
         {
             return dc.MA001.SingleOrDefault(x => x.MASPCD.Trim().ToUpper().Equals(spcode.Trim().ToUpper()));

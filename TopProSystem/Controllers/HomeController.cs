@@ -16,7 +16,6 @@ namespace TopProSystem.Controllers
             if (Session[ConstantData.SessionUserID] == null) return View("NotFound404Page");
             return View();
         }
-
         [HttpPost]
         public ActionResult ChangeLanguage(string ddlCulture, string Url)
         {
@@ -29,7 +28,6 @@ namespace TopProSystem.Controllers
             if (CurrentCookie == null)
             {
                 CurrentCookie = new HttpCookie("Language");
-
             }
 
             CurrentCookie.Value = ddlCulture;

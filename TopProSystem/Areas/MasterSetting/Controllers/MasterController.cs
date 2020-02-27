@@ -8,7 +8,8 @@ using StaticResources.Controller;
 using TopProSystem.Areas.MasterSetting.ForeignKeyConstraint;
 using TopProSystem.Extension.AccountRole;
 using System.Resources;
-
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace TopProSystem.Areas.MasterSetting.Controllers
 {
@@ -2822,6 +2823,43 @@ namespace TopProSystem.Areas.MasterSetting.Controllers
             return Json(dal.Update(printerSetting), JsonRequestBehavior.DenyGet);
         }
 
+        #endregion
+
+
+        #region backupdatabase
+        public void backUpDatabase()
+        {
+
+            var connectionString = ConfigurationManager.ConnectionStrings["TopProSystemEntities"].ConnectionString;
+            System.Data.EntityClient.EntityConnectionStringBuilder efBuilder = new System.Data.EntityClient.EntityConnectionStringBuilder(connectionString);
+            connectionString = efBuilder.ProviderConnectionString;
+            // read backup folder from config file ("C:/temp/")
+            var backupFolder = "D:/";
+
+            var sqlConStrBuilder = new SqlConnectionStringBuilder(connectionString);
+         
+            // set backupfilename (you will get something like: "C:/temp/MyDatabase-2013-12-07.bak")
+            var backupFileName = String.Format("{0}{1}-{2}.bak",
+                backupFolder, sqlConStrBuilder.InitialCatalog,
+                DateTime.Now.ToString("yyyy-MM-dd"));
+
+            using (var connection = new SqlConnection(sqlConStrBuilder.ConnectionString))
+            {
+                var query = String.Format("BACKUP DATABASE {0} TO DISK='{1}'",
+                    sqlConStrBuilder.InitialCatalog, backupFileName);
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            Response.ContentType = "application/octet-stream";
+            Response.AppendHeader("Content-Disposition", "attachment; filename="+ "backupTopProSystem.bak");
+            Response.TransmitFile(backupFileName); //backup must be located in folder in your application folder, that folder named *backups*
+            Response.End();
+            System.IO.File.Delete(backupFileName);
+        }
         #endregion
     }
 }

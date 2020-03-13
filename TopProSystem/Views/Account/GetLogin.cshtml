@@ -1,0 +1,116 @@
+﻿@using TopProSystem.Models
+@model LoginModel
+@{
+
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="shortcut icon" href="~/Images/Icon/favico.ico" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Login.css" rel="stylesheet" />
+    <link href="~/Content/jquery-confirm.min.css" rel="stylesheet" />
+    <link href="~/Content/Font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery-confirm.min.js"></script>
+
+
+    <script type="text/javascript">
+
+    $(window).on('load',function () {
+        var sessionState = '@HttpContext.Current.Session[ConstantData.SessionUserID]';
+        if (sessionState != null || sessionState != '' || sessionState != undefined) {
+            window.history.forward();
+        }
+    })
+    </script>
+    <style>
+        .validation-summary-errors ul {
+            list-style: none;
+            font-size: 15px;
+            margin: 0;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="main-contain">
+        <center><img src="~/Images/Logo/LogoForForm.png" alt="logo"/></center>
+        <center style="text-transform:uppercase">Formosa SYSTEM</center>
+        <div class="login-main">
+            <div class="login-title">
+                <span>LOG IN</span>
+            </div>
+            <div class="login-body">
+                @using (Html.BeginForm("GetLogin", "Account", new { returnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post, new { @id = "form-login" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-row row line mx-0">
+                        <span class="col-lg-1 col-md-1 col-sm-1 col-1 m-0 p-0"><i class="fa fa-user-circle-o"></i></span>
+                        <div class="col-lg-11 col-md-11 col-sm-11 col-11 p-0">
+                            @*<input type="text" name="uname" id="uname" value="" placeholder="Username" required autofocus />*@
+                            @Html.TextBoxFor(m => m.UserName, new { @placeholder = "Username", @autofocus = "autofocus" })
+
+                        </div>
+                    </div>
+                    <div class="form-row row mt-3 line mx-0">
+                        <span class="col-lg-1 col-md-1 col-sm-1 col-1 m-0 p-0"><i class="fa fa-key"></i></span>
+                        <div class="col-lg-11 col-md-11 col-sm-11 col-11 p-0">
+                            @*<input type="password" name="psw" id="psw" value="" placeholder="Password" autocomplete="off" required />*@
+                            @Html.PasswordFor(m => m.Password, new { @placeholder = "Password" })
+
+                            <span toggle="#psw" class="fa fa-fw fa-eye field-icon toggle-password" style="cursor:pointer"></span>
+                        </div>
+                    </div>
+                    <div class="float-left my-3">
+                        @*<small id="message" class="text-danger"></small>*@
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="float-right my-3">
+                        <button type="submit" id="btnlogin"><i class="fa fa-sign-in"> Log in</i> </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div id="alert-notify" style="position:absolute;  top:300px; left: 27%"></div>
+    <div class="lds-spinner"></div>
+</body>
+</html>
+<script type="text/javascript">
+
+
+
+    $('#form-login').validate({
+        rules: {
+            UserName: "required",
+            Password: "required",
+        },
+        messages: {
+            UserName: "Please enter Username",
+            Password: "Please enter Password",
+        },
+        errorElement: 'div',
+        errorPlacement: function (error, element) {
+            error.insertAfter(element.parent().parent());
+        },
+    });
+
+    $(".toggle-password").click(function () {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($('#Password'));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+
+</script>

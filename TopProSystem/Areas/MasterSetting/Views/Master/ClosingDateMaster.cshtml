@@ -1,0 +1,165 @@
+﻿@using StaticResources
+@using StaticResources.View.ClosingDate
+@{
+    ViewBag.Title = Resource.Title;
+    ViewBag.headerName = Resource.Title;
+    Layout = "~/Areas/MasterSetting/Views/Shared/_LayoutMasterSeting.cshtml";
+}
+<div class="container-fluid">
+    <div class="pos-top">
+        <div class="row mx-0">
+            <div class="col-lg-12">
+                <form action="#" method="get" class="form-inline">
+                    <div class="form-group">
+                        <input type="text" class="search" value="" placeholder="@Resource.PlaceholderTextSearch" />
+                        <button type="button" id="btnSearch" class="btn-primary search ml-2">@Button.BtnSeach</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row mx-0 mt-5">
+            <div class="col-lg-12">
+                <button class="btn-danger float-right ml-2" id="deleteBtn">@Button.BtnDelete</button>
+                <a href="@Url.Action("GetInsertClosingDate", "Master")" class="button float-right btn-addnew">@Button.BtnAdd</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="data-display">
+        <table class="table-sm w-100" id="dataTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>@Resource.MHBKMNT</th>
+                    <th>@Resource.MHCLSDT</th>
+                    <th>@Resource.MHRGSDT </th>
+                    <th>@Resource.MHRGSTM</th>
+                    <th>@Resource.MHUPDT </th>
+                    <th>@Resource.MHUPDTM </th>
+                    <th>@Button.LbEdit</th>
+                    <th>@Button.LbSelect</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+
+    <script type="text/javascript">
+
+         $(document).ready(function () {
+            var t = $('#dataTable').DataTable({
+                "ordering": false,
+                "info": false,
+                "lengthChange": false,
+                "pageLength": DataTableDisplayLength,
+                "bServerSide": true,
+                "sAjaxSource": "/Master/AjaxHandlerMA007",
+                "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                oSettings.jqXHR = $.ajax({
+                    "dataType": 'json',
+                    "url": sSource,
+                    "type": 'POST',
+                    "data": aoData,
+                    "success": fnCallback,
+                    "error": function () {
+                        alert("@RLayout.SessiontimeoutRespone");
+                        window.location.href = "@Url.Action("GetLogin","Account", new {area = "" })"
+                    }
+                });
+            },
+                "bProcessing": true,
+                "sServerMethod": "POST",
+                "sPaginationType": "full_numbers",
+                "language": {
+                    "paginate": {
+                        "first": '<i class="fa fa-fast-backward"></i>',
+                        "last": '<i class="fa fa-fast-forward"></i>',
+                        "next": '<i class="fa fa-forward"></i>',
+                        "previous": '<i class="fa fa-backward"></i>'
+                    },
+                    "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+                },
+                "columns": [
+                    { "data": null },
+                    { "data": "MHBKMNT" },
+                    { "data": "MHCLSDT" },
+                    { "data": "MHRGSDT" },
+                    { "data": "MHRGSTM" },
+                    { "data": "MHUPDT" },
+                    { "data": "MHUPDTM" },
+                    { "render": function (row, type, data) { return '<a href="/MasterSetting/Master/GetUpdateClosingDate?id='+data["id"]+'" class="edit"><img src="/Images/Icon/edit-icon.png"/></a>' } },
+                    { "render": function (row, type, data) { return '<input type="checkbox" value="' + data["id"]+'"/>' }}
+                ],
+
+            });
+
+            t.on('draw.dt', function () {
+                var PageInfo = $('#dataTable').DataTable().page.info();
+                t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1 + PageInfo.start;
+                });
+            });
+
+
+             $('#btnSearch').on('click', function () {
+                 var searchKey = $('.search').val();
+                 if (searchKey == "") window.location.hash = "";
+                 else
+                     window.location.hash = "search-key=" + searchKey;
+                 t.search(searchKey).draw();
+
+             });
+
+             $('#deleteBtn').click(function () {
+                  var length = $('input[type="checkbox"]:checked').length;
+                 if (length == 0) {
+                     alert("@Html.Raw(RLayout.ErrorNoRowSelect)");
+                     return;
+                 }
+                 var value = [];
+                 $('input[type="checkbox"]:checked').each(function () {
+                     value.push($(this).val());
+                 });
+
+                 $.confirm({
+                     title: "<span class='text-secondary'>@Html.Raw(Button.BtnConfirm)</span>",
+                     icon: 'fa fa-warning',
+                     content: '@Html.Raw(RLayout.ContentDelete)',
+                     type: 'blue',
+                     buttons: {
+                         confirm: {
+                             text: '@Button.BtnConfirm',
+                             btnClass: 'btn-confirm text-capitalize',
+                             action: function () {
+                                 $.getJSON('/Master/DeleteClosingDate', { array: value.join('|') }).done(function (rs) {
+                                     if (rs) {
+                                         SuccessAlert('Delete Successsfull.');
+                                         $('#dataTable').DataTable().ajax.reload();
+                                     } else {
+                                         ErrorAlert("Delete fail !");
+                                     }
+
+                                 }).fail(function (rs) {
+                                     alert('Session timeout, please login again !');
+                                     window.location.href = '@Url.Action("Login","Account", new {area = "" })';
+                                    
+                                 });
+                             }
+                         },
+                         cancel: {
+                             text: '@Button.BtnCancel',
+                             btnClass: 'btn-cancel text-capitalize',
+                             action: function () {
+
+                             }
+                         }
+                     }
+                 });
+             })
+
+
+        });
+    </script>
+}

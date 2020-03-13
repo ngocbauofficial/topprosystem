@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{17455F89-2756-4B8E-B892-EEABAEB5B13A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StaticResources</RootNamespace>
+    <AssemblyName>StaticResources</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Button.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Button.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Button.vi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Button.vi.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\ErrorResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\ErrorResource.vi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorResource.vi.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ItemMenuMaster.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemMenuMaster.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ItemMenuMaster.vi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemMenuMaster.vi.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ItemMenuPurchase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemMenuPurchase.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ItemMenuRawMaterial.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemMenuRawMaterial.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RLayout.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RLayout.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RLayout.vi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RLayout.vi.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Account\Resource.Designer.cs" />
+    <Compile Include="View\ClosingDate\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClosingDate\Resource.vi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.vi.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Coating\Resource.Designer.cs" />
+    <Compile Include="View\Coating\Resource.vi.Designer.cs" />
+    <Compile Include="View\Credit\Resource.Designer.cs" />
+    <Compile Include="View\Credit\Resource.vi.Designer.cs" />
+    <Compile Include="View\ExchangeRate\Resource.Designer.cs" />
+    <Compile Include="View\ExchangeRate\Resource.vi.Designer.cs" />
+    <Compile Include="View\INV001\Freight_amount\Freight_amount.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Freight_amount.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\INV001\Freight_amount\Freight_amount.vi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Freight_amount.vi.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\INV001\RegisterPurchase_amount\RegisterPurchase_amount.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RegisterPurchase_amount.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\INV001\RegisterPurchase_amount\RegisterPurchase_amount.vi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RegisterPurchase_amount.vi.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\INV001\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\INV001\Resource.vi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.vi.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Location\Resource.Designer.cs" />
+    <Compile Include="View\MA012\Resource.vi.Designer.cs" />
+    <Compile Include="View\MA012\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\PUR001\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\PUR001\Resource.vi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.vi.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\RawMaterialType\Resource.Designer.cs" />
+    <Compile Include="View\SalesPurchase\Resource.Designer.cs" />
+    <Compile Include="View\Shared\Resource.Designer.cs" />
+    <Compile Include="View\Spec\Resource.Designer.cs" />
+    <Compile Include="View\Spec\Resource.vi.Designer.cs" />
+    <Compile Include="View\SteelGrade\Resource.Designer.cs" />
+    <Compile Include="View\TaxMaster\Resource.Designer.cs" />
+    <Compile Include="View\TaxMaster\Resource.vi.Designer.cs" />
+    <Compile Include="View\TRA001\Resource.Designer.cs" />
+    <Compile Include="View\TRA001\Resource.vi.Designer.cs" />
+    <Compile Include="View\UserID\Resource.Designer.cs" />
+    <Compile Include="View\User\Resource.Designer.cs" />
+    <Compile Include="View\User\Resource.vi.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Button.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Button.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Button.vi.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Button.vi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\ErrorResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\ErrorResource.vi.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorResource.vi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemMenuMaster.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ItemMenuMaster.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemMenuMaster.vi.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ItemMenuMaster.vi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemMenuPurchase.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ItemMenuPurchase.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemMenuPurchase.vi.resx" />
+    <EmbeddedResource Include="ItemMenuRawMaterial.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ItemMenuRawMaterial.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemMenuRawMaterial.vi.resx" />
+    <EmbeddedResource Include="RLayout.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RLayout.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RLayout.vi.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RLayout.vi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Account\Resource.resx" />
+    <EmbeddedResource Include="View\Account\Resource.vi.resx" />
+    <EmbeddedResource Include="View\ClosingDate\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ClosingDate\Resource.vi.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.vi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Coating\Resource.resx" />
+    <EmbeddedResource Include="View\Coating\Resource.vi.resx" />
+    <EmbeddedResource Include="View\Credit\Resource.resx" />
+    <EmbeddedResource Include="View\Credit\Resource.vi.resx" />
+    <EmbeddedResource Include="View\ExchangeRate\Resource.resx" />
+    <EmbeddedResource Include="View\ExchangeRate\Resource.vi.resx" />
+    <EmbeddedResource Include="View\INV001\Freight_amount\Freight_amount.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Freight_amount.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\INV001\Freight_amount\Freight_amount.vi.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Freight_amount.vi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\INV001\RegisterPurchase_amount\RegisterPurchase_amount.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegisterPurchase_amount.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\INV001\RegisterPurchase_amount\RegisterPurchase_amount.vi.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegisterPurchase_amount.vi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\INV001\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\INV001\Resource.vi.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.vi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Location\Resource.resx" />
+    <EmbeddedResource Include="View\Location\Resource.vi.resx" />
+    <EmbeddedResource Include="View\MA012\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MA012\Resource.vi.resx" />
+    <EmbeddedResource Include="View\PUR001\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PUR001\Resource.vi.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.vi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RawMaterialType\Resource.resx" />
+    <EmbeddedResource Include="View\RawMaterialType\Resource.vi.resx" />
+    <EmbeddedResource Include="View\SalesPurchase\Resource.resx" />
+    <EmbeddedResource Include="View\SalesPurchase\Resource.vi.resx" />
+    <EmbeddedResource Include="View\Shared\Resource.resx" />
+    <EmbeddedResource Include="View\Shared\Resource.vi.resx" />
+    <EmbeddedResource Include="View\Spec\Resource.resx" />
+    <EmbeddedResource Include="View\Spec\Resource.vi.resx" />
+    <EmbeddedResource Include="View\SteelGrade\Resource.resx" />
+    <EmbeddedResource Include="View\SteelGrade\Resource.vi.resx" />
+    <EmbeddedResource Include="View\TaxMaster\Resource.resx" />
+    <EmbeddedResource Include="View\TaxMaster\Resource.vi.resx" />
+    <EmbeddedResource Include="View\TRA001\Resource.resx" />
+    <EmbeddedResource Include="View\TRA001\Resource.vi.resx" />
+    <EmbeddedResource Include="View\UserID\Resource.resx" />
+    <EmbeddedResource Include="View\UserID\Resource.vi.resx" />
+    <EmbeddedResource Include="View\User\Resource.resx" />
+    <EmbeddedResource Include="View\User\Resource.vi.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\INV001\CustomHandling_amount\" />
+    <Folder Include="View\INV001\Tariff_amount\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

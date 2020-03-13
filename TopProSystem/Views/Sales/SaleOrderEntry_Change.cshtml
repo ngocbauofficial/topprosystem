@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Change Sale Order Entry";
+    Layout = "~/Views/Shared/_LayoutPageSale.cshtml";
+    ViewBag.content = ViewBag.Title;
+}
+@using StaticResources
+<div class="content-top row mx-0">
+    <div class="w-100 py-2 px-2" style="border-top: 1px solid #000; border-left: 1px solid #000; border-right: 1px solid #000; background: #e5e4e4">
+        <span class="title-center">Order Entry No.</span>
+        <input type="text" name="name" value="" />
+        <button type="button" class="search">Search</button>
+    </div>
+    <form action="/" method="post">
+        <div class="divTable" style="border:1px solid #000">
+            <div class="divTableBody">
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Register Date</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" data-provide="datepicker" tabindex="1" /></div>
+                    <div class="divTableCell"><span class="title">Order Entry No</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" tabindex="5" /></div>
+                    <div class="divTableCell"><span class="title">Order Entry Date</span></div>
+                    <div class="divTableCell"><input type="text" name="" value="" data-provide="datepicker" tabindex="12" /></div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Update Date</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" data-provide="datepicker" tabindex="2" /></div>
+                    <div class="divTableCell"><span class="title">Customer Code</span></div>
+                    <div class="divTableCell">@Html.DropDownList("slsls", new SelectList(new List<int>() { 1, 2, 3, 4, 5, 6 }), RLayout.SelectAction, new { @tabindex = "6" }) <input type="text" name="name" value="" /></div>
+                    <div class="divTableCell"><span class="title">User Code</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownList("UserCode", new SelectList(ViewBag.UserCode, "MBUSRCD", "MBUSRNM"), RLayout.SelectAction, new { @tabindex = "13" })
+
+                        <input type="text" name="" value="">
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Completion Status</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" tabindex="3" /></div>
+                    <div class="divTableCell"><span class="title">Section Code</span></div>
+                    <div class="divTableCell">
+
+                        @Html.DropDownList("fff", new SelectList(ViewBag.Section, "MNSRCD", "MNSRNM", ""), RLayout.SelectAction, new { @tabindex = "7" }) <input type="text" name="" id="" value="">
+                    </div>
+                    <div class="divTableCell"><span class="title">Contract Type</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownList("fff", new SelectList(ViewBag.ContractType, "MNSRCD", "MNSRNM", ""), RLayout.SelectAction, new { @tabindex = "14" })
+                        <input type="text" name="" id="" value="">
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">Completion Date</span></div>
+                    <div class="divTableCell"><input type="text" name="name" value="" tabindex="4" /></div>
+                    <div class="divTableCell"><span class="title">Commodity Code</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownList("fff", new SelectList(ViewBag.CommodityCode, "MNSRCD", "MNSRNM", ""), RLayout.SelectAction, new { @tabindex = "8" })
+                        <input type="text" name="" id="" value="">
+                    </div>
+                    <div class="divTableCell"><span class="title">Delivery To</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownList("fff", new SelectList(ViewBag.Delivery, "MNSRCD", "MNSRNM", ""), RLayout.SelectAction, new { @tabindex = "15" })
+                        <input type="text" name="" id="" value="">
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell"><span class="title">Currency Code</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownList("fff", new SelectList(ViewBag.CurrencyCode, "MNSRCD", "MNSRNM", ""), RLayout.SelectAction, new { @tabindex = "9" })
+                        <input type="text" name="" id="" value="">
+                    </div>
+                    <div class="divTableCell"><span class="title">Exchange Rate</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownList("fff", new SelectList(ViewBag.ExchangeRate, "MJCRRCD", "MJEXRT"), RLayout.SelectAction, new { @tabindex = "16" }) <input type="text" name="" id="" value="">
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell"><span class="title">Domestic Code</span></div>
+                    <div class="divTableCell">@Html.DropDownList("adasdads", new SelectList(new List<int>() { 1, 2, 3, 4, 5, 6 }), RLayout.SelectAction, new { @tabindex = "10" }) <input type="text" name="" id="" value=""></div>
+                    <div class="divTableCell"><span class="title">Exchange Rate (Tax)</span></div>
+                    <div class="divTableCell">
+
+                        @Html.DropDownList("fff", new SelectList(ViewBag.ExchangeRateTax, "MNSRCD", "MNSRNM", ""), RLayout.SelectAction, new { @tabindex = "17" })
+                        <input type="text" name="" id="" value="">
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell border-0"></div>
+                    <div class="divTableCell"><span class="title">Tax Code</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownList("fff", new SelectList(ViewBag.TaxCode, "MKTXCD", "MKTXCD"), RLayout.SelectAction, new { @tabindex = "11" })
+                        <input type="text" name="" id="" value="">
+                    </div>
+                    <div class="divTableCell"><span class="title">Tax Rate</span></div>
+                    <div class="divTableCell"><input type="text" name="" id="" value="" tabindex="18"></div>
+                </div>
+            </div>
+        </div>
+        <div class="float-right my-2">
+            <button type="button" class="add-item">Add item</button>
+            <button type="button" class="confirm">Confirm</button>
+            <button type="button" class="cancel" onclick="javascript:window.location.href = '@Url.Action("SaleOrderEntry")'">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<div class="content-bottom row mx-0">
+    @Html.Partial("_SaleOrderEntry")
+</div>

@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
+
+namespace TopProSystem
+{
+    public class RouteConfig
+    {
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute("Purchase", "Purchase/",
+               defaults: new { controller = "Purchase", action = "GetPurchaseContractEntry", id = UrlParameter.Optional });
+
+            routes.MapRoute("RawMaterial", "RawMaterial/",
+             defaults: new { controller = "RawMaterial", action = "GetRawMaterialWarehousingEntry", id = UrlParameter.Optional });
+
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Account", action = "GetLogin", id = UrlParameter.Optional }
+            );
+            
+        }
+    }
+}

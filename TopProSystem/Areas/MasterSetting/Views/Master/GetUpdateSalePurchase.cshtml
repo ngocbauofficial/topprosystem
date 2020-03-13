@@ -1,0 +1,386 @@
+﻿@model TopProSystem.Areas.MasterSetting.Models.MA001
+@using StaticResources
+@using StaticResources.View.SalesPurchase
+
+
+@{
+    ViewBag.Title = Resource.ChangeTitle;
+    Layout = "~/Areas/MasterSetting/Views/Shared/_LayoutMasterSeting.cshtml";
+    ViewBag.headerName = ViewBag.Title;
+}
+
+<div class="container-fluid">
+    <div class="data-content">
+        <form  name="formdata" action="@Url.Action("UpdateSalePurchase","Master")" method="post" id="SalePurchase-Master-Form">
+            <div class="divTable w-100" style="border-top: 1px solid #000; border-left: 1px solid #000; border-right: 1px solid #000; border-bottom: 1px solid #999999">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                        <div class="divTableCell"></div>
+                        <div class="divTableCell">
+                        </div>
+                        <div class="divTableCell"><span class="title-header">SALES CONDITION</span></div>
+                        <div class="divTableCell border-left-0">&nbsp;</div>
+                        <div class="divTableCell"><span class="title-header">PURCHASE CONDITION</span></div>
+                        <div class="divTableCell border-left-0">&nbsp;</div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title-normal">@Resource.MASPCD</span></div>
+                        <div class="divTableCell">
+                            <input type="text" name="MASPCD" id="MASPCD" value="@Model.MASPCD.Trim()" tabindex="1" readonly />
+                            <span class="title-normal">SHORT NAME</span>
+                            <input type="text" name="MASPSNM" id="MASPSNM" value="@Model.MASPSNM" tabindex="2" />
+                        </div>
+                        <div class="divTableCell"><span class="title-normal">@Resource.MASTDUE</span></div>
+                        <div class="divTableCell">
+                            @Html.DropDownListFor(m => m.MASTDUE, Model.DueDate, RLayout.SelectAction, new { tabindex = "13" })
+                            <input type="text" name="MASTDUE_dl" id="MASTDUE_dl" value="" readonly />
+                        </div>
+                        <div class="divTableCell"><span class="title-normal">@Resource.MAPTDUE</span></div>
+                        <div class="divTableCell">
+                            @Html.DropDownListFor(m => m.MAPTDUE, Model.DueDate, RLayout.SelectAction, new { tabindex = "22" })
+                            <input type="text" name="MAPTDUE_dl" id="MAPTDUE_dl" value="" readonly />
+                        </div>
+                    </div>
+
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title-normal">@Resource.MASPNM</span></div>
+                        <div class="divTableCell">
+                            <input type="text" name="MASPNM" id="MASPNM" value="@Model.MASPNM" tabindex="3" style="width: 338px;" />
+                        </div>
+                        <div class="divTableCell"><span class="title-normal">@Resource.MASCLSD</span></div>
+                        <div class="divTableCell">
+                            <input type="text" name="MASCLSD" id="MASCLSD" value="@Model.MASCLSD" tabindex="14" style="width:40px" />
+                            <span class="title-normal">DEFERRING</span>
+                            <input type="text" name="MASDFER" id="MASDFER" value="@Model.MASDFER" tabindex="15" style="width:40px" />
+                            <span class="title-normal">SETTLEMENT</span>
+                            <input type="text" name="MASSETL" id="MASSETL" value="@Model.MASSETL" tabindex="16" style="width:40px" />
+                        </div>
+                        <div class="divTableCell"><span class="title-normal">@Resource.MASCLSD</span></div>
+                        <div class="divTableCell">
+                            <input type="text" name="MAPCLSD" id="MAPCLSD" value="@Model.MAPCLSD" tabindex="23" style="width:40px" />
+                            <span class="title-normal">DEFERRING</span>
+                            <input type="text" name="MAPDFER" id="MAPDFER" value="@Model.MAPDFER" tabindex="24" style="width:40px" />
+                            <span class="title-normal">SETTLEMENT</span>
+                            <input type="text" name="MAPSETEL" id="MAPSETEL" value="@Model.MAPSETEL" tabindex="25" style="width:40px" />
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell border-bottom-0"><span class="title-normal">@Resource.MASPAD1</span></div>
+                        <div class="divTableCell">
+                            <input type="text" name="MASPAD1" id="MASPAD1" value="@Model.MASPAD1" tabindex="4" style="width: 338px;" />
+                        </div>
+                        <div class="divTableCell"><span class="title-normal">@Resource.MACLTRM</span></div>
+                        <div class="divTableCell">
+                            @Html.TextBoxFor(x=>x.MACLTRM, new {@tabindex = "17" })
+                        </div>
+                        <div class="divTableCell"><span class="title-normal">@Resource.MAPYTRM</span></div>
+                        <div class="divTableCell">
+                            @Html.TextBoxFor(x=>x.MAPYTRM, new {@tabindex = "26" })
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell border-bottom-0"></div>
+                        <div class="divTableCell">
+                            <input type="text" name="MASPAD2" id="MASPAD2" value="@Model.MASPAD2" tabindex="5" style="width: 338px;" />
+                        </div>
+
+                        <div class="divTableCell"><span class="title-normal">@Resource.MASDAYS</span></div>
+                        <div class="divTableCell">
+                            @Html.DropDownListFor(m => m.MASDAYS, Model.DayinMonth, RLayout.SelectAction, new { tabindex = "18" })
+                            <input type="text" name="MASDAYS_dl" id="MASDAYS_dl" value="" readonly />
+                        </div>
+                        <div class="divTableCell"><span class="title-normal">@Resource.MAPDAYS</span></div>
+                        <div class="divTableCell">
+                            @Html.DropDownListFor(m => m.MAPDAYS, Model.DayinMonth, RLayout.SelectAction, new { tabindex = "27" })
+                            <input type="text" name="MAPDAYS_dl" id="MAPDAYS_dl" value="" readonly />
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"></div>
+                        <div class="divTableCell">
+                            <input type="text" name="MASPAD3" id="MASPAD3" value="@Model.MASPAD3" tabindex="6" style="width: 338px;" />
+                        </div>
+                        <div class="divTableCell"><span class="title-normal">@Resource.MASCRCD</span></div>
+                        <div class="divTableCell">
+                            @Html.DropDownListFor(m => m.MASCRCD, Model.currencyCode, RLayout.SelectAction, new { tabindex = "19" })
+                            <input type="text" name="MASCRCD_dl" id="MASCRCD_dl" value="" readonly />
+                        </div>
+                        <div class="divTableCell"><span class="title-normal">@Resource.MAPCRCD</span></div>
+                        <div class="divTableCell">
+                            @Html.DropDownListFor(m => m.MAPCRCD, Model.currencyCode, RLayout.SelectAction, new { tabindex = "28" })
+                            <input type="text" name="MAPCRCD_dl" id="MAPCRCD_dl" value="" readonly />
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title-normal">@Resource.MACNTRC</span></div>
+                        <div class="divTableCell">
+                            @Html.DropDownListFor(m => m.MACNTRC, Model.CountryCode, RLayout.SelectAction, new { tabindex = "7" })
+                            <input type="text" name="MACNTRC_dl" id="MACNTRC_dl" value="" readonly />
+                        </div>
+                        <div class="divTableCell"><span class="title-normal">@Resource.MASTXCD</span></div>
+                        <div class="divTableCell">
+                            @Html.DropDownListFor(m => m.MASTXCD, Model.taxCode, RLayout.SelectAction, new { tabindex = "20" })
+                            <input type="text" name="MASTXCD_dl" id="MASTXCD_dl" value="" readonly />
+                        </div>
+                        <div class="divTableCell"><span class="title-normal">@Resource.MAPTXCD</span></div>
+                        <div class="divTableCell">
+                            @Html.DropDownListFor(m => m.MAPTXCD, Model.taxCode, RLayout.SelectAction, new { tabindex = "29" })
+                            <input type="text" name="MAPTXCD_dl" id="MAPTXCD_dl" value="" readonly />
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title-normal">@Resource.MASPTEL</span></div>
+                        <div class="divTableCell">
+                            <input type="text" name="MASPTEL" id="MASPTEL" value="@Model.MASPTEL" tabindex="8" />
+                            <span class="title-normal">@Resource.MASPFAX</span>
+                            <input type="text" name="MASPFAX" id="MASPFAX" value="@Model.MASPFAX" tabindex="9" />
+                        </div>
+                        <div class="divTableCell"><span class="title-normal">@Resource.MASCALC</span></div>
+                        <div class="divTableCell">
+                            @Html.DropDownListFor(m => m.MASCALC, Model.CalculationType, RLayout.SelectAction, new { tabindex = "21" })
+                            <input type="text" name="MASCALC_dl" id="MASCALC_dl" value="" readonly />
+                        </div>
+                        <div class="divTableCell"><span class="title-normal">@Resource.MAPCALC</span></div>
+                        <div class="divTableCell">
+                            @Html.DropDownListFor(m => m.MAPCALC, Model.CalculationType, RLayout.SelectAction, new { tabindex = "30" })
+                            <input type="text" name="MAPCALC_dl" id="MAPCALC_dl" value="" readonly />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="divTable w-100" style="border-bottom: 1px solid #000; border-right: 1px solid #000; border-left: 1px solid #000">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title-normal">@Resource.MABUZCD</span></div>
+                        <div class="divTableCell w-25">
+                            @Html.DropDownListFor(m => m.MABUZCD, Model.BusinessTypeCode, RLayout.SelectAction, new { tabindex = "10" })
+                            <input type="text" name="MABUZCD_dl" id="MABUZCD_dl" value="" readonly />
+                        </div>
+                        <div class="divTableCell"> <span class="title-normal">IN CHARGE</span></div>
+                        <div class="divTableCell">
+                            @Html.DropDownListFor(x => x.MAIDCD, Model.Personincharge, RLayout.SelectAction, new { @tabindex = "11" })
+                            <input type="text" name="MAIDCD_dl" id="MAIDCD_dl" value="" readonly />
+                        </div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell"><span class="title-normal">@Resource.MASPCTG</span></div>
+                        <div class="divTableCell">
+                            @Html.DropDownListFor(x => x.MASPCTG, new SelectList(new List<char> { 'S', 'P' }), RLayout.SelectAction, new {@tabindex = "12" })
+                            <input type="text" name="MASPCTG_dl" id="MASPCTG_dl" value="" readonly />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3 float-right">
+                <button type="submit" class="btn-primary">@Button.BtnConfirm</button>
+                <button type="button" class="cancel" onclick="javascript:window.location.href='/MasterSetting/Master/SalePurchaseMaster'">@Button.BtnCancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="~/Scripts/MyScript/salepurchasemaster.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $('#MACNTRC').change();
+        $('#MABUZCD').change();
+        $('#MAIDCD').change();
+        $('#MASPCTG').change();
+        $('#MASTDUE').change();
+        $('#MAPTDUE').change();
+        $('#MASDAYS').change();
+        $('#MAPDAYS').change();
+        $('#MASCRCD').change();
+        $('#MAPCRCD').change();
+        $('#MASTXCD').change();
+        $('#MAPTXCD').change();
+        $('#MASCALC').change();
+        $('#MAPCALC').change();
+
+        /*******************/
+         const URL_CHECKSPCODE_EXISTS = '/Master/CheckSPCodeExists';
+
+    $('#SalePurchase-Master-Form').validate({
+        rules: {
+            MASPCD: {
+                required: true,
+                alphatext: true,
+                maxlength: 6,
+                minlength: 6,
+                remote: {
+                    url: URL_CHECKSPCODE_EXISTS,
+                    type: 'GET',
+                    data: {
+                        spcode: function () { return $('#MASPCD').val() }
+                    }
+                }
+            },
+            MASPNM: {
+                required: true,
+                maxlength: 36,
+            },
+            MASPSNM: {
+                maxlength: 15,
+            },
+            MASPAD1: {
+                required: true,
+                maxlength: 60,
+            },
+            MASPAD2: {
+                maxlength: 60,
+            },
+            MASPAD3: {
+                maxlength: 60
+            },
+            MASPTEL: {
+                maxlength: 16
+            },
+            MASPFAX: {
+                maxlength: 16
+            },
+            MABUZCD: {
+                required: true,
+            },
+            MASPCTG: {
+                required: true,
+            },
+
+            MASCLSD: {
+                maxlength: 2,
+                number: true,
+                digits: true,
+                max: 31
+            },
+            MASDFER: {
+                maxlength: 1,
+                number: true,
+                digits: true,
+            },
+            MASSETL: {
+                maxlength: 2,
+                number: true,
+                digits: true,
+            },
+            MASDAYS: {
+                maxlength: 1
+            },
+            MACLTRM: {
+                maxlength: 3
+            },
+            MAPYTRM: {
+                maxlength: 3,
+            },
+            MAPCLSD: {
+                maxlength: 2,
+                number: true,
+                digits: true,
+                max: 31
+            },
+            MAPDFER: {
+                maxlength: 1,
+                number: true,
+                digits: true,
+            },
+            MAPSETEL: {
+                maxlength: 2,
+                number: true,
+                digits: true,
+            },
+            MAPDAYS: {
+                maxlength: 1
+            },
+        },
+        messages: {
+            MASPCD: {
+                required: '@Html.Raw(RLayout.Required)',
+                remote: '@Html.Raw(RLayout.Exists)',
+                maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"6"))',
+                minlength: '@Html.Raw(string.Format(RLayout.Minlength,"6"))',
+            },
+            MASPNM: {
+                required: '@Html.Raw(RLayout.Required)',
+                maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"36"))',
+            },
+            MASPSNM: {
+                maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"15"))',
+            },
+            MASPAD1: {
+                required: '@Html.Raw(RLayout.Required)',
+                 maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"60"))',
+            },
+            MASPAD2: {
+                 maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"60"))',
+            },
+            MASPAD3: {
+                 maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"60"))',
+            },
+            MASPTEL: {
+                  maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"16"))',
+            },
+            MASPFAX: {
+                maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"16"))',
+            },
+            MABUZCD: {
+                required: '@Html.Raw(RLayout.Required)',
+            },
+            MASPCTG: {
+                required: '@Html.Raw(RLayout.Required)',
+            },
+            MASCLSD: {
+                maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"16"))',
+                number: '@Html.Raw(RLayout.IsNumber)',
+                max: '@Html.Raw(string.Format(RLayout.MaxValue,"31"))'
+            },
+            MASDFER: {
+                maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"1"))',
+                number: '@Html.Raw(RLayout.IsNumber)',
+            },
+            MASSETL: {
+                maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"1"))',
+                number: '@Html.Raw(RLayout.IsNumber)',
+            },
+            MASDAYS: {
+              maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"1"))',
+            },
+
+            MAPCLSD: {
+                 maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"2"))',
+                number: '@Html.Raw(RLayout.IsNumber)',
+                max: '@Html.Raw(string.Format(RLayout.MaxValue,"31"))'
+            },
+            MAPDFER: {
+                maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"1"))',
+                number: '@Html.Raw(RLayout.IsNumber)',
+            },
+            MAPSETEL: {
+               maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"2"))',
+                number: '@Html.Raw(RLayout.IsNumber)',
+            },
+            MAPDAYS: {
+                maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"1"))',
+            },
+            MACLTRM: {
+                maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"3"))',
+            },
+            MAPYTRM: {
+                maxlength: '@Html.Raw(string.Format(RLayout.Maxlength,"3"))',
+            },
+        },
+        errorElement: 'div',
+        errorPlacement: function (error, element) {
+            error.insertAfter(element);
+        },
+    })
+
+     $.validator.addMethod("alphatext", function (value, element) {
+       return alphatext(value);
+    }, "@RLayout.InValidValue");
+
+
+        $('#MASPCD').rules('remove','remote');
+    })
+</script>

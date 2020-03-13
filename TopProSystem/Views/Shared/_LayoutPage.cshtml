@@ -1,0 +1,164 @@
+﻿@{
+    /**/
+
+    string controllername = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title | Formosa Steel Corporation</title>
+    <link rel="shortcut icon" href="~/Images/Icon/favico.ico" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/datatables.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-confirm.min.css" rel="stylesheet" />
+    <link href="~/Content/RawMaterial.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/MyScript/Script.js"></script>
+    <script src="~/Scripts/MyScript/accountant.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/datatables.min.js"></script>
+    <script src="~/Scripts/jquery-confirm.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+
+
+    <script>
+        //set active menu
+        $().ready(function () {
+            var controller = '@controllername';
+            switch (controller) {
+
+                case 'Purchase':
+                    $('#nav-menu ul li #purchase').addClass('active-menu');
+                    break;
+                case 'RawMaterial':
+                    $('#nav-menu ul li #raw').addClass('active-menu');
+                    break;
+                case 'Sales':
+                    $('#nav-menu ul li #sales').addClass('active-menu');
+                    break;
+                case 'Production':
+                    $('#nav-menu ul li #product').addClass('active-menu');
+                    break;
+                case 'Paking':
+                    $('#nav-menu ul li #paking').addClass('active-menu');
+                    break;
+                case 'Delivery':
+                    $('#nav-menu ul li #delivery').addClass('active-menu');
+                    break;
+                case 'Inventory':
+                    $('#nav-menu ul li #inventory').addClass('active-menu');
+                    break;
+                case 'Inspection':
+                    $('#nav-menu ul li #inspection').addClass('active-menu');
+                    break;
+                case 'SystemMaster':
+                    $('#nav-menu ul li #master').addClass('active-menu');
+                    break;
+                case 'Planning':
+                    $('#nav-menu ul li #planning').addClass('active-menu');
+                    break;
+                case 'Account':
+                    $('#nav-menu ul li #account').addClass('active-menu');
+                    break;
+                default: $('nav ul li a').removeClass('active-menu');
+                    break;
+            }
+
+            //$('input,select').bind('keypress', function (eInner) {
+            //    if (eInner.keyCode === 13) {
+            //        var tabindex = $(this).attr('tabindex');
+            //        tabindex++;
+            //        $('[tabindex=' + tabindex + ']').focus();
+            //        return false;
+            //    }
+            //});
+
+
+        })
+
+        $(document).ready(function () {
+            DatePickerProvide();
+
+        })
+
+        $(document).on('click', function () {
+            $.getJSON('@Url.Action("SessionTimeOut","Home")').done(function (rs) {
+                if (rs) {
+                     window.location.href = '@Url.Action("GetLogin","Account",new {ReturnUrl = Request.RawUrl, area = "" })';
+                }
+            })
+
+        })
+
+        $(function () { // trang di dong
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('#menu-mobile').removeClass('d-none');
+                $('#menu-desktop').addClass('d-none');
+                $('#open-menu-toggle').css('visibility', 'hidden');
+
+                let html = '<button class="navbar-toggler" onclick="openMenuMobile()"><span class="navbar-toggler-icon"></span></button>';
+                html += '<form action="/Account/SignOut" method="POST" id="form-logout" style="width: auto">';
+                html += '<a href="javascript:document.getElementById('+'\'form-logout\''+').submit()" class="text-light">Sign Out</a>';
+                html += '</form>';
+
+                $('#nav-menu').html(html);
+
+            } else {
+                $('#menu-mobile').addClass('d-none');
+                $('#menu-desktop').removeClass('d-none');
+            }
+        });
+    </script>
+  
+</head>
+<body>
+    <script>
+         $(function () {
+            @Html.Raw(TempData[TopProSystem.Models.ConstantData.Notification_key])
+        })
+    </script>
+    <button id="open-menu-toggle" title=""><i class="fa fa-arrow-right"></i></button>
+    @Html.Partial("_menu")
+
+    <div class="container-fluid mt-3" style="padding-bottom: 50px">
+        @RenderBody()
+    </div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><img src="/Images/Icon/top.png" alt="scrolltop" /></button>
+
+
+    <div class="overlay"></div>
+    <div id="alert-notify" style="position:fixed; right:0; top: 100px;"></div>
+
+    @*<div style="bottom:0;display:block; font-size: 12px;width: 100%; text-align:center; "><span>Copyright&copy; Champ Solutions</span></div>*@
+    <script type="text/javascript">
+
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+            } else {
+                document.getElementById("myBtn").style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            //document.body.scrollTop = 0;
+            //document.documentElement.scrollTop = 0;
+            var $target = $('html,body');
+            $target.animate({ scrollTop: 0 }, 200);
+        }
+    </script>
+</body>
+</html>
+

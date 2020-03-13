@@ -1,0 +1,73 @@
+﻿@using StaticResources
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@RenderSection("scripts", false)
+<script>
+
+    function openMenuMobile() {
+        $('#open-menu-toggle').click();
+    }
+</script>
+@*<button id="open-menu-toggle" title=""><i class="fa fa-arrow-right"></i></button>*@
+<div style=" min-height: 768px; background-color: #fff; padding-bottom: 10px">
+    <div class="px-2" style="font-size: 40px; ">
+        <span class="header-text-color">@ViewBag.content</span>
+    </div>
+    <div class="px-2">
+        @RenderBody()
+    </div>
+
+</div>
+@Html.Partial("_mobileMenu")
+<div class="menu-hide" id="menu-desktop">
+    <div class="header-menu">
+        <strong><i class="fa fa-bars"></i> RawMaterial Menu</strong>
+        <button id="close-menu-toggle" title="@RLayout.Togglemenu" onclick="closeHiddenMenu()"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="menu-hide-content">
+        <ul class="list-unstyled">
+            <li class="nav-item">
+                <a class="nav-link " href="/RawMaterial/GetRawMaterialWarehousingEntry">@ItemMenuRawMaterial.RawMaterialWarehousingEntry</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/RegisterPurchaseAmount">@ItemMenuRawMaterial.RegisterRawMaterialPurchaseAmount</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/GetRegisterTariffAmount">@ItemMenuRawMaterial.RegisterRawMaterialTraiffAmount</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/RegisterCustomHandlingAmount">@ItemMenuRawMaterial.RegisterCustomHandlingAmount</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/GetRegisterFreightAmount">@ItemMenuRawMaterial.RegisterFreightAmount</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/GetRawMaterialWarehousingResult">Raw Material Warehousing Result</a>
+            </li>
+            @*<li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/GetRawMaterialRequestEntry">Raw Material Request Entry</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/GetRawMaterialRequestResult">Raw Material Request Result</a>
+            </li>*@
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/GetPrintRawMaterialRecevingList">@ItemMenuRawMaterial.PrintRawMaterialRecevingList</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/RawMaterial/GetPrintRawMaterialLabel">@ItemMenuRawMaterial.PrintRawMaterialLabel</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+@if (TempData["Success"] != null)
+{
+    <script>
+        $(document).ready(function () {
+            SuccessAlert("@Html.Raw(TempData["Success"])");
+     })
+    </script>
+}

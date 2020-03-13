@@ -1,0 +1,2543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TopProSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="InspectionItemNoMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RawMaterialId" Type="int" Nullable="false" />
+          <Property Name="InspectionNo" Type="varchar" MaxLength="500" />
+          <Property Name="RawMaterialNo" Type="varchar" MaxLength="500" />
+          <Property Name="Quantity" Type="float" Nullable="false" />
+          <Property Name="Weight" Type="float" Nullable="false" />
+          <Property Name="StatusCode" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="INV001">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CADSTNC" Type="varchar" MaxLength="50" />
+          <Property Name="CARGSDT" Type="datetime" />
+          <Property Name="CAUPDT" Type="datetime" />
+          <Property Name="CADTCD" Type="varchar" MaxLength="50" />
+          <Property Name="CACTLM1" Type="varchar" MaxLength="50" />
+          <Property Name="CAINVTP" Type="varchar" MaxLength="50" />
+          <Property Name="CAINVST" Type="varchar" MaxLength="50" />
+          <Property Name="CAINVNO" Type="varchar" MaxLength="50" />
+          <Property Name="CACMDCD" Type="varchar" MaxLength="50" />
+          <Property Name="CAUSRCD" Type="varchar" MaxLength="50" />
+          <Property Name="CACTRTP" Type="varchar" MaxLength="50" />
+          <Property Name="CADPSCD" Type="varchar" MaxLength="50" />
+          <Property Name="CASPTCD" Type="varchar" MaxLength="50" />
+          <Property Name="CAPURGD" Type="varchar" MaxLength="50" />
+          <Property Name="CALCTCD" Type="varchar" MaxLength="50" />
+          <Property Name="CASTSCD" Type="varchar" MaxLength="50" />
+          <Property Name="CARSNCD" Type="varchar" MaxLength="50" />
+          <Property Name="CASECCD" Type="varchar" MaxLength="50" />
+          <Property Name="CASCTNC" Type="varchar" MaxLength="50" />
+          <Property Name="CAIDCD" Type="varchar" MaxLength="50" />
+          <Property Name="CATRDCD" Type="varchar" MaxLength="50" />
+          <Property Name="CASPEC" Type="varchar" MaxLength="50" />
+          <Property Name="CACOAT" Type="varchar" MaxLength="50" />
+          <Property Name="CACOATF" Type="float" />
+          <Property Name="CACOATB" Type="float" />
+          <Property Name="CAGRADE" Type="varchar" MaxLength="50" />
+          <Property Name="CACMBT" Type="varchar" MaxLength="50" />
+          <Property Name="CACMBW" Type="varchar" MaxLength="50" />
+          <Property Name="CACMBL" Type="varchar" MaxLength="50" />
+          <Property Name="CASIZET" Type="float" />
+          <Property Name="CASIZEW" Type="float" />
+          <Property Name="CASIZEL" Type="float" />
+          <Property Name="CABSZT" Type="float" />
+          <Property Name="CABSZW" Type="float" />
+          <Property Name="CABSZL" Type="float" />
+          <Property Name="CACILID" Type="float" />
+          <Property Name="CACILOD" Type="float" />
+          <Property Name="CAQTY" Type="float" />
+          <Property Name="CAINPCK" Type="float" />
+          <Property Name="CAWT" Type="float" />
+          <Property Name="CAPRUPU" Type="varchar" MaxLength="50" />
+          <Property Name="CAPURUP" Type="float" />
+          <Property Name="CAPRUPD" Type="float" />
+          <Property Name="CADNSTY" Type="float" />
+          <Property Name="CACTRNO" Type="varchar" MaxLength="50" />
+          <Property Name="CACTITM" Type="float" />
+          <Property Name="CAMKCD" Type="varchar" MaxLength="50" />
+          <Property Name="CAORDNO" Type="varchar" MaxLength="50" />
+          <Property Name="CASPLCD" Type="varchar" MaxLength="50" />
+          <Property Name="CASPPNO" Type="varchar" MaxLength="50" />
+          <Property Name="CATCNO" Type="varchar" MaxLength="50" />
+          <Property Name="CAMCSPC" Type="varchar" MaxLength="50" />
+          <Property Name="CAVESEL" Type="varchar" MaxLength="50" />
+          <Property Name="CASMNTH" Type="varchar" MaxLength="50" />
+          <Property Name="CAPIVNO" Type="varchar" MaxLength="50" />
+          <Property Name="CAPIVDT" Type="datetime" />
+          <Property Name="CAISPNO" Type="varchar" MaxLength="50" />
+          <Property Name="CACRLOS" Type="float" />
+          <Property Name="CAINDCT" Type="float" />
+          <Property Name="CASEDT" Type="datetime" />
+          <Property Name="CASHPDT" Type="datetime" />
+          <Property Name="CASTKPO" Type="varchar" MaxLength="50" />
+          <Property Name="CAPODT" Type="datetime" />
+          <Property Name="CAPAYDT" Type="datetime" />
+          <Property Name="CADCRCD" Type="varchar" MaxLength="50" />
+          <Property Name="CACRRCD" Type="varchar" MaxLength="50" />
+          <Property Name="CAEXRT" Type="float" />
+          <Property Name="CAEXRTT" Type="varchar" MaxLength="50" />
+          <Property Name="CATXEXR" Type="float" />
+          <Property Name="CATEXRT" Type="varchar" MaxLength="50" />
+          <Property Name="CATXCD" Type="varchar" MaxLength="50" />
+          <Property Name="CATXRT" Type="float" />
+          <Property Name="CAPSLP" Type="varchar" MaxLength="50" />
+          <Property Name="CAPSLPI" Type="float" />
+          <Property Name="CAPUFRT" Type="varchar" MaxLength="50" />
+          <Property Name="CAPFUPU" Type="varchar" MaxLength="50" />
+          <Property Name="CAPFRUP" Type="float" />
+          <Property Name="CACTPDT" Type="varchar" MaxLength="50" />
+          <Property Name="CACTUPU" Type="varchar" MaxLength="50" />
+          <Property Name="CACTUP" Type="float" />
+          <Property Name="CATRPDT" Type="varchar" MaxLength="50" />
+          <Property Name="CATRUPU" Type="varchar" MaxLength="50" />
+          <Property Name="CATRFUP" Type="float" />
+          <Property Name="CAOENO" Type="varchar" MaxLength="50" />
+          <Property Name="CAOEITM" Type="float" />
+          <Property Name="CACSTCD" Type="varchar" MaxLength="50" />
+          <Property Name="CADLVDT" Type="datetime" />
+          <Property Name="CACTSPC" Type="varchar" MaxLength="50" />
+          <Property Name="CAOEPO" Type="varchar" MaxLength="50" />
+          <Property Name="CAPRDNM" Type="varchar" MaxLength="50" />
+          <Property Name="CAPCKTP" Type="varchar" MaxLength="50" />
+          <Property Name="CAUSMNG" Type="varchar" MaxLength="50" />
+          <Property Name="CASLUWT" Type="float" />
+          <Property Name="CAPCKWT" Type="float" />
+          <Property Name="CACALWT" Type="float" />
+          <Property Name="CAJOBNO" Type="varchar" MaxLength="50" />
+          <Property Name="CAJBITM" Type="float" />
+          <Property Name="CAPRCDT" Type="datetime" />
+          <Property Name="CAPRCTP" Type="varchar" MaxLength="50" />
+          <Property Name="CAMCHNO" Type="varchar" MaxLength="50" />
+          <Property Name="CASUBNO" Type="varchar" MaxLength="50" />
+          <Property Name="CAOGLNO" Type="varchar" MaxLength="50" />
+          <Property Name="CAISSDT" Type="datetime" />
+          <Property Name="CAANNDT" Type="datetime" />
+          <Property Name="CADMGCD" Type="varchar" MaxLength="50" />
+          <Property Name="CAPCKNO" Type="varchar" MaxLength="50" />
+          <Property Name="CAPCKDT" Type="datetime" />
+          <Property Name="CAPCKM" Type="varchar" MaxLength="50" />
+          <Property Name="CAADJNO" Type="varchar" MaxLength="50" />
+          <Property Name="CADINO" Type="varchar" MaxLength="50" />
+          <Property Name="CADONO" Type="varchar" MaxLength="50" />
+          <Property Name="CADLVTO" Type="varchar" MaxLength="50" />
+          <Property Name="CADLDTT" Type="datetime" />
+          <Property Name="CAIVCDT" Type="datetime" />
+          <Property Name="CASSLP" Type="varchar" MaxLength="50" />
+          <Property Name="CAISSLP" Type="float" />
+          <Property Name="CAPURAT" Type="float" />
+          <Property Name="CAPUFAT" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="CAHCGAT" Type="float" />
+          <Property Name="CATRFAT" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="CACSTHC" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="CAYLDAT" Type="float" />
+          <Property Name="CAINTPC" Type="float" />
+          <Property Name="CAPRATB" Type="float" />
+          <Property Name="CAINTPK" Type="float" />
+          <Property Name="CAPKATB" Type="float" />
+          <Property Name="CAPRDDIA" Type="varchar" MaxLength="50" />
+          <Property Name="CASTLGR" Type="varchar" MaxLength="50" />
+          <Property Name="CAPURATD" Type="float" />
+          <Property Name="CAPTXAT" Type="float" />
+          <Property Name="CAPTXAD" Type="float" />
+          <Property Name="CAPRUP" Type="float" />
+          <Property Name="CADLVCD" Type="varchar" MaxLength="50" />
+          <Property Name="CARGSTM" Type="varchar" MaxLength="50" />
+          <Property Name="CAPTXATD" Type="float" />
+          <Property Name="CARMTP" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LogError">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ExceptionSource" Type="ntext" />
+          <Property Name="ExceptionMsg" Type="ntext" />
+          <Property Name="ExceptionType" Type="nvarchar" MaxLength="250" />
+          <Property Name="UserCreate" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExceptionURL" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="LogUserAction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableName" Type="varchar" MaxLength="50" />
+          <Property Name="UserCode" Type="varchar" MaxLength="50" />
+          <Property Name="Remark" Type="varchar" MaxLength="50" />
+          <Property Name="ActionType" Type="varchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="RecordPrivateKey" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MA001">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MARGSDT" Type="date" />
+          <Property Name="MARGSTM" Type="varchar" MaxLength="8" />
+          <Property Name="MAUPDT" Type="date" />
+          <Property Name="MAUPDTM" Type="varchar" MaxLength="8" />
+          <Property Name="MASPCD" Type="varchar" MaxLength="6" />
+          <Property Name="MASPNM" Type="nvarchar" MaxLength="50" />
+          <Property Name="MASPSNM" Type="nvarchar" MaxLength="50" />
+          <Property Name="MASPAD1" Type="nvarchar" MaxLength="60" />
+          <Property Name="MASPAD2" Type="nvarchar" MaxLength="60" />
+          <Property Name="MASPAD3" Type="nvarchar" MaxLength="60" />
+          <Property Name="MACNTRC" Type="varchar" MaxLength="6" />
+          <Property Name="MASPTEL" Type="varchar" MaxLength="16" />
+          <Property Name="MASPFAX" Type="varchar" MaxLength="16" />
+          <Property Name="MABUZCD" Type="varchar" MaxLength="6" />
+          <Property Name="MAIDCD" Type="char" MaxLength="6" />
+          <Property Name="MASPCTG" Type="char" MaxLength="1" />
+          <Property Name="MASTDUE" Type="varchar" MaxLength="6" />
+          <Property Name="MASCLSD" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="MASDFER" Type="numeric" Precision="1" Scale="0" />
+          <Property Name="MASSETL" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="MACLTRM" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="MASDAYS" Type="varchar" MaxLength="6" />
+          <Property Name="MASCRCD" Type="varchar" MaxLength="6" />
+          <Property Name="MASTXCD" Type="varchar" MaxLength="2" />
+          <Property Name="MASCALC" Type="varchar" MaxLength="6" />
+          <Property Name="MAPTDUE" Type="varchar" MaxLength="6" />
+          <Property Name="MAPCLSD" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="MAPDFER" Type="numeric" Precision="1" Scale="0" />
+          <Property Name="MAPSETEL" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="MAPYTRM" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="MAPDAYS" Type="varchar" MaxLength="6" />
+          <Property Name="MAPCRCD" Type="varchar" MaxLength="6" />
+          <Property Name="MAPTXCD" Type="varchar" MaxLength="2" />
+          <Property Name="MAPCALC" Type="varchar" MaxLength="6" />
+        </EntityType>
+        <EntityType Name="MA002">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MBRGSDT" Type="date" />
+          <Property Name="MBRGSTM" Type="varchar" MaxLength="8" />
+          <Property Name="MBUPDT" Type="date" />
+          <Property Name="MBUPDTM" Type="varchar" MaxLength="8" />
+          <Property Name="MBUSRCD" Type="varchar" MaxLength="8" />
+          <Property Name="MBUSRNM" Type="varchar" MaxLength="36" />
+          <Property Name="MBUSSNM" Type="varchar" MaxLength="15" />
+          <Property Name="MBUSAD1" Type="nvarchar" MaxLength="60" />
+          <Property Name="MBUSAD2" Type="nvarchar" MaxLength="60" />
+          <Property Name="MBUSAD3" Type="nvarchar" MaxLength="60" />
+          <Property Name="MBUSTEL" Type="varchar" MaxLength="16" />
+          <Property Name="MBWTCAL" Type="varchar" MaxLength="6" />
+          <Property Name="MBCOMCD" Type="int" />
+          <Property Name="MBUNICD" Type="int" />
+        </EntityType>
+        <EntityType Name="MA003">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MCRGSDT" Type="date" />
+          <Property Name="MCRGSTM" Type="varchar" MaxLength="8" />
+          <Property Name="MCUPDT" Type="date" />
+          <Property Name="MCUPDTM" Type="varchar" MaxLength="8" />
+          <Property Name="MCIDCD" Type="varchar" MaxLength="6" />
+          <Property Name="MCIDNM" Type="varchar" MaxLength="20" />
+          <Property Name="MCSCTLV" Type="char" MaxLength="1" />
+          <Property Name="MCPASS" Type="varchar" MaxLength="60" />
+          <Property Name="MCSCTNC" Type="varchar" MaxLength="6" />
+        </EntityType>
+        <EntityType Name="MA004">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MDRGSDT" Type="date" />
+          <Property Name="MDRGSTM" Type="varchar" MaxLength="8" />
+          <Property Name="MDUPDT" Type="date" />
+          <Property Name="MDUPDTM" Type="varchar" MaxLength="8" />
+          <Property Name="MDLCTCD" Type="varchar" MaxLength="6" />
+          <Property Name="MDWRCTG" Type="char" MaxLength="1" />
+          <Property Name="MDLCTNM" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="MA005">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MERGSDT" Type="date" />
+          <Property Name="MERGSTM" Type="varchar" MaxLength="8" />
+          <Property Name="MEUPDT" Type="date" />
+          <Property Name="MEUPDTM" Type="varchar" MaxLength="8" />
+          <Property Name="MECOAT" Type="varchar" MaxLength="5" />
+          <Property Name="MECOATW" Type="numeric" Precision="6" Scale="0" />
+        </EntityType>
+        <EntityType Name="MA006">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MFRGSDT" Type="date" />
+          <Property Name="MFRGSTM" Type="varchar" MaxLength="8" />
+          <Property Name="MFUPDT" Type="date" />
+          <Property Name="MFUPDTM" Type="varchar" MaxLength="8" />
+          <Property Name="MFPRDSP" Type="varchar" MaxLength="25" />
+          <Property Name="MFPNSTY" Type="decimal" Precision="12" Scale="6" />
+          <Property Name="MFRMK10" Type="varchar" MaxLength="10" />
+          <Property Name="CMOCD" Type="varchar" MaxLength="6" />
+        </EntityType>
+        <EntityType Name="MA007">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MHRGSDT" Type="date" />
+          <Property Name="MHRGSTM" Type="varchar" MaxLength="8" />
+          <Property Name="MHUPDT" Type="date" />
+          <Property Name="MHUPDTM" Type="varchar" MaxLength="8" />
+          <Property Name="MHBKMNT" Type="varchar" MaxLength="6" />
+          <Property Name="MHCLSDT" Type="date" />
+        </EntityType>
+        <EntityType Name="MA009">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MJRGSDT" Type="date" />
+          <Property Name="MJRGSTM" Type="varchar" MaxLength="8" />
+          <Property Name="MJUPDT" Type="date" />
+          <Property Name="MJUPDTM" Type="varchar" MaxLength="50" />
+          <Property Name="MJCRRCD" Type="varchar" MaxLength="50" />
+          <Property Name="MJEXRTT" Type="varchar" MaxLength="50" />
+          <Property Name="MJEXRTD" Type="float" />
+          <Property Name="MJEXRT" Type="float" />
+          <Property Name="MJTXEXR" Type="float" />
+        </EntityType>
+        <EntityType Name="MA010">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MKRGSDT" Type="date" />
+          <Property Name="MKRGSTM" Type="varchar" MaxLength="50" />
+          <Property Name="MKUPDT" Type="date" />
+          <Property Name="MKUPDTM" Type="varchar" MaxLength="50" />
+          <Property Name="MKTXCD" Type="varchar" MaxLength="50" />
+          <Property Name="MKTXDL" Type="varchar" MaxLength="50" />
+          <Property Name="MKTXRT" Type="numeric" Precision="5" Scale="0" />
+          <Property Name="MKFRDT" Type="date" />
+        </EntityType>
+        <EntityType Name="MA011">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MLRGSDT" Type="date" />
+          <Property Name="MLRGSTM" Type="varchar" MaxLength="50" />
+          <Property Name="MLUPDT" Type="date" />
+          <Property Name="MLUPDTM" Type="varchar" MaxLength="50" />
+          <Property Name="MLCSTCD" Type="varchar" MaxLength="50" />
+          <Property Name="MLCRDRK" Type="char" MaxLength="1" />
+          <Property Name="MLVLDTR" Type="numeric" Precision="6" Scale="0" />
+          <Property Name="MLCRDLM" Type="numeric" Precision="15" Scale="0" />
+        </EntityType>
+        <EntityType Name="MA012">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MNRGSDT" Type="date" />
+          <Property Name="MNRGSTM" Type="varchar" MaxLength="8" />
+          <Property Name="MNUPDT" Type="date" />
+          <Property Name="MNUPTM" Type="varchar" MaxLength="8" />
+          <Property Name="MNCLSCD" Type="varchar" MaxLength="3" />
+          <Property Name="MNSRCD" Type="varchar" MaxLength="8" />
+          <Property Name="MNSRNM" Type="varchar" MaxLength="30" />
+          <Property Name="MNSRSNM" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="PermissionAction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Action" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PermissionRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="SystemName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Category" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PrinterSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrinterName" Type="varchar" MaxLength="50" />
+          <Property Name="PaperName" Type="varchar" MaxLength="50" />
+          <Property Name="Copies" Type="int" />
+          <Property Name="isHorizontal" Type="tinyint" />
+          <Property Name="Active" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="PUH001">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="GFDSTNC" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFRGSDT" Type="datetime" />
+          <Property Name="GFUPDT" Type="datetime" />
+          <Property Name="GFTRNDT" Type="date" />
+          <Property Name="GFDTTYP" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFJSLPN" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFJSLPB" Type="float" />
+          <Property Name="GFIJSLP" Type="float" />
+          <Property Name="GFSBSLP" Type="float" />
+          <Property Name="GFSPCTG" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFBKDIV" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFDPSCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFBKDT" Type="date" />
+          <Property Name="GFSEDT" Type="date" />
+          <Property Name="GFIVCDT" Type="date" />
+          <Property Name="GFTRDCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFCTRTP" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFSPTCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFSECCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFCMDCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFDFTSR" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFRSNCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFINVTP" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFSTSCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFSEQKY" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFPRCTP" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFMCHNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFLCTCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFDCRCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFSPCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFUSRCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFIDCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFIVCNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFIVREV" Type="float" />
+          <Property Name="GFSPPNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFPIVNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFPIVDT" Type="date" />
+          <Property Name="GFOENO" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFOEITM" Type="float" />
+          <Property Name="GFPYDUE" Type="date" />
+          <Property Name="GFPONO" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFCTINF" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFORDNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFPRDSP" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFSPEC" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFGRADE" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFSIZET" Type="float" />
+          <Property Name="GFSIZEW" Type="float" />
+          <Property Name="GFSIZEL" Type="float" />
+          <Property Name="GFPRDNM" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFPCKTP" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFCRRCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFEXRTT" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFEXRT" Type="float" />
+          <Property Name="GFTEXRT" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFTXEXR" Type="float" />
+          <Property Name="GFQTY" Type="float" />
+          <Property Name="GFWT" Type="float" />
+          <Property Name="GFUPU" Type="nvarchar" MaxLength="255" />
+          <Property Name="GFUP" Type="float" />
+          <Property Name="GFAMT" Type="float" />
+          <Property Name="GFTXAT" Type="float" />
+          <Property Name="GFDAMT" Type="float" />
+          <Property Name="GFTXATD" Type="float" />
+          <Property Name="GFPURAT" Type="float" />
+          <Property Name="GFPUFAT" Type="float" />
+          <Property Name="GFHCGAT" Type="float" />
+          <Property Name="GFTRFAT" Type="float" />
+          <Property Name="GFCSTHC" Type="float" />
+          <Property Name="GFYLDAT" Type="float" />
+          <Property Name="GFINTPC" Type="float" />
+          <Property Name="GFPRATB" Type="float" />
+          <Property Name="GFINTPK" Type="float" />
+          <Property Name="GFPKATB" Type="float" />
+          <Property Name="GFPFTLS" Type="float" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PUR001">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AADSTNC" Type="nvarchar" MaxLength="255" />
+          <Property Name="AARGSDT" Type="datetime" />
+          <Property Name="AAUPDT" Type="datetime" />
+          <Property Name="AADTCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AAMKCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AAPURNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="AACTITM" Type="float" />
+          <Property Name="AASPLCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AAUSRCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AASCTNC" Type="nvarchar" MaxLength="255" />
+          <Property Name="AAIDCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AACMDCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AATRDCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AACTRTP" Type="nvarchar" MaxLength="255" />
+          <Property Name="AADPSCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AASPTCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AASHPDT" Type="varchar" MaxLength="10" />
+          <Property Name="AASPPNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="AATCNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="AACRRCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AAEXRTT" Type="nvarchar" MaxLength="255" />
+          <Property Name="AAEXRT" Type="float" />
+          <Property Name="AATXCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AATXRT" Type="float" />
+          <Property Name="AATEXRT" Type="nvarchar" MaxLength="255" />
+          <Property Name="AATXEXR" Type="float" />
+          <Property Name="AACMPCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AACMPDT" Type="date" />
+          <Property Name="AADLVCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="AAUSMSG" Type="nvarchar" MaxLength="255" />
+          <Property Name="AACLLNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="AASETRM" Type="nvarchar" MaxLength="255" />
+          <Property Name="AAPRICE" Type="nvarchar" MaxLength="255" />
+          <Property Name="AAPTTRM" Type="nvarchar" MaxLength="255" />
+          <Property Name="AADLPOT" Type="nvarchar" MaxLength="255" />
+          <Property Name="AARMK1" Type="nvarchar" MaxLength="255" />
+          <Property Name="AARMK2" Type="nvarchar" MaxLength="255" />
+          <Property Name="AARMK3" Type="nvarchar" MaxLength="255" />
+          <Property Name="AARMK4" Type="nvarchar" MaxLength="255" />
+          <Property Name="AARMK5" Type="nvarchar" MaxLength="255" />
+          <Property Name="ABDSTNC" Type="nvarchar" MaxLength="255" />
+          <Property Name="ABRGSDT" Type="datetime" />
+          <Property Name="ABUPDT" Type="datetime" />
+          <Property Name="ABDTCD" Type="nvarchar" MaxLength="255" />
+          <Property Name="ABPURNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="ABCTITM" Type="int" />
+          <Property Name="ABMCSPC" Type="nvarchar" MaxLength="255" />
+          <Property Name="ABCOAT" Type="nvarchar" MaxLength="255" />
+          <Property Name="ABGRADE" Type="nvarchar" MaxLength="255" />
+          <Property Name="ABCMBT" Type="nvarchar" MaxLength="255" />
+          <Property Name="ABCMBW" Type="nvarchar" MaxLength="255" />
+          <Property Name="ABCMBL" Type="nvarchar" MaxLength="255" />
+          <Property Name="ABSIZET" Type="float" />
+          <Property Name="ABSIZEW" Type="float" />
+          <Property Name="ABSIZEL" Type="float" />
+          <Property Name="ABBSZT" Type="float" />
+          <Property Name="ABBSZW" Type="float" />
+          <Property Name="ABBSZL" Type="float" />
+          <Property Name="ABDLVDT" Type="date" />
+          <Property Name="ABQTY" Type="float" />
+          <Property Name="ABWT" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ABSEDT" Type="date" />
+          <Property Name="ABTTLWT" Type="float" />
+          <Property Name="ABSESWT" Type="float" />
+          <Property Name="ABPRUPU" Type="nvarchar" MaxLength="255" />
+          <Property Name="ABPRUP" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ABPRUPD" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ABPRAT" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ABPRATD" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ABPTXAT" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ABPTXAD" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ABORDNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="PURCODE" Type="uniqueidentifier" />
+          <Property Name="AARMTP" Type="varchar" MaxLength="50" />
+          <Property Name="RAPSTLGR" Type="varchar" MaxLength="50" />
+          <Property Name="AAREVNO" Type="varchar" MaxLength="50" />
+          <Property Name="ABPRDNM" Type="nvarchar" MaxLength="255" />
+          <Property Name="ABPRDDIA" Type="varchar" MaxLength="50" />
+          <Property Name="CompletetionStatus" Type="tinyint" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="WarehousingWeight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ABPIVNO" Type="varchar" MaxLength="50" />
+          <Property Name="ABPIVDT" Type="date" />
+          <Property Name="ABVESEL" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PURNO_CREATED">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="PURNO" Type="char" MaxLength="8" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RawMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PurchaseContractNo" Type="varchar" MaxLength="500" />
+          <Property Name="ItemNo" Type="int" />
+          <Property Name="ShippersInvoiceNo" Type="varchar" MaxLength="500" />
+          <Property Name="StockEntryDate" Type="datetime" />
+          <Property Name="DepositAsset" Type="varchar" MaxLength="500" />
+          <Property Name="VesselName" Type="varchar" MaxLength="500" />
+          <Property Name="PODate" Type="datetime" />
+          <Property Name="ShippersInvoiceDate" Type="datetime" />
+          <Property Name="ShippingDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RawMaterialType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RMTCD" Type="varchar" MaxLength="50" />
+          <Property Name="RMTNM" Type="varchar" MaxLength="250" />
+          <Property Name="RMTGSDT" Type="date" />
+          <Property Name="RMTGSTM" Type="char" MaxLength="8" />
+          <Property Name="RMTUPDT" Type="date" />
+          <Property Name="RMTUPTM" Type="char" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="RM0001">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SERGSDT" Type="date" />
+          <Property Name="SELCTCD" Type="varchar" MaxLength="50" />
+          <Property Name="SEINVNO" Type="nvarchar" MaxLength="50" />
+          <Property Name="SEISPNO" Type="varchar" MaxLength="50" />
+          <Property Name="SEIDCD" Type="varbinary" MaxLength="50" />
+          <Property Name="SEURID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Role_Mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PermissionRecord_Id" Type="int" Nullable="false" />
+          <Property Name="CustomerRole_Id" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role_Mapping_Action">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PermissionRecord_Id" Type="int" Nullable="false" />
+          <Property Name="CustomerRole_Id" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Action_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SecurityLevel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="SteelGrade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Grade" Type="varchar" MaxLength="250" />
+          <Property Name="SAEsymbol" Type="varchar" MaxLength="250" />
+          <Property Name="C" Type="varchar" MaxLength="250" />
+          <Property Name="Mn" Type="varchar" MaxLength="250" />
+          <Property Name="P" Type="varchar" MaxLength="250" />
+          <Property Name="S" Type="varchar" MaxLength="250" />
+          <Property Name="Si" Type="varchar" MaxLength="250" />
+          <Property Name="Al" Type="varchar" MaxLength="250" />
+          <Property Name="RGSDT" Type="date" />
+          <Property Name="RGSTM" Type="char" MaxLength="8" />
+          <Property Name="UPDT" Type="date" />
+          <Property Name="UPTM" Type="char" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="Tmp_MaterialWarehousingResult">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Date" Type="date" />
+          <Property Name="Location_Code" Type="nchar" MaxLength="30" />
+          <Property Name="Inventory_No" Type="nchar" MaxLength="30" />
+          <Property Name="Inspection_No" Type="nchar" MaxLength="30" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRA001">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DADSTNC" Type="varchar" MaxLength="50" />
+          <Property Name="DAUPDT" Type="datetime" />
+          <Property Name="DATRNDT" Type="datetime" />
+          <Property Name="DAWSID" Type="varchar" MaxLength="50" />
+          <Property Name="DAPGMID" Type="varchar" MaxLength="50" />
+          <Property Name="DALOGDT" Type="datetime" />
+          <Property Name="DALOGTP" Type="varchar" MaxLength="50" />
+          <Property Name="DAINVTP" Type="varchar" MaxLength="50" />
+          <Property Name="DAINVNO" Type="varchar" MaxLength="50" />
+          <Property Name="DACMDCD" Type="varchar" MaxLength="50" />
+          <Property Name="DAUSRCD" Type="varchar" MaxLength="50" />
+          <Property Name="DACTRTP" Type="varchar" MaxLength="50" />
+          <Property Name="DADPSCD" Type="varchar" MaxLength="50" />
+          <Property Name="DASPTCD" Type="varchar" MaxLength="50" />
+          <Property Name="DADFTSR" Type="varchar" MaxLength="50" />
+          <Property Name="DANORVS" Type="float" />
+          <Property Name="DABKCD" Type="varchar" MaxLength="50" />
+          <Property Name="DABKTMG" Type="varchar" MaxLength="50" />
+          <Property Name="DAPURGD" Type="varchar" MaxLength="50" />
+          <Property Name="DALCTCD" Type="varchar" MaxLength="50" />
+          <Property Name="DASTSCD" Type="varchar" MaxLength="50" />
+          <Property Name="DARSNCD" Type="varchar" MaxLength="50" />
+          <Property Name="DASECCD" Type="varchar" MaxLength="50" />
+          <Property Name="DASCTNC" Type="varchar" MaxLength="50" />
+          <Property Name="DAIDCD" Type="varchar" MaxLength="50" />
+          <Property Name="DACHGWK" Type="varchar" MaxLength="50" />
+          <Property Name="DATRDCD" Type="varchar" MaxLength="50" />
+          <Property Name="DASPEC" Type="varchar" MaxLength="50" />
+          <Property Name="DACOAT" Type="varchar" MaxLength="50" />
+          <Property Name="DAGRADE" Type="varchar" MaxLength="50" />
+          <Property Name="DABSZT" Type="float" />
+          <Property Name="DABSZW" Type="float" />
+          <Property Name="DABSZL" Type="float" />
+          <Property Name="DAQTY" Type="float" />
+          <Property Name="DAINPCK" Type="float" />
+          <Property Name="DAWTCD" Type="varchar" MaxLength="50" />
+          <Property Name="DAWT" Type="float" />
+          <Property Name="DAPUUPU" Type="varchar" MaxLength="50" />
+          <Property Name="DAPURUP" Type="float" />
+          <Property Name="DACTRNO" Type="varchar" MaxLength="50" />
+          <Property Name="DACTITM" Type="float" />
+          <Property Name="DAMKCD" Type="varchar" MaxLength="50" />
+          <Property Name="DAORDNO" Type="varchar" MaxLength="50" />
+          <Property Name="DASPLCD" Type="varchar" MaxLength="50" />
+          <Property Name="DASPPNO" Type="varchar" MaxLength="50" />
+          <Property Name="DATCNO" Type="varchar" MaxLength="50" />
+          <Property Name="DAVESEL" Type="varchar" MaxLength="50" />
+          <Property Name="DASMNTH" Type="varchar" MaxLength="20" />
+          <Property Name="DAPIVNO" Type="varchar" MaxLength="50" />
+          <Property Name="DAPIVDT" Type="datetime" />
+          <Property Name="DAISPNO" Type="varchar" MaxLength="50" />
+          <Property Name="DASEDT" Type="datetime" />
+          <Property Name="DAEXRT" Type="float" />
+          <Property Name="DAEXRTT" Type="varchar" MaxLength="50" />
+          <Property Name="DATXEXR" Type="float" />
+          <Property Name="DATEXRT" Type="varchar" MaxLength="50" />
+          <Property Name="DATXCD" Type="varchar" MaxLength="50" />
+          <Property Name="DATXRT" Type="float" />
+          <Property Name="DAPSLP" Type="varchar" MaxLength="50" />
+          <Property Name="DAPSLPI" Type="float" />
+          <Property Name="DAOPSLP" Type="varchar" MaxLength="50" />
+          <Property Name="DAIOPSL" Type="float" />
+          <Property Name="DAPUFRT" Type="varchar" MaxLength="50" />
+          <Property Name="DAPFUPU" Type="varchar" MaxLength="50" />
+          <Property Name="DAPFRUP" Type="float" />
+          <Property Name="DACTPDT" Type="varchar" MaxLength="50" />
+          <Property Name="DACTUPU" Type="varchar" MaxLength="50" />
+          <Property Name="DACTUP" Type="float" />
+          <Property Name="DATRPDT" Type="varchar" MaxLength="50" />
+          <Property Name="DATRUPU" Type="varchar" MaxLength="50" />
+          <Property Name="DATRFUP" Type="float" />
+          <Property Name="DAOENO" Type="varchar" MaxLength="50" />
+          <Property Name="DAOEITM" Type="float" />
+          <Property Name="DAOEDT" Type="datetime" />
+          <Property Name="DACSTCD" Type="varchar" MaxLength="50" />
+          <Property Name="DACTSPC" Type="varchar" MaxLength="50" />
+          <Property Name="DAPONO" Type="varchar" MaxLength="50" />
+          <Property Name="DAPRDNM" Type="varchar" MaxLength="50" />
+          <Property Name="DACTINF" Type="varchar" MaxLength="50" />
+          <Property Name="DAPCKTP" Type="varchar" MaxLength="50" />
+          <Property Name="DASLUPU" Type="varchar" MaxLength="50" />
+          <Property Name="DASLUP" Type="float" />
+          <Property Name="DAUSMNG" Type="varchar" MaxLength="50" />
+          <Property Name="DAJOBNO" Type="varchar" MaxLength="50" />
+          <Property Name="DAJBITM" Type="float" />
+          <Property Name="DAPRCDT" Type="datetime" />
+          <Property Name="DAPRCTP" Type="varchar" MaxLength="50" />
+          <Property Name="DAMCHNO" Type="varchar" MaxLength="50" />
+          <Property Name="DAOGLNO" Type="varchar" MaxLength="50" />
+          <Property Name="DASHIFT" Type="varchar" MaxLength="50" />
+          <Property Name="DABALWT" Type="float" />
+          <Property Name="DACALWT" Type="float" />
+          <Property Name="DAPCKNO" Type="varchar" MaxLength="50" />
+          <Property Name="DAPCKDT" Type="datetime" />
+          <Property Name="DAPCKM" Type="varchar" MaxLength="50" />
+          <Property Name="DAADJNO" Type="varchar" MaxLength="50" />
+          <Property Name="DADINO" Type="varchar" MaxLength="50" />
+          <Property Name="DADONO" Type="varchar" MaxLength="50" />
+          <Property Name="DADOSUB" Type="float" />
+          <Property Name="DADLVTO" Type="varchar" MaxLength="50" />
+          <Property Name="DADLDTT" Type="datetime" />
+          <Property Name="DAIVCDT" Type="datetime" />
+          <Property Name="DASSLP" Type="varchar" MaxLength="50" />
+          <Property Name="DAISSLP" Type="float" />
+          <Property Name="DAOSSLP" Type="varchar" MaxLength="50" />
+          <Property Name="DAIOSSL" Type="float" />
+          <Property Name="DAFRPDT" Type="varchar" MaxLength="50" />
+          <Property Name="DAFRUPU" Type="varchar" MaxLength="50" />
+          <Property Name="DAFRTUP" Type="float" />
+          <Property Name="DATRUCK" Type="varchar" MaxLength="50" />
+          <Property Name="DARMK20" Type="varchar" MaxLength="50" />
+          <Property Name="DAFHPDT" Type="varchar" MaxLength="50" />
+          <Property Name="DAUPUHF" Type="varchar" MaxLength="50" />
+          <Property Name="DAUPHFR" Type="float" />
+          <Property Name="DAPURAT" Type="float" />
+          <Property Name="DAPUFAT" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="DAHCGAT" Type="float" />
+          <Property Name="DATRFAT" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="DACSTHC" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="DAYLDAT" Type="float" />
+          <Property Name="DAINTPC" Type="float" />
+          <Property Name="DAPRATB" Type="float" />
+          <Property Name="DAINTPK" Type="float" />
+          <Property Name="DAPKATB" Type="float" />
+          <Property Name="DAPRUP" Type="float" />
+          <Property Name="DAPRUPD" Type="float" />
+          <Property Name="DAPTXAT" Type="float" />
+          <Property Name="DAPTXAD" Type="float" />
+          <Property Name="DAPURATD" Type="float" />
+          <Property Name="DACRRCD" Type="varchar" MaxLength="50" />
+          <Property Name="DAMCSPC" Type="varchar" MaxLength="50" />
+          <Property Name="DAPRDDIA" Type="varchar" MaxLength="50" />
+          <Property Name="DASTLGR" Type="varchar" MaxLength="50" />
+          <Property Name="DAPTXATD" Type="float" />
+          <Property Name="DAUPDTM" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Function Name="DO_STOCK_ENTRY_RS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PERSON_INCHARGE" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PURNO_NEAREST_SINGLE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UPDATE_NEW_TARIFF_AMOUNT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SHIPPER_INVOICE_NO" Type="varchar" Mode="In" />
+          <Parameter Name="ORDER_NO" Type="varchar" Mode="In" />
+          <Parameter Name="TOTAL_TARIFF_AMOUNT" Type="decimal" Mode="In" />
+        </Function>
+        <EntityContainer Name="TopProSystemModelStoreContainer">
+          <EntitySet Name="InspectionItemNoMaterial" EntityType="Self.InspectionItemNoMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INV001" EntityType="Self.INV001" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogError" EntityType="Self.LogError" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogUserAction" EntityType="Self.LogUserAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MA001" EntityType="Self.MA001" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MA002" EntityType="Self.MA002" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MA003" EntityType="Self.MA003" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MA004" EntityType="Self.MA004" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MA005" EntityType="Self.MA005" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MA006" EntityType="Self.MA006" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MA007" EntityType="Self.MA007" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MA009" EntityType="Self.MA009" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MA010" EntityType="Self.MA010" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MA011" EntityType="Self.MA011" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MA012" EntityType="Self.MA012" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermissionAction" EntityType="Self.PermissionAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermissionRecord" EntityType="Self.PermissionRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrinterSetting" EntityType="Self.PrinterSetting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PUH001" EntityType="Self.PUH001" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PUR001" EntityType="Self.PUR001" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PURNO_CREATED" EntityType="Self.PURNO_CREATED" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RawMaterial" EntityType="Self.RawMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RawMaterialType" EntityType="Self.RawMaterialType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RM0001" EntityType="Self.RM0001" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role_Mapping" EntityType="Self.Role_Mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role_Mapping_Action" EntityType="Self.Role_Mapping_Action" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SecurityLevel" EntityType="Self.SecurityLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SteelGrade" EntityType="Self.SteelGrade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tmp_MaterialWarehousingResult" EntityType="Self.Tmp_MaterialWarehousingResult" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRA001" EntityType="Self.TRA001" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TopProSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="InspectionItemNoMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RawMaterialId" Type="Int32" Nullable="false" />
+          <Property Name="InspectionNo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="RawMaterialNo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Double" Nullable="false" />
+          <Property Name="Weight" Type="Double" Nullable="false" />
+          <Property Name="StatusCode" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LogError">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ExceptionSource" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExceptionMsg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExceptionType" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UserCreate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExceptionURL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LogUserAction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActionType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="RecordPrivateKey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MA001">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MARGSDT" Type="DateTime" Precision="0" />
+          <Property Name="MARGSTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MAUPDT" Type="DateTime" Precision="0" />
+          <Property Name="MAUPDTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MASPCD" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MASPNM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MASPSNM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MASPAD1" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="MASPAD2" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="MASPAD3" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="MACNTRC" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MASPTEL" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="MASPFAX" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="MABUZCD" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MAIDCD" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="MASPCTG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MASTDUE" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MASCLSD" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="MASDFER" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="MASSETL" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="MACLTRM" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="MASDAYS" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MASCRCD" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MASTXCD" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="MASCALC" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MAPTDUE" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MAPCLSD" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="MAPDFER" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="MAPSETEL" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="MAPYTRM" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="MAPDAYS" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MAPCRCD" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MAPTXCD" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="MAPCALC" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MA002">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MBRGSDT" Type="DateTime" Precision="0" />
+          <Property Name="MBRGSTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MBUPDT" Type="DateTime" Precision="0" />
+          <Property Name="MBUPDTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MBUSRCD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MBUSRNM" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="MBUSSNM" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="MBUSAD1" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="MBUSAD2" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="MBUSAD3" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="MBUSTEL" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="MBWTCAL" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MBCOMCD" Type="Int32" />
+          <Property Name="MBUNICD" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MA003">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MCRGSDT" Type="DateTime" Precision="0" />
+          <Property Name="MCRGSTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MCUPDT" Type="DateTime" Precision="0" />
+          <Property Name="MCUPDTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MCIDCD" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MCIDNM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MCSCTLV" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MCPASS" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="MCSCTNC" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MA004">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MDRGSDT" Type="DateTime" Precision="0" />
+          <Property Name="MDRGSTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MDUPDT" Type="DateTime" Precision="0" />
+          <Property Name="MDUPDTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MDLCTCD" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MDWRCTG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MDLCTNM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MA005">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MERGSDT" Type="DateTime" Precision="0" />
+          <Property Name="MERGSTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MEUPDT" Type="DateTime" Precision="0" />
+          <Property Name="MEUPDTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MECOAT" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="MECOATW" Type="Decimal" Precision="6" Scale="0" />
+        </EntityType>
+        <EntityType Name="MA006">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MFRGSDT" Type="DateTime" Precision="0" />
+          <Property Name="MFRGSTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MFUPDT" Type="DateTime" Precision="0" />
+          <Property Name="MFUPDTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MFPRDSP" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="MFPNSTY" Type="Decimal" Precision="12" Scale="6" />
+          <Property Name="MFRMK10" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CMOCD" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MA007">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MHRGSDT" Type="DateTime" Precision="0" />
+          <Property Name="MHRGSTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MHUPDT" Type="DateTime" Precision="0" />
+          <Property Name="MHUPDTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MHBKMNT" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="MHCLSDT" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="MA009">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MJRGSDT" Type="DateTime" Precision="0" />
+          <Property Name="MJRGSTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MJUPDT" Type="DateTime" Precision="0" />
+          <Property Name="MJUPDTM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MJCRRCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MJEXRTT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MJEXRTD" Type="Double" />
+          <Property Name="MJEXRT" Type="Double" />
+          <Property Name="MJTXEXR" Type="Double" />
+        </EntityType>
+        <EntityType Name="MA010">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MKRGSDT" Type="DateTime" Precision="0" />
+          <Property Name="MKRGSTM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MKUPDT" Type="DateTime" Precision="0" />
+          <Property Name="MKUPDTM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MKTXCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MKTXDL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MKTXRT" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="MKFRDT" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="MA011">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MLRGSDT" Type="DateTime" Precision="0" />
+          <Property Name="MLRGSTM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MLUPDT" Type="DateTime" Precision="0" />
+          <Property Name="MLUPDTM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MLCSTCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MLCRDRK" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MLVLDTR" Type="Decimal" Precision="6" Scale="0" />
+          <Property Name="MLCRDLM" Type="Decimal" Precision="15" Scale="0" />
+        </EntityType>
+        <EntityType Name="MA012">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MNRGSDT" Type="DateTime" Precision="0" />
+          <Property Name="MNRGSTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MNUPDT" Type="DateTime" Precision="0" />
+          <Property Name="MNUPTM" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MNCLSCD" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="MNSRCD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MNSRNM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MNSRSNM" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PermissionAction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Action" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PermissionRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SystemName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PrinterSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrinterName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaperName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Copies" Type="Int32" />
+          <Property Name="isHorizontal" Type="Byte" />
+          <Property Name="Active" Type="Byte" />
+        </EntityType>
+        <EntityType Name="PUH001">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="GFDSTNC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFRGSDT" Type="DateTime" Precision="3" />
+          <Property Name="GFUPDT" Type="DateTime" Precision="3" />
+          <Property Name="GFTRNDT" Type="DateTime" Precision="0" />
+          <Property Name="GFDTTYP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFJSLPN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFJSLPB" Type="Double" />
+          <Property Name="GFIJSLP" Type="Double" />
+          <Property Name="GFSBSLP" Type="Double" />
+          <Property Name="GFSPCTG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFBKDIV" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFDPSCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFBKDT" Type="DateTime" Precision="0" />
+          <Property Name="GFSEDT" Type="DateTime" Precision="0" />
+          <Property Name="GFIVCDT" Type="DateTime" Precision="0" />
+          <Property Name="GFTRDCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFCTRTP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFSPTCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFSECCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFCMDCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFDFTSR" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFRSNCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFINVTP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFSTSCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFSEQKY" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFPRCTP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFMCHNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFLCTCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFDCRCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFSPCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFUSRCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFIDCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFIVCNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFIVREV" Type="Double" />
+          <Property Name="GFSPPNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFPIVNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFPIVDT" Type="DateTime" Precision="0" />
+          <Property Name="GFOENO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFOEITM" Type="Double" />
+          <Property Name="GFPYDUE" Type="DateTime" Precision="0" />
+          <Property Name="GFPONO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFCTINF" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFORDNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFPRDSP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFSPEC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFGRADE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFSIZET" Type="Double" />
+          <Property Name="GFSIZEW" Type="Double" />
+          <Property Name="GFSIZEL" Type="Double" />
+          <Property Name="GFPRDNM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFPCKTP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFCRRCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFEXRTT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFEXRT" Type="Double" />
+          <Property Name="GFTEXRT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFTXEXR" Type="Double" />
+          <Property Name="GFQTY" Type="Double" />
+          <Property Name="GFWT" Type="Double" />
+          <Property Name="GFUPU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GFUP" Type="Double" />
+          <Property Name="GFAMT" Type="Double" />
+          <Property Name="GFTXAT" Type="Double" />
+          <Property Name="GFDAMT" Type="Double" />
+          <Property Name="GFTXATD" Type="Double" />
+          <Property Name="GFPURAT" Type="Double" />
+          <Property Name="GFPUFAT" Type="Double" />
+          <Property Name="GFHCGAT" Type="Double" />
+          <Property Name="GFTRFAT" Type="Double" />
+          <Property Name="GFCSTHC" Type="Double" />
+          <Property Name="GFYLDAT" Type="Double" />
+          <Property Name="GFINTPC" Type="Double" />
+          <Property Name="GFPRATB" Type="Double" />
+          <Property Name="GFINTPK" Type="Double" />
+          <Property Name="GFPKATB" Type="Double" />
+          <Property Name="GFPFTLS" Type="Double" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="RawMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PurchaseContractNo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ItemNo" Type="Int32" />
+          <Property Name="ShippersInvoiceNo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="StockEntryDate" Type="DateTime" Precision="3" />
+          <Property Name="DepositAsset" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="VesselName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PODate" Type="DateTime" Precision="3" />
+          <Property Name="ShippersInvoiceDate" Type="DateTime" Precision="3" />
+          <Property Name="ShippingDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RawMaterialType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RMTCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RMTNM" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="RMTGSDT" Type="DateTime" Precision="0" />
+          <Property Name="RMTGSTM" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="RMTUPDT" Type="DateTime" Precision="0" />
+          <Property Name="RMTUPTM" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Role_Mapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PermissionRecord_Id" Type="Int32" Nullable="false" />
+          <Property Name="CustomerRole_Id" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role_Mapping_Action">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PermissionRecord_Id" Type="Int32" Nullable="false" />
+          <Property Name="CustomerRole_Id" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Action_Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SecurityLevel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SteelGrade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Grade" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="SAEsymbol" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="C" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Mn" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="P" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="S" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Si" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Al" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="RGSDT" Type="DateTime" Precision="0" />
+          <Property Name="RGSTM" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="UPDT" Type="DateTime" Precision="0" />
+          <Property Name="UPTM" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tmp_MaterialWarehousingResult">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Location_Code" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Inventory_No" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Inspection_No" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="TopProSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="InspectionItemNoMaterials" EntityType="Self.InspectionItemNoMaterial" />
+          <EntitySet Name="LogErrors" EntityType="Self.LogError" />
+          <EntitySet Name="LogUserActions" EntityType="Self.LogUserAction" />
+          <EntitySet Name="MA001" EntityType="Self.MA001" />
+          <EntitySet Name="MA002" EntityType="Self.MA002" />
+          <EntitySet Name="MA003" EntityType="Self.MA003" />
+          <EntitySet Name="MA004" EntityType="Self.MA004" />
+          <EntitySet Name="MA005" EntityType="Self.MA005" />
+          <EntitySet Name="MA006" EntityType="Self.MA006" />
+          <EntitySet Name="MA007" EntityType="Self.MA007" />
+          <EntitySet Name="MA009" EntityType="Self.MA009" />
+          <EntitySet Name="MA010" EntityType="Self.MA010" />
+          <EntitySet Name="MA011" EntityType="Self.MA011" />
+          <EntitySet Name="MA012" EntityType="Self.MA012" />
+          <EntitySet Name="PermissionActions" EntityType="Self.PermissionAction" />
+          <EntitySet Name="PermissionRecords" EntityType="Self.PermissionRecord" />
+          <EntitySet Name="PrinterSettings" EntityType="Self.PrinterSetting" />
+          <EntitySet Name="PUH001" EntityType="Self.PUH001" />
+          <EntitySet Name="RawMaterials" EntityType="Self.RawMaterial" />
+          <EntitySet Name="RawMaterialTypes" EntityType="Self.RawMaterialType" />
+          <EntitySet Name="Role_Mapping" EntityType="Self.Role_Mapping" />
+          <EntitySet Name="Role_Mapping_Action" EntityType="Self.Role_Mapping_Action" />
+          <EntitySet Name="SecurityLevels" EntityType="Self.SecurityLevel" />
+          <EntitySet Name="SteelGrades" EntityType="Self.SteelGrade" />
+          <EntitySet Name="Tmp_MaterialWarehousingResult" EntityType="Self.Tmp_MaterialWarehousingResult" />
+          <FunctionImport Name="PURNO_NEAREST_SINGLE" ReturnType="Collection(String)" />
+          <EntitySet Name="RM0001" EntityType="TopProSystemModel.RM0001" />
+          <EntitySet Name="PURNO_CREATED" EntityType="TopProSystemModel.PURNO_CREATED" />
+          <EntitySet Name="INV001" EntityType="TopProSystemModel.INV001" />
+          <EntitySet Name="TRA001" EntityType="TopProSystemModel.TRA001" />
+          <EntitySet Name="PUR001" EntityType="TopProSystemModel.PUR001" />
+        </EntityContainer>
+        <EntityType Name="RM0001">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="SERGSDT" Type="DateTime" Precision="0" />
+          <Property Name="SELCTCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SEINVNO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SEISPNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SEIDCD" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SEURID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PURNO_CREATED">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="PURNO" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="INV001">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CADSTNC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CARGSDT" Type="DateTime" Precision="3" />
+          <Property Name="CAUPDT" Type="DateTime" Precision="3" />
+          <Property Name="CADTCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CACTLM1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAINVTP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAINVST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAINVNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CACMDCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAUSRCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CACTRTP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CADPSCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CASPTCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPURGD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CALCTCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CASTSCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CARSNCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CASECCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CASCTNC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAIDCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CATRDCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CASPEC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CACOAT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CACOATF" Type="Double" />
+          <Property Name="CACOATB" Type="Double" />
+          <Property Name="CAGRADE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CACMBT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CACMBW" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CACMBL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CASIZET" Type="Double" />
+          <Property Name="CASIZEW" Type="Double" />
+          <Property Name="CASIZEL" Type="Double" />
+          <Property Name="CABSZT" Type="Double" />
+          <Property Name="CABSZW" Type="Double" />
+          <Property Name="CABSZL" Type="Double" />
+          <Property Name="CACILID" Type="Double" />
+          <Property Name="CACILOD" Type="Double" />
+          <Property Name="CAQTY" Type="Double" />
+          <Property Name="CAINPCK" Type="Double" />
+          <Property Name="CAWT" Type="Double" />
+          <Property Name="CAPRUPU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPURUP" Type="Double" />
+          <Property Name="CAPRUPD" Type="Double" />
+          <Property Name="CADNSTY" Type="Double" />
+          <Property Name="CACTRNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CACTITM" Type="Double" />
+          <Property Name="CAMKCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAORDNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CASPLCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CASPPNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CATCNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAMCSPC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAVESEL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CASMNTH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPIVNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPIVDT" Type="DateTime" Precision="3" />
+          <Property Name="CAISPNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CACRLOS" Type="Double" />
+          <Property Name="CAINDCT" Type="Double" />
+          <Property Name="CASEDT" Type="DateTime" Precision="3" />
+          <Property Name="CASHPDT" Type="DateTime" Precision="3" />
+          <Property Name="CASTKPO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPODT" Type="DateTime" Precision="3" />
+          <Property Name="CAPAYDT" Type="DateTime" Precision="3" />
+          <Property Name="CADCRCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CACRRCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAEXRT" Type="Double" />
+          <Property Name="CAEXRTT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CATXEXR" Type="Double" />
+          <Property Name="CATEXRT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CATXCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CATXRT" Type="Double" />
+          <Property Name="CAPSLP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPSLPI" Type="Double" />
+          <Property Name="CAPUFRT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPFUPU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPFRUP" Type="Double" />
+          <Property Name="CACTPDT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CACTUPU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CACTUP" Type="Double" />
+          <Property Name="CATRPDT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CATRUPU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CATRFUP" Type="Double" />
+          <Property Name="CAOENO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAOEITM" Type="Double" />
+          <Property Name="CACSTCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CADLVDT" Type="DateTime" Precision="3" />
+          <Property Name="CACTSPC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAOEPO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPRDNM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPCKTP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAUSMNG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CASLUWT" Type="Double" />
+          <Property Name="CAPCKWT" Type="Double" />
+          <Property Name="CACALWT" Type="Double" />
+          <Property Name="CAJOBNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAJBITM" Type="Double" />
+          <Property Name="CAPRCDT" Type="DateTime" Precision="3" />
+          <Property Name="CAPRCTP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAMCHNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CASUBNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAOGLNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAISSDT" Type="DateTime" Precision="3" />
+          <Property Name="CAANNDT" Type="DateTime" Precision="3" />
+          <Property Name="CADMGCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPCKNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPCKDT" Type="DateTime" Precision="3" />
+          <Property Name="CAPCKM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAADJNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CADINO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CADONO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CADLVTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CADLDTT" Type="DateTime" Precision="3" />
+          <Property Name="CAIVCDT" Type="DateTime" Precision="3" />
+          <Property Name="CASSLP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAISSLP" Type="Double" />
+          <Property Name="CAPURAT" Type="Double" />
+          <Property Name="CAPUFAT" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="CAHCGAT" Type="Double" />
+          <Property Name="CATRFAT" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="CACSTHC" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="CAYLDAT" Type="Double" />
+          <Property Name="CAINTPC" Type="Double" />
+          <Property Name="CAPRATB" Type="Double" />
+          <Property Name="CAINTPK" Type="Double" />
+          <Property Name="CAPKATB" Type="Double" />
+          <Property Name="CAPRDDIA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CASTLGR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPURATD" Type="Double" />
+          <Property Name="CAPTXAT" Type="Double" />
+          <Property Name="CAPTXAD" Type="Double" />
+          <Property Name="CAPRUP" Type="Double" />
+          <Property Name="CADLVCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CARGSTM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPTXATD" Type="Double" />
+          <Property Name="CARMTP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TRA001">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DADSTNC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAUPDT" Type="DateTime" Precision="3" />
+          <Property Name="DATRNDT" Type="DateTime" Precision="3" />
+          <Property Name="DAWSID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAPGMID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DALOGDT" Type="DateTime" Precision="3" />
+          <Property Name="DALOGTP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAINVTP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAINVNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DACMDCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAUSRCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DACTRTP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DADPSCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DASPTCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DADFTSR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DANORVS" Type="Double" />
+          <Property Name="DABKCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DABKTMG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAPURGD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DALCTCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DASTSCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DARSNCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DASECCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DASCTNC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAIDCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DACHGWK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATRDCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DASPEC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DACOAT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAGRADE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DABSZT" Type="Double" />
+          <Property Name="DABSZW" Type="Double" />
+          <Property Name="DABSZL" Type="Double" />
+          <Property Name="DAQTY" Type="Double" />
+          <Property Name="DAINPCK" Type="Double" />
+          <Property Name="DAWTCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAWT" Type="Double" />
+          <Property Name="DAPUUPU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAPURUP" Type="Double" />
+          <Property Name="DACTRNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DACTITM" Type="Double" />
+          <Property Name="DAMKCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAORDNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DASPLCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DASPPNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATCNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAVESEL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DASMNTH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DAPIVNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAPIVDT" Type="DateTime" Precision="3" />
+          <Property Name="DAISPNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DASEDT" Type="DateTime" Precision="3" />
+          <Property Name="DAEXRT" Type="Double" />
+          <Property Name="DAEXRTT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATXEXR" Type="Double" />
+          <Property Name="DATEXRT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATXCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATXRT" Type="Double" />
+          <Property Name="DAPSLP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAPSLPI" Type="Double" />
+          <Property Name="DAOPSLP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAIOPSL" Type="Double" />
+          <Property Name="DAPUFRT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAPFUPU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAPFRUP" Type="Double" />
+          <Property Name="DACTPDT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DACTUPU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DACTUP" Type="Double" />
+          <Property Name="DATRPDT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATRUPU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATRFUP" Type="Double" />
+          <Property Name="DAOENO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAOEITM" Type="Double" />
+          <Property Name="DAOEDT" Type="DateTime" Precision="3" />
+          <Property Name="DACSTCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DACTSPC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAPONO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAPRDNM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DACTINF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAPCKTP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DASLUPU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DASLUP" Type="Double" />
+          <Property Name="DAUSMNG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAJOBNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAJBITM" Type="Double" />
+          <Property Name="DAPRCDT" Type="DateTime" Precision="3" />
+          <Property Name="DAPRCTP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAMCHNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAOGLNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DASHIFT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DABALWT" Type="Double" />
+          <Property Name="DACALWT" Type="Double" />
+          <Property Name="DAPCKNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAPCKDT" Type="DateTime" Precision="3" />
+          <Property Name="DAPCKM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAADJNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DADINO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DADONO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DADOSUB" Type="Double" />
+          <Property Name="DADLVTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DADLDTT" Type="DateTime" Precision="3" />
+          <Property Name="DAIVCDT" Type="DateTime" Precision="3" />
+          <Property Name="DASSLP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAISSLP" Type="Double" />
+          <Property Name="DAOSSLP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAIOSSL" Type="Double" />
+          <Property Name="DAFRPDT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAFRUPU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAFRTUP" Type="Double" />
+          <Property Name="DATRUCK" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DARMK20" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAFHPDT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAUPUHF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAUPHFR" Type="Double" />
+          <Property Name="DAPURAT" Type="Double" />
+          <Property Name="DAPUFAT" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="DAHCGAT" Type="Double" />
+          <Property Name="DATRFAT" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="DACSTHC" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="DAYLDAT" Type="Double" />
+          <Property Name="DAINTPC" Type="Double" />
+          <Property Name="DAPRATB" Type="Double" />
+          <Property Name="DAINTPK" Type="Double" />
+          <Property Name="DAPKATB" Type="Double" />
+          <Property Name="DAPRUP" Type="Double" />
+          <Property Name="DAPRUPD" Type="Double" />
+          <Property Name="DAPTXAT" Type="Double" />
+          <Property Name="DAPTXAD" Type="Double" />
+          <Property Name="DAPURATD" Type="Double" />
+          <Property Name="DACRRCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAMCSPC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAPRDDIA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DASTLGR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DAPTXATD" Type="Double" />
+          <Property Name="DAUPDTM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PUR001">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AADSTNC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AARGSDT" Type="DateTime" Precision="3" />
+          <Property Name="AAUPDT" Type="DateTime" Precision="3" />
+          <Property Name="AADTCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AAMKCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AAPURNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AACTITM" Type="Double" />
+          <Property Name="AASPLCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AAUSRCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AASCTNC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AAIDCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AACMDCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AATRDCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AACTRTP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AADPSCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AASPTCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AASHPDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AASPPNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AATCNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AACRRCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AAEXRTT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AAEXRT" Type="Double" />
+          <Property Name="AATXCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AATXRT" Type="Double" />
+          <Property Name="AATEXRT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AATXEXR" Type="Double" />
+          <Property Name="AACMPCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AACMPDT" Type="DateTime" Precision="0" />
+          <Property Name="AADLVCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AAUSMSG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AACLLNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AASETRM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AAPRICE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AAPTTRM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AADLPOT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AARMK1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AARMK2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AARMK3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AARMK4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AARMK5" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ABDSTNC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ABRGSDT" Type="DateTime" Precision="3" />
+          <Property Name="ABUPDT" Type="DateTime" Precision="3" />
+          <Property Name="ABDTCD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ABPURNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ABCTITM" Type="Int32" />
+          <Property Name="ABMCSPC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ABCOAT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ABGRADE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ABCMBT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ABCMBW" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ABCMBL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ABSIZET" Type="Double" />
+          <Property Name="ABSIZEW" Type="Double" />
+          <Property Name="ABSIZEL" Type="Double" />
+          <Property Name="ABBSZT" Type="Double" />
+          <Property Name="ABBSZW" Type="Double" />
+          <Property Name="ABBSZL" Type="Double" />
+          <Property Name="ABDLVDT" Type="DateTime" Precision="0" />
+          <Property Name="ABQTY" Type="Double" />
+          <Property Name="ABWT" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ABSEDT" Type="DateTime" Precision="0" />
+          <Property Name="ABTTLWT" Type="Double" />
+          <Property Name="ABSESWT" Type="Double" />
+          <Property Name="ABPRUPU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ABPRUP" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ABPRUPD" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ABPRAT" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ABPRATD" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ABPTXAT" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ABPTXAD" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ABORDNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PURCODE" Type="Guid" />
+          <Property Name="AARMTP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RAPSTLGR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AAREVNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ABPRDNM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ABPRDDIA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompletetionStatus" Type="Byte" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="WarehousingWeight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ABPIVNO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ABPIVDT" Type="DateTime" Precision="0" />
+          <Property Name="ABVESEL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TopProSystemModelStoreContainer" CdmEntityContainer="TopProSystemEntities">
+          <EntitySetMapping Name="InspectionItemNoMaterials">
+            <EntityTypeMapping TypeName="TopProSystemModel.InspectionItemNoMaterial">
+              <MappingFragment StoreEntitySet="InspectionItemNoMaterial">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RawMaterialId" ColumnName="RawMaterialId" />
+                <ScalarProperty Name="InspectionNo" ColumnName="InspectionNo" />
+                <ScalarProperty Name="RawMaterialNo" ColumnName="RawMaterialNo" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogErrors">
+            <EntityTypeMapping TypeName="TopProSystemModel.LogError">
+              <MappingFragment StoreEntitySet="LogError">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ExceptionSource" ColumnName="ExceptionSource" />
+                <ScalarProperty Name="ExceptionMsg" ColumnName="ExceptionMsg" />
+                <ScalarProperty Name="ExceptionType" ColumnName="ExceptionType" />
+                <ScalarProperty Name="UserCreate" ColumnName="UserCreate" />
+                <ScalarProperty Name="ExceptionURL" ColumnName="ExceptionURL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogUserActions">
+            <EntityTypeMapping TypeName="TopProSystemModel.LogUserAction">
+              <MappingFragment StoreEntitySet="LogUserAction">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="RecordPrivateKey" ColumnName="RecordPrivateKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MA001">
+            <EntityTypeMapping TypeName="TopProSystemModel.MA001">
+              <MappingFragment StoreEntitySet="MA001">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MARGSDT" ColumnName="MARGSDT" />
+                <ScalarProperty Name="MARGSTM" ColumnName="MARGSTM" />
+                <ScalarProperty Name="MAUPDT" ColumnName="MAUPDT" />
+                <ScalarProperty Name="MAUPDTM" ColumnName="MAUPDTM" />
+                <ScalarProperty Name="MASPCD" ColumnName="MASPCD" />
+                <ScalarProperty Name="MASPNM" ColumnName="MASPNM" />
+                <ScalarProperty Name="MASPSNM" ColumnName="MASPSNM" />
+                <ScalarProperty Name="MASPAD1" ColumnName="MASPAD1" />
+                <ScalarProperty Name="MASPAD2" ColumnName="MASPAD2" />
+                <ScalarProperty Name="MASPAD3" ColumnName="MASPAD3" />
+                <ScalarProperty Name="MACNTRC" ColumnName="MACNTRC" />
+                <ScalarProperty Name="MASPTEL" ColumnName="MASPTEL" />
+                <ScalarProperty Name="MASPFAX" ColumnName="MASPFAX" />
+                <ScalarProperty Name="MABUZCD" ColumnName="MABUZCD" />
+                <ScalarProperty Name="MAIDCD" ColumnName="MAIDCD" />
+                <ScalarProperty Name="MASPCTG" ColumnName="MASPCTG" />
+                <ScalarProperty Name="MASTDUE" ColumnName="MASTDUE" />
+                <ScalarProperty Name="MASCLSD" ColumnName="MASCLSD" />
+                <ScalarProperty Name="MASDFER" ColumnName="MASDFER" />
+                <ScalarProperty Name="MASSETL" ColumnName="MASSETL" />
+                <ScalarProperty Name="MACLTRM" ColumnName="MACLTRM" />
+                <ScalarProperty Name="MASDAYS" ColumnName="MASDAYS" />
+                <ScalarProperty Name="MASCRCD" ColumnName="MASCRCD" />
+                <ScalarProperty Name="MASTXCD" ColumnName="MASTXCD" />
+                <ScalarProperty Name="MASCALC" ColumnName="MASCALC" />
+                <ScalarProperty Name="MAPTDUE" ColumnName="MAPTDUE" />
+                <ScalarProperty Name="MAPCLSD" ColumnName="MAPCLSD" />
+                <ScalarProperty Name="MAPDFER" ColumnName="MAPDFER" />
+                <ScalarProperty Name="MAPSETEL" ColumnName="MAPSETEL" />
+                <ScalarProperty Name="MAPYTRM" ColumnName="MAPYTRM" />
+                <ScalarProperty Name="MAPDAYS" ColumnName="MAPDAYS" />
+                <ScalarProperty Name="MAPCRCD" ColumnName="MAPCRCD" />
+                <ScalarProperty Name="MAPTXCD" ColumnName="MAPTXCD" />
+                <ScalarProperty Name="MAPCALC" ColumnName="MAPCALC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MA002">
+            <EntityTypeMapping TypeName="TopProSystemModel.MA002">
+              <MappingFragment StoreEntitySet="MA002">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MBRGSDT" ColumnName="MBRGSDT" />
+                <ScalarProperty Name="MBRGSTM" ColumnName="MBRGSTM" />
+                <ScalarProperty Name="MBUPDT" ColumnName="MBUPDT" />
+                <ScalarProperty Name="MBUPDTM" ColumnName="MBUPDTM" />
+                <ScalarProperty Name="MBUSRCD" ColumnName="MBUSRCD" />
+                <ScalarProperty Name="MBUSRNM" ColumnName="MBUSRNM" />
+                <ScalarProperty Name="MBUSSNM" ColumnName="MBUSSNM" />
+                <ScalarProperty Name="MBUSAD1" ColumnName="MBUSAD1" />
+                <ScalarProperty Name="MBUSAD2" ColumnName="MBUSAD2" />
+                <ScalarProperty Name="MBUSAD3" ColumnName="MBUSAD3" />
+                <ScalarProperty Name="MBUSTEL" ColumnName="MBUSTEL" />
+                <ScalarProperty Name="MBWTCAL" ColumnName="MBWTCAL" />
+                <ScalarProperty Name="MBCOMCD" ColumnName="MBCOMCD" />
+                <ScalarProperty Name="MBUNICD" ColumnName="MBUNICD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MA003">
+            <EntityTypeMapping TypeName="TopProSystemModel.MA003">
+              <MappingFragment StoreEntitySet="MA003">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MCRGSDT" ColumnName="MCRGSDT" />
+                <ScalarProperty Name="MCRGSTM" ColumnName="MCRGSTM" />
+                <ScalarProperty Name="MCUPDT" ColumnName="MCUPDT" />
+                <ScalarProperty Name="MCUPDTM" ColumnName="MCUPDTM" />
+                <ScalarProperty Name="MCIDCD" ColumnName="MCIDCD" />
+                <ScalarProperty Name="MCIDNM" ColumnName="MCIDNM" />
+                <ScalarProperty Name="MCSCTLV" ColumnName="MCSCTLV" />
+                <ScalarProperty Name="MCPASS" ColumnName="MCPASS" />
+                <ScalarProperty Name="MCSCTNC" ColumnName="MCSCTNC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MA004">
+            <EntityTypeMapping TypeName="TopProSystemModel.MA004">
+              <MappingFragment StoreEntitySet="MA004">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MDRGSDT" ColumnName="MDRGSDT" />
+                <ScalarProperty Name="MDRGSTM" ColumnName="MDRGSTM" />
+                <ScalarProperty Name="MDUPDT" ColumnName="MDUPDT" />
+                <ScalarProperty Name="MDUPDTM" ColumnName="MDUPDTM" />
+                <ScalarProperty Name="MDLCTCD" ColumnName="MDLCTCD" />
+                <ScalarProperty Name="MDWRCTG" ColumnName="MDWRCTG" />
+                <ScalarProperty Name="MDLCTNM" ColumnName="MDLCTNM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MA005">
+            <EntityTypeMapping TypeName="TopProSystemModel.MA005">
+              <MappingFragment StoreEntitySet="MA005">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MERGSDT" ColumnName="MERGSDT" />
+                <ScalarProperty Name="MERGSTM" ColumnName="MERGSTM" />
+                <ScalarProperty Name="MEUPDT" ColumnName="MEUPDT" />
+                <ScalarProperty Name="MEUPDTM" ColumnName="MEUPDTM" />
+                <ScalarProperty Name="MECOAT" ColumnName="MECOAT" />
+                <ScalarProperty Name="MECOATW" ColumnName="MECOATW" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MA006">
+            <EntityTypeMapping TypeName="TopProSystemModel.MA006">
+              <MappingFragment StoreEntitySet="MA006">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MFRGSDT" ColumnName="MFRGSDT" />
+                <ScalarProperty Name="MFRGSTM" ColumnName="MFRGSTM" />
+                <ScalarProperty Name="MFUPDT" ColumnName="MFUPDT" />
+                <ScalarProperty Name="MFUPDTM" ColumnName="MFUPDTM" />
+                <ScalarProperty Name="MFPRDSP" ColumnName="MFPRDSP" />
+                <ScalarProperty Name="MFPNSTY" ColumnName="MFPNSTY" />
+                <ScalarProperty Name="MFRMK10" ColumnName="MFRMK10" />
+                <ScalarProperty Name="CMOCD" ColumnName="CMOCD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MA007">
+            <EntityTypeMapping TypeName="TopProSystemModel.MA007">
+              <MappingFragment StoreEntitySet="MA007">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MHRGSDT" ColumnName="MHRGSDT" />
+                <ScalarProperty Name="MHRGSTM" ColumnName="MHRGSTM" />
+                <ScalarProperty Name="MHUPDT" ColumnName="MHUPDT" />
+                <ScalarProperty Name="MHUPDTM" ColumnName="MHUPDTM" />
+                <ScalarProperty Name="MHBKMNT" ColumnName="MHBKMNT" />
+                <ScalarProperty Name="MHCLSDT" ColumnName="MHCLSDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MA009">
+            <EntityTypeMapping TypeName="TopProSystemModel.MA009">
+              <MappingFragment StoreEntitySet="MA009">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MJRGSDT" ColumnName="MJRGSDT" />
+                <ScalarProperty Name="MJRGSTM" ColumnName="MJRGSTM" />
+                <ScalarProperty Name="MJUPDT" ColumnName="MJUPDT" />
+                <ScalarProperty Name="MJUPDTM" ColumnName="MJUPDTM" />
+                <ScalarProperty Name="MJCRRCD" ColumnName="MJCRRCD" />
+                <ScalarProperty Name="MJEXRTT" ColumnName="MJEXRTT" />
+                <ScalarProperty Name="MJEXRTD" ColumnName="MJEXRTD" />
+                <ScalarProperty Name="MJEXRT" ColumnName="MJEXRT" />
+                <ScalarProperty Name="MJTXEXR" ColumnName="MJTXEXR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MA010">
+            <EntityTypeMapping TypeName="TopProSystemModel.MA010">
+              <MappingFragment StoreEntitySet="MA010">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MKRGSDT" ColumnName="MKRGSDT" />
+                <ScalarProperty Name="MKRGSTM" ColumnName="MKRGSTM" />
+                <ScalarProperty Name="MKUPDT" ColumnName="MKUPDT" />
+                <ScalarProperty Name="MKUPDTM" ColumnName="MKUPDTM" />
+                <ScalarProperty Name="MKTXCD" ColumnName="MKTXCD" />
+                <ScalarProperty Name="MKTXDL" ColumnName="MKTXDL" />
+                <ScalarProperty Name="MKTXRT" ColumnName="MKTXRT" />
+                <ScalarProperty Name="MKFRDT" ColumnName="MKFRDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MA011">
+            <EntityTypeMapping TypeName="TopProSystemModel.MA011">
+              <MappingFragment StoreEntitySet="MA011">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MLRGSDT" ColumnName="MLRGSDT" />
+                <ScalarProperty Name="MLRGSTM" ColumnName="MLRGSTM" />
+                <ScalarProperty Name="MLUPDT" ColumnName="MLUPDT" />
+                <ScalarProperty Name="MLUPDTM" ColumnName="MLUPDTM" />
+                <ScalarProperty Name="MLCSTCD" ColumnName="MLCSTCD" />
+                <ScalarProperty Name="MLCRDRK" ColumnName="MLCRDRK" />
+                <ScalarProperty Name="MLVLDTR" ColumnName="MLVLDTR" />
+                <ScalarProperty Name="MLCRDLM" ColumnName="MLCRDLM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MA012">
+            <EntityTypeMapping TypeName="TopProSystemModel.MA012">
+              <MappingFragment StoreEntitySet="MA012">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MNRGSDT" ColumnName="MNRGSDT" />
+                <ScalarProperty Name="MNRGSTM" ColumnName="MNRGSTM" />
+                <ScalarProperty Name="MNUPDT" ColumnName="MNUPDT" />
+                <ScalarProperty Name="MNUPTM" ColumnName="MNUPTM" />
+                <ScalarProperty Name="MNCLSCD" ColumnName="MNCLSCD" />
+                <ScalarProperty Name="MNSRCD" ColumnName="MNSRCD" />
+                <ScalarProperty Name="MNSRNM" ColumnName="MNSRNM" />
+                <ScalarProperty Name="MNSRSNM" ColumnName="MNSRSNM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermissionActions">
+            <EntityTypeMapping TypeName="TopProSystemModel.PermissionAction">
+              <MappingFragment StoreEntitySet="PermissionAction">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermissionRecords">
+            <EntityTypeMapping TypeName="TopProSystemModel.PermissionRecord">
+              <MappingFragment StoreEntitySet="PermissionRecord">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrinterSettings">
+            <EntityTypeMapping TypeName="TopProSystemModel.PrinterSetting">
+              <MappingFragment StoreEntitySet="PrinterSetting">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PrinterName" ColumnName="PrinterName" />
+                <ScalarProperty Name="PaperName" ColumnName="PaperName" />
+                <ScalarProperty Name="Copies" ColumnName="Copies" />
+                <ScalarProperty Name="isHorizontal" ColumnName="isHorizontal" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PUH001">
+            <EntityTypeMapping TypeName="TopProSystemModel.PUH001">
+              <MappingFragment StoreEntitySet="PUH001">
+                <ScalarProperty Name="GFDSTNC" ColumnName="GFDSTNC" />
+                <ScalarProperty Name="GFRGSDT" ColumnName="GFRGSDT" />
+                <ScalarProperty Name="GFUPDT" ColumnName="GFUPDT" />
+                <ScalarProperty Name="GFTRNDT" ColumnName="GFTRNDT" />
+                <ScalarProperty Name="GFDTTYP" ColumnName="GFDTTYP" />
+                <ScalarProperty Name="GFJSLPN" ColumnName="GFJSLPN" />
+                <ScalarProperty Name="GFJSLPB" ColumnName="GFJSLPB" />
+                <ScalarProperty Name="GFIJSLP" ColumnName="GFIJSLP" />
+                <ScalarProperty Name="GFSBSLP" ColumnName="GFSBSLP" />
+                <ScalarProperty Name="GFSPCTG" ColumnName="GFSPCTG" />
+                <ScalarProperty Name="GFBKDIV" ColumnName="GFBKDIV" />
+                <ScalarProperty Name="GFDPSCD" ColumnName="GFDPSCD" />
+                <ScalarProperty Name="GFBKDT" ColumnName="GFBKDT" />
+                <ScalarProperty Name="GFSEDT" ColumnName="GFSEDT" />
+                <ScalarProperty Name="GFIVCDT" ColumnName="GFIVCDT" />
+                <ScalarProperty Name="GFTRDCD" ColumnName="GFTRDCD" />
+                <ScalarProperty Name="GFCTRTP" ColumnName="GFCTRTP" />
+                <ScalarProperty Name="GFSPTCD" ColumnName="GFSPTCD" />
+                <ScalarProperty Name="GFSECCD" ColumnName="GFSECCD" />
+                <ScalarProperty Name="GFCMDCD" ColumnName="GFCMDCD" />
+                <ScalarProperty Name="GFDFTSR" ColumnName="GFDFTSR" />
+                <ScalarProperty Name="GFRSNCD" ColumnName="GFRSNCD" />
+                <ScalarProperty Name="GFINVTP" ColumnName="GFINVTP" />
+                <ScalarProperty Name="GFSTSCD" ColumnName="GFSTSCD" />
+                <ScalarProperty Name="GFSEQKY" ColumnName="GFSEQKY" />
+                <ScalarProperty Name="GFPRCTP" ColumnName="GFPRCTP" />
+                <ScalarProperty Name="GFMCHNO" ColumnName="GFMCHNO" />
+                <ScalarProperty Name="GFLCTCD" ColumnName="GFLCTCD" />
+                <ScalarProperty Name="GFDCRCD" ColumnName="GFDCRCD" />
+                <ScalarProperty Name="GFSPCD" ColumnName="GFSPCD" />
+                <ScalarProperty Name="GFUSRCD" ColumnName="GFUSRCD" />
+                <ScalarProperty Name="GFIDCD" ColumnName="GFIDCD" />
+                <ScalarProperty Name="GFIVCNO" ColumnName="GFIVCNO" />
+                <ScalarProperty Name="GFIVREV" ColumnName="GFIVREV" />
+                <ScalarProperty Name="GFSPPNO" ColumnName="GFSPPNO" />
+                <ScalarProperty Name="GFPIVNO" ColumnName="GFPIVNO" />
+                <ScalarProperty Name="GFPIVDT" ColumnName="GFPIVDT" />
+                <ScalarProperty Name="GFOENO" ColumnName="GFOENO" />
+                <ScalarProperty Name="GFOEITM" ColumnName="GFOEITM" />
+                <ScalarProperty Name="GFPYDUE" ColumnName="GFPYDUE" />
+                <ScalarProperty Name="GFPONO" ColumnName="GFPONO" />
+                <ScalarProperty Name="GFCTINF" ColumnName="GFCTINF" />
+                <ScalarProperty Name="GFORDNO" ColumnName="GFORDNO" />
+                <ScalarProperty Name="GFPRDSP" ColumnName="GFPRDSP" />
+                <ScalarProperty Name="GFSPEC" ColumnName="GFSPEC" />
+                <ScalarProperty Name="GFGRADE" ColumnName="GFGRADE" />
+                <ScalarProperty Name="GFSIZET" ColumnName="GFSIZET" />
+                <ScalarProperty Name="GFSIZEW" ColumnName="GFSIZEW" />
+                <ScalarProperty Name="GFSIZEL" ColumnName="GFSIZEL" />
+                <ScalarProperty Name="GFPRDNM" ColumnName="GFPRDNM" />
+                <ScalarProperty Name="GFPCKTP" ColumnName="GFPCKTP" />
+                <ScalarProperty Name="GFCRRCD" ColumnName="GFCRRCD" />
+                <ScalarProperty Name="GFEXRTT" ColumnName="GFEXRTT" />
+                <ScalarProperty Name="GFEXRT" ColumnName="GFEXRT" />
+                <ScalarProperty Name="GFTEXRT" ColumnName="GFTEXRT" />
+                <ScalarProperty Name="GFTXEXR" ColumnName="GFTXEXR" />
+                <ScalarProperty Name="GFQTY" ColumnName="GFQTY" />
+                <ScalarProperty Name="GFWT" ColumnName="GFWT" />
+                <ScalarProperty Name="GFUPU" ColumnName="GFUPU" />
+                <ScalarProperty Name="GFUP" ColumnName="GFUP" />
+                <ScalarProperty Name="GFAMT" ColumnName="GFAMT" />
+                <ScalarProperty Name="GFTXAT" ColumnName="GFTXAT" />
+                <ScalarProperty Name="GFDAMT" ColumnName="GFDAMT" />
+                <ScalarProperty Name="GFTXATD" ColumnName="GFTXATD" />
+                <ScalarProperty Name="GFPURAT" ColumnName="GFPURAT" />
+                <ScalarProperty Name="GFPUFAT" ColumnName="GFPUFAT" />
+                <ScalarProperty Name="GFHCGAT" ColumnName="GFHCGAT" />
+                <ScalarProperty Name="GFTRFAT" ColumnName="GFTRFAT" />
+                <ScalarProperty Name="GFCSTHC" ColumnName="GFCSTHC" />
+                <ScalarProperty Name="GFYLDAT" ColumnName="GFYLDAT" />
+                <ScalarProperty Name="GFINTPC" ColumnName="GFINTPC" />
+                <ScalarProperty Name="GFPRATB" ColumnName="GFPRATB" />
+                <ScalarProperty Name="GFINTPK" ColumnName="GFINTPK" />
+                <ScalarProperty Name="GFPKATB" ColumnName="GFPKATB" />
+                <ScalarProperty Name="GFPFTLS" ColumnName="GFPFTLS" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RawMaterials">
+            <EntityTypeMapping TypeName="TopProSystemModel.RawMaterial">
+              <MappingFragment StoreEntitySet="RawMaterial">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PurchaseContractNo" ColumnName="PurchaseContractNo" />
+                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+                <ScalarProperty Name="ShippersInvoiceNo" ColumnName="ShippersInvoiceNo" />
+                <ScalarProperty Name="StockEntryDate" ColumnName="StockEntryDate" />
+                <ScalarProperty Name="DepositAsset" ColumnName="DepositAsset" />
+                <ScalarProperty Name="VesselName" ColumnName="VesselName" />
+                <ScalarProperty Name="PODate" ColumnName="PODate" />
+                <ScalarProperty Name="ShippersInvoiceDate" ColumnName="ShippersInvoiceDate" />
+                <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RawMaterialTypes">
+            <EntityTypeMapping TypeName="TopProSystemModel.RawMaterialType">
+              <MappingFragment StoreEntitySet="RawMaterialType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RMTCD" ColumnName="RMTCD" />
+                <ScalarProperty Name="RMTNM" ColumnName="RMTNM" />
+                <ScalarProperty Name="RMTGSDT" ColumnName="RMTGSDT" />
+                <ScalarProperty Name="RMTGSTM" ColumnName="RMTGSTM" />
+                <ScalarProperty Name="RMTUPDT" ColumnName="RMTUPDT" />
+                <ScalarProperty Name="RMTUPTM" ColumnName="RMTUPTM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role_Mapping">
+            <EntityTypeMapping TypeName="TopProSystemModel.Role_Mapping">
+              <MappingFragment StoreEntitySet="Role_Mapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PermissionRecord_Id" ColumnName="PermissionRecord_Id" />
+                <ScalarProperty Name="CustomerRole_Id" ColumnName="CustomerRole_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role_Mapping_Action">
+            <EntityTypeMapping TypeName="TopProSystemModel.Role_Mapping_Action">
+              <MappingFragment StoreEntitySet="Role_Mapping_Action">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PermissionRecord_Id" ColumnName="PermissionRecord_Id" />
+                <ScalarProperty Name="CustomerRole_Id" ColumnName="CustomerRole_Id" />
+                <ScalarProperty Name="Action_Id" ColumnName="Action_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecurityLevels">
+            <EntityTypeMapping TypeName="TopProSystemModel.SecurityLevel">
+              <MappingFragment StoreEntitySet="SecurityLevel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SteelGrades">
+            <EntityTypeMapping TypeName="TopProSystemModel.SteelGrade">
+              <MappingFragment StoreEntitySet="SteelGrade">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="SAEsymbol" ColumnName="SAEsymbol" />
+                <ScalarProperty Name="C" ColumnName="C" />
+                <ScalarProperty Name="Mn" ColumnName="Mn" />
+                <ScalarProperty Name="P" ColumnName="P" />
+                <ScalarProperty Name="S" ColumnName="S" />
+                <ScalarProperty Name="Si" ColumnName="Si" />
+                <ScalarProperty Name="Al" ColumnName="Al" />
+                <ScalarProperty Name="RGSDT" ColumnName="RGSDT" />
+                <ScalarProperty Name="RGSTM" ColumnName="RGSTM" />
+                <ScalarProperty Name="UPDT" ColumnName="UPDT" />
+                <ScalarProperty Name="UPTM" ColumnName="UPTM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tmp_MaterialWarehousingResult">
+            <EntityTypeMapping TypeName="TopProSystemModel.Tmp_MaterialWarehousingResult">
+              <MappingFragment StoreEntitySet="Tmp_MaterialWarehousingResult">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Location_Code" ColumnName="Location_Code" />
+                <ScalarProperty Name="Inventory_No" ColumnName="Inventory_No" />
+                <ScalarProperty Name="Inspection_No" ColumnName="Inspection_No" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PURNO_NEAREST_SINGLE" FunctionName="TopProSystemModel.Store.PURNO_NEAREST_SINGLE" />
+          <EntitySetMapping Name="RM0001">
+            <EntityTypeMapping TypeName="TopProSystemModel.RM0001">
+              <MappingFragment StoreEntitySet="RM0001">
+                <ScalarProperty Name="SEURID" ColumnName="SEURID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SEIDCD" ColumnName="SEIDCD" />
+                <ScalarProperty Name="SEISPNO" ColumnName="SEISPNO" />
+                <ScalarProperty Name="SEINVNO" ColumnName="SEINVNO" />
+                <ScalarProperty Name="SELCTCD" ColumnName="SELCTCD" />
+                <ScalarProperty Name="SERGSDT" ColumnName="SERGSDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PURNO_CREATED">
+            <EntityTypeMapping TypeName="TopProSystemModel.PURNO_CREATED">
+              <MappingFragment StoreEntitySet="PURNO_CREATED">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PURNO" ColumnName="PURNO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INV001">
+            <EntityTypeMapping TypeName="TopProSystemModel.INV001">
+              <MappingFragment StoreEntitySet="INV001">
+                <ScalarProperty Name="CARMTP" ColumnName="CARMTP" />
+                <ScalarProperty Name="CAPTXATD" ColumnName="CAPTXATD" />
+                <ScalarProperty Name="CARGSTM" ColumnName="CARGSTM" />
+                <ScalarProperty Name="CADLVCD" ColumnName="CADLVCD" />
+                <ScalarProperty Name="CAPRUP" ColumnName="CAPRUP" />
+                <ScalarProperty Name="CAPTXAD" ColumnName="CAPTXAD" />
+                <ScalarProperty Name="CAPTXAT" ColumnName="CAPTXAT" />
+                <ScalarProperty Name="CAPURATD" ColumnName="CAPURATD" />
+                <ScalarProperty Name="CASTLGR" ColumnName="CASTLGR" />
+                <ScalarProperty Name="CAPRDDIA" ColumnName="CAPRDDIA" />
+                <ScalarProperty Name="CAPKATB" ColumnName="CAPKATB" />
+                <ScalarProperty Name="CAINTPK" ColumnName="CAINTPK" />
+                <ScalarProperty Name="CAPRATB" ColumnName="CAPRATB" />
+                <ScalarProperty Name="CAINTPC" ColumnName="CAINTPC" />
+                <ScalarProperty Name="CAYLDAT" ColumnName="CAYLDAT" />
+                <ScalarProperty Name="CACSTHC" ColumnName="CACSTHC" />
+                <ScalarProperty Name="CATRFAT" ColumnName="CATRFAT" />
+                <ScalarProperty Name="CAHCGAT" ColumnName="CAHCGAT" />
+                <ScalarProperty Name="CAPUFAT" ColumnName="CAPUFAT" />
+                <ScalarProperty Name="CAPURAT" ColumnName="CAPURAT" />
+                <ScalarProperty Name="CAISSLP" ColumnName="CAISSLP" />
+                <ScalarProperty Name="CASSLP" ColumnName="CASSLP" />
+                <ScalarProperty Name="CAIVCDT" ColumnName="CAIVCDT" />
+                <ScalarProperty Name="CADLDTT" ColumnName="CADLDTT" />
+                <ScalarProperty Name="CADLVTO" ColumnName="CADLVTO" />
+                <ScalarProperty Name="CADONO" ColumnName="CADONO" />
+                <ScalarProperty Name="CADINO" ColumnName="CADINO" />
+                <ScalarProperty Name="CAADJNO" ColumnName="CAADJNO" />
+                <ScalarProperty Name="CAPCKM" ColumnName="CAPCKM" />
+                <ScalarProperty Name="CAPCKDT" ColumnName="CAPCKDT" />
+                <ScalarProperty Name="CAPCKNO" ColumnName="CAPCKNO" />
+                <ScalarProperty Name="CADMGCD" ColumnName="CADMGCD" />
+                <ScalarProperty Name="CAANNDT" ColumnName="CAANNDT" />
+                <ScalarProperty Name="CAISSDT" ColumnName="CAISSDT" />
+                <ScalarProperty Name="CAOGLNO" ColumnName="CAOGLNO" />
+                <ScalarProperty Name="CASUBNO" ColumnName="CASUBNO" />
+                <ScalarProperty Name="CAMCHNO" ColumnName="CAMCHNO" />
+                <ScalarProperty Name="CAPRCTP" ColumnName="CAPRCTP" />
+                <ScalarProperty Name="CAPRCDT" ColumnName="CAPRCDT" />
+                <ScalarProperty Name="CAJBITM" ColumnName="CAJBITM" />
+                <ScalarProperty Name="CAJOBNO" ColumnName="CAJOBNO" />
+                <ScalarProperty Name="CACALWT" ColumnName="CACALWT" />
+                <ScalarProperty Name="CAPCKWT" ColumnName="CAPCKWT" />
+                <ScalarProperty Name="CASLUWT" ColumnName="CASLUWT" />
+                <ScalarProperty Name="CAUSMNG" ColumnName="CAUSMNG" />
+                <ScalarProperty Name="CAPCKTP" ColumnName="CAPCKTP" />
+                <ScalarProperty Name="CAPRDNM" ColumnName="CAPRDNM" />
+                <ScalarProperty Name="CAOEPO" ColumnName="CAOEPO" />
+                <ScalarProperty Name="CACTSPC" ColumnName="CACTSPC" />
+                <ScalarProperty Name="CADLVDT" ColumnName="CADLVDT" />
+                <ScalarProperty Name="CACSTCD" ColumnName="CACSTCD" />
+                <ScalarProperty Name="CAOEITM" ColumnName="CAOEITM" />
+                <ScalarProperty Name="CAOENO" ColumnName="CAOENO" />
+                <ScalarProperty Name="CATRFUP" ColumnName="CATRFUP" />
+                <ScalarProperty Name="CATRUPU" ColumnName="CATRUPU" />
+                <ScalarProperty Name="CATRPDT" ColumnName="CATRPDT" />
+                <ScalarProperty Name="CACTUP" ColumnName="CACTUP" />
+                <ScalarProperty Name="CACTUPU" ColumnName="CACTUPU" />
+                <ScalarProperty Name="CACTPDT" ColumnName="CACTPDT" />
+                <ScalarProperty Name="CAPFRUP" ColumnName="CAPFRUP" />
+                <ScalarProperty Name="CAPFUPU" ColumnName="CAPFUPU" />
+                <ScalarProperty Name="CAPUFRT" ColumnName="CAPUFRT" />
+                <ScalarProperty Name="CAPSLPI" ColumnName="CAPSLPI" />
+                <ScalarProperty Name="CAPSLP" ColumnName="CAPSLP" />
+                <ScalarProperty Name="CATXRT" ColumnName="CATXRT" />
+                <ScalarProperty Name="CATXCD" ColumnName="CATXCD" />
+                <ScalarProperty Name="CATEXRT" ColumnName="CATEXRT" />
+                <ScalarProperty Name="CATXEXR" ColumnName="CATXEXR" />
+                <ScalarProperty Name="CAEXRTT" ColumnName="CAEXRTT" />
+                <ScalarProperty Name="CAEXRT" ColumnName="CAEXRT" />
+                <ScalarProperty Name="CACRRCD" ColumnName="CACRRCD" />
+                <ScalarProperty Name="CADCRCD" ColumnName="CADCRCD" />
+                <ScalarProperty Name="CAPAYDT" ColumnName="CAPAYDT" />
+                <ScalarProperty Name="CAPODT" ColumnName="CAPODT" />
+                <ScalarProperty Name="CASTKPO" ColumnName="CASTKPO" />
+                <ScalarProperty Name="CASHPDT" ColumnName="CASHPDT" />
+                <ScalarProperty Name="CASEDT" ColumnName="CASEDT" />
+                <ScalarProperty Name="CAINDCT" ColumnName="CAINDCT" />
+                <ScalarProperty Name="CACRLOS" ColumnName="CACRLOS" />
+                <ScalarProperty Name="CAISPNO" ColumnName="CAISPNO" />
+                <ScalarProperty Name="CAPIVDT" ColumnName="CAPIVDT" />
+                <ScalarProperty Name="CAPIVNO" ColumnName="CAPIVNO" />
+                <ScalarProperty Name="CASMNTH" ColumnName="CASMNTH" />
+                <ScalarProperty Name="CAVESEL" ColumnName="CAVESEL" />
+                <ScalarProperty Name="CAMCSPC" ColumnName="CAMCSPC" />
+                <ScalarProperty Name="CATCNO" ColumnName="CATCNO" />
+                <ScalarProperty Name="CASPPNO" ColumnName="CASPPNO" />
+                <ScalarProperty Name="CASPLCD" ColumnName="CASPLCD" />
+                <ScalarProperty Name="CAORDNO" ColumnName="CAORDNO" />
+                <ScalarProperty Name="CAMKCD" ColumnName="CAMKCD" />
+                <ScalarProperty Name="CACTITM" ColumnName="CACTITM" />
+                <ScalarProperty Name="CACTRNO" ColumnName="CACTRNO" />
+                <ScalarProperty Name="CADNSTY" ColumnName="CADNSTY" />
+                <ScalarProperty Name="CAPRUPD" ColumnName="CAPRUPD" />
+                <ScalarProperty Name="CAPURUP" ColumnName="CAPURUP" />
+                <ScalarProperty Name="CAPRUPU" ColumnName="CAPRUPU" />
+                <ScalarProperty Name="CAWT" ColumnName="CAWT" />
+                <ScalarProperty Name="CAINPCK" ColumnName="CAINPCK" />
+                <ScalarProperty Name="CAQTY" ColumnName="CAQTY" />
+                <ScalarProperty Name="CACILOD" ColumnName="CACILOD" />
+                <ScalarProperty Name="CACILID" ColumnName="CACILID" />
+                <ScalarProperty Name="CABSZL" ColumnName="CABSZL" />
+                <ScalarProperty Name="CABSZW" ColumnName="CABSZW" />
+                <ScalarProperty Name="CABSZT" ColumnName="CABSZT" />
+                <ScalarProperty Name="CASIZEL" ColumnName="CASIZEL" />
+                <ScalarProperty Name="CASIZEW" ColumnName="CASIZEW" />
+                <ScalarProperty Name="CASIZET" ColumnName="CASIZET" />
+                <ScalarProperty Name="CACMBL" ColumnName="CACMBL" />
+                <ScalarProperty Name="CACMBW" ColumnName="CACMBW" />
+                <ScalarProperty Name="CACMBT" ColumnName="CACMBT" />
+                <ScalarProperty Name="CAGRADE" ColumnName="CAGRADE" />
+                <ScalarProperty Name="CACOATB" ColumnName="CACOATB" />
+                <ScalarProperty Name="CACOATF" ColumnName="CACOATF" />
+                <ScalarProperty Name="CACOAT" ColumnName="CACOAT" />
+                <ScalarProperty Name="CASPEC" ColumnName="CASPEC" />
+                <ScalarProperty Name="CATRDCD" ColumnName="CATRDCD" />
+                <ScalarProperty Name="CAIDCD" ColumnName="CAIDCD" />
+                <ScalarProperty Name="CASCTNC" ColumnName="CASCTNC" />
+                <ScalarProperty Name="CASECCD" ColumnName="CASECCD" />
+                <ScalarProperty Name="CARSNCD" ColumnName="CARSNCD" />
+                <ScalarProperty Name="CASTSCD" ColumnName="CASTSCD" />
+                <ScalarProperty Name="CALCTCD" ColumnName="CALCTCD" />
+                <ScalarProperty Name="CAPURGD" ColumnName="CAPURGD" />
+                <ScalarProperty Name="CASPTCD" ColumnName="CASPTCD" />
+                <ScalarProperty Name="CADPSCD" ColumnName="CADPSCD" />
+                <ScalarProperty Name="CACTRTP" ColumnName="CACTRTP" />
+                <ScalarProperty Name="CAUSRCD" ColumnName="CAUSRCD" />
+                <ScalarProperty Name="CACMDCD" ColumnName="CACMDCD" />
+                <ScalarProperty Name="CAINVNO" ColumnName="CAINVNO" />
+                <ScalarProperty Name="CAINVST" ColumnName="CAINVST" />
+                <ScalarProperty Name="CAINVTP" ColumnName="CAINVTP" />
+                <ScalarProperty Name="CACTLM1" ColumnName="CACTLM1" />
+                <ScalarProperty Name="CADTCD" ColumnName="CADTCD" />
+                <ScalarProperty Name="CAUPDT" ColumnName="CAUPDT" />
+                <ScalarProperty Name="CARGSDT" ColumnName="CARGSDT" />
+                <ScalarProperty Name="CADSTNC" ColumnName="CADSTNC" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRA001">
+            <EntityTypeMapping TypeName="TopProSystemModel.TRA001">
+              <MappingFragment StoreEntitySet="TRA001">
+                <ScalarProperty Name="DAUPDTM" ColumnName="DAUPDTM" />
+                <ScalarProperty Name="DAPTXATD" ColumnName="DAPTXATD" />
+                <ScalarProperty Name="DASTLGR" ColumnName="DASTLGR" />
+                <ScalarProperty Name="DAPRDDIA" ColumnName="DAPRDDIA" />
+                <ScalarProperty Name="DAMCSPC" ColumnName="DAMCSPC" />
+                <ScalarProperty Name="DACRRCD" ColumnName="DACRRCD" />
+                <ScalarProperty Name="DAPURATD" ColumnName="DAPURATD" />
+                <ScalarProperty Name="DAPTXAD" ColumnName="DAPTXAD" />
+                <ScalarProperty Name="DAPTXAT" ColumnName="DAPTXAT" />
+                <ScalarProperty Name="DAPRUPD" ColumnName="DAPRUPD" />
+                <ScalarProperty Name="DAPRUP" ColumnName="DAPRUP" />
+                <ScalarProperty Name="DAPKATB" ColumnName="DAPKATB" />
+                <ScalarProperty Name="DAINTPK" ColumnName="DAINTPK" />
+                <ScalarProperty Name="DAPRATB" ColumnName="DAPRATB" />
+                <ScalarProperty Name="DAINTPC" ColumnName="DAINTPC" />
+                <ScalarProperty Name="DAYLDAT" ColumnName="DAYLDAT" />
+                <ScalarProperty Name="DACSTHC" ColumnName="DACSTHC" />
+                <ScalarProperty Name="DATRFAT" ColumnName="DATRFAT" />
+                <ScalarProperty Name="DAHCGAT" ColumnName="DAHCGAT" />
+                <ScalarProperty Name="DAPUFAT" ColumnName="DAPUFAT" />
+                <ScalarProperty Name="DAPURAT" ColumnName="DAPURAT" />
+                <ScalarProperty Name="DAUPHFR" ColumnName="DAUPHFR" />
+                <ScalarProperty Name="DAUPUHF" ColumnName="DAUPUHF" />
+                <ScalarProperty Name="DAFHPDT" ColumnName="DAFHPDT" />
+                <ScalarProperty Name="DARMK20" ColumnName="DARMK20" />
+                <ScalarProperty Name="DATRUCK" ColumnName="DATRUCK" />
+                <ScalarProperty Name="DAFRTUP" ColumnName="DAFRTUP" />
+                <ScalarProperty Name="DAFRUPU" ColumnName="DAFRUPU" />
+                <ScalarProperty Name="DAFRPDT" ColumnName="DAFRPDT" />
+                <ScalarProperty Name="DAIOSSL" ColumnName="DAIOSSL" />
+                <ScalarProperty Name="DAOSSLP" ColumnName="DAOSSLP" />
+                <ScalarProperty Name="DAISSLP" ColumnName="DAISSLP" />
+                <ScalarProperty Name="DASSLP" ColumnName="DASSLP" />
+                <ScalarProperty Name="DAIVCDT" ColumnName="DAIVCDT" />
+                <ScalarProperty Name="DADLDTT" ColumnName="DADLDTT" />
+                <ScalarProperty Name="DADLVTO" ColumnName="DADLVTO" />
+                <ScalarProperty Name="DADOSUB" ColumnName="DADOSUB" />
+                <ScalarProperty Name="DADONO" ColumnName="DADONO" />
+                <ScalarProperty Name="DADINO" ColumnName="DADINO" />
+                <ScalarProperty Name="DAADJNO" ColumnName="DAADJNO" />
+                <ScalarProperty Name="DAPCKM" ColumnName="DAPCKM" />
+                <ScalarProperty Name="DAPCKDT" ColumnName="DAPCKDT" />
+                <ScalarProperty Name="DAPCKNO" ColumnName="DAPCKNO" />
+                <ScalarProperty Name="DACALWT" ColumnName="DACALWT" />
+                <ScalarProperty Name="DABALWT" ColumnName="DABALWT" />
+                <ScalarProperty Name="DASHIFT" ColumnName="DASHIFT" />
+                <ScalarProperty Name="DAOGLNO" ColumnName="DAOGLNO" />
+                <ScalarProperty Name="DAMCHNO" ColumnName="DAMCHNO" />
+                <ScalarProperty Name="DAPRCTP" ColumnName="DAPRCTP" />
+                <ScalarProperty Name="DAPRCDT" ColumnName="DAPRCDT" />
+                <ScalarProperty Name="DAJBITM" ColumnName="DAJBITM" />
+                <ScalarProperty Name="DAJOBNO" ColumnName="DAJOBNO" />
+                <ScalarProperty Name="DAUSMNG" ColumnName="DAUSMNG" />
+                <ScalarProperty Name="DASLUP" ColumnName="DASLUP" />
+                <ScalarProperty Name="DASLUPU" ColumnName="DASLUPU" />
+                <ScalarProperty Name="DAPCKTP" ColumnName="DAPCKTP" />
+                <ScalarProperty Name="DACTINF" ColumnName="DACTINF" />
+                <ScalarProperty Name="DAPRDNM" ColumnName="DAPRDNM" />
+                <ScalarProperty Name="DAPONO" ColumnName="DAPONO" />
+                <ScalarProperty Name="DACTSPC" ColumnName="DACTSPC" />
+                <ScalarProperty Name="DACSTCD" ColumnName="DACSTCD" />
+                <ScalarProperty Name="DAOEDT" ColumnName="DAOEDT" />
+                <ScalarProperty Name="DAOEITM" ColumnName="DAOEITM" />
+                <ScalarProperty Name="DAOENO" ColumnName="DAOENO" />
+                <ScalarProperty Name="DATRFUP" ColumnName="DATRFUP" />
+                <ScalarProperty Name="DATRUPU" ColumnName="DATRUPU" />
+                <ScalarProperty Name="DATRPDT" ColumnName="DATRPDT" />
+                <ScalarProperty Name="DACTUP" ColumnName="DACTUP" />
+                <ScalarProperty Name="DACTUPU" ColumnName="DACTUPU" />
+                <ScalarProperty Name="DACTPDT" ColumnName="DACTPDT" />
+                <ScalarProperty Name="DAPFRUP" ColumnName="DAPFRUP" />
+                <ScalarProperty Name="DAPFUPU" ColumnName="DAPFUPU" />
+                <ScalarProperty Name="DAPUFRT" ColumnName="DAPUFRT" />
+                <ScalarProperty Name="DAIOPSL" ColumnName="DAIOPSL" />
+                <ScalarProperty Name="DAOPSLP" ColumnName="DAOPSLP" />
+                <ScalarProperty Name="DAPSLPI" ColumnName="DAPSLPI" />
+                <ScalarProperty Name="DAPSLP" ColumnName="DAPSLP" />
+                <ScalarProperty Name="DATXRT" ColumnName="DATXRT" />
+                <ScalarProperty Name="DATXCD" ColumnName="DATXCD" />
+                <ScalarProperty Name="DATEXRT" ColumnName="DATEXRT" />
+                <ScalarProperty Name="DATXEXR" ColumnName="DATXEXR" />
+                <ScalarProperty Name="DAEXRTT" ColumnName="DAEXRTT" />
+                <ScalarProperty Name="DAEXRT" ColumnName="DAEXRT" />
+                <ScalarProperty Name="DASEDT" ColumnName="DASEDT" />
+                <ScalarProperty Name="DAISPNO" ColumnName="DAISPNO" />
+                <ScalarProperty Name="DAPIVDT" ColumnName="DAPIVDT" />
+                <ScalarProperty Name="DAPIVNO" ColumnName="DAPIVNO" />
+                <ScalarProperty Name="DASMNTH" ColumnName="DASMNTH" />
+                <ScalarProperty Name="DAVESEL" ColumnName="DAVESEL" />
+                <ScalarProperty Name="DATCNO" ColumnName="DATCNO" />
+                <ScalarProperty Name="DASPPNO" ColumnName="DASPPNO" />
+                <ScalarProperty Name="DASPLCD" ColumnName="DASPLCD" />
+                <ScalarProperty Name="DAORDNO" ColumnName="DAORDNO" />
+                <ScalarProperty Name="DAMKCD" ColumnName="DAMKCD" />
+                <ScalarProperty Name="DACTITM" ColumnName="DACTITM" />
+                <ScalarProperty Name="DACTRNO" ColumnName="DACTRNO" />
+                <ScalarProperty Name="DAPURUP" ColumnName="DAPURUP" />
+                <ScalarProperty Name="DAPUUPU" ColumnName="DAPUUPU" />
+                <ScalarProperty Name="DAWT" ColumnName="DAWT" />
+                <ScalarProperty Name="DAWTCD" ColumnName="DAWTCD" />
+                <ScalarProperty Name="DAINPCK" ColumnName="DAINPCK" />
+                <ScalarProperty Name="DAQTY" ColumnName="DAQTY" />
+                <ScalarProperty Name="DABSZL" ColumnName="DABSZL" />
+                <ScalarProperty Name="DABSZW" ColumnName="DABSZW" />
+                <ScalarProperty Name="DABSZT" ColumnName="DABSZT" />
+                <ScalarProperty Name="DAGRADE" ColumnName="DAGRADE" />
+                <ScalarProperty Name="DACOAT" ColumnName="DACOAT" />
+                <ScalarProperty Name="DASPEC" ColumnName="DASPEC" />
+                <ScalarProperty Name="DATRDCD" ColumnName="DATRDCD" />
+                <ScalarProperty Name="DACHGWK" ColumnName="DACHGWK" />
+                <ScalarProperty Name="DAIDCD" ColumnName="DAIDCD" />
+                <ScalarProperty Name="DASCTNC" ColumnName="DASCTNC" />
+                <ScalarProperty Name="DASECCD" ColumnName="DASECCD" />
+                <ScalarProperty Name="DARSNCD" ColumnName="DARSNCD" />
+                <ScalarProperty Name="DASTSCD" ColumnName="DASTSCD" />
+                <ScalarProperty Name="DALCTCD" ColumnName="DALCTCD" />
+                <ScalarProperty Name="DAPURGD" ColumnName="DAPURGD" />
+                <ScalarProperty Name="DABKTMG" ColumnName="DABKTMG" />
+                <ScalarProperty Name="DABKCD" ColumnName="DABKCD" />
+                <ScalarProperty Name="DANORVS" ColumnName="DANORVS" />
+                <ScalarProperty Name="DADFTSR" ColumnName="DADFTSR" />
+                <ScalarProperty Name="DASPTCD" ColumnName="DASPTCD" />
+                <ScalarProperty Name="DADPSCD" ColumnName="DADPSCD" />
+                <ScalarProperty Name="DACTRTP" ColumnName="DACTRTP" />
+                <ScalarProperty Name="DAUSRCD" ColumnName="DAUSRCD" />
+                <ScalarProperty Name="DACMDCD" ColumnName="DACMDCD" />
+                <ScalarProperty Name="DAINVNO" ColumnName="DAINVNO" />
+                <ScalarProperty Name="DAINVTP" ColumnName="DAINVTP" />
+                <ScalarProperty Name="DALOGTP" ColumnName="DALOGTP" />
+                <ScalarProperty Name="DALOGDT" ColumnName="DALOGDT" />
+                <ScalarProperty Name="DAPGMID" ColumnName="DAPGMID" />
+                <ScalarProperty Name="DAWSID" ColumnName="DAWSID" />
+                <ScalarProperty Name="DATRNDT" ColumnName="DATRNDT" />
+                <ScalarProperty Name="DAUPDT" ColumnName="DAUPDT" />
+                <ScalarProperty Name="DADSTNC" ColumnName="DADSTNC" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PUR001">
+            <EntityTypeMapping TypeName="TopProSystemModel.PUR001">
+              <MappingFragment StoreEntitySet="PUR001">
+                <ScalarProperty Name="ABVESEL" ColumnName="ABVESEL" />
+                <ScalarProperty Name="ABPIVDT" ColumnName="ABPIVDT" />
+                <ScalarProperty Name="ABPIVNO" ColumnName="ABPIVNO" />
+                <ScalarProperty Name="WarehousingWeight" ColumnName="WarehousingWeight" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="CompletetionStatus" ColumnName="CompletetionStatus" />
+                <ScalarProperty Name="ABPRDDIA" ColumnName="ABPRDDIA" />
+                <ScalarProperty Name="ABPRDNM" ColumnName="ABPRDNM" />
+                <ScalarProperty Name="AAREVNO" ColumnName="AAREVNO" />
+                <ScalarProperty Name="RAPSTLGR" ColumnName="RAPSTLGR" />
+                <ScalarProperty Name="AARMTP" ColumnName="AARMTP" />
+                <ScalarProperty Name="PURCODE" ColumnName="PURCODE" />
+                <ScalarProperty Name="ABORDNO" ColumnName="ABORDNO" />
+                <ScalarProperty Name="ABPTXAD" ColumnName="ABPTXAD" />
+                <ScalarProperty Name="ABPTXAT" ColumnName="ABPTXAT" />
+                <ScalarProperty Name="ABPRATD" ColumnName="ABPRATD" />
+                <ScalarProperty Name="ABPRAT" ColumnName="ABPRAT" />
+                <ScalarProperty Name="ABPRUPD" ColumnName="ABPRUPD" />
+                <ScalarProperty Name="ABPRUP" ColumnName="ABPRUP" />
+                <ScalarProperty Name="ABPRUPU" ColumnName="ABPRUPU" />
+                <ScalarProperty Name="ABSESWT" ColumnName="ABSESWT" />
+                <ScalarProperty Name="ABTTLWT" ColumnName="ABTTLWT" />
+                <ScalarProperty Name="ABSEDT" ColumnName="ABSEDT" />
+                <ScalarProperty Name="ABWT" ColumnName="ABWT" />
+                <ScalarProperty Name="ABQTY" ColumnName="ABQTY" />
+                <ScalarProperty Name="ABDLVDT" ColumnName="ABDLVDT" />
+                <ScalarProperty Name="ABBSZL" ColumnName="ABBSZL" />
+                <ScalarProperty Name="ABBSZW" ColumnName="ABBSZW" />
+                <ScalarProperty Name="ABBSZT" ColumnName="ABBSZT" />
+                <ScalarProperty Name="ABSIZEL" ColumnName="ABSIZEL" />
+                <ScalarProperty Name="ABSIZEW" ColumnName="ABSIZEW" />
+                <ScalarProperty Name="ABSIZET" ColumnName="ABSIZET" />
+                <ScalarProperty Name="ABCMBL" ColumnName="ABCMBL" />
+                <ScalarProperty Name="ABCMBW" ColumnName="ABCMBW" />
+                <ScalarProperty Name="ABCMBT" ColumnName="ABCMBT" />
+                <ScalarProperty Name="ABGRADE" ColumnName="ABGRADE" />
+                <ScalarProperty Name="ABCOAT" ColumnName="ABCOAT" />
+                <ScalarProperty Name="ABMCSPC" ColumnName="ABMCSPC" />
+                <ScalarProperty Name="ABCTITM" ColumnName="ABCTITM" />
+                <ScalarProperty Name="ABPURNO" ColumnName="ABPURNO" />
+                <ScalarProperty Name="ABDTCD" ColumnName="ABDTCD" />
+                <ScalarProperty Name="ABUPDT" ColumnName="ABUPDT" />
+                <ScalarProperty Name="ABRGSDT" ColumnName="ABRGSDT" />
+                <ScalarProperty Name="ABDSTNC" ColumnName="ABDSTNC" />
+                <ScalarProperty Name="AARMK5" ColumnName="AARMK5" />
+                <ScalarProperty Name="AARMK4" ColumnName="AARMK4" />
+                <ScalarProperty Name="AARMK3" ColumnName="AARMK3" />
+                <ScalarProperty Name="AARMK2" ColumnName="AARMK2" />
+                <ScalarProperty Name="AARMK1" ColumnName="AARMK1" />
+                <ScalarProperty Name="AADLPOT" ColumnName="AADLPOT" />
+                <ScalarProperty Name="AAPTTRM" ColumnName="AAPTTRM" />
+                <ScalarProperty Name="AAPRICE" ColumnName="AAPRICE" />
+                <ScalarProperty Name="AASETRM" ColumnName="AASETRM" />
+                <ScalarProperty Name="AACLLNO" ColumnName="AACLLNO" />
+                <ScalarProperty Name="AAUSMSG" ColumnName="AAUSMSG" />
+                <ScalarProperty Name="AADLVCD" ColumnName="AADLVCD" />
+                <ScalarProperty Name="AACMPDT" ColumnName="AACMPDT" />
+                <ScalarProperty Name="AACMPCD" ColumnName="AACMPCD" />
+                <ScalarProperty Name="AATXEXR" ColumnName="AATXEXR" />
+                <ScalarProperty Name="AATEXRT" ColumnName="AATEXRT" />
+                <ScalarProperty Name="AATXRT" ColumnName="AATXRT" />
+                <ScalarProperty Name="AATXCD" ColumnName="AATXCD" />
+                <ScalarProperty Name="AAEXRT" ColumnName="AAEXRT" />
+                <ScalarProperty Name="AAEXRTT" ColumnName="AAEXRTT" />
+                <ScalarProperty Name="AACRRCD" ColumnName="AACRRCD" />
+                <ScalarProperty Name="AATCNO" ColumnName="AATCNO" />
+                <ScalarProperty Name="AASPPNO" ColumnName="AASPPNO" />
+                <ScalarProperty Name="AASHPDT" ColumnName="AASHPDT" />
+                <ScalarProperty Name="AASPTCD" ColumnName="AASPTCD" />
+                <ScalarProperty Name="AADPSCD" ColumnName="AADPSCD" />
+                <ScalarProperty Name="AACTRTP" ColumnName="AACTRTP" />
+                <ScalarProperty Name="AATRDCD" ColumnName="AATRDCD" />
+                <ScalarProperty Name="AACMDCD" ColumnName="AACMDCD" />
+                <ScalarProperty Name="AAIDCD" ColumnName="AAIDCD" />
+                <ScalarProperty Name="AASCTNC" ColumnName="AASCTNC" />
+                <ScalarProperty Name="AAUSRCD" ColumnName="AAUSRCD" />
+                <ScalarProperty Name="AASPLCD" ColumnName="AASPLCD" />
+                <ScalarProperty Name="AACTITM" ColumnName="AACTITM" />
+                <ScalarProperty Name="AAPURNO" ColumnName="AAPURNO" />
+                <ScalarProperty Name="AAMKCD" ColumnName="AAMKCD" />
+                <ScalarProperty Name="AADTCD" ColumnName="AADTCD" />
+                <ScalarProperty Name="AAUPDT" ColumnName="AAUPDT" />
+                <ScalarProperty Name="AARGSDT" ColumnName="AARGSDT" />
+                <ScalarProperty Name="AADSTNC" ColumnName="AADSTNC" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

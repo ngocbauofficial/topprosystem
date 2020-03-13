@@ -1,0 +1,243 @@
+﻿@model TopProSystem.Areas.MasterSetting.Models.INV001
+@using StaticResources
+@using StaticResources.View.INV001
+@{
+                /**/
+
+                ViewBag.Title = ItemMenuRawMaterial.RegisterRawMaterialTraiffAmount;
+                Layout = "~/Views/Shared/_LayoutPageRawMaterial.cshtml";
+                ViewBag.content = ItemMenuRawMaterial.RegisterRawMaterialTraiffAmount;
+}
+
+<div class="row w-100 container-fluid m-0 p-0">
+    <form action="/" method="post">
+        <div class="col-md-12 mt-4 py-2 row w-100 m-0 p-0">
+            <div class="centerdiv" style="width: 280px">
+                <div class="row">
+                    <div class="col-md-6 col-6 p-0">
+                        <div class="float-right"><span class="title">@Html.DisplayNameFor(x => x.CAPIVNO)</span></div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        @Html.TextBoxFor(x => x.CAPIVNO)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-6 p-0">
+                        <div class="float-right"><span class="title">@Html.DisplayNameFor(x => x.CAORDNO)</span></div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        @Html.TextBoxFor(x => x.CAORDNO)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-6 p-0">
+                        <div class="float-right"><span class="title">@Resource.TotalTariffAmount</span></div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <input type="text" name="total-tariff-amount" id="total-tariff-amount" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-3 w-100 p-0">
+                <div class="text-center">
+                    <button type="button" class="search" id="btn-search">@Button.BtnSeach</button>
+                    <button type="button" class="confirm" id="btn-confirm">@Button.BtnConfirm</button>
+                    <button type="button" class="cancel">@Button.BtnCancel</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="row w-100 container-fluid mt-2 mx-0 p-0 border-top border-dark data-display">
+    <table class="w-100 table-sm mt-2" id="dataTable">
+        <thead>
+            <tr class="text-center thead">
+                <th># &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th>@Html.DisplayNameFor(x => x.CACTRTP)</th>
+                <th>@Html.DisplayNameFor(x => x.CAINVST)</th>
+                <th>@Html.DisplayNameFor(x => x.CAINVNO)</th>
+                <th>@Html.DisplayNameFor(x => x.CASPEC)</th>
+                <th>@Html.DisplayNameFor(x => x.CABSZT)</th>
+                <th>@Html.DisplayNameFor(x => x.CABSZW)</th>
+                <th>@Html.DisplayNameFor(x => x.CABSZL)</th>
+                <th>@Html.DisplayNameFor(x => x.CAPRDNM)</th>
+                <th>@Html.DisplayNameFor(x => x.CAPRDDIA)</th>
+                <th>@Html.DisplayNameFor(x => x.CASTLGR)</th>
+                <th>@Html.DisplayNameFor(x => x.CAQTY)</th>
+                <th>@Html.DisplayNameFor(x => x.CAWT)</th>
+                <th>@Html.DisplayNameFor(x => x.CATRFAT)</th>
+                <th>@Resource.NewTotalTariffAmount</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                <th colspan="12" style="text-align:right">@RLayout.Total:</th>
+                <th class="text-center" id="total"></th>
+                <th class="text-center">0</th>
+                <th class="text-center"></th>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>
+<div id="exp-loading" style="position:absolute; left: 50%; bottom: 50%; display: none; "><span class="fa fa-spinner fa-pulse fa-3x fa-fw"></span></div>
+
+@section scripts{
+
+    <script type="text/javascript">
+        var TOTAL = 0;
+        var TOTAL_CRRTARIFF = 0;
+        var CONFIRM = false;
+
+        var Searching = { search: false, nodata: true };
+
+        $(function () {
+            var t = $('#dataTable').DataTable({
+                "ordering": false,
+                "paging": true,
+                "info": false,
+                "searching": true,
+                "lengthChange": false,
+                "scrollX": true,
+                "autoWidth": false,
+                "pageLength": DataTableDisplayLength,
+                "bServerSide": true,
+                "sAjaxSource": '/RawMaterial/AjaxHandlerRegisterTariffAmount',
+                "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                    oSettings.jqXHR = $.ajax({
+                        "dataType": 'json',
+                        "url": sSource,
+                        "type": 'POST',
+                        "data": aoData,
+                        "success": function (e) {
+                            if (e.aaData.length !== 0) {
+                                TOTAL = e._total;
+                                TOTAL_CRRTARIFF = e._totalCurrentTariff;
+                                Searching.nodata = false;
+                            } else {
+                                TOTAL = 0;
+                                TOTAL_CRRTARIFF = 0;
+                                Searching.nodata = true;
+                            }
+                            fnCallback(e);
+                        },
+                        "error": function () {
+                            alert("@RLayout.SessiontimeoutRespone");
+                        @*window.location.href = "@Url.Action("GetLogin","Account", new {area = "" })"*@
+                        }
+                    });
+                },
+                "fnServerParams": function (aoData) {
+                    aoData.push({ "name": "tt_tariffAmount", "value": $('#total-tariff-amount').val() })
+                },
+                "bProcessing": true,
+                "sServerMethod": "POST",
+                "language": {
+                    "paginate": {
+                        "first": '<i class="fa fa-fast-backward"></i>',
+                        "last": '<i class="fa fa-fast-forward"></i>',
+                        "next": '<i class="fa fa-forward"></i>',
+                        "previous": '<i class="fa fa-backward"></i>'
+                    },
+                    "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+                },
+                "columns": [
+                    { "data": function () { return ""; } },
+                    { "data": "CACTRTP" },
+                    { "data": "CAINVST" },
+                    { "data": "CAINVNO" },
+                    { "data": "CASPEC" },
+                    { "data": "CABSZT" },
+                    { "data": "CABSZW" },
+                    { "data": "CABSZL" },
+                    { "data": "CAPRDNM" },
+                    { "data": "CAPRDDIA" },
+                    { "data": "CASTLGR" },
+                    { "data": "CAQTY" },
+                    { "data": "CAWT" },
+                    { "data": "CATRFAT" },
+                    {
+                        "render": function (data, type, row) {
+                            if (CONFIRM === false) {
+                                return row["new_CATRFAT"];
+                            } else {
+                                return row["CATRFAT"];
+                            }
+                        }
+                    }
+                ],
+                "fnFooterCallback": function (row, data, start, end, display) {
+                    var api = this.api(), data;
+                    $(api.column(12).footer()).html(
+                        TOTAL
+                    );
+                    $(api.column(13).footer()).html(
+                        TOTAL_CRRTARIFF
+                    );
+                    $(api.column(14).footer()).html(
+                        $('#total-tariff-amount').val() || 0
+                    );
+                }
+            });
+
+            $('#CAPIVNO, #CAORDNO, #total-tariff-amount ').change(function () {
+                Searching.search = false;
+                Searching.nodata = true;
+            });
+
+            t.on('draw.dt', function () {
+                var PageInfo = $('#dataTable').DataTable().page.info();
+                t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1 + PageInfo.start;
+                });
+            });
+
+            $('#btn-search').on("click", function () {
+                var array = [$('#CAPIVNO').val(), $('#CAORDNO').val()];
+                var sSearch = array.join('|');
+                Searching.search = true;
+                CONFIRM = false;
+                t.search(sSearch).draw();
+            });
+
+            $('#btn-confirm').click(function () {
+                if ($('#total-tariff-amount').val() === '') {
+                    alert('Please enter Total Tariff Amount.');
+                } else {
+                    if (Searching.search === false) {
+                        alert('Please click search to processing data first.');
+                        return;
+                    } else if (Searching.nodata === true) {
+                        ErrorAlert('No data found.');
+                        return;
+                    }
+                    $.ajax({
+                        url: '@Url.Action("UpdateRegisterTariffAmount","RawMaterial")',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: { sSearch: $('#CAPIVNO').val() + '|' + $('#CAORDNO').val(), tt_tariffAmount: $('#total-tariff-amount').val() },
+                        success: function (data) {
+                            if (data == 1) {
+                                SuccessAlert("Update sucessfull.");
+                                $('#dataTable').DataTable().ajax.reload();
+                                Searching.search = false;
+                                Searching.nodata = true;
+                                CONFIRM = true;
+                            } else if (data == 0) {
+                                ErrorAlert('Update fail.');
+                            } else {
+                                ErrorAlert("No data found.");
+                            }
+                        },
+                        error: function (rs) {
+                            alert(rs.responseText);
+                        }
+                    })
+                }
+            })
+   })
+
+    </script>
+}

@@ -1,0 +1,271 @@
+﻿ @model TopProSystem.Areas.MasterSetting.Models.RawMaterial
+@using StaticResources
+@{
+    Layout = "";
+}
+<div class="divTable" style="border:1px solid #000">
+    <div class="divTableBody">
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.AAPURNO)</span></div>
+            <div class="divTableCell">
+                @Html.TextBoxFor(x => x.PurchaseContract.AAPURNO, new { @readonly = "", tabindex = "4" })
+            </div>
+            <div class="divTableCell"><span class="title">Vessel Name</span></div>
+            <div class="divTableCell">
+                @Html.TextBoxFor(x => x.VesselName, new { @tabindex = "12" })
+            </div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.AASPPNO)</span></div>
+            <div class="divTableCell">
+                @Html.TextBoxFor(x => x.PurchaseContract.AASPPNO, new { @tabindex = "5" })
+            </div>
+            <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.AAMKCD)</span></div>
+            <div class="divTableCell">
+                @Html.DropDownListFor(x => x.PurchaseContract.AAMKCD, Model.PurchaseContract.MakerCodes, RLayout.SelectAction, new { @tabindex = "13" })
+                <input type="text" name="AAMKCD_dl" id="AAMKCD_dl" value="@Model.AAMKCD_dl" readonly />
+            </div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.AASPLCD)</span></div>
+            <div class="divTableCell">
+                @Html.DropDownListFor(x => x.PurchaseContract.AASPLCD, Model.PurchaseContract.SupplierCodes, RLayout.SelectAction, new { @tabindex = "6" })
+                <input type="text" name="AASPLCD_dl" id="AASPLCD_dl" value="@Model.AASPLCD_dl" readonly />
+            </div>
+            <div class="divTableCell"><span class="title">PO Date</span></div>
+            <div class="divTableCell">
+                @Html.TextBoxFor(x => x.PODate, new { @tabindex = "14", @data_provide = "datepicker" })
+
+            </div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">Shippers Invoice No</span></div>
+            <div class="divTableCell">
+                @Html.TextBoxFor(x => x.ShippersInvoiceNo, new { @tabindex = "7" })
+                @Html.ValidationMessageFor(x => x.ShippersInvoiceNo)
+            </div>
+            <div class="divTableCell">
+                <span class="title">Shippers Invoice Date</span>
+            </div>
+            <div class="divTableCell">
+                @Html.TextBoxFor(x => x.ShippersInvoiceDate, new { @tabindex = "15", @data_provide = "datepicker" })
+            </div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">Stock Entry Date</span></div>
+            <div class="divTableCell">
+                @Html.TextBoxFor(x => x.StockEntryDate, new { @tabindex = "8", @data_provide = "datepicker" })
+            </div>
+            <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.AAIDCD)</span></div>
+            <div class="divTableCell">
+                @Html.DropDownListFor(x => x.PurchaseContract.AAIDCD, Model.PurchaseContract.PersonIncharges, RLayout.SelectAction, new { @tabindex = "16" })
+                <input type="text" name="AAIDCD_dl" id="AAIDCD_dl" value="@Model.AAIDCD_dl" readonly />
+            </div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.AAUSRCD)</span></div>
+            <div class="divTableCell">
+                @Html.DropDownListFor(x => x.PurchaseContract.AAUSRCD, Model.PurchaseContract.UserCodes, RLayout.SelectAction, new { @tabindex = "9" })
+                <input type="text" name="AAUSRCD_dl" id="AAUSRCD_dl" value="@Model.AAUSRCD_dl" readonly />
+
+            </div>
+            <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.AACTRTP)</span></div>
+            <div class="divTableCell">
+                @Html.DropDownListFor(x => x.PurchaseContract.AACTRTP, Model.PurchaseContract.ContractTypes, RLayout.SelectAction, new { @tabindex = "17" })
+                <input type="text" name="AACTRTP_dl" id="AACTRTP_dl" value="@Model.AACTRTP_dl"  readonly />
+
+            </div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">Deposit/Asset</span></div>
+            <div class="divTableCell">
+
+                @Html.DropDownList(RLayout.SelectAction, new SelectList(new List<String>() { }), RLayout.SelectAction, new { @tabindex = "10" })
+                <input type="text" name="" id="" value="" readonly />
+            </div>
+            <div class="divTableCell"><span class="title">Shipping Date</span></div>
+            <div class="divTableCell">
+                @Html.TextBoxFor(x => x.ShippingDate, new { @tabindex = "18", @data_provide = "datepicker" })
+            </div>
+        </div>
+        <div class="divTableRow">
+            <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.PurchaseContract.AACMDCD)</span></div>
+            <div class="divTableCell">
+                @Html.DropDownListFor(x => x.PurchaseContract.AACMDCD, Model.PurchaseContract.CommodityCodes, RLayout.SelectAction, new { @tabindex = "11" })
+                <input type="text" name="AACMDCD_dl" id="AACMDCD_dl" value="@Model.AACMDCD_dl" readonly />
+            </div>
+            <div class="divTableCell"><span class="title">Raw Material Type</span></div>
+            <div class="divTableCell">
+                @Html.DropDownListFor(x => x.PurchaseContract.AARMTP, Model.PurchaseContract.RawMaterialTypes, RLayout.SelectAction, new { @tabindex = "24" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="float-right mt-2 mb-4">
+    <button type="button" tabindex="19" id="submit-form" class="confirm">Confirm</button>
+    <button type="button" tabindex="20" id="cancle" class="cancel">Cancel</button>
+</div>
+<div class="content-bottom w-100 row mx-0" id="itemno">
+    @Html.Partial("_RawMaterialWarehousingEntry_Item", Model)
+</div>
+@*getname*@
+ <script>
+     $("#submit-form").click(function () {
+        var form = $("#form-id")
+        if (form.valid()) {
+            $('#loader').addClass('loader');
+            form.submit();
+        }
+    })
+</script>
+
+<script>
+
+    $(document).ready(function () {
+        DatePickerProvide();
+    })
+    $('#AASPLCD').change(function () {
+        if ($(this).val() !== '') {
+            $.getJSON('/MasterSetting/Master/GetJsonSalePurchase', { spcode: $(this).val() }).done(function (rs) {
+                $('#AASPLCD_dl').val(rs.MASPNM);
+            });
+        }
+        else {
+            $('#AASPLCD_dl').val('');
+        }
+
+    })
+    $('#AAMKCD').change(function () {
+        if ($(this).val() === '') {
+            $('#AAMKCD_dl').val('');
+        } else {
+            $.getJSON('/MasterSetting/Master/GetJsonBySRCode',
+            {
+                codes: '005' + '|' + $(this).val()
+            }).done(function (rs) {
+                $('#AAMKCD_dl').val(rs.MNSRNM);
+            }).fail(function (rs) {
+                console.error(rs.responseText);
+            })
+        }
+    })
+
+    $('#AAUSRCD').change(function () {
+        if ($(this).val() === '') {
+            $('#AAUSRCD_dl').val('');
+        } else {
+            $.getJSON('/MasterSetting/Master/GetUserName', {
+                userid: $(this).val()
+            }).done(function (rs) {
+                $('#AAUSRCD_dl').val(rs.username);
+            }).fail(function (rs) {
+                console.error(rs.responseText);
+            })
+        }
+    })
+
+    $('#AACMDCD').change(function () {
+        if ($(this).val() === '') {
+            $('#AACMDCD_dl').val('');
+        } else {
+            $.getJSON('/MasterSetting/Master/GetJsonBySRCode',
+            {
+                codes: '006' + '|' + $(this).val().trim()
+            }).done(function (rs) {
+                $('#AACMDCD_dl').val(rs.MNSRNM);
+            }).fail(function (rs) {
+                console.error(rs.responseText);
+            })
+        }
+    })
+
+    $('#AACTRTP').change(function () {
+        if ($(this).val() === '') {
+            $('#AACTRTP_dl').val('');
+        } else {
+            $.getJSON('/MasterSetting/Master/GetJsonBySRCode',
+            {
+                codes: '025' + '|' + $(this).val().trim()
+            }).done(function (rs) {
+                $('#AACTRTP_dl').val(rs.MNSRNM);
+            }).fail(function (rs) {
+                console.error(rs.responseText);
+            })
+        }
+    })
+    $('#AAIDCD').change(function () {
+        if ($(this).val() !== '') {
+            $.getJSON('/MasterSetting/Master/GetJsonMa003', { userid: $(this).val() }).done(function (rs) {
+                $('#AAIDCD_dl').val(rs.MCIDNM);
+            })
+        } else {
+            $('#AAIDCD_dl').val('');
+        }
+    })
+    $(document).ready(function () {
+        $('#AASPLCD').change();
+        $('#AAMKCD').change();
+        $('#AAUSRCD').change();
+        $('#AACTRTP').change();
+        $('#AAIDCD').change();
+
+        $('#AACMDCD').change();
+        $('#AASPLCD').change();
+    })
+</script>
+<script>
+    $(function () {
+        $('#form-id').validate({
+            rules: {
+                ShippersInvoiceNo: {
+                    required: true,
+                },
+                PurchaseContract_AAPURNO: {
+                    required: true,
+                },
+                StockEntryDate:
+                    {
+                        required: true,
+                    },
+                ShippersInvoiceDate: {
+                    required: true,
+                },
+                ShippingDate:    {
+                    required: true,
+                },
+                VesselName: {
+                    required: true,
+                },
+                PODate: {
+                    required: true,
+                },
+            },
+            messages: {
+                PurchaseContract_AAPURNO: {
+                    required: 'Please enter this field',
+                },
+                ShippersInvoiceNo: {
+                    required: 'Please enter this field',
+                },
+                StockEntryDate: {
+                    required: 'Please enter this field',
+                }, ShippersInvoiceDate: {
+                    required: 'Please enter this field',
+                },
+                ShippingDate: {
+                    required: 'Please enter this field',
+                },
+                VesselName: {
+                    required: 'Please enter this field',
+                },
+                PODate: {
+                    required: 'Please enter this field',
+                },
+            },
+            errorElement: 'label',
+            errorPlacement: function (error, element) {
+                error.insertAfter(element);
+            },
+        })
+    })
+</script>

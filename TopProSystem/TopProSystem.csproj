@@ -1,0 +1,767 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\PdfiumViewer.Native.x86.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86.v8-xfa.props" Condition="Exists('..\packages\PdfiumViewer.Native.x86.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86.v8-xfa.props')" />
+  <Import Project="..\packages\PdfiumViewer.Native.x86_64.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86_64.v8-xfa.props" Condition="Exists('..\packages\PdfiumViewer.Native.x86_64.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86_64.v8-xfa.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{16F34EF5-E7F4-4EE4-8059-05BC75919F86}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TopProSystem</RootNamespace>
+    <AssemblyName>TopProSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCrypt.Net-Next, Version=3.1.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.3.1.3\lib\net40\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetZip, Version=1.13.4.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.13.4\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\packages\EPPlus.4.5.3.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="GenCode128, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GenCode128.1.0.0\lib\GenCode128.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <HintPath>..\packages\Office.Interop.Excel.12.0.0\lib\net40\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Office, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <HintPath>..\packages\Office.12.0.0\lib\net40\Office.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfiumViewer, Version=2.13.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
+      <HintPath>..\packages\PdfiumViewer.2.13.0.0\lib\net20\PdfiumViewer.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MasterSetting\Models\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\MasterSetting\Models\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
+    <Content Include="Content\bootstrap-datepicker.min.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-toggle.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datatables.min.css" />
+    <Content Include="Content\Font-awesome\css\font-awesome.css" />
+    <Content Include="Content\Font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\Font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\jquery-confirm.min.css" />
+    <Content Include="Content\jquery.mobile.theme-1.4.5.css" />
+    <Content Include="Content\jquery.mobile.theme-1.4.5.min.css" />
+    <Content Include="Content\Login.css" />
+    <Content Include="Content\MasterSetting.css" />
+    <Content Include="Content\RawMaterial.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\Site.min.css" />
+    <Content Include="Extension\Printer\mpr.dll" />
+    <Content Include="FileCreated\index.html" />
+    <Content Include="FileCreated\Purchase\Excel\index.html" />
+    <Content Include="FileCreated\Purchase\index.html" />
+    <Content Include="FileCreated\Purchase\PDF\index.html" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\barcode.jpg" />
+    <Content Include="Images\bgTB.png" />
+    <Content Include="Images\Icon\ajax-loader.gif" />
+    <Content Include="Images\Icon\edit-icon.png" />
+    <Content Include="Images\Icon\false.gif" />
+    <Content Include="Images\Icon\favico.ico" />
+    <Content Include="Images\Icon\flag.png" />
+    <Content Include="Images\Icon\flag.vi.png" />
+    <Content Include="Images\Icon\loadingajax.gif" />
+    <Content Include="Images\Icon\logo-system.png" />
+    <Content Include="Images\Icon\toggle-icon.png" />
+    <Content Include="Images\Icon\top.png" />
+    <Content Include="Images\Icon\true.gif" />
+    <Content Include="Images\Logo.png" />
+    <Content Include="Images\Logo\LogoForForm.png" />
+    <Content Include="Images\PdfFileImg\barcode.jpg" />
+    <Content Include="Images\PdfFileImg\footer_Purchase_Order.PNG" />
+    <Content Include="Images\PdfFileImg\Logo.png" />
+    <Content Include="Images\PdfFileImg\logotoppro.png" />
+    <Content Include="Images\PdfFileImg\SignBox.png" />
+    <Content Include="Images\PdfFileImg\TopProLogo.PNG" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Images\Templates\Purchase_Order.png" />
+    <Content Include="Scripts\additional-methods.min.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\bootstrap-toggle.min.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\Font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\Font-awesome\less\animated.less" />
+    <Content Include="Content\Font-awesome\less\bordered-pulled.less" />
+    <Content Include="Content\Font-awesome\less\core.less" />
+    <Content Include="Content\Font-awesome\less\fixed-width.less" />
+    <Content Include="Content\Font-awesome\less\font-awesome.less" />
+    <Content Include="Content\Font-awesome\less\icons.less" />
+    <Content Include="Content\Font-awesome\less\larger.less" />
+    <Content Include="Content\Font-awesome\less\list.less" />
+    <Content Include="Content\Font-awesome\less\mixins.less" />
+    <Content Include="Content\Font-awesome\less\path.less" />
+    <Content Include="Content\Font-awesome\less\rotated-flipped.less" />
+    <Content Include="Content\Font-awesome\less\screen-reader.less" />
+    <Content Include="Content\Font-awesome\less\stacked.less" />
+    <Content Include="Content\Font-awesome\less\variables.less" />
+    <Content Include="Content\Font-awesome\scss\font-awesome.scss" />
+    <Content Include="Content\Font-awesome\scss\_animated.scss" />
+    <Content Include="Content\Font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Content\Font-awesome\scss\_core.scss" />
+    <Content Include="Content\Font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Content\Font-awesome\scss\_icons.scss" />
+    <Content Include="Content\Font-awesome\scss\_larger.scss" />
+    <Content Include="Content\Font-awesome\scss\_list.scss" />
+    <Content Include="Content\Font-awesome\scss\_mixins.scss" />
+    <Content Include="Content\Font-awesome\scss\_path.scss" />
+    <Content Include="Content\Font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Content\Font-awesome\scss\_screen-reader.scss" />
+    <Content Include="Content\Font-awesome\scss\_stacked.scss" />
+    <Content Include="Content\Font-awesome\scss\_variables.scss" />
+    <Content Include="Areas\MasterSetting\Views\web.config" />
+    <Content Include="Areas\MasterSetting\Views\Master\SalePurchaseMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\UserMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\UserIDMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\LocationMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\CoatingMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\SpecMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\ClosingDateMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\ExchangeRateMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\TaxMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertTax.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\ErrorMessage\Notification.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateTax.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertExchangeRate.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateExchangeRate.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertSpec.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateSpecMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertCoating.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateCoatingMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertLocationMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateLocationMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertUserID.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateUserIDMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertUserMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateUserMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertSalePurchase.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateSalePurchase.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\CreditMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertCreditMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateCredit.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\DueDateTypeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertDuedateType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateDueDateType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\DaysInMonthMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertDaysInMonth.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateDaysInMonth.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\CalculationTypeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateCalculationTypeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertCalculationType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\WeightDisplayCodeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertWeightDisplayCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateWeightDisplayCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\MakerCodeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertMakerCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateMakerCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\CommodityCodeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertCommodityCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateCommodityCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Shared\_menu.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\BankCodeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\BusinessTypeCodeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\ContractTypeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\CountryCodeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\CurrencyCodeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\DamageCodeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\DataTypeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\DeliveryConditionMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\ExchangeRateTypeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertBankCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertBusinessTypeCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertContractType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertCountryCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertCurrencyCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertDamageCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertDataType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertDeliveryCondition.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertExchangeRateType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertGrade.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertInterruptedReasonCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertInventoryStatus.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertInventoryType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertLogType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertMachineNo.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertMoneyType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertPackingType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertPriceTerm.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertReasonForChangingCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertSectionCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertSettlementTerm.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertShiftCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertStatusCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertTradeCategory.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertTypeofTerms.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertUnitPriceUnit.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateBankCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateBusinessTypeCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateContractType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateCountryCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateCurrencyCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateDamageCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateDataType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateDeliveryCondition.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateExchangeRateType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateGrade.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateInterruptedReasonCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateInventoryStatus.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateInventoryType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateLogType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateMachineNo.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateMoneyType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdatePackingType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdatePriceTerm.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateReasonForChangingCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateSectionCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateSettlementTerm.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateShiftCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateStatusCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateTradeCategory.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateTypeofTerms.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateUnitPriceUnit.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GradeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\InterruptedReasonCodeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\InventoryStatusMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\InventoryTypeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\LogTypeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\MachineNoMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\MoneyTypeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\PackingTypeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\PriceTermMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\ReasonForChangingMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\SectionCodeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\SettlementTermMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\ShiftCodeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\StatusCodeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\TradeCategoryMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\TypeofTermsMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\UnitPriceUnitMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Shared\_MA012.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Shared\_LayoutMA012.cshtml" />
+    <Content Include="Extension\SiteMap\MainMenu.config" />
+    <Content Include="Extension\SiteMap\MasterMenu.config" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertSteelGrade.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateSteelGrade.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\SteelGradeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertRawMaterialType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateRawMaterialType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\RawMaterialTypeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\ErrorMessage\NotFound.cshtml" />
+    <Content Include="Extension\SiteMap\PurchaseContract.config" />
+    <Content Include="Font\RobotoCondensed-Bold.ttf" />
+    <Content Include="Font\RobotoCondensed-BoldItalic.ttf" />
+    <Content Include="Font\RobotoCondensed-Italic.ttf" />
+    <Content Include="Font\RobotoCondensed-Light.ttf" />
+    <Content Include="Font\RobotoCondensed-LightItalic.ttf" />
+    <Content Include="Font\RobotoCondensed-Regular.ttf" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetPrinter.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertClosingDate.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateClosingDate.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertWeightCalculationCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateWeightCalculationCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\WeightCalculationCodeMaster.cshtml" />
+    <EntityDeploy Include="Areas\MasterSetting\Models\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\MasterSetting\Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertWarehouseCategoryCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateWarehouseCategoryCode.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\WareHouseCategoryCodeMaster.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetInsertRawMaterialLabelType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\GetUpdateRawMaterialLabelType.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Master\RawMaterialLabelTypeMaster.cshtml" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Content Include="Font\simhei.ttf" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\datatables.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.mobile-1.4.5.js" />
+    <Content Include="Scripts\jquery.mobile-1.4.5.min.js" />
+    <Content Include="Scripts\jquery.mobile-1.4.5.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-confirm.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MyScript\accountant.js" />
+    <Content Include="Scripts\MyScript\js.cookie.js" />
+    <Content Include="Scripts\MyScript\salepurchasemaster.js" />
+    <Content Include="Scripts\MyScript\Script.js" />
+    <Content Include="Scripts\SaveDataChangeLanguage\MasterInsertAndUpdate.js" />
+    <Content Include="Scripts\SaveDataChangeLanguage\PurchaseAdd.js" />
+    <Content Include="Scripts\SaveDataChangeLanguage\PurchaseEdit.js" />
+    <Content Include="Scripts\SaveDataChangeLanguage\SearchCommon.js" />
+    <Content Include="Scripts\SaveDataChangeLanguage\SearchMasterCommon.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\MasterSetting\Controllers\ErrorMessageController.cs" />
+    <Compile Include="Areas\MasterSetting\Controllers\FormulaController.cs" />
+    <Compile Include="Areas\MasterSetting\Controllers\MasterController.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\INV001\INV001_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\MA001\MA001_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\MA002\MA002_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\MA003\MA003_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\MA004\MA004_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\MA005\MA005_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\MA006\MA006_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\MA007\MA007_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\MA009\MA009_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\MA010\MA010_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\MA011\MA011_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\MA012\MA012_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\Printer\PrinterMachine.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\PUR001\PUR001_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\RawMaterialType\RawMaterialType_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\RawMaterialDal\RawMaterialDAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\RM0001\RM0001_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\SteelGrade\SteelGrade_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\TRA001\TRA001_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\DAL\WriteLogError_DAL.cs" />
+    <Compile Include="Areas\MasterSetting\ForeignKeyConstraint\Constraint.cs" />
+    <Compile Include="Areas\MasterSetting\MasterSettingAreaRegistration.cs" />
+    <Compile Include="Areas\MasterSetting\MessageSendView.cs" />
+    <Compile Include="Areas\MasterSetting\Models\ClassificationCode.cs" />
+    <Compile Include="Areas\MasterSetting\Models\DataInspecExcel.cs" />
+    <Compile Include="Areas\MasterSetting\Models\InspectionItemNoMaterial.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\INV001.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\jQueryDataTableParamModel.cs" />
+    <Compile Include="Areas\MasterSetting\Models\jQueryDataTableParamModelInventory.cs" />
+    <Compile Include="Areas\MasterSetting\Models\jQueryDataTableParamModelPurchase.cs" />
+    <Compile Include="Areas\MasterSetting\Models\LogError.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\LogUserAction.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\MA001.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\MA002.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\MA003.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\MA004.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\MA005.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\MA006.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\MA007.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\MA009.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\MA010.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\MA011.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\MA012.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\PermissionAction.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\PermissionRecord.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\PrinterSetting.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\PUH001.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\PUR001.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\PURNO_CREATED.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\RawMaterial.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\RawMaterialType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\RM0001.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\Role_Mapping.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\Role_Mapping_Action.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\SecurityLevel.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\sINV001.cs" />
+    <Compile Include="Areas\MasterSetting\Models\sMA001.cs" />
+    <Compile Include="Areas\MasterSetting\Models\sMA002.cs" />
+    <Compile Include="Areas\MasterSetting\Models\sMA003.cs" />
+    <Compile Include="Areas\MasterSetting\Models\sMA004.cs" />
+    <Compile Include="Areas\MasterSetting\Models\sMA006.cs" />
+    <Compile Include="Areas\MasterSetting\Models\sMA009.cs" />
+    <Compile Include="Areas\MasterSetting\Models\sMA011.cs" />
+    <Compile Include="Areas\MasterSetting\Models\sMA012.cs" />
+    <Compile Include="Areas\MasterSetting\Models\sPUR001.cs" />
+    <Compile Include="Areas\MasterSetting\Models\sRawMaterial.cs" />
+    <Compile Include="Areas\MasterSetting\Models\SteelGrade.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\sTRA001.cs" />
+    <Compile Include="Areas\MasterSetting\Models\Tmp_MaterialWarehousingResult.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MasterSetting\Models\TRA001.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DeliveryController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InspectionController.cs" />
+    <Compile Include="Controllers\InventoryController.cs" />
+    <Compile Include="Controllers\PakingController.cs" />
+    <Compile Include="Controllers\ProductionController.cs" />
+    <Compile Include="Controllers\PurchaseController.cs" />
+    <Compile Include="Controllers\RawMaterialController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
+    <Compile Include="Extension\AccountRole\AuthorizeMaster.cs" />
+    <Compile Include="Extension\AccountRole\BaseAccountController.cs" />
+    <Compile Include="Extension\AccountRole\BaseMasterController.cs" />
+    <Compile Include="Extension\AccountRole\BasePurchaseController.cs" />
+    <Compile Include="Extension\AccountRole\BaseRawMaterialController.cs" />
+    <Compile Include="Extension\AccountRole\BaseSalesController.cs" />
+    <Compile Include="Extension\AccountRole\PermissionMappingModel.cs" />
+    <Compile Include="Extension\AccountRole\PermissionService.cs" />
+    <Compile Include="Extension\AccountRole\SecurityLevelService.cs" />
+    <Compile Include="Extension\AccountRole\StandardPermissionProvider.cs" />
+    <Compile Include="Extension\LoginControll\LoginControll.cs" />
+    <Compile Include="Extension\ModelShowAction\BaseActionModel.cs" />
+    <Compile Include="Extension\PrinterWithAcrobatOrFoxitRender.cs" />
+    <Compile Include="Extension\Printer\ConnectToSharedFolder.cs" />
+    <Compile Include="Extension\Printer\PrinterMachine.cs" />
+    <Compile Include="Extension\SiteMapRole\ExtensionsMenu.cs" />
+    <Compile Include="Extension\SiteMapRole\SiteMapNode.cs" />
+    <Compile Include="Extension\SiteMapRole\XmlSiteMap.cs" />
+    <Compile Include="Filters\CustomAuthorizeAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BcryptHashPass.cs" />
+    <Compile Include="Models\ConstantData.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\SessionContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Views\Account\GetLogin.cshtml" />
+    <Content Include="Views\Home\GetMainMenu.cshtml" />
+    <Content Include="Views\Purchase\GetPrintPurchaseOrder.cshtml" />
+    <Content Include="Views\Purchase\GetPurchaseContractEntry.cshtml" />
+    <Content Include="Views\Purchase\GetPurchaseContractEntry_Change.cshtml" />
+    <Content Include="Views\Purchase\GetPurchaseHistoryEnquiry.cshtml" />
+    <Content Include="Views\Purchase\GetPurchaseOrderBalanceEnquiry.cshtml" />
+    <Content Include="Views\Purchase\GetPurchaseOrderCompletion.cshtml" />
+    <Content Include="Views\Purchase\_PurchaseContractEntry.cshtml" />
+    <Content Include="Views\RawMaterial\GetPrintRawMaterialRecevingList.cshtml" />
+    <Content Include="Views\RawMaterial\GetRawMaterialRequestEntry.cshtml" />
+    <Content Include="Views\RawMaterial\GetRawMaterialRequestResult.cshtml" />
+    <Content Include="Views\RawMaterial\GetRawMaterialWarehousingEntry_PO.cshtml" />
+    <Content Include="Views\RawMaterial\GetRawMaterialWarehousingResult.cshtml" />
+    <Content Include="Views\RawMaterial\GetRegisterFreightAmount.cshtml" />
+    <Content Include="Views\RawMaterial\GetRegisterTariffAmount.cshtml" />
+    <Content Include="Views\RawMaterial\RegisterCustomHandlingAmount.cshtml" />
+    <Content Include="Views\RawMaterial\_RawMaterialWarehousingEntry_Item-2.cshtml" />
+    <Content Include="Views\RawMaterial\_RawMaterialWarehousingEntry_Item.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage.cshtml" />
+    <Content Include="Views\Shared\_LayoutPageRawMaterial.cshtml" />
+    <Content Include="Views\web.config" />
+    <Content Include="Views\RawMaterial\GetPrintRawMaterialLabel.cshtml" />
+    <Content Include="Areas\MasterSetting\Views\Shared\_LayoutMasterSeting.cshtml" />
+    <Content Include="Views\Account\GetProFile.cshtml" />
+    <Content Include="Views\Shared\NotFound404Page.cshtml" />
+    <Content Include="Views\Shared\_LayoutPageSale.cshtml" />
+    <Content Include="Views\Sales\SaleOrderEntry_Add.cshtml" />
+    <Content Include="Views\Sales\SaleOrderEntry_Change.cshtml" />
+    <Content Include="Views\Sales\_SaleOrderEntry.cshtml" />
+    <Content Include="Views\Sales\SaleOrderEntry_Delete.cshtml" />
+    <Content Include="Views\Sales\SaleOrderStockAllocation.cshtml" />
+    <Content Include="Views\Sales\SaleOrderStockCancellation.cshtml" />
+    <Content Include="Views\Sales\SaleOrderComPletion.cshtml" />
+    <Content Include="Views\RawMaterial\_mobileMenu.cshtml" />
+    <Content Include="Views\Purchase\GetPurchaseContractEntry_Add.cshtml" />
+    <Content Include="Views\Sales\SaleOrderEntry.cshtml" />
+    <Content Include="Views\RawMaterial\GetRawMaterialWarehousingEntry.cshtml" />
+    <Content Include="Views\Account\Permissions.cshtml" />
+    <Content Include="Views\Shared\_LayoutPageAccount.cshtml" />
+    <Content Include="Views\Shared\_LayoutPagePurchase.cshtml" />
+    <Content Include="Views\Shared\_menu.cshtml" />
+    <Content Include="Views\RawMaterial\_GetRawMaterialWarehousing.cshtml" />
+    <Content Include="Views\Shared\GetPurchaseContractEntry.cshtml" />
+    <Content Include="Views\Account\GetUserLoggedIn.cshtml" />
+    <Content Include="Views\RawMaterial\RegisterPurchaseAmount.cshtml" />
+    <Content Include="Views\RawMaterial\GetRawMaterialStockEntry_Add.cshtml" />
+    <Content Include="Views\RawMaterial\_LoadDataFromExcel.cshtml" />
+    <Content Include="Views\RawMaterial\GetRawMaterialStockEntry_Edit.cshtml" />
+    <Content Include="Views\RawMaterial\_LoadDataFromSQL.cshtml" />
+    <Content Include="Views\Shared\_LayoutPageInventory.cshtml" />
+    <Content Include="Views\Inventory\InventoryEnquiry.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\MasterSetting\DAL\MA008\" />
+    <Folder Include="FileCreated\Log\" />
+    <Folder Include="FileCreated\RawMaterial\" />
+    <Folder Include="Views\Delivery\" />
+    <Folder Include="Views\Inspection\" />
+    <Folder Include="Views\Paking\" />
+    <Folder Include="Views\Production\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StaticResources\StaticResources.csproj">
+      <Project>{17455f89-2756-4b8e-b892-eeabaeb5b13a}</Project>
+      <Name>StaticResources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>47370</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:44628/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\PdfiumViewer.Native.x86_64.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86_64.v8-xfa.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PdfiumViewer.Native.x86_64.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86_64.v8-xfa.props'))" />
+    <Error Condition="!Exists('..\packages\PdfiumViewer.Native.x86.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86.v8-xfa.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PdfiumViewer.Native.x86.v8-xfa.2018.4.8.256\build\PdfiumViewer.Native.x86.v8-xfa.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

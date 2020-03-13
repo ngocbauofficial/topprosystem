@@ -1,0 +1,243 @@
+﻿@using StaticResources
+@using StaticResources.View.PUR001
+@model TopProSystem.Areas.MasterSetting.Models.PUR001
+@{
+    ViewBag.Title = Resource.PrintPurchaseOrderTitle;
+    Layout = "~/Views/Shared/_LayoutPagePurchase.cshtml";
+    ViewBag.content = Resource.PrintPurchaseOrderTitle;
+}
+<style>
+    .ui-autocomplete {
+        width: 120px;
+    }
+
+    .ui-helper-hidden-accessible {
+        display: none;
+    }
+</style>
+<div class="row container-fluid w-100 m-0 p-0">
+    <div class="col-12 w-100  m-0 pb-4" style="border-bottom: 1px solid #000">
+        <div class="centerdiv">
+            <form action="/" method="post" name="formdata" id="form-search">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 p-0">
+                        <span class="title float-right">@Resource.FrmPurchaseContractNo</span>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                        <input type="text" name="from" id="from" value="" tabindex="1" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-6 p-0">
+                        <span class="title float-right">@Resource.ToPurchaseContractNo</span>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                        <input type="text" name="to" id="to" value="" tabindex="2" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-12  mt-3 w-100 m-0 p-0">
+            <div class="text-center">
+                <button id="btnSearch" class="search">@Button.BtnSeach</button>
+                <button type="button" class="confirm" onclick="CreatePurchaseOrther()">@Button.BtnConfirm</button>
+                <button type="button" class="cancel">@Button.BtnCancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="data-display">
+        <table class="table-sm w-100" id="dataTable">
+            <thead>
+                <tr class="text-center thead">
+                    <th># &nbsp;</th>
+                    <th>@Html.DisplayNameFor(x => x.AAPURNO)</th>
+                    <th>@Html.DisplayNameFor(x => x.ABCTITM)</th>
+                    <th>@Html.DisplayNameFor(x => x.AACTRTP)</th>
+                    <th>@Html.DisplayNameFor(x => x.AACTRTP)</th>
+                    <th>@Html.DisplayNameFor(x => x.AASPLCD)</th>
+                    <th>@Resource.SupplierName</th>
+                    <th>@Html.DisplayNameFor(x => x.AAUSRCD)</th>
+                    <th>@Html.DisplayNameFor(x => x.AASPLCD)</th>
+                    <th>@Html.DisplayNameFor(x => x.AACMDCD)</th>
+                    <th>@Html.DisplayNameFor(x => x.AACMDCD)</th>
+                    <th>@Html.DisplayNameFor(x => x.AAMKCD)</th>
+                    <th>@Resource.MakerName</th>
+                    <th>@Html.DisplayNameFor(x => x.ABMCSPC)</th>
+                    <th>@Html.DisplayNameFor(x => x.ABBSZT)</th>
+                    <th>@Html.DisplayNameFor(x => x.ABBSZW)</th>
+                    <th>@Html.DisplayNameFor(x => x.ABBSZL)</th>
+                    <th>@Html.DisplayNameFor(x => x.ABPRDNM)</th>
+                    <th>@Html.DisplayNameFor(x => x.RAPSTLGR)</th>
+                    <th>@Html.DisplayNameFor(x => x.AASHPDT)</th>
+                    <th>@Html.DisplayNameFor(x => x.ABDLVDT)</th>
+                    <th>@Html.DisplayNameFor(x => x.ABWT)</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<div id="exp-loading" style="position:absolute; left: 50%; bottom: 50%; display: none; "><span class="fa fa-spinner fa-pulse fa-3x fa-fw"></span></div>
+
+
+@section scripts{
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            var t = $('#dataTable').DataTable({
+                "ordering": false,
+                "autoWidth": false,
+                "info": false,
+                "lengthChange": false,
+                "pageLength": DataTableDisplayLength,
+                "bServerSide": true,
+                "scrollX": true,
+                "sAjaxSource": "/Purchase/SearchPurchaseOrder",
+                "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                    oSettings.jqXHR = $.ajax({
+                        "dataType": 'json',
+                        "url": sSource,
+                        "type": 'POST',
+                        "data": aoData,
+                        "success": fnCallback,
+                        "error": function () {
+                            alert("@RLayout.SessiontimeoutRespone");
+                            window.location.href = "@Url.Action("GetLogin","Account", new {area = "" })"
+                        }
+                    });
+                },
+                "bProcessing": true,
+                "sServerMethod": "POST",
+                "sPaginationType": "full_numbers",
+                "language": {
+                    "paginate": {
+                        "first": '<i class="fa fa-fast-backward"></i>',
+                        "last": '<i class="fa fa-fast-forward"></i>',
+                        "next": '<i class="fa fa-forward"></i>',
+                        "previous": '<i class="fa fa-backward"></i>'
+                    },
+                    "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+                },
+                "columns": [
+                    {
+                        "data": function () { return ""; },
+                    },
+                    { "data": "AAPURNO" },
+                    { "data": "ABCTITM" },
+                    { "data": "AACTRTP" },
+                    { "data": "AACTRNM" },
+                    { "data": "AASPLCD" },
+                    { "data": "AASPLNM" },
+                    { "data": "AAUSRCD" },
+                    { "data": "AAUSRNM" },
+                    { "data": "AACMDCD" },
+                    { "data": "AACMDNM" },
+                    { "data": "AAMKCD" },
+                    { "data": "AAMKNM" },
+                    { "data": "ABMCSPC" },
+                    { "data": "ABBSZT" },
+                    { "data": "ABBSZW" },
+                    { "data": "ABBSZL" },
+                    { "data": function () { return "" } },
+                    { "data": "RAPSTLGR"},
+                    { "data": "AASHPDT" },
+                    { "data": "ABDLVDT" },
+                    { "data": "ABWT" },
+
+                ]
+
+            });
+
+            t.on('draw.dt', function () {
+                var PageInfo = $('#dataTable').DataTable().page.info();
+                t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1 + PageInfo.start;
+                });
+            });
+
+
+            $('#btnSearch').on('click', function () {
+                if ($('#from').val() !== '' && $('#to').val()) {
+                    sSearch = $('#from').val() + '|' + $('#to').val();
+                    t.search(sSearch).draw();
+                }
+
+            });
+        })
+
+
+
+    var doc = [];
+
+    $(function () {
+        var document = [];
+        $.getJSON('@Url.Action("GetAll","Purchase")').done(function (data) {
+            $.each(data, function (key, item) {
+                document.push(data[key].AAPURNO);
+            })
+        });
+        doc = document;
+
+        if (document !== null) {
+            $('#from').autocomplete({
+                source: document,
+            });
+
+            $('#to').autocomplete({
+                source: document,
+            });
+        }
+    })
+
+
+    function CreatePurchaseOrther() {
+        var sfrom = $('#from').val();
+        var sto = $('#to').val();
+        if (sfrom == '' || sto == '') {
+            alert("Please enter purchase information !");
+            return;
+        }
+
+        if (!doc.includes(sfrom) || !doc.includes(sto)) {
+            alert("Please enter a valid purchase contract no !");
+            return;
+        } else {
+            var ifrom = parseInt(sfrom), ito = parseInt(sto);
+            if (ifrom > ito) {
+               alert("From purchase contract no must be smaller than to purchase contract no.");
+                return;
+            }
+        }
+
+        $.ajax({
+            url: '/Purchase/PrintPurchaseOrder',
+            type: 'GET',
+            data: { _array: sfrom + '|' + sto },
+            beforeSend: function () {
+                $('#exp-loading').css('display', 'block');
+            },
+            success: function (rs) {
+                if (parseInt(rs.status) === 2) {
+                    ErrorAlert(rs.message);
+                } else if (parseInt(rs.status) === 1) {
+                    window.location.href = "@Url.RouteUrl(new { Controller = "Purchase", Action = "DownloadMultiFile" })/?filePaths=" + rs.path;;
+                }
+            },
+            complete: function () {
+                $('#exp-loading').css('display', 'none');
+            },
+            error: function (rs) {
+                console.log(rs.responseText);
+                alert("Session timeout, please login again !");
+                @*window.location.href = '@Url.Action("GetLogin","Account",new {area = "" })';*@
+            }
+        })
+    }
+    </script>
+    <script src="~/Scripts/SaveDataChangeLanguage/SearchCommon.js"></script>
+}

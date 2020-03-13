@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Sales Order Completion";
+    Layout = "~/Views/Shared/_LayoutPageSale.cshtml";
+    ViewBag.content = ViewBag.Title;
+}
+
+<div class="content-top row mx-0">
+    <form action="/" method="post">
+            <div class="divTable w-auto" style="margin: 0 auto">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                        <div class="divTableCell border-0"><span class="title">Customer Code</span></div>
+                        <div class="divTableCell border-0">@Html.DropDownList("13123", new SelectList(new List<int>() { 1, 2, 3, 4 })) <input type="text" name="name" value="" readonly /></div>
+                    </div>
+                    <div class="divTableRow">
+                        <div class="divTableCell border-0"><span class="title">Person Incharge</span></div>
+                        <div class="divTableCell border-0">@Html.DropDownList("123123", new SelectList(new List<int>() { 1, 2, 3, 4 })) <input type="text" name="name" value="" readonly /></div>
+                    </div>
+                </div>
+            </div>
+        <div class="float-right mt-2">
+            <button type="button" class="confirm">Search</button>
+            <button type="button" class="excel">Excel</button>
+            <button type="button" class="cancel">Cancel</button>
+        </div>
+        <div class="float-left">
+            <button type="button" style="background-color: #268499; border: none; color: white; width: 200px; bottom: -20px; position:relative">Complete From All Select</button>
+        </div>
+    </form>
+</div>
+<div class="content-bottom mx-0 row  data-display">
+    <table class="w-100 table-sm table-responsive">
+        <thead>
+            <tr class="text-center thead">
+                <th>Select</th>
+                <th>OES No.</th>
+                <th>Item No</th>
+                <th>Contract Type</th>
+                <th>Contract</th>
+                <th>Supplier Code</th>
+                <th>Supplier Name</th>
+                <th>User Code</th>
+                <th>User Name</th>
+                <th>Commodity Code</th>
+                <th>Commodity</th>
+                <th>Maker Code</th>
+                <th>Maker Name</th>
+                <th>Spec</th>
+                <th>Thick</th>
+                <th>Width</th>
+                <th>Length</th>
+                <th>Product Name</th>
+                <th>Shipping Month</th>
+                <th>Delivery Date</th>
+                <th>Purchase Weight</th>
+                <th>Warehouse Weight</th>
+                <th>Balance Weight</th>
+            </tr>
+        </thead>
+       
+        <tbody>
+            <tr class="tsheader">
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="tsheader">
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

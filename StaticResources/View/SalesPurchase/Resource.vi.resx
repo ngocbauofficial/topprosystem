@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ChangeTitle" xml:space="preserve">
+    <value>Cập nhật Sale Purchase</value>
+  </data>
+  <data name="InsertTitle" xml:space="preserve">
+    <value>Thêm mới Sale Purchase</value>
+  </data>
+  <data name="MABUZCD" xml:space="preserve">
+    <value>BUSINESS TYPE</value>
+  </data>
+  <data name="MACLTRM" xml:space="preserve">
+    <value>COLLECTION TERM</value>
+  </data>
+  <data name="MACNTRC" xml:space="preserve">
+    <value>Mã quốc gia</value>
+  </data>
+  <data name="MAIDCD" xml:space="preserve">
+    <value>IN CHARGE</value>
+  </data>
+  <data name="MAPCALC" xml:space="preserve">
+    <value>CALCULATION TYPE</value>
+  </data>
+  <data name="MAPCLSD" xml:space="preserve">
+    <value>CLOSING DATE</value>
+  </data>
+  <data name="MAPCRCD" xml:space="preserve">
+    <value>Mã tiền tệ</value>
+  </data>
+  <data name="MAPDAYS" xml:space="preserve">
+    <value>DAYS IN MONTH</value>
+  </data>
+  <data name="MAPDFER" xml:space="preserve">
+    <value>DEFERRING</value>
+  </data>
+  <data name="MAPSETL" xml:space="preserve">
+    <value>SETTLEMENT</value>
+  </data>
+  <data name="MAPTDUE" xml:space="preserve">
+    <value>TYPE OF DUE DATE</value>
+  </data>
+  <data name="MAPTXCD" xml:space="preserve">
+    <value>Mã thuế</value>
+  </data>
+  <data name="MAPYTRM" xml:space="preserve">
+    <value>PAYMENT TERM</value>
+  </data>
+  <data name="MARGSDT" xml:space="preserve">
+    <value>Ngày đăng ký</value>
+  </data>
+  <data name="MARGSTM" xml:space="preserve">
+    <value>Thời gian đăng ký</value>
+  </data>
+  <data name="MASCALC" xml:space="preserve">
+    <value>CALCULATION TYPE</value>
+  </data>
+  <data name="MASCLSD" xml:space="preserve">
+    <value>CLOSING DATE</value>
+  </data>
+  <data name="MASCRCD" xml:space="preserve">
+    <value>Mã tiền tệ</value>
+  </data>
+  <data name="MASDAYS" xml:space="preserve">
+    <value>DAYS IN MONTH</value>
+  </data>
+  <data name="MASDFER" xml:space="preserve">
+    <value>DEFERRING</value>
+  </data>
+  <data name="MASPAD1" xml:space="preserve">
+    <value>Địa chỉ 1</value>
+  </data>
+  <data name="MASPAD2" xml:space="preserve">
+    <value>Địa chỉ 2</value>
+  </data>
+  <data name="MASPAD3" xml:space="preserve">
+    <value>Địa chỉ 3</value>
+  </data>
+  <data name="MASPCD" xml:space="preserve">
+    <value>Mã S/P </value>
+  </data>
+  <data name="MASPCTG" xml:space="preserve">
+    <value>SALES/PURCHASE</value>
+  </data>
+  <data name="MASPCTGNM" xml:space="preserve">
+    <value>SALES/PURCHASE</value>
+  </data>
+  <data name="MASPFAX" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="MASPNM" xml:space="preserve">
+    <value>Tên S/P</value>
+  </data>
+  <data name="MASPSNM" xml:space="preserve">
+    <value>Tên ngắn</value>
+  </data>
+  <data name="MASPTEL" xml:space="preserve">
+    <value>Điện thoại</value>
+  </data>
+  <data name="MASSETL" xml:space="preserve">
+    <value>SETTLEMENT</value>
+  </data>
+  <data name="MASTDUE" xml:space="preserve">
+    <value>TYPE OF DUE DATE</value>
+  </data>
+  <data name="MasterTitle" xml:space="preserve">
+    <value>Sale Purchase Master</value>
+  </data>
+  <data name="MASTXCD" xml:space="preserve">
+    <value>Mã thuế</value>
+  </data>
+  <data name="MAUPDT" xml:space="preserve">
+    <value>Ngày cập nhật</value>
+  </data>
+  <data name="MAUPDTM" xml:space="preserve">
+    <value>Thời gian cập nhật</value>
+  </data>
+  <data name="PlaceholderTextSearch" xml:space="preserve">
+    <value>Nhập mã sp ...</value>
+  </data>
+  <data name="ErrorNoRowSelect" xml:space="preserve">
+    <value>Chọn dữ liệu để xóa !</value>
+  </data>
+  <data name="IsUsed" xml:space="preserve">
+    <value>SP code đã được sử dụng</value>
+  </data>
+  <data name="Maxlength" xml:space="preserve">
+    <value>Hãy nhập tối đa không quá {0} kí tự</value>
+  </data>
+  <data name="MessageDelete" xml:space="preserve">
+    <value>Bạn có chắc muốn xóa ?</value>
+  </data>
+  <data name="Minlength" xml:space="preserve">
+    <value>Hãy nhập tối thiểu {0} kí tự</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>bắt buộc</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Hãy nhập số hợp lệ.</value>
+  </data>
+  <data name="MaxValue" xml:space="preserve">
+    <value>Hãy nhập số có giá trị nhỏ hơn {0}</value>
+  </data>
+</root>

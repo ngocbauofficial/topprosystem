@@ -1,0 +1,123 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Main Menu</title>
+    <link rel="shortcut icon" href="~/Images/Icon/favico.ico" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background: none;
+            min-width: unset;
+        }
+
+        .user-login a:hover {
+            color: #0b708d !important;
+            text-decoration: none;
+        }
+
+        .user-login a {
+            color: #000;
+        }
+        .logo img{
+            width: 110px;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            document.getElementsByTagName('BODY')[0].classList.add('d-none');
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                window.location.href = '/RawMaterial/GetRawMaterialWarehousingResult';
+            } else {
+                document.getElementsByTagName('BODY')[0].classList.remove('d-none');
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="container-fluid h-100">
+        <div class="row text-dark" >
+            <div class="col-12">
+                <div class="float-right">
+                    <div class="user-login">
+                        @using (Html.BeginForm("SignOut", "Account", new { area = "" }, FormMethod.Post, new { id = "form-logout" }))
+                        {
+                            <a href="#" title="Profile"><i class="fa fa-user-circle"></i> Hello User: @Session[TopProSystem.Models.ConstantData.SessionUserName]</a>
+                            <a href="javascript:document.getElementById('form-logout').submit()" class="ml-2"><i class="fa fa-sign-out"></i> Logout</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="logo">
+            <center><img src="~/Images/Logo/LogoForForm.png" alt="logo" /></center>
+            <center style="color:#3c8cbc; font-size: 40px;font-weight:bold; text-transform:uppercase;letter-spacing: 10px;">Formosa SYSTEM</center>
+        </div>
+        
+        <div class="text-center">
+            <span style="font-size: 40px" class="header-text-color">Main Menu</span>
+        </div>
+        <div class="col-md-12 container-fluid padding-box">
+            @{
+                var siteMap = new TopProSystem.Extension.SiteMapRole.XmlSiteMap();
+                siteMap.LoadFrom("~/Extension/SiteMap/MainMenu.config");
+            }
+            @{
+                var rootNode = siteMap.RootNode;
+            }
+            @helper RenderMenuItem(TopProSystem.Extension.SiteMapRole.SiteMapNode item)
+            {
+                string url = null;
+                if (!string.IsNullOrEmpty(item.ControllerName) && !string.IsNullOrEmpty(item.ActionName))
+                {
+                    if (!string.IsNullOrEmpty(item.Area))
+                    {
+                        url = Url.Action(item.ActionName, item.ControllerName, new { Area = item.Area }, null);
+
+                    }
+                    else
+                    {
+                        url = Url.Action(item.ActionName, item.ControllerName, new { Area = "" }, null);
+                    }
+                }
+                else if (!string.IsNullOrEmpty(item.Url))
+                {
+                    url = item.Url.StartsWith("~/", StringComparison.Ordinal) ? Url.Content(item.Url) : item.Url;
+                }
+
+                <div class="col-md-3 col-sm-4 col-6">
+                    <div class="my-box">
+                        <a href="@url"><span>@item.SystemName</span></a>
+                    </div>
+                </div>
+
+            }
+            <div class="row m-0">
+                @foreach (var item in rootNode.ChildNodes.Where(x => x.Visible))
+                {
+                    @RenderMenuItem(item)
+                }
+                <div class="col-md-3 col-sm-3 col-6">
+                    <div class="my-box">
+                        <a href="#"><span>Exit</span></a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</body>
+</html>

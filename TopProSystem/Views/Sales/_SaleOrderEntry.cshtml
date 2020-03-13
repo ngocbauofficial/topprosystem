@@ -1,0 +1,264 @@
+﻿<style>
+    #special-cell .divTableCell {
+        text-align: center;
+    }
+
+    #special-cell input[type=text] {
+        width: 50px !important;
+    }
+
+    .bg-spacing-cell {
+        background: #e5e4e4;
+    }
+
+    .img-square {
+        height: 200px;
+        width: 100%;
+        border: 1px solid #999999;
+        margin-top: 4px;
+    }
+
+        .img-square h6 {
+            text-align: center;
+            line-height: 200px;
+            font-weight: normal;
+        }
+
+    .spacing-indent {
+        margin-top: 80px;
+    }
+
+    .button-col3 {
+        bottom: 0;
+        right: 0;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        position: absolute;
+    }
+</style>
+@using StaticResources
+<div class="w-100">
+    <div style="border-top: 1px solid #000; padding: 4px; border-left: 1px solid #000; border-right: 1px solid #000; background: #e5e4e4; margin-top: 10px; ">
+        <button id="btndel" type="button" class="cancel">Delete item</button>
+    </div>
+    <form action="/" method="post">
+        <div class="row m-0">
+            <div class="col-9 p-0">
+                <div class="divTable " style="border:1px solid #000">
+                    <div class="divTableBody">
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Item No</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Customer PO No</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Delivery Date</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Customer Spec</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Product Spec</span></div>
+                            <div class="divTableCell">
+                            @Html.DropDownList("asdasds", new SelectList(new List<int>() { 1, 2, 3, 4, 5 }), RLayout.SelectAction)
+                            </div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"></div>
+                            <div class="divTableCell">
+                                <div class="divTable">
+                                    <div class="divTableBody">
+                                        <div class="divTableRow">
+                                            <div class="divTableCell text-center" style="width: 10%"><span class="title-center">Thickness</span></div>
+                                            <div class="divTableCell text-center" style="width: 10%"><span class="title-center">Max</span></div>
+                                            <div class="divTableCell text-center" style="width: 10%"><span class="title-center">Min</span></div>
+                                            <div class="divTableCell text-center bg-spacing-cell" style="width: 5%"><span>&nbsp;</span></div>
+                                            <div class="divTableCell text-center" style="width: 10%"><span class="title-center">Width</span></div>
+                                            <div class="divTableCell text-center" style="width: 10%"><span class="title-center">Max</span></div>
+                                            <div class="divTableCell text-center" style="width: 10%"><span class="title-center">Min</span></div>
+                                            <div class="divTableCell text-center bg-spacing-cell" style="width: 5%"><span>&nbsp;</span></div>
+                                            <div class="divTableCell text-center" style="width: 10%"><span class="title-center">Length</span></div>
+                                            <div class="divTableCell text-center" style="width: 10%"><span class="title-center">Max</span></div>
+                                            <div class="divTableCell text-center" style="width: 10%"><span class="title-center">Min</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Customer Size</span></div>
+                            <div class="divTableCell">
+                                <div class="divTable">
+                                    <div class="divTableBody">
+                                        <div class="divTableRow" id="special-cell">
+                                            <div class="divTableCell" style="width: 10%"><input type="text" name="name" value="" /></div>
+                                            <div class="divTableCell" style="width: 10%"></div>
+                                            <div class="divTableCell" style="width: 10%"></div>
+                                            <div class="divTableCell bg-spacing-cell" style="width: 5%"><span class="title-center">X</span></div>
+                                            <div class="divTableCell" style="width: 10%"><input type="text" name="name" value="" /></div>
+                                            <div class="divTableCell" style="width: 10%"></div>
+                                            <div class="divTableCell" style="width: 10%"></div>
+                                            <div class="divTableCell bg-spacing-cell" style="width: 5%"><span class="title-center">X</span></div>
+                                            <div class="divTableCell" style="width: 10%"><input type="text" name="name" value="" /></div>
+                                            <div class="divTableCell" style="width: 10%"></div>
+                                            <div class="divTableCell" style="width: 10%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Product Size</span></div>
+                            <div class="divTableCell">
+                                <div class="divTable">
+                                    <div class="divTableBody">
+                                        <div class="divTableRow" id="special-cell">
+                                            <div class="divTableCell" style="width: 10%"><input type="text" name="name" value="" /></div>
+                                            <div class="divTableCell" style="width: 10%"><input type="text" name="name" value="" /></div>
+                                            <div class="divTableCell" style="width: 10%"><input type="text" name="name" value="" /></div>
+                                            <div class="divTableCell bg-spacing-cell" style="width: 5%"><span class="title-center">X</span></div>
+                                            <div class="divTableCell" style="width: 10%"><input type="text" name="name" value="" /></div>
+                                            <div class="divTableCell" style="width: 10%"><input type="text" name="name" value="" /></div>
+                                            <div class="divTableCell" style="width: 10%"><input type="text" name="name" value="" /></div>
+                                            <div class="divTableCell bg-spacing-cell" style="width: 5%"><span class="title-center">X</span></div>
+                                            <div class="divTableCell" style="width: 10%"><input type="text" name="name" value="" /></div>
+                                            <div class="divTableCell" style="width: 10%"><input type="text" name="name" value="" /></div>
+                                            <div class="divTableCell" style="width: 10%"><input type="text" name="name" value="" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="divTable" style="border-right:1px solid #000;border-bottom:1px solid #000;border-left:1px solid #000">
+                    <div class="divTableBody">
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Product Name</span></div>
+                            <div class="divTableCell">@Html.DropDownList("asdasds", new SelectList(new List<int>() { 1, 2, 3, 4, 5 }), RLayout.SelectAction)</div>
+                            <div class="divTableCell"><span class="title">Product Diameter</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Grade</span></div>
+                            <div class="divTableCell">@Html.DropDownList("asdasds", new SelectList(ViewBag.Grade, "MNSRCD", "MNSRNM"), RLayout.SelectAction)</div>
+                            <div class="divTableCell"><span class="title">Coating</span></div>
+                            <div class="divTableCell">@Html.DropDownList("asdasds", new SelectList(ViewBag.Coating, "MECOAT","MECOAT"), RLayout.SelectAction)</div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Unit Price/Unit</span></div>
+                            <div class="divTableCell">@Html.DropDownList("asdasds", new SelectList(new List<int>() { 1, 2, 3, 4, 5 }), RLayout.SelectAction)</div>
+                            <div class="divTableCell"><span class="title">Quantity</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Sale Unit Price/Weigth (Kgs)</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                            <div class="divTableCell"><span class="title">Sale Unit Price</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Weigth (Kgs)</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                            <div class="divTableCell"><span class="title">Sale Amount</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Thickness Deviation (mm)</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                            <div class="divTableCell"><span class="title">Piece per Pack</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Diagonal (mm)</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                            <div class="divTableCell"><span class="title">Weight Per Sheet (Kgs)</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" readonly /></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Flatness (mm)</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                            <div class="divTableCell"><span class="title">Weight Per Pack (Kgs)</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Burr (mm)</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" style="width: 100px"/> <span class="title-center">% of Thickness</span> <input type="text" name="name" value=""  readonly  style="width: 100px"/></div>
+                            <div class="divTableCell"><span class="title">Weight Per Coil (Kgs)</span></div>
+                            <div class="divTableCell"><span class="title-center">Min</span> <input type="text" name="name" value="" style="width: 100px"/> <span class="title-center">Max</span> <input type="text" name="name" value="" style="width: 100px"/></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Camber (mm)</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /> <span class="title-center">mm/</span> <input type="text" name="name" value="" /> <span class="title-center">mm</span></div>
+                            <div class="divTableCell"><span class="title">Customer Information</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Coil ID (mm)</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                            <div class="divTableCell"><span class="title">Part NO</span></div>
+                            <div class="divTableCell"><input type="text" name="name" value="" /></div>
+                        </div>
+                        <div class="divTableRow">
+                            <div class="divTableCell"><span class="title">Coil OD (mm)</span></div>
+                            <div class="divTableCell"><span class="title-center">Min</span> <input type="text" name="name" value="" /> <span class="title-center">Max</span> <input type="text" name="name" value="" /></div>
+                            <div class="divTableCell"></div>
+                            <div class="divTableCell"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 p-0" style="border-top: 1px solid #000;border-bottom: 1px solid #000;border-right: 1px solid #000">
+                <div class="row mx-0 mt-2">
+                    <div class="col-12">
+                        <div class="divTable" style="border:1px solid #999999">
+                            <div class="divTableBody">
+                                <div class="divTableRow">
+                                    <div class="divTableCell w-50"><span class="title-center">Pallet Style</span></div>
+                                    <div class="divTableCell w-50">@Html.DropDownList("asdasds", new SelectList(new List<int>() { 1, 2, 3, 4, 5 }), RLayout.SelectAction, new { @class = "w-100" })</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mx-0">
+                    <div class="col-12">
+                        <div class="img-square"><h6>image</h6></div>
+                    </div>
+                </div>
+                <div class="spacing-indent"></div>
+                <div class="row mx-0 mt-2">
+                    <div class="col-12">
+                        <div class="divTable" style="border:1px solid #999999">
+                            <div class="divTableBody">
+                                <div class="divTableRow">
+                                    <div class="divTableCell w-50"><span class="title-center">Pallet Style</span></div>
+                                    <div class="divTableCell w-50">@Html.DropDownList("asdasds", new SelectList(new List<int>() { 1, 2, 3, 4, 5 }), RLayout.SelectAction, new { @class = "w-100" })</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mx-0">
+                    <div class="col-12">
+                        <div class="img-square"><h6>image</h6></div>
+                    </div>
+                </div>
+                <div class="button-col3">
+                    <button type="button" class="pre">Previous</button>
+                    <button type="button" class="next">Next</button>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+</div>

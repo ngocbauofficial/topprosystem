@@ -1,0 +1,310 @@
+﻿@using StaticResources.View.SalesPurchase
+@using StaticResources
+
+@model IEnumerable<TopProSystem.Areas.MasterSetting.Models.MA001>
+@{
+
+    ViewBag.Title = Resource.MasterTitle;
+    Layout = "~/Areas/MasterSetting/Views/Shared/_LayoutMasterSeting.cshtml";
+    ViewBag.headerName = ViewBag.Title;
+}
+@using TopProSystem.Extension.AccountRole
+@{
+
+    var permission = new PermissionService();
+    var checkbuton = permission.AuthorizeAction(StandardPermissionProvider.SalePurchaseMaster);
+}
+
+<style>
+    .data-display table thead tr:last-child {
+        border-top: 1px solid #fff;
+    }
+
+        .data-display table thead tr:last-child th:last-child {
+            border-right: 1px solid #cfcbcb !important;
+        }
+
+    table th, table td {
+        white-space: nowrap;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(function () {
+        @Html.Raw(TempData[TopProSystem.Models.ConstantData.Notification_key])
+    })
+
+</script>
+
+<div class="container-fluid">
+    <div class="pos-top">
+        <div class="row mx-0">
+            <div class="col-lg-12">
+                <div>
+                    <div class="form-group">
+                        <input type="text" name="spcode" class="search" value="" placeholder="@Resource.PlaceholderTextSearch" />
+                        <button type="button" id="btnSearch" class="btn-primary search ml-2">@Button.BtnSeach</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-0 mt-5">
+            <div class="col-lg-12">
+                @if (checkbuton.ShowDelete)
+                {
+                    <button class="btn-danger float-right ml-2" id="deleteBtn">@Button.BtnDelete</button>
+                }
+                @if (checkbuton.ShowAdd)
+                {
+                    <a href="@Url.Action("GetInsertSalePurchase","Master")" class="button float-right btn-addnew">@Button.BtnAdd</a>
+                }
+            </div>
+
+        </div>
+    </div>
+    <div class="data-display">
+        <table class="w-100 table-sm display nowrap" id="dataTable">
+            <thead>
+                <tr>
+                    <th rowspan="2">#</th>
+                    <th rowspan="2">@Resource.MASPCD</th>
+                    <th rowspan="2">@Resource.MASPNM</th>
+                    <th rowspan="2">@Resource.MASPSNM</th>
+                    <th rowspan="2">@Resource.MASPAD1</th>
+                    <th rowspan="2">@Resource.MASPAD2</th>
+                    <th rowspan="2">@Resource.MASPAD3</th>
+                    <th rowspan="2">@Resource.MACNTRC</th>
+                    <th rowspan="2">@Resource.MASPTEL</th>
+                    <th rowspan="2">@Resource.MASPFAX</th>
+                    <th rowspan="2">@Resource.MABUZCD</th>
+                    <th rowspan="2">@Resource.MAIDCD</th>
+                    <th rowspan="2">@Resource.MASPCTG</th>
+                    <th rowspan="2">@Resource.MARGSDT</th>
+                    <th rowspan="2">@Resource.MARGSTM</th>
+                    <th rowspan="2">@Resource.MAUPDT</th>
+                    <th rowspan="2">@Resource.MAUPDTM</th>
+                    <th colspan="9">Sale Condition</th>
+                    <th colspan="9">Purchase Condition</th>
+                    @if (checkbuton.ShowEdit)
+                    {
+                        <th rowspan="2">@Button.LbEdit</th>
+                    }
+                    @if (checkbuton.ShowDelete)
+                    {
+                        <th rowspan="2">@Button.LbSelect</th>
+                    }
+                </tr>
+                <tr>
+                    @*<th style="background: #487eb0;    border-right: none;"></th>
+                        <th style="background: #487eb0;     border-right: none;"></th>
+                        <th style="background: #487eb0;"></th>*@
+                    <th>@Resource.MASTDUE</th>
+                    <th>@Resource.MASCLSD</th>
+                    <th>@Resource.MASDFER</th>
+                    <th>@Resource.MASSETL</th>
+                    <th>@Resource.MACLTRM</th>
+                    <th>@Resource.MASDAYS</th>
+                    <th>@Resource.MASCRCD</th>
+                    <th>@Resource.MASTXCD</th>
+                    <th>@Resource.MASCALC</th>
+                    <th>@Resource.MAPTDUE</th>
+                    <th>@Resource.MAPCLSD</th>
+                    <th>@Resource.MAPDFER</th>
+                    <th>@Resource.MAPSETL</th>
+                    <th>@Resource.MAPYTRM</th>
+                    <th>@Resource.MAPDAYS</th>
+                    <th>@Resource.MAPCRCD</th>
+                    <th>@Resource.MAPTXCD</th>
+                    <th>@Resource.MAPCALC</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+    const URL_DELETE_SALEPURCHASE = '/Master/DeleteSalePurchase';
+
+       const URL_CHECK_USERID_REFERENCE = '/Master/CheckSalePurchaseMasterInUsedReference';
+    
+   $('#dataTable').on("click", function () {
+        var checkboxs = $(this).find("input[type=checkbox]:checked");
+        if (checkboxs.length != 0) {
+            checkboxs.each(function () {
+                var $checkbox = $(this);
+                $.getJSON(URL_CHECK_USERID_REFERENCE, {
+                    code: $checkbox.val() }).done(function (data) {
+                        if (data.message != null && data.message!='') {
+                            ErrorAlert("@RLayout.IsUsed " + data.message)
+                        $checkbox.prop('checked', false);
+                    }
+                }).fail(function (rs) {
+                    console.log(rs.responseText);
+                })
+            })
+        }
+    })
+
+
+
+    $('#deleteBtn').click(function () {
+        var length = $('input[type="checkbox"]:checked').length;
+        if (length == 0) {
+            alert("@Html.Raw(RLayout.ErrorNoRowSelect)");
+            return false;
+        }
+        var val = '';
+        $('input[type="checkbox"]:checked').each(function () {
+            val += $(this).val() + '|';
+
+        })
+        val = val.substring(0, val.length - 1);
+
+        $.confirm({
+            title: "<span class='text-secondary'>@Button.BtnConfirm</span>",
+            icon: 'fa fa-warning',
+            content: '@Html.Raw(RLayout.ContentDelete)',
+            type: 'blue',
+            buttons: {
+                confirm: {
+                    text: '@Button.BtnConfirm',
+                    btnClass: 'btn-confirm text-capitalize',
+                    action: function () {
+                        $.getJSON(URL_DELETE_SALEPURCHASE, { arrayspcode: val }).done(function (rs) {
+                            if (!rs)
+                                window.location.href = rs;
+                            else {
+                                SuccessAlert('@RLayout.DeleteMsg');
+                                $("#dataTable").DataTable().ajax.reload();
+                            }
+                        }).fail(function (rs) {
+                            console.log(rs.responseText);
+                        });
+                    }
+                },
+                cancel: {
+                    text: '@Button.BtnCancel',
+                    btnClass: 'btn-cancel text-capitalize',
+                    action: function () {
+
+                    }
+                }
+            }
+        });
+    })
+
+
+     const URL_AJAX_HANDER = "/Master/AjaxhanlderSalePurchase";
+        $(document).ready(function () {
+            var t = $('#dataTable').DataTable({
+                "ordering": false,
+                "info": false,
+                "scrollX": true,
+                "lengthChange": false,
+                "pageLength": DataTableDisplayLength,
+                "bServerSide": true,
+                "sAjaxSource": URL_AJAX_HANDER,
+                "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                    oSettings.jqXHR = $.ajax({
+                        "dataType": 'json',
+                        "url": sSource,
+                        "type": "POST",
+                        "data": aoData,
+                        "success": fnCallback,
+                        "error": function (xhr, textStatus, error) {
+                            alert("@RLayout.SessiontimeoutRespone");
+                            window.location.href = '@Url.Action("GetLogin","Account",new { area=""})';
+                        }
+                    });
+                },
+                "bProcessing": true,
+                "sServerMethod": "POST",
+                "sPaginationType": "full_numbers",
+                "language": {
+                    "paginate": {
+                        "first": '<i class="fa fa-fast-backward"></i>',
+                        "last": '<i class="fa fa-fast-forward"></i>',
+                        "next": '<i class="fa fa-forward"></i>',
+                        "previous": '<i class="fa fa-backward"></i>'
+                    },
+                    "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+                },
+                "columns": [
+                    { "data": function () { return "" } },
+                    { "data": "MASPCD" },
+                    { "data": "MASPNM" },
+                    { "data": "MASPSNM" },
+                    { "data": "MASPAD1" },
+                    { "data": "MASPAD2" },
+                    { "data": "MASPAD3" },
+                    { "data": "MACNTRC" },
+                    { "data": "MASPTEL" },
+                    { "data": "MASPFAX" },
+                    { "data": "MABUZCD" },
+                    { "data": "MAIDCD" },
+                    { "data": "MASPCTG" },
+                    { "data": "MARGSDT" },
+                    { "data": "MARGSTM" },
+                    { "data": "MAUPDT" },
+                    { "data": "MAUPDTM" },
+                    { "data": "MASTDUE" },
+                    { "data": "MASCLSD" },
+                    { "data": "MASDFER" },
+                    { "data": "MASSETL" },
+                    { "data": "MACLTRM" },
+                    { "data": "MASDAYS" },
+                    { "data": "MASCRCD" },
+                    { "data": "MASTXCD" },
+                    { "data": "MASCALC" },
+                    { "data": "MAPTDUE" },
+                    { "data": "MAPTDUE" },
+                    { "data": "MAPDFER" },
+                    { "data": "MAPSETEL" },
+                    { "data": "MAPYTRM" },
+                    { "data": "MAPDAYS" },
+                    { "data": "MAPCRCD" },
+                    { "data": "MAPTXCD" },
+                    { "data": "MAPCALC" },
+                     @if (checkbuton.ShowEdit)
+                         {
+                         <text>
+                            { "render": function (data, type, row) { return '<a href="/MasterSetting/Master/GetUpdateSalePurchase?spcode=' + row["MASPCD"] + '" class="edit"><img src="/Images/Icon/edit-icon.png" /></a>' } },
+                         </text>
+                         }
+                          @if (checkbuton.ShowDelete)
+                          {  <text>
+                              { "render": function(data, type, row) { return '<input type="checkbox" name="name" id="' + row["MASPCD"] + '" value="' + row["MASPCD"] + '" />' } }
+                            </text>
+                          }
+
+                ],
+
+            });
+
+            t.on('draw.dt', function () {
+                var PageInfo = $('#dataTable').DataTable().page.info();
+                t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1 + PageInfo.start;
+                });
+            });
+
+
+            $('#btnSearch').on('click', function () {
+                var searchKey = $('.search').val();
+                if (searchKey == "") window.location.hash = "";
+                else
+                    window.location.hash = "search-key=" + searchKey;
+                t.search(searchKey).draw();
+            })
+
+
+        });
+
+</script>
+<script>
+
+</script>

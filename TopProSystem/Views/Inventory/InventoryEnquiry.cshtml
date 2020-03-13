@@ -1,0 +1,295 @@
+﻿@using StaticResources
+@model TopProSystem.Areas.MasterSetting.Models.INV001
+@{
+    ViewBag.Title = "Inventory Enquiry";
+    Layout = "~/Views/Shared/_LayoutPageInventory.cshtml";
+    ViewBag.Content = ViewBag.Title;
+}
+
+<div class="content-top row mx-0">
+    <form action="#" method="post" name="formdata" id="form-search">
+        <div class="divTable" style="border: 1px solid #000">
+            <div class="divTableBody">
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CAINVNO)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.CAINVNO)</div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CAINVTP)</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownListFor(x => x.CAINVTP, new SelectList(Model.InventoryType, "Key", "Value"), RLayout.SelectAction)
+                    </div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CACSTCD)</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownListFor(x => x.CACSTCD, new SelectList(Model.UserCodes, "Key", "Value"), RLayout.SelectAction)
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CASPEC)</span> </div>
+                    <div class="divTableCell">
+                        @Html.DropDownListFor(x => x.CASPEC, new SelectList(Model.Specs, "Key", "Value"), RLayout.SelectAction)
+                    </div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CAMKCD)</span> </div>
+                    <div class="divTableCell">
+                        @Html.DropDownListFor(x => x.CAMKCD, new SelectList(Model.MakerCodes, "Key", "Value"), RLayout.SelectAction)
+                    </div>
+                    <div class="divTableCell"><span class="title"> @Html.DisplayNameFor(x => x.CAJOBNO)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.CAJOBNO)</div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CACOAT)</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownListFor(x => x.CACOAT, new SelectList(Model.Coatings, "Key", "Value"), RLayout.SelectAction)
+                    </div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CASPPNO)</span> </div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.CASPPNO)</div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CAPCKNO)</span> </div>
+                    <div class="divTableCell">
+                        @Html.DropDownListFor(x => x.CAPCKNO, new SelectList(Model.Packing, "Key", "Value"), RLayout.SelectAction)
+                    </div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CABSZT)</span> </div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.CABSZT)</div>
+                    <div class="divTableCell"><span class="title"> @Html.DisplayNameFor(x => x.CASPLCD)</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownListFor(x => x.CASPLCD, new SelectList(Model.SupplierCodes, "Key", "Value"), RLayout.SelectAction)
+                    </div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CALCTCD)</span> </div>
+                    <div class="divTableCell">  @Html.DropDownListFor(x => x.CALCTCD, new SelectList(Model.Location, "Key", "Value"), RLayout.SelectAction)</div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title"> @Html.DisplayNameFor(x => x.CABSZW)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.CABSZW)</div>
+                    <div class="divTableCell"><span class="title"> @Html.DisplayNameFor(x => x.CAUSRCD)</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownListFor(x => x.CAUSRCD, new SelectList(Model.PersonIncharges, "Key", "Value"), RLayout.SelectAction)
+                    </div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CAOENO)</span> </div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.CAOENO)</div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CABSZL)</span> </div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.CABSZL)</div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CACTRNO)</span> </div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.CACTRNO)</div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CAOEITM)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.CAOEITM)</div>
+                </div>
+
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CAPRDNM)</span> </div>
+                    <div class="divTableCell">
+                        <select>
+                            <option value="value">text</option>
+                        </select>
+                    </div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CACMDCD)</span> </div>
+                    <div class="divTableCell">
+                        @Html.DropDownListFor(x => x.CACMDCD, new SelectList(Model.CommodityCodes, "Key", "Value"), RLayout.SelectAction)
+                    </div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CAISPNO)</span> </div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.CAISPNO)</div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CAPRDDIA)</span></div>
+                    <div class="divTableCell">@Html.TextBoxFor(x => x.CAPRDDIA)</div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CACTRTP)</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownListFor(x => x.CACTRTP, new SelectList(Model.ContractTypes, "Key", "Value"), RLayout.SelectAction)
+
+                    </div>
+                    <div class="divTableCell"></div>
+                    <div class="divTableCell"></div>
+                </div>
+                <div class="divTableRow">
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CASTLGR)</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownListFor(x => x.CASTLGR, new SelectList(Model.SteelGrades, "Key", "Value"), RLayout.SelectAction)
+                    </div>
+                    <div class="divTableCell"><span class="title">@Html.DisplayNameFor(x => x.CAINVST)</span></div>
+                    <div class="divTableCell">
+                        @Html.DropDownListFor(x => x.CAINVST, new SelectList(Model.InventoryStatus, "Key", "Value"), RLayout.SelectAction)
+                    </div>
+                    <div class="divTableCell"></div>
+                    <div class="divTableCell"></div>
+                </div>
+            </div>
+        </div>
+        <div class="float-right my-2">
+            <button type="button" id="btnSearch" class="search">@Button.BtnSeach</button>
+            <button type="button" id="exportExcelBtn" class="excel">Excel</button>
+            <button type="button" class="cancel">@Button.BtnCancel</button>
+        </div>
+    </form>
+</div>
+
+<div class="content-bottom row mx-0 data-display">
+    <table class="table-sm w-100" id="dataTable">
+        <thead>
+            <tr>
+                <th># &nbsp;</th>
+                <th>@Html.DisplayNameFor(x => x.CAINVST)</th>
+                <th>@Html.DisplayNameFor(x => x.CAINVNO)</th>
+                <th>@Html.DisplayNameFor(x => x.CAISPNO)</th>
+                <th>@Html.DisplayNameFor(x => x.CASPEC)</th>
+                <th>@Html.DisplayNameFor(x => x.CABSZT)</th>
+                <th>@Html.DisplayNameFor(x => x.CABSZW)</th>
+                <th>@Html.DisplayNameFor(x => x.CABSZL)</th>
+                <th>@Html.DisplayNameFor(x => x.CAPRDNM)</th>
+                <th>@Html.DisplayNameFor(x => x.CAPRDDIA)</th>
+                <th>@Html.DisplayNameFor(x => x.CASTLGR)</th>
+                <th>@Html.DisplayNameFor(x => x.CAQTY)</th>
+                <th>@Html.DisplayNameFor(x => x.CAWT)</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+                <th colspan="11" style="text-align:right">Total:</th>
+                <th class="text-center"></th>
+                <th class="text-center"></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        var totalWeight = 0, totalQty = 0;
+        $(function () {
+
+            var t = $('#dataTable').DataTable({
+                "ordering": false,
+                "paging": true,
+                "info": false,
+                "searching": true,
+                "lengthChange": false,
+                "scrollX": false,
+                "autoWidth": false,
+                "pageLength": DataTableDisplayLength,
+                "bServerSide": true,
+                "sAjaxSource": '/Inventory/ajaxHandler',
+                "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                    oSettings.jqXHR = $.ajax({
+                        "dataType": 'json',
+                        "url": sSource,
+                        "type": 'POST',
+                        "data": aoData,
+                        "success": function (e) {
+                            totalWeight = e.totalWeight;
+                            totalQty = e.totalQty;
+                            fnCallback(e);
+                        },
+                        "error": function () {
+                            alert("@RLayout.SessiontimeoutRespone");
+                        @*window.location.href = "@Url.Action("GetLogin","Account", new {area = "" })"*@
+                        }
+                    });
+                },
+                "bProcessing": true,
+                "sServerMethod": "POST",
+                "language": {
+                    "paginate": {
+                        "first": '<i class="fa fa-fast-backward"></i>',
+                        "last": '<i class="fa fa-fast-forward"></i>',
+                        "next": '<i class="fa fa-forward"></i>',
+                        "previous": '<i class="fa fa-backward"></i>'
+                    },
+                    "processing": '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>'
+                },
+                "columns": [
+                    { "data": function () { return ""; } },
+                    { "data": "CAINVST" },
+                    { "data": "CAINVNO" },
+                    { "data": "CAISPNO" },
+                    { "data": "CASPEC" },
+                    { "data": "CABSZT" },
+                    { "data": "CABSZW" },
+                    { "data": "CABSZL" },
+                    { "data": "CAPRDNM" },
+                    { "data": "CAPRDDIA" },
+                    { "data": "CASTLGR" },
+                    { "data": "CAQTY" },
+                    { "data": "CAWT" },
+                ],
+                "fnFooterCallback": function (row, data, start, end, display) {
+                    var api = this.api(), data;
+                    $(api.column(11).footer()).html(
+                        totalQty
+                    );
+                    $(api.column(12).footer()).html(
+                        totalWeight
+                    );
+                    
+                }
+
+
+            });
+            t.on('draw.dt', function () {
+                var PageInfo = $('#dataTable').DataTable().page.info();
+                t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1 + PageInfo.start;
+                });
+            });
+
+            $('#btnSearch').click(function () {
+                var sSeach = CreateSearchData();
+                t.search(sSeach).draw();
+            });
+
+            $('#exportExcelBtn').click(function () {
+                $.ajax({
+                    url: '@Url.Action("CreateExcelFileEnquiry","Inventory")',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (rs) {
+                        if (parseInt(rs.status) === 0) {
+                            window.location.href = "@Url.RouteUrl(new { Controller = "Inventory", Action = "DownloadExcelFile" })/?path=" + rs.path;
+                        } else if (parseInt(rs.status) === 2) {
+                            ErrorAlert('@Html.Raw(RLayout.NoDataFound)');
+                        } else {
+                            ErrorAlert(rs.message);
+                        }
+                    },
+                    beforeSend: function () {
+                        $('body').append(expLoading);
+                    },
+                    complete: function () {
+                        $('#exp-loading').remove();
+                    }
+                })
+            })
+
+        })
+
+        function CreateSearchData() {
+            var array = [
+            $('#CAINVNO').val(),
+            $('#CASPEC').val(),
+            $('#CACOAT').val(),
+            $('#CABSZT').val(),
+            $('#CABSZW').val(),
+            $('#CABSZL').val(),
+            $('#CAPRDDIA').val(),
+            $('#CASTLGR').val(),
+            $('#CAINVTP').val(),
+            $('#CAMKCD').val(),
+            $('#CASPPNO').val(),
+            $('#CASPLCD').val(),
+            $('#CAUSRCD').val(),
+            $('#CACTRNO').val(),
+            $('#CACMDCD').val(),
+            $('#CACTRTP').val(),
+            $('#CAINVST').val(),
+            $('#CACSTCD').val(),
+            $('#CAJOBNO').val(),
+            $('#CAPCKNO').val(),
+            $('#CALCTCD').val(),
+            $('#CAOENO').val(),
+            $('#CAOEITM').val(),
+            $('#CAISPNO').val(),
+            ];
+            return array.join('|');
+        }
+
+
+    </script>
+}
